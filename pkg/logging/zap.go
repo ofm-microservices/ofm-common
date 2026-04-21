@@ -7,6 +7,10 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
+var buildZapLogger = func(cfg zap.Config, opts ...zap.Option) (*zap.Logger, error) {
+	return cfg.Build(opts...)
+}
+
 type zapLogger struct {
 	logger *zap.Logger
 }
@@ -28,7 +32,7 @@ func New(service, env, level string) (Logger, error) {
 		cfg.Level = zap.NewAtomicLevelAt(zapLevel)
 	}
 
-	zl, err := cfg.Build(zap.AddCaller(), zap.AddStacktrace(zapcore.ErrorLevel))
+	zl, err := buildZapLogger(cfg, zap.AddCaller(), zap.AddStacktrace(zapcore.ErrorLevel))
 	if err != nil {
 		return nil, WrapBuildLoggerError(err)
 	}
@@ -40,15 +44,24 @@ func New(service, env, level string) (Logger, error) {
 	)}, nil
 }
 
+// Debug writes a debug log record.
 func (l *zapLogger) Debug(msg string, fields ...Field) { l.logger.Debug(msg, fields...) }
-func (l *zapLogger) Info(msg string, fields ...Field)  { l.logger.Info(msg, fields...) }
-func (l *zapLogger) Warn(msg string, fields ...Field)  { l.logger.Warn(msg, fields...) }
+
+// Info writes an informational log record.
+func (l *zapLogger) Info(msg string, fields ...Field) { l.logger.Info(msg, fields...) }
+
+// Warn writes a warning log record.
+func (l *zapLogger) Warn(msg string, fields ...Field) { l.logger.Warn(msg, fields...) }
+
+// Error writes an error log record.
 func (l *zapLogger) Error(msg string, fields ...Field) { l.logger.Error(msg, fields...) }
 
+// With returns a child logger with the supplied structured fields attached.
 func (l *zapLogger) With(fields ...Field) Logger {
 	return &zapLogger{logger: l.logger.With(fields...)}
 }
 
+// Sync flushes buffered log output.
 func (l *zapLogger) Sync() error {
 	if l == nil || l.logger == nil {
 		return ErrNilZapLogger

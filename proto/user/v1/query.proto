@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// Package user.v1 defines the user ownership queries shared with
+// registration-saga-service.
+package user.v1;
+
+option go_package = "github.com/ofm-microseervices/ofm-common/proto/user/v1;userv1";
+
+// UserQueryService exposes read-only user ownership checks over gRPC.
+service UserQueryService {
+  rpc ExistsByUsername(ExistsByUsernameRequest) returns (ExistsByUsernameResponse);
+}
+
+// ExistsByUsernameRequest asks whether user-service already owns the supplied
+// username.
+message ExistsByUsernameRequest {
+  string username = 1;
+}
+
+// ExistsByUsernameResponse reports whether the username is already owned by
+// user-service.
+message ExistsByUsernameResponse {
+  bool exists = 1;
+}

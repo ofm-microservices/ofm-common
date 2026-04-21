@@ -5,6 +5,8 @@ import (
 	"fmt"
 )
 
+// ErrNilZapLogger is returned when logger operations are attempted on a nil
+// zap logger.
 var ErrNilZapLogger = errors.New("zap logger is nil")
 
 // WrapParseLogLevelError annotates invalid log-level input.
