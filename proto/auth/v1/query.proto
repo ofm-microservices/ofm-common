@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// Package auth.v1 defines the auth ownership queries shared with
+// registration-saga-service.
+package auth.v1;
+
+option go_package = "github.com/ofm-microseervices/ofm-common/proto/auth/v1;authv1";
+
+// AuthQueryService exposes read-only auth ownership checks over gRPC.
+service AuthQueryService {
+  rpc ExistsByEmail(ExistsByEmailRequest) returns (ExistsByEmailResponse);
+}
+
+// ExistsByEmailRequest asks whether auth-service already owns the supplied
+// email address.
+message ExistsByEmailRequest {
+  string email = 1;
+}
+
+// ExistsByEmailResponse reports whether the email is already owned by
+// auth-service.
+message ExistsByEmailResponse {
+  bool exists = 1;
+}
