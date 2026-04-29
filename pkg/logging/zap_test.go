@@ -52,7 +52,6 @@ var _ = Describe("Logger", func() {
 			Expect(err).To(MatchError(ContainSubstring("forced build failure")))
 		})
 	})
-
 	Describe("With", func() {
 		It("returns a child logger that accepts additional fields", func() {
 			lg, err := New("ofm-common", "test", "info")
@@ -67,7 +66,6 @@ var _ = Describe("Logger", func() {
 			Expect(child.Sync()).NotTo(MatchError(ErrNilZapLogger))
 		})
 	})
-
 	Describe("Sync", func() {
 		It("returns ErrNilZapLogger for a nil concrete logger", func() {
 			var lg *zapLogger
