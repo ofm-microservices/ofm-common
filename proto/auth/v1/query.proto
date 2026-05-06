@@ -9,6 +9,9 @@ option go_package = "github.com/ofm-microseervices/ofm-common/proto/auth/v1;auth
 // AuthQueryService exposes read-only auth ownership checks over gRPC.
 service AuthQueryService {
   rpc ExistsByEmail(ExistsByEmailRequest) returns (ExistsByEmailResponse);
+  rpc VerifyRegistrationEmail(VerifyRegistrationEmailRequest) returns (VerifyRegistrationEmailResponse);
+  rpc IssueRegistrationTokens(IssueRegistrationTokensRequest) returns (IssueRegistrationTokensResponse);
+  rpc DeactivateRegistrationAuth(DeactivateRegistrationAuthRequest) returns (DeactivateRegistrationAuthResponse);
 }
 
 // ExistsByEmailRequest asks whether auth-service already owns the supplied
@@ -21,4 +24,46 @@ message ExistsByEmailRequest {
 // auth-service.
 message ExistsByEmailResponse {
   bool exists = 1;
+}
+
+// VerifyRegistrationEmailRequest verifies the pending registration code owned
+// by auth-service.
+message VerifyRegistrationEmailRequest {
+  string user_id = 1;
+  string code = 2;
+}
+
+// VerifyRegistrationEmailResponse reports whether the pending auth data is now
+// verified.
+message VerifyRegistrationEmailResponse {
+  string user_id = 1;
+  string email = 2;
+  string status = 3;
+}
+
+// IssueRegistrationTokensRequest asks auth-service to create the final login
+// tokens after the saga has completed.
+message IssueRegistrationTokensRequest {
+  string user_id = 1;
+}
+
+// IssueRegistrationTokensResponse returns the login tokens over the private
+// gRPC boundary to api-gateway.
+message IssueRegistrationTokensResponse {
+  string user_id = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+  string token_type = 4;
+  int64 expires_in = 5;
+}
+
+// DeactivateRegistrationAuthRequest is the compensation command for auth data.
+message DeactivateRegistrationAuthRequest {
+  string user_id = 1;
+}
+
+// DeactivateRegistrationAuthResponse reports compensation completion.
+message DeactivateRegistrationAuthResponse {
+  string user_id = 1;
+  string status = 2;
 }

@@ -10,6 +10,8 @@ option go_package = "github.com/ofm-microseervices/ofm-common/proto/registration
 // orchestration result.
 service RegistrationService {
   rpc StartRegistration(StartRegistrationRequest) returns (StartRegistrationResponse);
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse);
+  rpc GetRegistrationStatus(GetRegistrationStatusRequest) returns (GetRegistrationStatusResponse);
 }
 
 // StartRegistrationRequest carries the public signup payload from api-gateway
@@ -48,4 +50,36 @@ message StartRegistrationResponse {
   bool username_taken = 6;
   // email_taken reports whether the requested email is already reserved.
   bool email_taken = 7;
+}
+
+// VerifyEmailRequest carries the email verification command from api-gateway to
+// registration-saga-service.
+message VerifyEmailRequest {
+  string session_id = 1;
+  string client_id = 2;
+  string code = 3;
+}
+
+// VerifyEmailResponse is returned immediately after the saga accepts the email
+// verification command.
+message VerifyEmailResponse {
+  string session_id = 1;
+  string client_id = 2;
+  string status = 3;
+}
+
+// GetRegistrationStatusRequest asks the saga whether a registration session has
+// completed and can be exchanged for auth tokens.
+message GetRegistrationStatusRequest {
+  string session_id = 1;
+  string client_id = 2;
+}
+
+// GetRegistrationStatusResponse reports the current saga state for token
+// completion.
+message GetRegistrationStatusResponse {
+  string session_id = 1;
+  string client_id = 2;
+  string user_id = 3;
+  string status = 4;
 }
