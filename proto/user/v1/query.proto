@@ -9,6 +9,8 @@ option go_package = "github.com/ofm-microseervices/ofm-common/proto/user/v1;user
 // UserQueryService exposes read-only user ownership checks over gRPC.
 service UserQueryService {
   rpc ExistsByUsername(ExistsByUsernameRequest) returns (ExistsByUsernameResponse);
+  rpc ActivateUser(ActivateUserRequest) returns (ActivateUserResponse);
+  rpc DeactivateUser(DeactivateUserRequest) returns (DeactivateUserResponse);
 }
 
 // ExistsByUsernameRequest asks whether user-service already owns the supplied
@@ -21,4 +23,27 @@ message ExistsByUsernameRequest {
 // user-service.
 message ExistsByUsernameResponse {
   bool exists = 1;
+}
+
+// ActivateUserRequest asks user-service to make a created profile active.
+message ActivateUserRequest {
+  string user_id = 1;
+}
+
+// ActivateUserResponse reports profile activation.
+message ActivateUserResponse {
+  string user_id = 1;
+  string status = 2;
+}
+
+// DeactivateUserRequest asks user-service to mark a profile inactive as
+// compensation.
+message DeactivateUserRequest {
+  string user_id = 1;
+}
+
+// DeactivateUserResponse reports profile deactivation.
+message DeactivateUserResponse {
+  string user_id = 1;
+  string status = 2;
 }
