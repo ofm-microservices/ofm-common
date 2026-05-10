@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+// Package gig.v1 defines the gig draft and publish workflow shared between
+// api-gateway and gig-service.
+package gig.v1;
+
+option go_package = "github.com/ofm-microseervices/ofm-common/proto/gig/v1;gigv1";
+
+// GigCommandService exposes the gig draft workflow over gRPC.
+service GigCommandService {
+  rpc CreateDraft(CreateDraftRequest) returns (CreateDraftResponse);
+  rpc UpdateBasicInfo(UpdateBasicInfoRequest) returns (UpdateBasicInfoResponse);
+  rpc ReplacePackages(ReplacePackagesRequest) returns (ReplacePackagesResponse);
+  rpc ReplaceQuestions(ReplaceQuestionsRequest) returns (ReplaceQuestionsResponse);
+  rpc ReplaceMedia(ReplaceMediaRequest) returns (ReplaceMediaResponse);
+  rpc GetDraft(GetDraftRequest) returns (GetDraftResponse);
+  rpc Publish(PublishRequest) returns (PublishResponse);
+}
+
+message Gig {
+  string gig_id = 1;
+  string freelancer_id = 2;
+  string title = 3;
+  string description = 4;
+  int64 category_id = 5;
+  string currency = 6;
+  string status = 7;
+  bool basic_info_completed = 8;
+  bool packages_completed = 9;
+  bool requirements_completed = 10;
+  bool media_completed = 11;
+  string picture_file_id = 12;
+  string published_at = 13;
+  string created_at = 14;
+  string updated_at = 15;
+  repeated GigPackage packages = 16;
+  repeated GigQuestion questions = 17;
+  repeated GigMedia media = 18;
+}
+
+message GigPackage {
+  string id = 1;
+  string gig_id = 2;
+  string tier = 3;
+  reserved 4;
+  string description = 5;
+  int32 delivery_days = 6;
+  int64 price_cents = 7;
+  int32 sort_order = 8;
+}
+
+message GigQuestion {
+  string id = 1;
+  string gig_id = 2;
+  string content = 3;
+  int32 sort_order = 4;
+}
+
+message GigMedia {
+  string id = 1;
+  string gig_id = 2;
+  string file_id = 3;
+  int32 sort_order = 4;
+}
+
+message MediaUpload {
+  string filename = 1;
+  string content_type = 2;
+  bytes data = 3;
+}
+
+message CreateDraftRequest {
+  string freelancer_id = 1;
+}
+
+message CreateDraftResponse {
+  Gig gig = 1;
+}
+
+message UpdateBasicInfoRequest {
+  string gig_id = 1;
+  string freelancer_id = 2;
+  string title = 3;
+  string description = 4;
+  int64 category_id = 5;
+  string currency = 6;
+}
+
+message UpdateBasicInfoResponse {
+  Gig gig = 1;
+}
+
+message ReplacePackagesRequest {
+  string gig_id = 1;
+  string freelancer_id = 2;
+  repeated GigPackage packages = 3;
+}
+
+message ReplacePackagesResponse {
+  Gig gig = 1;
+}
+
+message ReplaceQuestionsRequest {
+  string gig_id = 1;
+  string freelancer_id = 2;
+  repeated GigQuestion questions = 3;
+}
+
+message ReplaceQuestionsResponse {
+  Gig gig = 1;
+}
+
+message ReplaceMediaRequest {
+  string gig_id = 1;
+  string freelancer_id = 2;
+  repeated MediaUpload files = 3;
+}
+
+message ReplaceMediaResponse {
+  Gig gig = 1;
+}
+
+message GetDraftRequest {
+  string gig_id = 1;
+  string freelancer_id = 2;
+}
+
+message GetDraftResponse {
+  Gig gig = 1;
+}
+
+message PublishRequest {
+  string gig_id = 1;
+  string freelancer_id = 2;
+}
+
+message PublishResponse {
+  Gig gig = 1;
+}
