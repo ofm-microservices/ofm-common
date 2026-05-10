@@ -4,7 +4,7 @@ syntax = "proto3";
 // registration-saga-service.
 package auth.v1;
 
-option go_package = "github.com/ofm-microseervices/ofm-common/proto/auth/v1;authv1";
+option go_package = "github.com/ofm-microservices/ofm-common/proto/auth/v1;authv1";
 
 // AuthQueryService exposes read-only auth ownership checks over gRPC.
 service AuthQueryService {

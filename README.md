@@ -56,13 +56,13 @@ publishing the module, not from a local HTML generator.
 ## Module Path
 
 ```text
-github.com/ofm-microseervices/ofm-common
+github.com/ofm-microservices/ofm-common
 ```
 
 Example import:
 
 ```go
-import "github.com/ofm-microseervices/ofm-common/pkg/logging"
+import "github.com/ofm-microservices/ofm-common/pkg/logging"
 ```
 
 ## Technologies

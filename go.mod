@@ -1,4 +1,4 @@
-module github.com/ofm-microseervices/ofm-common
+module github.com/ofm-microservices/ofm-common
 
 go 1.25.5
 

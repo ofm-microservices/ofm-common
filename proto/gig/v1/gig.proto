@@ -4,7 +4,7 @@ syntax = "proto3";
 // api-gateway and gig-service.
 package gig.v1;
 
-option go_package = "github.com/ofm-microseervices/ofm-common/proto/gig/v1;gigv1";
+option go_package = "github.com/ofm-microservices/ofm-common/proto/gig/v1;gigv1";
 
 // GigCommandService exposes the gig draft workflow over gRPC.
 service GigCommandService {

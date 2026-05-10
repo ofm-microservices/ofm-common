@@ -4,7 +4,7 @@ syntax = "proto3";
 // api-gateway, gig-service, and file-service.
 package file.v1;
 
-option go_package = "github.com/ofm-microseervices/ofm-common/proto/file/v1;filev1";
+option go_package = "github.com/ofm-microservices/ofm-common/proto/file/v1;filev1";
 
 // FileService uploads, retrieves, and deletes file metadata.
 service FileService {

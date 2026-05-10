@@ -4,7 +4,7 @@ syntax = "proto3";
 // registration-saga-service.
 package user.v1;
 
-option go_package = "github.com/ofm-microseervices/ofm-common/proto/user/v1;userv1";
+option go_package = "github.com/ofm-microservices/ofm-common/proto/user/v1;userv1";
 
 // UserQueryService exposes read-only user ownership checks over gRPC.
 service UserQueryService {

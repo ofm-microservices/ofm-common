@@ -1325,7 +1325,7 @@ const file_gig_v1_gig_proto_rawDesc = "" +
 	"\x10ReplaceQuestions\x12\x1f.gig.v1.ReplaceQuestionsRequest\x1a .gig.v1.ReplaceQuestionsResponse\x12I\n" +
 	"\fReplaceMedia\x12\x1b.gig.v1.ReplaceMediaRequest\x1a\x1c.gig.v1.ReplaceMediaResponse\x12=\n" +
 	"\bGetDraft\x12\x17.gig.v1.GetDraftRequest\x1a\x18.gig.v1.GetDraftResponse\x12:\n" +
-	"\aPublish\x12\x16.gig.v1.PublishRequest\x1a\x17.gig.v1.PublishResponseB=Z;github.com/ofm-microseervices/ofm-common/proto/gig/v1;gigv1b\x06proto3"
+	"\aPublish\x12\x16.gig.v1.PublishRequest\x1a\x17.gig.v1.PublishResponseB=Z;github.com/ofm-microservices/ofm-common/proto/gig/v1;gigv1b\x06proto3"
 
 var (
 	file_gig_v1_gig_proto_rawDescOnce sync.Once

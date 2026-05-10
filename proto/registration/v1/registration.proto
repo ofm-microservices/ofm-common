@@ -4,7 +4,7 @@ syntax = "proto3";
 // between api-gateway and registration-saga-service.
 package registration.v1;
 
-option go_package = "github.com/ofm-microseervices/ofm-common/proto/registration/v1;registrationv1";
+option go_package = "github.com/ofm-microservices/ofm-common/proto/registration/v1;registrationv1";
 
 // RegistrationService starts registration sessions and returns the immediate
 // orchestration result.

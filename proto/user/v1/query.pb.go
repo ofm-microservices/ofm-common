@@ -335,7 +335,7 @@ const file_user_v1_query_proto_rawDesc = "" +
 	"\x10UserQueryService\x12W\n" +
 	"\x10ExistsByUsername\x12 .user.v1.ExistsByUsernameRequest\x1a!.user.v1.ExistsByUsernameResponse\x12K\n" +
 	"\fActivateUser\x12\x1c.user.v1.ActivateUserRequest\x1a\x1d.user.v1.ActivateUserResponse\x12Q\n" +
-	"\x0eDeactivateUser\x12\x1e.user.v1.DeactivateUserRequest\x1a\x1f.user.v1.DeactivateUserResponseB?Z=github.com/ofm-microseervices/ofm-common/proto/user/v1;userv1b\x06proto3"
+	"\x0eDeactivateUser\x12\x1e.user.v1.DeactivateUserRequest\x1a\x1f.user.v1.DeactivateUserResponseB?Z=github.com/ofm-microservices/ofm-common/proto/user/v1;userv1b\x06proto3"
 
 var (
 	file_user_v1_query_proto_rawDescOnce sync.Once

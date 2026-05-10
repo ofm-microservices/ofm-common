@@ -652,7 +652,7 @@ const file_file_v1_file_proto_rawDesc = "" +
 	"\vUploadFiles\x12\x1b.file.v1.UploadFilesRequest\x1a\x1c.file.v1.UploadFilesResponse\x12<\n" +
 	"\aGetFile\x12\x17.file.v1.GetFileRequest\x1a\x18.file.v1.GetFileResponse\x12E\n" +
 	"\n" +
-	"DeleteFile\x12\x1a.file.v1.DeleteFileRequest\x1a\x1b.file.v1.DeleteFileResponseB?Z=github.com/ofm-microseervices/ofm-common/proto/file/v1;filev1b\x06proto3"
+	"DeleteFile\x12\x1a.file.v1.DeleteFileRequest\x1a\x1b.file.v1.DeleteFileResponseB?Z=github.com/ofm-microservices/ofm-common/proto/file/v1;filev1b\x06proto3"
 
 var (
 	file_file_v1_file_proto_rawDescOnce sync.Once
