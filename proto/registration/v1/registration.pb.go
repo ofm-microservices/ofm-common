@@ -513,7 +513,7 @@ const file_registration_v1_registration_proto_rawDesc = "" +
 	"\x13RegistrationService\x12j\n" +
 	"\x11StartRegistration\x12).registration.v1.StartRegistrationRequest\x1a*.registration.v1.StartRegistrationResponse\x12X\n" +
 	"\vVerifyEmail\x12#.registration.v1.VerifyEmailRequest\x1a$.registration.v1.VerifyEmailResponse\x12v\n" +
-	"\x15GetRegistrationStatus\x12-.registration.v1.GetRegistrationStatusRequest\x1a..registration.v1.GetRegistrationStatusResponseBOZMgithub.com/ofm-microservices/ofm-common/proto/registration/v1;registrationv1b\x06proto3"
+	"\x15GetRegistrationStatus\x12-.registration.v1.GetRegistrationStatusRequest\x1a..registration.v1.GetRegistrationStatusResponseBNZLgithub.com/ofm-microservices/ofm-common/proto/registration/v1;registrationv1b\x06proto3"
 
 var (
 	file_registration_v1_registration_proto_rawDescOnce sync.Once

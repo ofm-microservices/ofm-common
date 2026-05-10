@@ -489,7 +489,7 @@ const file_auth_v1_query_proto_rawDesc = "" +
 	"\rExistsByEmail\x12\x1d.auth.v1.ExistsByEmailRequest\x1a\x1e.auth.v1.ExistsByEmailResponse\x12l\n" +
 	"\x17VerifyRegistrationEmail\x12'.auth.v1.VerifyRegistrationEmailRequest\x1a(.auth.v1.VerifyRegistrationEmailResponse\x12l\n" +
 	"\x17IssueRegistrationTokens\x12'.auth.v1.IssueRegistrationTokensRequest\x1a(.auth.v1.IssueRegistrationTokensResponse\x12u\n" +
-	"\x1aDeactivateRegistrationAuth\x12*.auth.v1.DeactivateRegistrationAuthRequest\x1a+.auth.v1.DeactivateRegistrationAuthResponseB?Z=github.com/ofm-microservices/ofm-common/proto/auth/v1;authv1b\x06proto3"
+	"\x1aDeactivateRegistrationAuth\x12*.auth.v1.DeactivateRegistrationAuthRequest\x1a+.auth.v1.DeactivateRegistrationAuthResponseB>Z<github.com/ofm-microservices/ofm-common/proto/auth/v1;authv1b\x06proto3"
 
 var (
 	file_auth_v1_query_proto_rawDescOnce sync.Once

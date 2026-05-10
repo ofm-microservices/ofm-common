@@ -209,7 +209,6 @@ type GigPackage struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	GigId         string                 `protobuf:"bytes,2,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
 	Tier          string                 `protobuf:"bytes,3,opt,name=tier,proto3" json:"tier,omitempty"`
-	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	DeliveryDays  int32                  `protobuf:"varint,6,opt,name=delivery_days,json=deliveryDays,proto3" json:"delivery_days,omitempty"`
 	PriceCents    int64                  `protobuf:"varint,7,opt,name=price_cents,json=priceCents,proto3" json:"price_cents,omitempty"`
@@ -265,13 +264,6 @@ func (x *GigPackage) GetGigId() string {
 func (x *GigPackage) GetTier() string {
 	if x != nil {
 		return x.Tier
-	}
-	return ""
-}
-
-func (x *GigPackage) GetTitle() string {
-	if x != nil {
-		return x.Title
 	}
 	return ""
 }
@@ -1247,19 +1239,18 @@ const file_gig_v1_gig_proto_rawDesc = "" +
 	"updated_at\x18\x0f \x01(\tR\tupdatedAt\x12.\n" +
 	"\bpackages\x18\x10 \x03(\v2\x12.gig.v1.GigPackageR\bpackages\x121\n" +
 	"\tquestions\x18\x11 \x03(\v2\x13.gig.v1.GigQuestionR\tquestions\x12&\n" +
-	"\x05media\x18\x12 \x03(\v2\x10.gig.v1.GigMediaR\x05media\"\xe4\x01\n" +
+	"\x05media\x18\x12 \x03(\v2\x10.gig.v1.GigMediaR\x05media\"\xd4\x01\n" +
 	"\n" +
 	"GigPackage\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x15\n" +
 	"\x06gig_id\x18\x02 \x01(\tR\x05gigId\x12\x12\n" +
-	"\x04tier\x18\x03 \x01(\tR\x04tier\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\x12 \n" +
+	"\x04tier\x18\x03 \x01(\tR\x04tier\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12#\n" +
 	"\rdelivery_days\x18\x06 \x01(\x05R\fdeliveryDays\x12\x1f\n" +
 	"\vprice_cents\x18\a \x01(\x03R\n" +
 	"priceCents\x12\x1d\n" +
 	"\n" +
-	"sort_order\x18\b \x01(\x05R\tsortOrder\"m\n" +
+	"sort_order\x18\b \x01(\x05R\tsortOrderJ\x04\b\x04\x10\x05\"m\n" +
 	"\vGigQuestion\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x15\n" +
 	"\x06gig_id\x18\x02 \x01(\tR\x05gigId\x12\x18\n" +
@@ -1325,7 +1316,7 @@ const file_gig_v1_gig_proto_rawDesc = "" +
 	"\x10ReplaceQuestions\x12\x1f.gig.v1.ReplaceQuestionsRequest\x1a .gig.v1.ReplaceQuestionsResponse\x12I\n" +
 	"\fReplaceMedia\x12\x1b.gig.v1.ReplaceMediaRequest\x1a\x1c.gig.v1.ReplaceMediaResponse\x12=\n" +
 	"\bGetDraft\x12\x17.gig.v1.GetDraftRequest\x1a\x18.gig.v1.GetDraftResponse\x12:\n" +
-	"\aPublish\x12\x16.gig.v1.PublishRequest\x1a\x17.gig.v1.PublishResponseB=Z;github.com/ofm-microservices/ofm-common/proto/gig/v1;gigv1b\x06proto3"
+	"\aPublish\x12\x16.gig.v1.PublishRequest\x1a\x17.gig.v1.PublishResponseB<Z:github.com/ofm-microservices/ofm-common/proto/gig/v1;gigv1b\x06proto3"
 
 var (
 	file_gig_v1_gig_proto_rawDescOnce sync.Once
