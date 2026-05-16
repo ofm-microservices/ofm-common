@@ -9,6 +9,7 @@ option go_package = "github.com/ofm-microservices/ofm-common/proto/paymentconnec
 // PaymentOnboardingService provisions Stripe Connect onboarding for a user.
 service PaymentOnboardingService {
   rpc StartFreelancerOnboarding(StartFreelancerOnboardingRequest) returns (StartFreelancerOnboardingResponse);
+  rpc GetConnectStatus(GetConnectStatusRequest) returns (GetConnectStatusResponse);
 }
 
 // StartFreelancerOnboardingRequest identifies the authenticated user and the
@@ -35,4 +36,20 @@ message StartFreelancerOnboardingResponse {
   bool payouts_enabled = 7;
   string disabled_reason = 8;
   string occurred_at = 9;
+}
+
+// GetConnectStatusRequest asks payment-service for the latest Connect onboarding
+// status for one authenticated freelancer.
+message GetConnectStatusRequest {
+  string user_id = 1;
+}
+
+// GetConnectStatusResponse returns the normalized Connect onboarding status for
+// one freelancer.
+message GetConnectStatusResponse {
+  string user_id = 1;
+  string status = 2;
+  string stripe_account_id = 3;
+  string disabled_reason = 4;
+  string occurred_at = 5;
 }

@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	PaymentOnboardingService_StartFreelancerOnboarding_FullMethodName = "/paymentconnect.v1.PaymentOnboardingService/StartFreelancerOnboarding"
+	PaymentOnboardingService_GetConnectStatus_FullMethodName          = "/paymentconnect.v1.PaymentOnboardingService/GetConnectStatus"
 )
 
 // PaymentOnboardingServiceClient is the client API for PaymentOnboardingService service.
@@ -32,6 +33,7 @@ const (
 // PaymentOnboardingService provisions Stripe Connect onboarding for a user.
 type PaymentOnboardingServiceClient interface {
 	StartFreelancerOnboarding(ctx context.Context, in *StartFreelancerOnboardingRequest, opts ...grpc.CallOption) (*StartFreelancerOnboardingResponse, error)
+	GetConnectStatus(ctx context.Context, in *GetConnectStatusRequest, opts ...grpc.CallOption) (*GetConnectStatusResponse, error)
 }
 
 type paymentOnboardingServiceClient struct {
@@ -52,6 +54,16 @@ func (c *paymentOnboardingServiceClient) StartFreelancerOnboarding(ctx context.C
 	return out, nil
 }
 
+func (c *paymentOnboardingServiceClient) GetConnectStatus(ctx context.Context, in *GetConnectStatusRequest, opts ...grpc.CallOption) (*GetConnectStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetConnectStatusResponse)
+	err := c.cc.Invoke(ctx, PaymentOnboardingService_GetConnectStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PaymentOnboardingServiceServer is the server API for PaymentOnboardingService service.
 // All implementations should embed UnimplementedPaymentOnboardingServiceServer
 // for forward compatibility.
@@ -59,6 +71,7 @@ func (c *paymentOnboardingServiceClient) StartFreelancerOnboarding(ctx context.C
 // PaymentOnboardingService provisions Stripe Connect onboarding for a user.
 type PaymentOnboardingServiceServer interface {
 	StartFreelancerOnboarding(context.Context, *StartFreelancerOnboardingRequest) (*StartFreelancerOnboardingResponse, error)
+	GetConnectStatus(context.Context, *GetConnectStatusRequest) (*GetConnectStatusResponse, error)
 }
 
 // UnimplementedPaymentOnboardingServiceServer should be embedded to have
@@ -70,6 +83,9 @@ type UnimplementedPaymentOnboardingServiceServer struct{}
 
 func (UnimplementedPaymentOnboardingServiceServer) StartFreelancerOnboarding(context.Context, *StartFreelancerOnboardingRequest) (*StartFreelancerOnboardingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartFreelancerOnboarding not implemented")
+}
+func (UnimplementedPaymentOnboardingServiceServer) GetConnectStatus(context.Context, *GetConnectStatusRequest) (*GetConnectStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConnectStatus not implemented")
 }
 func (UnimplementedPaymentOnboardingServiceServer) testEmbeddedByValue() {}
 
@@ -109,6 +125,24 @@ func _PaymentOnboardingService_StartFreelancerOnboarding_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PaymentOnboardingService_GetConnectStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConnectStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentOnboardingServiceServer).GetConnectStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PaymentOnboardingService_GetConnectStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentOnboardingServiceServer).GetConnectStatus(ctx, req.(*GetConnectStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PaymentOnboardingService_ServiceDesc is the grpc.ServiceDesc for PaymentOnboardingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -119,6 +153,10 @@ var PaymentOnboardingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StartFreelancerOnboarding",
 			Handler:    _PaymentOnboardingService_StartFreelancerOnboarding_Handler,
+		},
+		{
+			MethodName: "GetConnectStatus",
+			Handler:    _PaymentOnboardingService_GetConnectStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
