@@ -228,6 +228,130 @@ func (x *StartFreelancerOnboardingResponse) GetOccurredAt() string {
 	return ""
 }
 
+// GetConnectStatusRequest asks payment-service for the latest Connect onboarding
+// status for one authenticated freelancer.
+type GetConnectStatusRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetConnectStatusRequest) Reset() {
+	*x = GetConnectStatusRequest{}
+	mi := &file_paymentconnect_v1_paymentconnect_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetConnectStatusRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetConnectStatusRequest) ProtoMessage() {}
+
+func (x *GetConnectStatusRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_paymentconnect_v1_paymentconnect_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetConnectStatusRequest.ProtoReflect.Descriptor instead.
+func (*GetConnectStatusRequest) Descriptor() ([]byte, []int) {
+	return file_paymentconnect_v1_paymentconnect_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetConnectStatusRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+// GetConnectStatusResponse returns the normalized Connect onboarding status for
+// one freelancer.
+type GetConnectStatusResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	UserId          string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Status          string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	StripeAccountId string                 `protobuf:"bytes,3,opt,name=stripe_account_id,json=stripeAccountId,proto3" json:"stripe_account_id,omitempty"`
+	DisabledReason  string                 `protobuf:"bytes,4,opt,name=disabled_reason,json=disabledReason,proto3" json:"disabled_reason,omitempty"`
+	OccurredAt      string                 `protobuf:"bytes,5,opt,name=occurred_at,json=occurredAt,proto3" json:"occurred_at,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetConnectStatusResponse) Reset() {
+	*x = GetConnectStatusResponse{}
+	mi := &file_paymentconnect_v1_paymentconnect_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetConnectStatusResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetConnectStatusResponse) ProtoMessage() {}
+
+func (x *GetConnectStatusResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_paymentconnect_v1_paymentconnect_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetConnectStatusResponse.ProtoReflect.Descriptor instead.
+func (*GetConnectStatusResponse) Descriptor() ([]byte, []int) {
+	return file_paymentconnect_v1_paymentconnect_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetConnectStatusResponse) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetConnectStatusResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *GetConnectStatusResponse) GetStripeAccountId() string {
+	if x != nil {
+		return x.StripeAccountId
+	}
+	return ""
+}
+
+func (x *GetConnectStatusResponse) GetDisabledReason() string {
+	if x != nil {
+		return x.DisabledReason
+	}
+	return ""
+}
+
+func (x *GetConnectStatusResponse) GetOccurredAt() string {
+	if x != nil {
+		return x.OccurredAt
+	}
+	return ""
+}
+
 var File_paymentconnect_v1_paymentconnect_proto protoreflect.FileDescriptor
 
 const file_paymentconnect_v1_paymentconnect_proto_rawDesc = "" +
@@ -253,9 +377,19 @@ const file_paymentconnect_v1_paymentconnect_proto_rawDesc = "" +
 	"\x0fpayouts_enabled\x18\a \x01(\bR\x0epayoutsEnabled\x12'\n" +
 	"\x0fdisabled_reason\x18\b \x01(\tR\x0edisabledReason\x12\x1f\n" +
 	"\voccurred_at\x18\t \x01(\tR\n" +
-	"occurredAt2\xa3\x01\n" +
+	"occurredAt\"2\n" +
+	"\x17GetConnectStatusRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xc1\x01\n" +
+	"\x18GetConnectStatusResponse\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12*\n" +
+	"\x11stripe_account_id\x18\x03 \x01(\tR\x0fstripeAccountId\x12'\n" +
+	"\x0fdisabled_reason\x18\x04 \x01(\tR\x0edisabledReason\x12\x1f\n" +
+	"\voccurred_at\x18\x05 \x01(\tR\n" +
+	"occurredAt2\x90\x02\n" +
 	"\x18PaymentOnboardingService\x12\x86\x01\n" +
-	"\x19StartFreelancerOnboarding\x123.paymentconnect.v1.StartFreelancerOnboardingRequest\x1a4.paymentconnect.v1.StartFreelancerOnboardingResponseBRZPgithub.com/ofm-microservices/ofm-common/proto/paymentconnect/v1;paymentconnectv1b\x06proto3"
+	"\x19StartFreelancerOnboarding\x123.paymentconnect.v1.StartFreelancerOnboardingRequest\x1a4.paymentconnect.v1.StartFreelancerOnboardingResponse\x12k\n" +
+	"\x10GetConnectStatus\x12*.paymentconnect.v1.GetConnectStatusRequest\x1a+.paymentconnect.v1.GetConnectStatusResponseBRZPgithub.com/ofm-microservices/ofm-common/proto/paymentconnect/v1;paymentconnectv1b\x06proto3"
 
 var (
 	file_paymentconnect_v1_paymentconnect_proto_rawDescOnce sync.Once
@@ -269,16 +403,20 @@ func file_paymentconnect_v1_paymentconnect_proto_rawDescGZIP() []byte {
 	return file_paymentconnect_v1_paymentconnect_proto_rawDescData
 }
 
-var file_paymentconnect_v1_paymentconnect_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_paymentconnect_v1_paymentconnect_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_paymentconnect_v1_paymentconnect_proto_goTypes = []any{
 	(*StartFreelancerOnboardingRequest)(nil),  // 0: paymentconnect.v1.StartFreelancerOnboardingRequest
 	(*StartFreelancerOnboardingResponse)(nil), // 1: paymentconnect.v1.StartFreelancerOnboardingResponse
+	(*GetConnectStatusRequest)(nil),           // 2: paymentconnect.v1.GetConnectStatusRequest
+	(*GetConnectStatusResponse)(nil),          // 3: paymentconnect.v1.GetConnectStatusResponse
 }
 var file_paymentconnect_v1_paymentconnect_proto_depIdxs = []int32{
 	0, // 0: paymentconnect.v1.PaymentOnboardingService.StartFreelancerOnboarding:input_type -> paymentconnect.v1.StartFreelancerOnboardingRequest
-	1, // 1: paymentconnect.v1.PaymentOnboardingService.StartFreelancerOnboarding:output_type -> paymentconnect.v1.StartFreelancerOnboardingResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: paymentconnect.v1.PaymentOnboardingService.GetConnectStatus:input_type -> paymentconnect.v1.GetConnectStatusRequest
+	1, // 2: paymentconnect.v1.PaymentOnboardingService.StartFreelancerOnboarding:output_type -> paymentconnect.v1.StartFreelancerOnboardingResponse
+	3, // 3: paymentconnect.v1.PaymentOnboardingService.GetConnectStatus:output_type -> paymentconnect.v1.GetConnectStatusResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -295,7 +433,7 @@ func file_paymentconnect_v1_paymentconnect_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_paymentconnect_v1_paymentconnect_proto_rawDesc), len(file_paymentconnect_v1_paymentconnect_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
