@@ -17,6 +17,11 @@ type Verifier interface {
 	Validate(token string) (*Claims, error)
 }
 
+// Signer produces bearer access tokens from shared claims.
+type Signer interface {
+	Sign(claims Claims) (string, error)
+}
+
 // Config holds the inputs required to validate a JWT.
 type Config struct {
 	Secret    string

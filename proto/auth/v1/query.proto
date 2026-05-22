@@ -9,6 +9,7 @@ option go_package = "github.com/ofm-microservices/ofm-common/proto/auth/v1;authv
 // AuthQueryService exposes read-only auth ownership checks over gRPC.
 service AuthQueryService {
   rpc ExistsByEmail(ExistsByEmailRequest) returns (ExistsByEmailResponse);
+  rpc GetEmailByUserID(GetEmailByUserIDRequest) returns (GetEmailByUserIDResponse);
   rpc VerifyRegistrationEmail(VerifyRegistrationEmailRequest) returns (VerifyRegistrationEmailResponse);
   rpc IssueRegistrationTokens(IssueRegistrationTokensRequest) returns (IssueRegistrationTokensResponse);
   rpc DeactivateRegistrationAuth(DeactivateRegistrationAuthRequest) returns (DeactivateRegistrationAuthResponse);
@@ -24,6 +25,17 @@ message ExistsByEmailRequest {
 // auth-service.
 message ExistsByEmailResponse {
   bool exists = 1;
+}
+
+// GetEmailByUserIDRequest asks auth-service for the stored email of one user.
+message GetEmailByUserIDRequest {
+  string user_id = 1;
+}
+
+// GetEmailByUserIDResponse returns the stored email for one user.
+message GetEmailByUserIDResponse {
+  string user_id = 1;
+  string email = 2;
 }
 
 // VerifyRegistrationEmailRequest verifies the pending registration code owned

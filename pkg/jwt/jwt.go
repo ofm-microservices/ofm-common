@@ -13,6 +13,17 @@ import (
 	"time"
 )
 
+// NewSigner constructs an HMAC signer for HS256 access tokens.
+func NewSigner(cfg Config) (Signer, error) {
+	if strings.TrimSpace(cfg.Secret) == "" {
+		return nil, ErrEmptySignerKey
+	}
+	if cfg.Now == nil {
+		cfg.Now = time.Now
+	}
+	return &hmacSigner{secret: []byte(cfg.Secret), now: cfg.Now}, nil
+}
+
 // NewVerifier constructs a token verifier for HS256 or RS256 access tokens.
 func NewVerifier(cfg Config) (Verifier, error) {
 	if strings.TrimSpace(cfg.Secret) == "" && strings.TrimSpace(cfg.PublicKey) == "" {
@@ -62,6 +73,34 @@ func (v *hmacVerifier) Validate(token string) (*Claims, error) {
 		return nil, ErrInvalidToken
 	}
 	return decodeClaims(payloadPart, v.now())
+}
+
+type hmacSigner struct {
+	secret []byte
+	now    func() time.Time
+}
+
+func (s *hmacSigner) Sign(claims Claims) (string, error) {
+	if strings.TrimSpace(claims.Subject) == "" {
+		return "", ErrInvalidToken
+	}
+	if claims.IssuedAt == 0 {
+		claims.IssuedAt = s.now().UTC().Unix()
+	}
+	header, err := json.Marshal(map[string]string{"alg": "HS256", "typ": "JWT"})
+	if err != nil {
+		return "", ErrInvalidToken
+	}
+	payload, err := json.Marshal(claims)
+	if err != nil {
+		return "", ErrInvalidToken
+	}
+	unsigned := base64.RawURLEncoding.EncodeToString(header) + "." + base64.RawURLEncoding.EncodeToString(payload)
+	mac := hmac.New(sha256.New, s.secret)
+	if _, err := mac.Write([]byte(unsigned)); err != nil {
+		return "", ErrInvalidToken
+	}
+	return unsigned + "." + base64.RawURLEncoding.EncodeToString(mac.Sum(nil)), nil
 }
 
 type rsaVerifier struct {

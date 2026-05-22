@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	AuthQueryService_ExistsByEmail_FullMethodName              = "/auth.v1.AuthQueryService/ExistsByEmail"
+	AuthQueryService_GetEmailByUserID_FullMethodName           = "/auth.v1.AuthQueryService/GetEmailByUserID"
 	AuthQueryService_VerifyRegistrationEmail_FullMethodName    = "/auth.v1.AuthQueryService/VerifyRegistrationEmail"
 	AuthQueryService_IssueRegistrationTokens_FullMethodName    = "/auth.v1.AuthQueryService/IssueRegistrationTokens"
 	AuthQueryService_DeactivateRegistrationAuth_FullMethodName = "/auth.v1.AuthQueryService/DeactivateRegistrationAuth"
@@ -35,6 +36,7 @@ const (
 // AuthQueryService exposes read-only auth ownership checks over gRPC.
 type AuthQueryServiceClient interface {
 	ExistsByEmail(ctx context.Context, in *ExistsByEmailRequest, opts ...grpc.CallOption) (*ExistsByEmailResponse, error)
+	GetEmailByUserID(ctx context.Context, in *GetEmailByUserIDRequest, opts ...grpc.CallOption) (*GetEmailByUserIDResponse, error)
 	VerifyRegistrationEmail(ctx context.Context, in *VerifyRegistrationEmailRequest, opts ...grpc.CallOption) (*VerifyRegistrationEmailResponse, error)
 	IssueRegistrationTokens(ctx context.Context, in *IssueRegistrationTokensRequest, opts ...grpc.CallOption) (*IssueRegistrationTokensResponse, error)
 	DeactivateRegistrationAuth(ctx context.Context, in *DeactivateRegistrationAuthRequest, opts ...grpc.CallOption) (*DeactivateRegistrationAuthResponse, error)
@@ -52,6 +54,16 @@ func (c *authQueryServiceClient) ExistsByEmail(ctx context.Context, in *ExistsBy
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ExistsByEmailResponse)
 	err := c.cc.Invoke(ctx, AuthQueryService_ExistsByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authQueryServiceClient) GetEmailByUserID(ctx context.Context, in *GetEmailByUserIDRequest, opts ...grpc.CallOption) (*GetEmailByUserIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetEmailByUserIDResponse)
+	err := c.cc.Invoke(ctx, AuthQueryService_GetEmailByUserID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -95,6 +107,7 @@ func (c *authQueryServiceClient) DeactivateRegistrationAuth(ctx context.Context,
 // AuthQueryService exposes read-only auth ownership checks over gRPC.
 type AuthQueryServiceServer interface {
 	ExistsByEmail(context.Context, *ExistsByEmailRequest) (*ExistsByEmailResponse, error)
+	GetEmailByUserID(context.Context, *GetEmailByUserIDRequest) (*GetEmailByUserIDResponse, error)
 	VerifyRegistrationEmail(context.Context, *VerifyRegistrationEmailRequest) (*VerifyRegistrationEmailResponse, error)
 	IssueRegistrationTokens(context.Context, *IssueRegistrationTokensRequest) (*IssueRegistrationTokensResponse, error)
 	DeactivateRegistrationAuth(context.Context, *DeactivateRegistrationAuthRequest) (*DeactivateRegistrationAuthResponse, error)
@@ -109,6 +122,9 @@ type UnimplementedAuthQueryServiceServer struct{}
 
 func (UnimplementedAuthQueryServiceServer) ExistsByEmail(context.Context, *ExistsByEmailRequest) (*ExistsByEmailResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ExistsByEmail not implemented")
+}
+func (UnimplementedAuthQueryServiceServer) GetEmailByUserID(context.Context, *GetEmailByUserIDRequest) (*GetEmailByUserIDResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetEmailByUserID not implemented")
 }
 func (UnimplementedAuthQueryServiceServer) VerifyRegistrationEmail(context.Context, *VerifyRegistrationEmailRequest) (*VerifyRegistrationEmailResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method VerifyRegistrationEmail not implemented")
@@ -153,6 +169,24 @@ func _AuthQueryService_ExistsByEmail_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthQueryServiceServer).ExistsByEmail(ctx, req.(*ExistsByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthQueryService_GetEmailByUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEmailByUserIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthQueryServiceServer).GetEmailByUserID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthQueryService_GetEmailByUserID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthQueryServiceServer).GetEmailByUserID(ctx, req.(*GetEmailByUserIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -221,6 +255,10 @@ var AuthQueryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ExistsByEmail",
 			Handler:    _AuthQueryService_ExistsByEmail_Handler,
+		},
+		{
+			MethodName: "GetEmailByUserID",
+			Handler:    _AuthQueryService_GetEmailByUserID_Handler,
 		},
 		{
 			MethodName: "VerifyRegistrationEmail",

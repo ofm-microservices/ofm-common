@@ -14,6 +14,7 @@ service GigCommandService {
   rpc ReplaceQuestions(ReplaceQuestionsRequest) returns (ReplaceQuestionsResponse);
   rpc ReplaceMedia(ReplaceMediaRequest) returns (ReplaceMediaResponse);
   rpc GetDraft(GetDraftRequest) returns (GetDraftResponse);
+  rpc GetOrderStartSnapshot(GetOrderStartSnapshotRequest) returns (GetOrderStartSnapshotResponse);
   rpc Publish(PublishRequest) returns (PublishResponse);
 }
 
@@ -127,6 +128,31 @@ message GetDraftRequest {
 
 message GetDraftResponse {
   Gig gig = 1;
+}
+
+message OrderStartSnapshot {
+  string gig_id = 1;
+  string package_id = 2;
+  string seller_user_id = 3;
+  string gig_title = 4;
+  string package_title = 5;
+  string package_description = 6;
+  int64 price_cents = 7;
+  string currency = 8;
+  int32 delivery_days = 9;
+  int32 revision_count = 10;
+  bool gig_published = 11;
+  bool package_available = 12;
+  repeated GigQuestion questions = 13;
+}
+
+message GetOrderStartSnapshotRequest {
+  string gig_id = 1;
+  string package_id = 2;
+}
+
+message GetOrderStartSnapshotResponse {
+  OrderStartSnapshot snapshot = 1;
 }
 
 message PublishRequest {

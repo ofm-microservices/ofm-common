@@ -13,4 +13,6 @@ var (
 	ErrExpiredToken = errors.New("expired jwt token")
 	// ErrEmptyVerifierKey indicates that the verifier was not configured with a key.
 	ErrEmptyVerifierKey = errors.New("jwt verifier key is empty")
+	// ErrEmptySignerKey indicates that the signer was not configured with a key.
+	ErrEmptySignerKey = errors.New("jwt signer key is empty")
 )
