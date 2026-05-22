@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+// Package orderwrite.v1 defines the order-service write-model gRPC contract
+// used by order-saga-service.
+package orderwrite.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/orderwrite/v1;orderwritev1";
+
+// OrderWriteService owns the authoritative order persistence boundary.
+service OrderWriteService {
+  rpc CreateDraftOrder(CreateDraftOrderRequest) returns (CreateDraftOrderResponse);
+  rpc SaveRequirementAnswers(SaveRequirementAnswersRequest) returns (SaveRequirementAnswersResponse);
+  rpc SaveBuyerInitialMessage(SaveBuyerInitialMessageRequest) returns (SaveBuyerInitialMessageResponse);
+  rpc AttachFileToOrder(AttachFileToOrderRequest) returns (AttachFileToOrderResponse);
+  rpc GetOrderPaymentSnapshot(GetOrderPaymentSnapshotRequest) returns (GetOrderPaymentSnapshotResponse);
+  rpc MarkPaymentPending(MarkPaymentPendingRequest) returns (MarkPaymentPendingResponse);
+  rpc MarkOrderFunded(MarkOrderFundedRequest) returns (MarkOrderFundedResponse);
+  rpc MarkPaymentFailed(MarkPaymentFailedRequest) returns (MarkPaymentFailedResponse);
+}
+
+message OrderSnapshot {
+  string order_id = 1;
+  string saga_id = 2;
+  string buyer_user_id = 3;
+  string seller_user_id = 4;
+  string gig_id = 5;
+  string gig_title_snapshot = 6;
+  string package_id = 7;
+  string package_title_snapshot = 8;
+  string package_description_snapshot = 9;
+  int64 price_amount_snapshot = 10;
+  string price_currency_snapshot = 11;
+  int32 delivery_days_snapshot = 12;
+  int32 revision_count_snapshot = 13;
+  string buyer_initial_message = 14;
+  string status = 15;
+  string created_at = 16;
+  string updated_at = 17;
+  string funded_at = 18;
+}
+
+message OrderQuestionOption {
+  string value = 1;
+  string label = 2;
+}
+
+message OrderQuestionSnapshot {
+  string question_id = 1;
+  string text = 2;
+  string type = 3;
+  bool required = 4;
+  repeated OrderQuestionOption options = 5;
+  int32 sort_order = 6;
+}
+
+message OrderAnswer {
+  string question_id = 1;
+  string value = 2;
+}
+
+message AttachmentSnapshot {
+  string attachment_id = 1;
+  string file_key = 2;
+  string file_name = 3;
+  string mime_type = 4;
+  int64 size_bytes = 5;
+  string status = 6;
+}
+
+message CreateDraftOrderRequest {
+  string saga_id = 1;
+  string order_id = 2;
+  string buyer_user_id = 3;
+  string seller_user_id = 4;
+  string gig_id = 5;
+  string gig_title_snapshot = 6;
+  string package_id = 7;
+  string package_title_snapshot = 8;
+  string package_description_snapshot = 9;
+  int64 price_amount_snapshot = 10;
+  string price_currency_snapshot = 11;
+  int32 delivery_days_snapshot = 12;
+  int32 revision_count_snapshot = 13;
+  repeated OrderQuestionSnapshot questions = 14;
+  string idempotency_key = 15;
+  string requested_at = 16;
+}
+
+message CreateDraftOrderResponse {
+  OrderSnapshot order = 1;
+  repeated OrderQuestionSnapshot questions = 2;
+}
+
+message SaveRequirementAnswersRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  repeated OrderAnswer answers = 3;
+  string requested_at = 4;
+}
+
+message SaveRequirementAnswersResponse {
+  OrderSnapshot order = 1;
+}
+
+message SaveBuyerInitialMessageRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string message = 3;
+  string requested_at = 4;
+}
+
+message SaveBuyerInitialMessageResponse {
+  OrderSnapshot order = 1;
+}
+
+message AttachFileToOrderRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string attachment_id = 3;
+  string file_key = 4;
+  string file_name = 5;
+  string mime_type = 6;
+  int64 size_bytes = 7;
+  string requested_at = 8;
+}
+
+message AttachFileToOrderResponse {
+  OrderSnapshot order = 1;
+  AttachmentSnapshot attachment = 2;
+}
+
+message GetOrderPaymentSnapshotRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+}
+
+message GetOrderPaymentSnapshotResponse {
+  OrderSnapshot order = 1;
+}
+
+message MarkPaymentPendingRequest {
+  string order_id = 1;
+  string payment_id = 2;
+  string checkout_url = 3;
+  string requested_at = 4;
+}
+
+message MarkPaymentPendingResponse {
+  OrderSnapshot order = 1;
+}
+
+message MarkOrderFundedRequest {
+  string order_id = 1;
+  string payment_id = 2;
+  string requested_at = 3;
+}
+
+message MarkOrderFundedResponse {
+  OrderSnapshot order = 1;
+}
+
+message MarkPaymentFailedRequest {
+  string order_id = 1;
+  string payment_id = 2;
+  string reason = 3;
+  string requested_at = 4;
+}
+
+message MarkPaymentFailedResponse {
+  OrderSnapshot order = 1;
+}

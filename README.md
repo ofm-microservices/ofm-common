@@ -19,6 +19,10 @@ focused on shared contracts and generic infrastructure code.
   Shared auth query gRPC contract and generated Go stubs.
 - `proto/user/v1`
   Shared user query gRPC contract and generated Go stubs.
+- `proto/orderflow/v1`
+  Shared order saga NATS payload contracts and generated Go stubs.
+- `proto/paymentflow/v1`
+  Shared payment saga NATS payload contracts and generated Go stubs.
 
 ## Run
 

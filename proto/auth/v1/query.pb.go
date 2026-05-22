@@ -116,6 +116,104 @@ func (x *ExistsByEmailResponse) GetExists() bool {
 	return false
 }
 
+// GetEmailByUserIDRequest asks auth-service for the stored email of one user.
+type GetEmailByUserIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEmailByUserIDRequest) Reset() {
+	*x = GetEmailByUserIDRequest{}
+	mi := &file_auth_v1_query_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEmailByUserIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEmailByUserIDRequest) ProtoMessage() {}
+
+func (x *GetEmailByUserIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_query_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEmailByUserIDRequest.ProtoReflect.Descriptor instead.
+func (*GetEmailByUserIDRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_query_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetEmailByUserIDRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+// GetEmailByUserIDResponse returns the stored email for one user.
+type GetEmailByUserIDResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEmailByUserIDResponse) Reset() {
+	*x = GetEmailByUserIDResponse{}
+	mi := &file_auth_v1_query_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEmailByUserIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEmailByUserIDResponse) ProtoMessage() {}
+
+func (x *GetEmailByUserIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_query_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEmailByUserIDResponse.ProtoReflect.Descriptor instead.
+func (*GetEmailByUserIDResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_query_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetEmailByUserIDResponse) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetEmailByUserIDResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 // VerifyRegistrationEmailRequest verifies the pending registration code owned
 // by auth-service.
 type VerifyRegistrationEmailRequest struct {
@@ -128,7 +226,7 @@ type VerifyRegistrationEmailRequest struct {
 
 func (x *VerifyRegistrationEmailRequest) Reset() {
 	*x = VerifyRegistrationEmailRequest{}
-	mi := &file_auth_v1_query_proto_msgTypes[2]
+	mi := &file_auth_v1_query_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -140,7 +238,7 @@ func (x *VerifyRegistrationEmailRequest) String() string {
 func (*VerifyRegistrationEmailRequest) ProtoMessage() {}
 
 func (x *VerifyRegistrationEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_query_proto_msgTypes[2]
+	mi := &file_auth_v1_query_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -153,7 +251,7 @@ func (x *VerifyRegistrationEmailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyRegistrationEmailRequest.ProtoReflect.Descriptor instead.
 func (*VerifyRegistrationEmailRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_query_proto_rawDescGZIP(), []int{2}
+	return file_auth_v1_query_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *VerifyRegistrationEmailRequest) GetUserId() string {
@@ -183,7 +281,7 @@ type VerifyRegistrationEmailResponse struct {
 
 func (x *VerifyRegistrationEmailResponse) Reset() {
 	*x = VerifyRegistrationEmailResponse{}
-	mi := &file_auth_v1_query_proto_msgTypes[3]
+	mi := &file_auth_v1_query_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -195,7 +293,7 @@ func (x *VerifyRegistrationEmailResponse) String() string {
 func (*VerifyRegistrationEmailResponse) ProtoMessage() {}
 
 func (x *VerifyRegistrationEmailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_query_proto_msgTypes[3]
+	mi := &file_auth_v1_query_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -208,7 +306,7 @@ func (x *VerifyRegistrationEmailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerifyRegistrationEmailResponse.ProtoReflect.Descriptor instead.
 func (*VerifyRegistrationEmailResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_query_proto_rawDescGZIP(), []int{3}
+	return file_auth_v1_query_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *VerifyRegistrationEmailResponse) GetUserId() string {
@@ -243,7 +341,7 @@ type IssueRegistrationTokensRequest struct {
 
 func (x *IssueRegistrationTokensRequest) Reset() {
 	*x = IssueRegistrationTokensRequest{}
-	mi := &file_auth_v1_query_proto_msgTypes[4]
+	mi := &file_auth_v1_query_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -255,7 +353,7 @@ func (x *IssueRegistrationTokensRequest) String() string {
 func (*IssueRegistrationTokensRequest) ProtoMessage() {}
 
 func (x *IssueRegistrationTokensRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_query_proto_msgTypes[4]
+	mi := &file_auth_v1_query_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -268,7 +366,7 @@ func (x *IssueRegistrationTokensRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IssueRegistrationTokensRequest.ProtoReflect.Descriptor instead.
 func (*IssueRegistrationTokensRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_query_proto_rawDescGZIP(), []int{4}
+	return file_auth_v1_query_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *IssueRegistrationTokensRequest) GetUserId() string {
@@ -293,7 +391,7 @@ type IssueRegistrationTokensResponse struct {
 
 func (x *IssueRegistrationTokensResponse) Reset() {
 	*x = IssueRegistrationTokensResponse{}
-	mi := &file_auth_v1_query_proto_msgTypes[5]
+	mi := &file_auth_v1_query_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -305,7 +403,7 @@ func (x *IssueRegistrationTokensResponse) String() string {
 func (*IssueRegistrationTokensResponse) ProtoMessage() {}
 
 func (x *IssueRegistrationTokensResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_query_proto_msgTypes[5]
+	mi := &file_auth_v1_query_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -318,7 +416,7 @@ func (x *IssueRegistrationTokensResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IssueRegistrationTokensResponse.ProtoReflect.Descriptor instead.
 func (*IssueRegistrationTokensResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_query_proto_rawDescGZIP(), []int{5}
+	return file_auth_v1_query_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *IssueRegistrationTokensResponse) GetUserId() string {
@@ -366,7 +464,7 @@ type DeactivateRegistrationAuthRequest struct {
 
 func (x *DeactivateRegistrationAuthRequest) Reset() {
 	*x = DeactivateRegistrationAuthRequest{}
-	mi := &file_auth_v1_query_proto_msgTypes[6]
+	mi := &file_auth_v1_query_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -378,7 +476,7 @@ func (x *DeactivateRegistrationAuthRequest) String() string {
 func (*DeactivateRegistrationAuthRequest) ProtoMessage() {}
 
 func (x *DeactivateRegistrationAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_query_proto_msgTypes[6]
+	mi := &file_auth_v1_query_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -391,7 +489,7 @@ func (x *DeactivateRegistrationAuthRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeactivateRegistrationAuthRequest.ProtoReflect.Descriptor instead.
 func (*DeactivateRegistrationAuthRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_query_proto_rawDescGZIP(), []int{6}
+	return file_auth_v1_query_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeactivateRegistrationAuthRequest) GetUserId() string {
@@ -412,7 +510,7 @@ type DeactivateRegistrationAuthResponse struct {
 
 func (x *DeactivateRegistrationAuthResponse) Reset() {
 	*x = DeactivateRegistrationAuthResponse{}
-	mi := &file_auth_v1_query_proto_msgTypes[7]
+	mi := &file_auth_v1_query_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -424,7 +522,7 @@ func (x *DeactivateRegistrationAuthResponse) String() string {
 func (*DeactivateRegistrationAuthResponse) ProtoMessage() {}
 
 func (x *DeactivateRegistrationAuthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_query_proto_msgTypes[7]
+	mi := &file_auth_v1_query_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -437,7 +535,7 @@ func (x *DeactivateRegistrationAuthResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use DeactivateRegistrationAuthResponse.ProtoReflect.Descriptor instead.
 func (*DeactivateRegistrationAuthResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_query_proto_rawDescGZIP(), []int{7}
+	return file_auth_v1_query_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *DeactivateRegistrationAuthResponse) GetUserId() string {
@@ -462,7 +560,12 @@ const file_auth_v1_query_proto_rawDesc = "" +
 	"\x14ExistsByEmailRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\"/\n" +
 	"\x15ExistsByEmailResponse\x12\x16\n" +
-	"\x06exists\x18\x01 \x01(\bR\x06exists\"M\n" +
+	"\x06exists\x18\x01 \x01(\bR\x06exists\"2\n" +
+	"\x17GetEmailByUserIDRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"I\n" +
+	"\x18GetEmailByUserIDResponse\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\"M\n" +
 	"\x1eVerifyRegistrationEmailRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\tR\x04code\"h\n" +
@@ -484,9 +587,10 @@ const file_auth_v1_query_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"U\n" +
 	"\"DeactivateRegistrationAuthResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status2\xb5\x03\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status2\x8e\x04\n" +
 	"\x10AuthQueryService\x12N\n" +
-	"\rExistsByEmail\x12\x1d.auth.v1.ExistsByEmailRequest\x1a\x1e.auth.v1.ExistsByEmailResponse\x12l\n" +
+	"\rExistsByEmail\x12\x1d.auth.v1.ExistsByEmailRequest\x1a\x1e.auth.v1.ExistsByEmailResponse\x12W\n" +
+	"\x10GetEmailByUserID\x12 .auth.v1.GetEmailByUserIDRequest\x1a!.auth.v1.GetEmailByUserIDResponse\x12l\n" +
 	"\x17VerifyRegistrationEmail\x12'.auth.v1.VerifyRegistrationEmailRequest\x1a(.auth.v1.VerifyRegistrationEmailResponse\x12l\n" +
 	"\x17IssueRegistrationTokens\x12'.auth.v1.IssueRegistrationTokensRequest\x1a(.auth.v1.IssueRegistrationTokensResponse\x12u\n" +
 	"\x1aDeactivateRegistrationAuth\x12*.auth.v1.DeactivateRegistrationAuthRequest\x1a+.auth.v1.DeactivateRegistrationAuthResponseB>Z<github.com/ofm-microservices/ofm-common/proto/auth/v1;authv1b\x06proto3"
@@ -503,28 +607,32 @@ func file_auth_v1_query_proto_rawDescGZIP() []byte {
 	return file_auth_v1_query_proto_rawDescData
 }
 
-var file_auth_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_auth_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_auth_v1_query_proto_goTypes = []any{
 	(*ExistsByEmailRequest)(nil),               // 0: auth.v1.ExistsByEmailRequest
 	(*ExistsByEmailResponse)(nil),              // 1: auth.v1.ExistsByEmailResponse
-	(*VerifyRegistrationEmailRequest)(nil),     // 2: auth.v1.VerifyRegistrationEmailRequest
-	(*VerifyRegistrationEmailResponse)(nil),    // 3: auth.v1.VerifyRegistrationEmailResponse
-	(*IssueRegistrationTokensRequest)(nil),     // 4: auth.v1.IssueRegistrationTokensRequest
-	(*IssueRegistrationTokensResponse)(nil),    // 5: auth.v1.IssueRegistrationTokensResponse
-	(*DeactivateRegistrationAuthRequest)(nil),  // 6: auth.v1.DeactivateRegistrationAuthRequest
-	(*DeactivateRegistrationAuthResponse)(nil), // 7: auth.v1.DeactivateRegistrationAuthResponse
+	(*GetEmailByUserIDRequest)(nil),            // 2: auth.v1.GetEmailByUserIDRequest
+	(*GetEmailByUserIDResponse)(nil),           // 3: auth.v1.GetEmailByUserIDResponse
+	(*VerifyRegistrationEmailRequest)(nil),     // 4: auth.v1.VerifyRegistrationEmailRequest
+	(*VerifyRegistrationEmailResponse)(nil),    // 5: auth.v1.VerifyRegistrationEmailResponse
+	(*IssueRegistrationTokensRequest)(nil),     // 6: auth.v1.IssueRegistrationTokensRequest
+	(*IssueRegistrationTokensResponse)(nil),    // 7: auth.v1.IssueRegistrationTokensResponse
+	(*DeactivateRegistrationAuthRequest)(nil),  // 8: auth.v1.DeactivateRegistrationAuthRequest
+	(*DeactivateRegistrationAuthResponse)(nil), // 9: auth.v1.DeactivateRegistrationAuthResponse
 }
 var file_auth_v1_query_proto_depIdxs = []int32{
 	0, // 0: auth.v1.AuthQueryService.ExistsByEmail:input_type -> auth.v1.ExistsByEmailRequest
-	2, // 1: auth.v1.AuthQueryService.VerifyRegistrationEmail:input_type -> auth.v1.VerifyRegistrationEmailRequest
-	4, // 2: auth.v1.AuthQueryService.IssueRegistrationTokens:input_type -> auth.v1.IssueRegistrationTokensRequest
-	6, // 3: auth.v1.AuthQueryService.DeactivateRegistrationAuth:input_type -> auth.v1.DeactivateRegistrationAuthRequest
-	1, // 4: auth.v1.AuthQueryService.ExistsByEmail:output_type -> auth.v1.ExistsByEmailResponse
-	3, // 5: auth.v1.AuthQueryService.VerifyRegistrationEmail:output_type -> auth.v1.VerifyRegistrationEmailResponse
-	5, // 6: auth.v1.AuthQueryService.IssueRegistrationTokens:output_type -> auth.v1.IssueRegistrationTokensResponse
-	7, // 7: auth.v1.AuthQueryService.DeactivateRegistrationAuth:output_type -> auth.v1.DeactivateRegistrationAuthResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	2, // 1: auth.v1.AuthQueryService.GetEmailByUserID:input_type -> auth.v1.GetEmailByUserIDRequest
+	4, // 2: auth.v1.AuthQueryService.VerifyRegistrationEmail:input_type -> auth.v1.VerifyRegistrationEmailRequest
+	6, // 3: auth.v1.AuthQueryService.IssueRegistrationTokens:input_type -> auth.v1.IssueRegistrationTokensRequest
+	8, // 4: auth.v1.AuthQueryService.DeactivateRegistrationAuth:input_type -> auth.v1.DeactivateRegistrationAuthRequest
+	1, // 5: auth.v1.AuthQueryService.ExistsByEmail:output_type -> auth.v1.ExistsByEmailResponse
+	3, // 6: auth.v1.AuthQueryService.GetEmailByUserID:output_type -> auth.v1.GetEmailByUserIDResponse
+	5, // 7: auth.v1.AuthQueryService.VerifyRegistrationEmail:output_type -> auth.v1.VerifyRegistrationEmailResponse
+	7, // 8: auth.v1.AuthQueryService.IssueRegistrationTokens:output_type -> auth.v1.IssueRegistrationTokensResponse
+	9, // 9: auth.v1.AuthQueryService.DeactivateRegistrationAuth:output_type -> auth.v1.DeactivateRegistrationAuthResponse
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -541,7 +649,7 @@ func file_auth_v1_query_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_query_proto_rawDesc), len(file_auth_v1_query_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+// Package paymentflow.v1 defines the NATS payload contracts for the OFM
+// payment workflow.
+package paymentflow.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/paymentflow/v1;paymentflowv1";
+
+// PaymentIntentCommand asks payment-service to create a provider intent.
+message PaymentIntentCommand {
+  string saga_id = 1;
+  string order_id = 2;
+  string payment_intent_id = 3;
+  int64 amount_cents = 4;
+  string currency = 5;
+  string provider = 6;
+  string idempotency_key = 7;
+  string requested_at = 8;
+}
+
+// PaymentIntentResult is emitted after payment-service creates or rejects an
+// intent.
+message PaymentIntentResult {
+  string saga_id = 1;
+  string order_id = 2;
+  string payment_intent_id = 3;
+  string checkout_url = 4;
+  string provider_intent_id = 5;
+  string status = 6;
+  string error = 7;
+  string occurred_at = 8;
+}
+
+// PaymentWebhookEvent is the normalized provider webhook envelope.
+message PaymentWebhookEvent {
+  string provider = 1;
+  string event_id = 2;
+  string event_type = 3;
+  string payment_intent_id = 4;
+  string provider_intent_id = 5;
+  string order_id = 6;
+  string status = 7;
+  string payload_json = 8;
+  string occurred_at = 9;
+}
+
+// PaymentStatusEvent is emitted after webhook processing updates payment
+// state.
+message PaymentStatusEvent {
+  string saga_id = 1;
+  string order_id = 2;
+  string payment_intent_id = 3;
+  string status = 4;
+  string error = 5;
+  string occurred_at = 6;
+}
+
+// PaymentCompensationCommand asks payment-service to refund or void a payment.
+message PaymentCompensationCommand {
+  string saga_id = 1;
+  string order_id = 2;
+  string payment_intent_id = 3;
+  string reason = 4;
+  string occurred_at = 5;
+}
