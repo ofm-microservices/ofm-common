@@ -216,6 +216,342 @@ func (x *CreateCheckoutSessionResponse) GetOccurredAt() string {
 	return ""
 }
 
+type ReleaseFundsRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OrderId        string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	PaymentId      string                 `protobuf:"bytes,2,opt,name=payment_id,json=paymentId,proto3" json:"payment_id,omitempty"`
+	SellerUserId   string                 `protobuf:"bytes,3,opt,name=seller_user_id,json=sellerUserId,proto3" json:"seller_user_id,omitempty"`
+	AmountCents    int64                  `protobuf:"varint,4,opt,name=amount_cents,json=amountCents,proto3" json:"amount_cents,omitempty"`
+	Currency       string                 `protobuf:"bytes,5,opt,name=currency,proto3" json:"currency,omitempty"`
+	IdempotencyKey string                 `protobuf:"bytes,6,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	RequestedAt    string                 `protobuf:"bytes,7,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ReleaseFundsRequest) Reset() {
+	*x = ReleaseFundsRequest{}
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseFundsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseFundsRequest) ProtoMessage() {}
+
+func (x *ReleaseFundsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseFundsRequest.ProtoReflect.Descriptor instead.
+func (*ReleaseFundsRequest) Descriptor() ([]byte, []int) {
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ReleaseFundsRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *ReleaseFundsRequest) GetPaymentId() string {
+	if x != nil {
+		return x.PaymentId
+	}
+	return ""
+}
+
+func (x *ReleaseFundsRequest) GetSellerUserId() string {
+	if x != nil {
+		return x.SellerUserId
+	}
+	return ""
+}
+
+func (x *ReleaseFundsRequest) GetAmountCents() int64 {
+	if x != nil {
+		return x.AmountCents
+	}
+	return 0
+}
+
+func (x *ReleaseFundsRequest) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *ReleaseFundsRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
+func (x *ReleaseFundsRequest) GetRequestedAt() string {
+	if x != nil {
+		return x.RequestedAt
+	}
+	return ""
+}
+
+type ReleaseFundsResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OrderId          string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	PaymentReleaseId string                 `protobuf:"bytes,2,opt,name=payment_release_id,json=paymentReleaseId,proto3" json:"payment_release_id,omitempty"`
+	StripeTransferId string                 `protobuf:"bytes,3,opt,name=stripe_transfer_id,json=stripeTransferId,proto3" json:"stripe_transfer_id,omitempty"`
+	Status           string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	OccurredAt       string                 `protobuf:"bytes,5,opt,name=occurred_at,json=occurredAt,proto3" json:"occurred_at,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ReleaseFundsResponse) Reset() {
+	*x = ReleaseFundsResponse{}
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseFundsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseFundsResponse) ProtoMessage() {}
+
+func (x *ReleaseFundsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseFundsResponse.ProtoReflect.Descriptor instead.
+func (*ReleaseFundsResponse) Descriptor() ([]byte, []int) {
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ReleaseFundsResponse) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *ReleaseFundsResponse) GetPaymentReleaseId() string {
+	if x != nil {
+		return x.PaymentReleaseId
+	}
+	return ""
+}
+
+func (x *ReleaseFundsResponse) GetStripeTransferId() string {
+	if x != nil {
+		return x.StripeTransferId
+	}
+	return ""
+}
+
+func (x *ReleaseFundsResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *ReleaseFundsResponse) GetOccurredAt() string {
+	if x != nil {
+		return x.OccurredAt
+	}
+	return ""
+}
+
+type GetReleaseByOrderIdRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetReleaseByOrderIdRequest) Reset() {
+	*x = GetReleaseByOrderIdRequest{}
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetReleaseByOrderIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetReleaseByOrderIdRequest) ProtoMessage() {}
+
+func (x *GetReleaseByOrderIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetReleaseByOrderIdRequest.ProtoReflect.Descriptor instead.
+func (*GetReleaseByOrderIdRequest) Descriptor() ([]byte, []int) {
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetReleaseByOrderIdRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+type GetReleaseByOrderIdResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OrderId          string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	PaymentReleaseId string                 `protobuf:"bytes,2,opt,name=payment_release_id,json=paymentReleaseId,proto3" json:"payment_release_id,omitempty"`
+	PaymentIntentId  string                 `protobuf:"bytes,3,opt,name=payment_intent_id,json=paymentIntentId,proto3" json:"payment_intent_id,omitempty"`
+	SellerUserId     string                 `protobuf:"bytes,4,opt,name=seller_user_id,json=sellerUserId,proto3" json:"seller_user_id,omitempty"`
+	AmountCents      int64                  `protobuf:"varint,5,opt,name=amount_cents,json=amountCents,proto3" json:"amount_cents,omitempty"`
+	Currency         string                 `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
+	IdempotencyKey   string                 `protobuf:"bytes,7,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	StripeTransferId string                 `protobuf:"bytes,8,opt,name=stripe_transfer_id,json=stripeTransferId,proto3" json:"stripe_transfer_id,omitempty"`
+	Status           string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
+	FailureReason    string                 `protobuf:"bytes,10,opt,name=failure_reason,json=failureReason,proto3" json:"failure_reason,omitempty"`
+	OccurredAt       string                 `protobuf:"bytes,11,opt,name=occurred_at,json=occurredAt,proto3" json:"occurred_at,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetReleaseByOrderIdResponse) Reset() {
+	*x = GetReleaseByOrderIdResponse{}
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetReleaseByOrderIdResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetReleaseByOrderIdResponse) ProtoMessage() {}
+
+func (x *GetReleaseByOrderIdResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetReleaseByOrderIdResponse.ProtoReflect.Descriptor instead.
+func (*GetReleaseByOrderIdResponse) Descriptor() ([]byte, []int) {
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetReleaseByOrderIdResponse) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *GetReleaseByOrderIdResponse) GetPaymentReleaseId() string {
+	if x != nil {
+		return x.PaymentReleaseId
+	}
+	return ""
+}
+
+func (x *GetReleaseByOrderIdResponse) GetPaymentIntentId() string {
+	if x != nil {
+		return x.PaymentIntentId
+	}
+	return ""
+}
+
+func (x *GetReleaseByOrderIdResponse) GetSellerUserId() string {
+	if x != nil {
+		return x.SellerUserId
+	}
+	return ""
+}
+
+func (x *GetReleaseByOrderIdResponse) GetAmountCents() int64 {
+	if x != nil {
+		return x.AmountCents
+	}
+	return 0
+}
+
+func (x *GetReleaseByOrderIdResponse) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *GetReleaseByOrderIdResponse) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
+func (x *GetReleaseByOrderIdResponse) GetStripeTransferId() string {
+	if x != nil {
+		return x.StripeTransferId
+	}
+	return ""
+}
+
+func (x *GetReleaseByOrderIdResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *GetReleaseByOrderIdResponse) GetFailureReason() string {
+	if x != nil {
+		return x.FailureReason
+	}
+	return ""
+}
+
+func (x *GetReleaseByOrderIdResponse) GetOccurredAt() string {
+	if x != nil {
+		return x.OccurredAt
+	}
+	return ""
+}
+
 var File_paymentcheckout_v1_paymentcheckout_proto protoreflect.FileDescriptor
 
 const file_paymentcheckout_v1_paymentcheckout_proto_rawDesc = "" +
@@ -239,9 +575,43 @@ const file_paymentcheckout_v1_paymentcheckout_proto_rawDesc = "" +
 	"\x18stripe_payment_intent_id\x18\x04 \x01(\tR\x15stripePaymentIntentId\x12\x16\n" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12\x1f\n" +
 	"\voccurred_at\x18\x06 \x01(\tR\n" +
-	"occurredAt2\x96\x01\n" +
+	"occurredAt\"\x80\x02\n" +
+	"\x13ReleaseFundsRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x1d\n" +
+	"\n" +
+	"payment_id\x18\x02 \x01(\tR\tpaymentId\x12$\n" +
+	"\x0eseller_user_id\x18\x03 \x01(\tR\fsellerUserId\x12!\n" +
+	"\famount_cents\x18\x04 \x01(\x03R\vamountCents\x12\x1a\n" +
+	"\bcurrency\x18\x05 \x01(\tR\bcurrency\x12'\n" +
+	"\x0fidempotency_key\x18\x06 \x01(\tR\x0eidempotencyKey\x12!\n" +
+	"\frequested_at\x18\a \x01(\tR\vrequestedAt\"\xc6\x01\n" +
+	"\x14ReleaseFundsResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12,\n" +
+	"\x12payment_release_id\x18\x02 \x01(\tR\x10paymentReleaseId\x12,\n" +
+	"\x12stripe_transfer_id\x18\x03 \x01(\tR\x10stripeTransferId\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x12\x1f\n" +
+	"\voccurred_at\x18\x05 \x01(\tR\n" +
+	"occurredAt\"7\n" +
+	"\x1aGetReleaseByOrderIdRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\"\xae\x03\n" +
+	"\x1bGetReleaseByOrderIdResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12,\n" +
+	"\x12payment_release_id\x18\x02 \x01(\tR\x10paymentReleaseId\x12*\n" +
+	"\x11payment_intent_id\x18\x03 \x01(\tR\x0fpaymentIntentId\x12$\n" +
+	"\x0eseller_user_id\x18\x04 \x01(\tR\fsellerUserId\x12!\n" +
+	"\famount_cents\x18\x05 \x01(\x03R\vamountCents\x12\x1a\n" +
+	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12'\n" +
+	"\x0fidempotency_key\x18\a \x01(\tR\x0eidempotencyKey\x12,\n" +
+	"\x12stripe_transfer_id\x18\b \x01(\tR\x10stripeTransferId\x12\x16\n" +
+	"\x06status\x18\t \x01(\tR\x06status\x12%\n" +
+	"\x0efailure_reason\x18\n" +
+	" \x01(\tR\rfailureReason\x12\x1f\n" +
+	"\voccurred_at\x18\v \x01(\tR\n" +
+	"occurredAt2\xf1\x02\n" +
 	"\x16PaymentCheckoutService\x12|\n" +
-	"\x15CreateCheckoutSession\x120.paymentcheckout.v1.CreateCheckoutSessionRequest\x1a1.paymentcheckout.v1.CreateCheckoutSessionResponseBTZRgithub.com/ofm-microservices/ofm-common/proto/paymentcheckout/v1;paymentcheckoutv1b\x06proto3"
+	"\x15CreateCheckoutSession\x120.paymentcheckout.v1.CreateCheckoutSessionRequest\x1a1.paymentcheckout.v1.CreateCheckoutSessionResponse\x12a\n" +
+	"\fReleaseFunds\x12'.paymentcheckout.v1.ReleaseFundsRequest\x1a(.paymentcheckout.v1.ReleaseFundsResponse\x12v\n" +
+	"\x13GetReleaseByOrderId\x12..paymentcheckout.v1.GetReleaseByOrderIdRequest\x1a/.paymentcheckout.v1.GetReleaseByOrderIdResponseBTZRgithub.com/ofm-microservices/ofm-common/proto/paymentcheckout/v1;paymentcheckoutv1b\x06proto3"
 
 var (
 	file_paymentcheckout_v1_paymentcheckout_proto_rawDescOnce sync.Once
@@ -255,16 +625,24 @@ func file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP() []byte {
 	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescData
 }
 
-var file_paymentcheckout_v1_paymentcheckout_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_paymentcheckout_v1_paymentcheckout_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_paymentcheckout_v1_paymentcheckout_proto_goTypes = []any{
 	(*CreateCheckoutSessionRequest)(nil),  // 0: paymentcheckout.v1.CreateCheckoutSessionRequest
 	(*CreateCheckoutSessionResponse)(nil), // 1: paymentcheckout.v1.CreateCheckoutSessionResponse
+	(*ReleaseFundsRequest)(nil),           // 2: paymentcheckout.v1.ReleaseFundsRequest
+	(*ReleaseFundsResponse)(nil),          // 3: paymentcheckout.v1.ReleaseFundsResponse
+	(*GetReleaseByOrderIdRequest)(nil),    // 4: paymentcheckout.v1.GetReleaseByOrderIdRequest
+	(*GetReleaseByOrderIdResponse)(nil),   // 5: paymentcheckout.v1.GetReleaseByOrderIdResponse
 }
 var file_paymentcheckout_v1_paymentcheckout_proto_depIdxs = []int32{
 	0, // 0: paymentcheckout.v1.PaymentCheckoutService.CreateCheckoutSession:input_type -> paymentcheckout.v1.CreateCheckoutSessionRequest
-	1, // 1: paymentcheckout.v1.PaymentCheckoutService.CreateCheckoutSession:output_type -> paymentcheckout.v1.CreateCheckoutSessionResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: paymentcheckout.v1.PaymentCheckoutService.ReleaseFunds:input_type -> paymentcheckout.v1.ReleaseFundsRequest
+	4, // 2: paymentcheckout.v1.PaymentCheckoutService.GetReleaseByOrderId:input_type -> paymentcheckout.v1.GetReleaseByOrderIdRequest
+	1, // 3: paymentcheckout.v1.PaymentCheckoutService.CreateCheckoutSession:output_type -> paymentcheckout.v1.CreateCheckoutSessionResponse
+	3, // 4: paymentcheckout.v1.PaymentCheckoutService.ReleaseFunds:output_type -> paymentcheckout.v1.ReleaseFundsResponse
+	5, // 5: paymentcheckout.v1.PaymentCheckoutService.GetReleaseByOrderId:output_type -> paymentcheckout.v1.GetReleaseByOrderIdResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -281,7 +659,7 @@ func file_paymentcheckout_v1_paymentcheckout_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_paymentcheckout_v1_paymentcheckout_proto_rawDesc), len(file_paymentcheckout_v1_paymentcheckout_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

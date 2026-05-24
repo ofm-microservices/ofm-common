@@ -9,6 +9,8 @@ option go_package = "github.com/ofm-microservices/ofm-common/proto/paymentchecko
 // PaymentCheckoutService owns checkout-session creation.
 service PaymentCheckoutService {
   rpc CreateCheckoutSession(CreateCheckoutSessionRequest) returns (CreateCheckoutSessionResponse);
+  rpc ReleaseFunds(ReleaseFundsRequest) returns (ReleaseFundsResponse);
+  rpc GetReleaseByOrderId(GetReleaseByOrderIdRequest) returns (GetReleaseByOrderIdResponse);
 }
 
 message CreateCheckoutSessionRequest {
@@ -30,4 +32,40 @@ message CreateCheckoutSessionResponse {
   string stripe_payment_intent_id = 4;
   string status = 5;
   string occurred_at = 6;
+}
+
+message ReleaseFundsRequest {
+  string order_id = 1;
+  string payment_id = 2;
+  string seller_user_id = 3;
+  int64 amount_cents = 4;
+  string currency = 5;
+  string idempotency_key = 6;
+  string requested_at = 7;
+}
+
+message ReleaseFundsResponse {
+  string order_id = 1;
+  string payment_release_id = 2;
+  string stripe_transfer_id = 3;
+  string status = 4;
+  string occurred_at = 5;
+}
+
+message GetReleaseByOrderIdRequest {
+  string order_id = 1;
+}
+
+message GetReleaseByOrderIdResponse {
+  string order_id = 1;
+  string payment_release_id = 2;
+  string payment_intent_id = 3;
+  string seller_user_id = 4;
+  int64 amount_cents = 5;
+  string currency = 6;
+  string idempotency_key = 7;
+  string stripe_transfer_id = 8;
+  string status = 9;
+  string failure_reason = 10;
+  string occurred_at = 11;
 }

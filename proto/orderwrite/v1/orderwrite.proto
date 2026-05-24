@@ -16,6 +16,13 @@ service OrderWriteService {
   rpc MarkPaymentPending(MarkPaymentPendingRequest) returns (MarkPaymentPendingResponse);
   rpc MarkOrderFunded(MarkOrderFundedRequest) returns (MarkOrderFundedResponse);
   rpc MarkPaymentFailed(MarkPaymentFailedRequest) returns (MarkPaymentFailedResponse);
+  rpc GetOrderLifecycleSnapshot(GetOrderLifecycleSnapshotRequest) returns (GetOrderLifecycleSnapshotResponse);
+  rpc SaveDelivery(SaveDeliveryRequest) returns (SaveDeliveryResponse);
+  rpc MarkReleasePending(MarkReleasePendingRequest) returns (MarkReleasePendingResponse);
+  rpc RequestRevision(RequestRevisionRequest) returns (RequestRevisionResponse);
+  rpc OpenDispute(OpenDisputeRequest) returns (OpenDisputeResponse);
+  rpc MarkOrderCompleted(MarkOrderCompletedRequest) returns (MarkOrderCompletedResponse);
+  rpc MarkReleaseFailed(MarkReleaseFailedRequest) returns (MarkReleaseFailedResponse);
 }
 
 message OrderSnapshot {
@@ -34,9 +41,16 @@ message OrderSnapshot {
   int32 revision_count_snapshot = 13;
   string buyer_initial_message = 14;
   string status = 15;
-  string created_at = 16;
-  string updated_at = 17;
-  string funded_at = 18;
+  string payment_intent_id = 16;
+  string created_at = 17;
+  string updated_at = 18;
+  string funded_at = 19;
+  string delivered_at = 20;
+  string completed_at = 21;
+  string disputed_at = 22;
+  int32 revision_count_used = 23;
+  string buyer_response_deadline = 24;
+  string payment_release_id = 25;
 }
 
 message OrderQuestionOption {
@@ -167,5 +181,77 @@ message MarkPaymentFailedRequest {
 }
 
 message MarkPaymentFailedResponse {
+  OrderSnapshot order = 1;
+}
+
+message GetOrderLifecycleSnapshotRequest {
+  string order_id = 1;
+}
+
+message GetOrderLifecycleSnapshotResponse {
+  OrderSnapshot order = 1;
+}
+
+message SaveDeliveryRequest {
+  string order_id = 1;
+  string seller_user_id = 2;
+  string delivery_message = 3;
+  repeated string attachment_ids = 4;
+  string requested_at = 5;
+}
+
+message SaveDeliveryResponse {
+  OrderSnapshot order = 1;
+}
+
+message MarkReleasePendingRequest {
+  string order_id = 1;
+  string payment_release_id = 2;
+  string requested_at = 3;
+}
+
+message MarkReleasePendingResponse {
+  OrderSnapshot order = 1;
+}
+
+message RequestRevisionRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string reason = 3;
+  string requested_at = 4;
+}
+
+message RequestRevisionResponse {
+  OrderSnapshot order = 1;
+}
+
+message OpenDisputeRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string reason = 3;
+  string requested_at = 4;
+}
+
+message OpenDisputeResponse {
+  OrderSnapshot order = 1;
+}
+
+message MarkOrderCompletedRequest {
+  string order_id = 1;
+  string payment_release_id = 2;
+  string requested_at = 3;
+}
+
+message MarkOrderCompletedResponse {
+  OrderSnapshot order = 1;
+}
+
+message MarkReleaseFailedRequest {
+  string order_id = 1;
+  string reason = 2;
+  string requested_at = 3;
+}
+
+message MarkReleaseFailedResponse {
   OrderSnapshot order = 1;
 }

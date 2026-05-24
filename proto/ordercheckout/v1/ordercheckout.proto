@@ -14,6 +14,10 @@ service OrderCheckoutService {
   rpc CreateAttachmentUploadURL(CreateAttachmentUploadURLRequest) returns (CreateAttachmentUploadURLResponse);
   rpc CompleteAttachmentUpload(CompleteAttachmentUploadRequest) returns (CompleteAttachmentUploadResponse);
   rpc ConfirmOrder(ConfirmOrderRequest) returns (ConfirmOrderResponse);
+  rpc DeliverOrder(DeliverOrderRequest) returns (DeliverOrderResponse);
+  rpc AcceptDelivery(AcceptDeliveryRequest) returns (AcceptDeliveryResponse);
+  rpc RequestRevision(RequestRevisionRequest) returns (RequestRevisionResponse);
+  rpc OpenDispute(OpenDisputeRequest) returns (OpenDisputeResponse);
 }
 
 message OrderSnapshot {
@@ -135,4 +139,56 @@ message ConfirmOrderResponse {
   string payment_id = 2;
   string status = 3;
   string checkout_url = 4;
+}
+
+message DeliverOrderRequest {
+  string order_id = 1;
+  string seller_user_id = 2;
+  string delivery_message = 3;
+  repeated string attachment_ids = 4;
+  string requested_at = 5;
+}
+
+message DeliverOrderResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+}
+
+message AcceptDeliveryRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string requested_at = 3;
+}
+
+message AcceptDeliveryResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+}
+
+message RequestRevisionRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string reason = 3;
+  string requested_at = 4;
+}
+
+message RequestRevisionResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+}
+
+message OpenDisputeRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string reason = 3;
+  string requested_at = 4;
+}
+
+message OpenDisputeResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
 }
