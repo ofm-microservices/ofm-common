@@ -1184,6 +1184,518 @@ func (x *ConfirmOrderResponse) GetCheckoutUrl() string {
 	return ""
 }
 
+type DeliverOrderRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	OrderId         string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	SellerUserId    string                 `protobuf:"bytes,2,opt,name=seller_user_id,json=sellerUserId,proto3" json:"seller_user_id,omitempty"`
+	DeliveryMessage string                 `protobuf:"bytes,3,opt,name=delivery_message,json=deliveryMessage,proto3" json:"delivery_message,omitempty"`
+	AttachmentIds   []string               `protobuf:"bytes,4,rep,name=attachment_ids,json=attachmentIds,proto3" json:"attachment_ids,omitempty"`
+	RequestedAt     string                 `protobuf:"bytes,5,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *DeliverOrderRequest) Reset() {
+	*x = DeliverOrderRequest{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeliverOrderRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeliverOrderRequest) ProtoMessage() {}
+
+func (x *DeliverOrderRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeliverOrderRequest.ProtoReflect.Descriptor instead.
+func (*DeliverOrderRequest) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *DeliverOrderRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *DeliverOrderRequest) GetSellerUserId() string {
+	if x != nil {
+		return x.SellerUserId
+	}
+	return ""
+}
+
+func (x *DeliverOrderRequest) GetDeliveryMessage() string {
+	if x != nil {
+		return x.DeliveryMessage
+	}
+	return ""
+}
+
+func (x *DeliverOrderRequest) GetAttachmentIds() []string {
+	if x != nil {
+		return x.AttachmentIds
+	}
+	return nil
+}
+
+func (x *DeliverOrderRequest) GetRequestedAt() string {
+	if x != nil {
+		return x.RequestedAt
+	}
+	return ""
+}
+
+type DeliverOrderResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	CurrentStep   string                 `protobuf:"bytes,3,opt,name=current_step,json=currentStep,proto3" json:"current_step,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeliverOrderResponse) Reset() {
+	*x = DeliverOrderResponse{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeliverOrderResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeliverOrderResponse) ProtoMessage() {}
+
+func (x *DeliverOrderResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeliverOrderResponse.ProtoReflect.Descriptor instead.
+func (*DeliverOrderResponse) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *DeliverOrderResponse) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *DeliverOrderResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *DeliverOrderResponse) GetCurrentStep() string {
+	if x != nil {
+		return x.CurrentStep
+	}
+	return ""
+}
+
+type AcceptDeliveryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	BuyerUserId   string                 `protobuf:"bytes,2,opt,name=buyer_user_id,json=buyerUserId,proto3" json:"buyer_user_id,omitempty"`
+	RequestedAt   string                 `protobuf:"bytes,3,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AcceptDeliveryRequest) Reset() {
+	*x = AcceptDeliveryRequest{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AcceptDeliveryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AcceptDeliveryRequest) ProtoMessage() {}
+
+func (x *AcceptDeliveryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AcceptDeliveryRequest.ProtoReflect.Descriptor instead.
+func (*AcceptDeliveryRequest) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *AcceptDeliveryRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *AcceptDeliveryRequest) GetBuyerUserId() string {
+	if x != nil {
+		return x.BuyerUserId
+	}
+	return ""
+}
+
+func (x *AcceptDeliveryRequest) GetRequestedAt() string {
+	if x != nil {
+		return x.RequestedAt
+	}
+	return ""
+}
+
+type AcceptDeliveryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	CurrentStep   string                 `protobuf:"bytes,3,opt,name=current_step,json=currentStep,proto3" json:"current_step,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AcceptDeliveryResponse) Reset() {
+	*x = AcceptDeliveryResponse{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AcceptDeliveryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AcceptDeliveryResponse) ProtoMessage() {}
+
+func (x *AcceptDeliveryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AcceptDeliveryResponse.ProtoReflect.Descriptor instead.
+func (*AcceptDeliveryResponse) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *AcceptDeliveryResponse) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *AcceptDeliveryResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *AcceptDeliveryResponse) GetCurrentStep() string {
+	if x != nil {
+		return x.CurrentStep
+	}
+	return ""
+}
+
+type RequestRevisionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	BuyerUserId   string                 `protobuf:"bytes,2,opt,name=buyer_user_id,json=buyerUserId,proto3" json:"buyer_user_id,omitempty"`
+	Reason        string                 `protobuf:"bytes,3,opt,name=reason,proto3" json:"reason,omitempty"`
+	RequestedAt   string                 `protobuf:"bytes,4,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RequestRevisionRequest) Reset() {
+	*x = RequestRevisionRequest{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RequestRevisionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RequestRevisionRequest) ProtoMessage() {}
+
+func (x *RequestRevisionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RequestRevisionRequest.ProtoReflect.Descriptor instead.
+func (*RequestRevisionRequest) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *RequestRevisionRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *RequestRevisionRequest) GetBuyerUserId() string {
+	if x != nil {
+		return x.BuyerUserId
+	}
+	return ""
+}
+
+func (x *RequestRevisionRequest) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
+func (x *RequestRevisionRequest) GetRequestedAt() string {
+	if x != nil {
+		return x.RequestedAt
+	}
+	return ""
+}
+
+type RequestRevisionResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	CurrentStep   string                 `protobuf:"bytes,3,opt,name=current_step,json=currentStep,proto3" json:"current_step,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RequestRevisionResponse) Reset() {
+	*x = RequestRevisionResponse{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RequestRevisionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RequestRevisionResponse) ProtoMessage() {}
+
+func (x *RequestRevisionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RequestRevisionResponse.ProtoReflect.Descriptor instead.
+func (*RequestRevisionResponse) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *RequestRevisionResponse) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *RequestRevisionResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *RequestRevisionResponse) GetCurrentStep() string {
+	if x != nil {
+		return x.CurrentStep
+	}
+	return ""
+}
+
+type OpenDisputeRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	BuyerUserId   string                 `protobuf:"bytes,2,opt,name=buyer_user_id,json=buyerUserId,proto3" json:"buyer_user_id,omitempty"`
+	Reason        string                 `protobuf:"bytes,3,opt,name=reason,proto3" json:"reason,omitempty"`
+	RequestedAt   string                 `protobuf:"bytes,4,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OpenDisputeRequest) Reset() {
+	*x = OpenDisputeRequest{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OpenDisputeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OpenDisputeRequest) ProtoMessage() {}
+
+func (x *OpenDisputeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OpenDisputeRequest.ProtoReflect.Descriptor instead.
+func (*OpenDisputeRequest) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *OpenDisputeRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *OpenDisputeRequest) GetBuyerUserId() string {
+	if x != nil {
+		return x.BuyerUserId
+	}
+	return ""
+}
+
+func (x *OpenDisputeRequest) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
+func (x *OpenDisputeRequest) GetRequestedAt() string {
+	if x != nil {
+		return x.RequestedAt
+	}
+	return ""
+}
+
+type OpenDisputeResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	CurrentStep   string                 `protobuf:"bytes,3,opt,name=current_step,json=currentStep,proto3" json:"current_step,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OpenDisputeResponse) Reset() {
+	*x = OpenDisputeResponse{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OpenDisputeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OpenDisputeResponse) ProtoMessage() {}
+
+func (x *OpenDisputeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OpenDisputeResponse.ProtoReflect.Descriptor instead.
+func (*OpenDisputeResponse) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *OpenDisputeResponse) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *OpenDisputeResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *OpenDisputeResponse) GetCurrentStep() string {
+	if x != nil {
+		return x.CurrentStep
+	}
+	return ""
+}
+
 var File_ordercheckout_v1_ordercheckout_proto protoreflect.FileDescriptor
 
 const file_ordercheckout_v1_ordercheckout_proto_rawDesc = "" +
@@ -1287,7 +1799,43 @@ const file_ordercheckout_v1_ordercheckout_proto_rawDesc = "" +
 	"\n" +
 	"payment_id\x18\x02 \x01(\tR\tpaymentId\x12\x16\n" +
 	"\x06status\x18\x03 \x01(\tR\x06status\x12!\n" +
-	"\fcheckout_url\x18\x04 \x01(\tR\vcheckoutUrl2\xac\x05\n" +
+	"\fcheckout_url\x18\x04 \x01(\tR\vcheckoutUrl\"\xcb\x01\n" +
+	"\x13DeliverOrderRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12$\n" +
+	"\x0eseller_user_id\x18\x02 \x01(\tR\fsellerUserId\x12)\n" +
+	"\x10delivery_message\x18\x03 \x01(\tR\x0fdeliveryMessage\x12%\n" +
+	"\x0eattachment_ids\x18\x04 \x03(\tR\rattachmentIds\x12!\n" +
+	"\frequested_at\x18\x05 \x01(\tR\vrequestedAt\"l\n" +
+	"\x14DeliverOrderResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12!\n" +
+	"\fcurrent_step\x18\x03 \x01(\tR\vcurrentStep\"y\n" +
+	"\x15AcceptDeliveryRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\"\n" +
+	"\rbuyer_user_id\x18\x02 \x01(\tR\vbuyerUserId\x12!\n" +
+	"\frequested_at\x18\x03 \x01(\tR\vrequestedAt\"n\n" +
+	"\x16AcceptDeliveryResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12!\n" +
+	"\fcurrent_step\x18\x03 \x01(\tR\vcurrentStep\"\x92\x01\n" +
+	"\x16RequestRevisionRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\"\n" +
+	"\rbuyer_user_id\x18\x02 \x01(\tR\vbuyerUserId\x12\x16\n" +
+	"\x06reason\x18\x03 \x01(\tR\x06reason\x12!\n" +
+	"\frequested_at\x18\x04 \x01(\tR\vrequestedAt\"o\n" +
+	"\x17RequestRevisionResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12!\n" +
+	"\fcurrent_step\x18\x03 \x01(\tR\vcurrentStep\"\x8e\x01\n" +
+	"\x12OpenDisputeRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\"\n" +
+	"\rbuyer_user_id\x18\x02 \x01(\tR\vbuyerUserId\x12\x16\n" +
+	"\x06reason\x18\x03 \x01(\tR\x06reason\x12!\n" +
+	"\frequested_at\x18\x04 \x01(\tR\vrequestedAt\"k\n" +
+	"\x13OpenDisputeResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12!\n" +
+	"\fcurrent_step\x18\x03 \x01(\tR\vcurrentStep2\xb4\b\n" +
 	"\x14OrderCheckoutService\x12W\n" +
 	"\n" +
 	"StartOrder\x12#.ordercheckout.v1.StartOrderRequest\x1a$.ordercheckout.v1.StartOrderResponse\x12o\n" +
@@ -1295,7 +1843,11 @@ const file_ordercheckout_v1_ordercheckout_proto_rawDesc = "" +
 	"\rSubmitMessage\x12&.ordercheckout.v1.SubmitMessageRequest\x1a'.ordercheckout.v1.SubmitMessageResponse\x12\x84\x01\n" +
 	"\x19CreateAttachmentUploadURL\x122.ordercheckout.v1.CreateAttachmentUploadURLRequest\x1a3.ordercheckout.v1.CreateAttachmentUploadURLResponse\x12\x81\x01\n" +
 	"\x18CompleteAttachmentUpload\x121.ordercheckout.v1.CompleteAttachmentUploadRequest\x1a2.ordercheckout.v1.CompleteAttachmentUploadResponse\x12]\n" +
-	"\fConfirmOrder\x12%.ordercheckout.v1.ConfirmOrderRequest\x1a&.ordercheckout.v1.ConfirmOrderResponseBPZNgithub.com/ofm-microservices/ofm-common/proto/ordercheckout/v1;ordercheckoutv1b\x06proto3"
+	"\fConfirmOrder\x12%.ordercheckout.v1.ConfirmOrderRequest\x1a&.ordercheckout.v1.ConfirmOrderResponse\x12]\n" +
+	"\fDeliverOrder\x12%.ordercheckout.v1.DeliverOrderRequest\x1a&.ordercheckout.v1.DeliverOrderResponse\x12c\n" +
+	"\x0eAcceptDelivery\x12'.ordercheckout.v1.AcceptDeliveryRequest\x1a(.ordercheckout.v1.AcceptDeliveryResponse\x12f\n" +
+	"\x0fRequestRevision\x12(.ordercheckout.v1.RequestRevisionRequest\x1a).ordercheckout.v1.RequestRevisionResponse\x12Z\n" +
+	"\vOpenDispute\x12$.ordercheckout.v1.OpenDisputeRequest\x1a%.ordercheckout.v1.OpenDisputeResponseBPZNgithub.com/ofm-microservices/ofm-common/proto/ordercheckout/v1;ordercheckoutv1b\x06proto3"
 
 var (
 	file_ordercheckout_v1_ordercheckout_proto_rawDescOnce sync.Once
@@ -1309,7 +1861,7 @@ func file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP() []byte {
 	return file_ordercheckout_v1_ordercheckout_proto_rawDescData
 }
 
-var file_ordercheckout_v1_ordercheckout_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_ordercheckout_v1_ordercheckout_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_ordercheckout_v1_ordercheckout_proto_goTypes = []any{
 	(*OrderSnapshot)(nil),                     // 0: ordercheckout.v1.OrderSnapshot
 	(*OrderQuestionOption)(nil),               // 1: ordercheckout.v1.OrderQuestionOption
@@ -1327,6 +1879,14 @@ var file_ordercheckout_v1_ordercheckout_proto_goTypes = []any{
 	(*CompleteAttachmentUploadResponse)(nil),  // 13: ordercheckout.v1.CompleteAttachmentUploadResponse
 	(*ConfirmOrderRequest)(nil),               // 14: ordercheckout.v1.ConfirmOrderRequest
 	(*ConfirmOrderResponse)(nil),              // 15: ordercheckout.v1.ConfirmOrderResponse
+	(*DeliverOrderRequest)(nil),               // 16: ordercheckout.v1.DeliverOrderRequest
+	(*DeliverOrderResponse)(nil),              // 17: ordercheckout.v1.DeliverOrderResponse
+	(*AcceptDeliveryRequest)(nil),             // 18: ordercheckout.v1.AcceptDeliveryRequest
+	(*AcceptDeliveryResponse)(nil),            // 19: ordercheckout.v1.AcceptDeliveryResponse
+	(*RequestRevisionRequest)(nil),            // 20: ordercheckout.v1.RequestRevisionRequest
+	(*RequestRevisionResponse)(nil),           // 21: ordercheckout.v1.RequestRevisionResponse
+	(*OpenDisputeRequest)(nil),                // 22: ordercheckout.v1.OpenDisputeRequest
+	(*OpenDisputeResponse)(nil),               // 23: ordercheckout.v1.OpenDisputeResponse
 }
 var file_ordercheckout_v1_ordercheckout_proto_depIdxs = []int32{
 	1,  // 0: ordercheckout.v1.OrderQuestion.options:type_name -> ordercheckout.v1.OrderQuestionOption
@@ -1339,14 +1899,22 @@ var file_ordercheckout_v1_ordercheckout_proto_depIdxs = []int32{
 	10, // 7: ordercheckout.v1.OrderCheckoutService.CreateAttachmentUploadURL:input_type -> ordercheckout.v1.CreateAttachmentUploadURLRequest
 	12, // 8: ordercheckout.v1.OrderCheckoutService.CompleteAttachmentUpload:input_type -> ordercheckout.v1.CompleteAttachmentUploadRequest
 	14, // 9: ordercheckout.v1.OrderCheckoutService.ConfirmOrder:input_type -> ordercheckout.v1.ConfirmOrderRequest
-	4,  // 10: ordercheckout.v1.OrderCheckoutService.StartOrder:output_type -> ordercheckout.v1.StartOrderResponse
-	7,  // 11: ordercheckout.v1.OrderCheckoutService.SubmitRequirements:output_type -> ordercheckout.v1.SubmitRequirementsResponse
-	9,  // 12: ordercheckout.v1.OrderCheckoutService.SubmitMessage:output_type -> ordercheckout.v1.SubmitMessageResponse
-	11, // 13: ordercheckout.v1.OrderCheckoutService.CreateAttachmentUploadURL:output_type -> ordercheckout.v1.CreateAttachmentUploadURLResponse
-	13, // 14: ordercheckout.v1.OrderCheckoutService.CompleteAttachmentUpload:output_type -> ordercheckout.v1.CompleteAttachmentUploadResponse
-	15, // 15: ordercheckout.v1.OrderCheckoutService.ConfirmOrder:output_type -> ordercheckout.v1.ConfirmOrderResponse
-	10, // [10:16] is the sub-list for method output_type
-	4,  // [4:10] is the sub-list for method input_type
+	16, // 10: ordercheckout.v1.OrderCheckoutService.DeliverOrder:input_type -> ordercheckout.v1.DeliverOrderRequest
+	18, // 11: ordercheckout.v1.OrderCheckoutService.AcceptDelivery:input_type -> ordercheckout.v1.AcceptDeliveryRequest
+	20, // 12: ordercheckout.v1.OrderCheckoutService.RequestRevision:input_type -> ordercheckout.v1.RequestRevisionRequest
+	22, // 13: ordercheckout.v1.OrderCheckoutService.OpenDispute:input_type -> ordercheckout.v1.OpenDisputeRequest
+	4,  // 14: ordercheckout.v1.OrderCheckoutService.StartOrder:output_type -> ordercheckout.v1.StartOrderResponse
+	7,  // 15: ordercheckout.v1.OrderCheckoutService.SubmitRequirements:output_type -> ordercheckout.v1.SubmitRequirementsResponse
+	9,  // 16: ordercheckout.v1.OrderCheckoutService.SubmitMessage:output_type -> ordercheckout.v1.SubmitMessageResponse
+	11, // 17: ordercheckout.v1.OrderCheckoutService.CreateAttachmentUploadURL:output_type -> ordercheckout.v1.CreateAttachmentUploadURLResponse
+	13, // 18: ordercheckout.v1.OrderCheckoutService.CompleteAttachmentUpload:output_type -> ordercheckout.v1.CompleteAttachmentUploadResponse
+	15, // 19: ordercheckout.v1.OrderCheckoutService.ConfirmOrder:output_type -> ordercheckout.v1.ConfirmOrderResponse
+	17, // 20: ordercheckout.v1.OrderCheckoutService.DeliverOrder:output_type -> ordercheckout.v1.DeliverOrderResponse
+	19, // 21: ordercheckout.v1.OrderCheckoutService.AcceptDelivery:output_type -> ordercheckout.v1.AcceptDeliveryResponse
+	21, // 22: ordercheckout.v1.OrderCheckoutService.RequestRevision:output_type -> ordercheckout.v1.RequestRevisionResponse
+	23, // 23: ordercheckout.v1.OrderCheckoutService.OpenDispute:output_type -> ordercheckout.v1.OpenDisputeResponse
+	14, // [14:24] is the sub-list for method output_type
+	4,  // [4:14] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name
@@ -1363,7 +1931,7 @@ func file_ordercheckout_v1_ordercheckout_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ordercheckout_v1_ordercheckout_proto_rawDesc), len(file_ordercheckout_v1_ordercheckout_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -23,6 +23,8 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	PaymentCheckoutService_CreateCheckoutSession_FullMethodName = "/paymentcheckout.v1.PaymentCheckoutService/CreateCheckoutSession"
+	PaymentCheckoutService_ReleaseFunds_FullMethodName          = "/paymentcheckout.v1.PaymentCheckoutService/ReleaseFunds"
+	PaymentCheckoutService_GetReleaseByOrderId_FullMethodName   = "/paymentcheckout.v1.PaymentCheckoutService/GetReleaseByOrderId"
 )
 
 // PaymentCheckoutServiceClient is the client API for PaymentCheckoutService service.
@@ -32,6 +34,8 @@ const (
 // PaymentCheckoutService owns checkout-session creation.
 type PaymentCheckoutServiceClient interface {
 	CreateCheckoutSession(ctx context.Context, in *CreateCheckoutSessionRequest, opts ...grpc.CallOption) (*CreateCheckoutSessionResponse, error)
+	ReleaseFunds(ctx context.Context, in *ReleaseFundsRequest, opts ...grpc.CallOption) (*ReleaseFundsResponse, error)
+	GetReleaseByOrderId(ctx context.Context, in *GetReleaseByOrderIdRequest, opts ...grpc.CallOption) (*GetReleaseByOrderIdResponse, error)
 }
 
 type paymentCheckoutServiceClient struct {
@@ -52,6 +56,26 @@ func (c *paymentCheckoutServiceClient) CreateCheckoutSession(ctx context.Context
 	return out, nil
 }
 
+func (c *paymentCheckoutServiceClient) ReleaseFunds(ctx context.Context, in *ReleaseFundsRequest, opts ...grpc.CallOption) (*ReleaseFundsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReleaseFundsResponse)
+	err := c.cc.Invoke(ctx, PaymentCheckoutService_ReleaseFunds_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *paymentCheckoutServiceClient) GetReleaseByOrderId(ctx context.Context, in *GetReleaseByOrderIdRequest, opts ...grpc.CallOption) (*GetReleaseByOrderIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetReleaseByOrderIdResponse)
+	err := c.cc.Invoke(ctx, PaymentCheckoutService_GetReleaseByOrderId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PaymentCheckoutServiceServer is the server API for PaymentCheckoutService service.
 // All implementations should embed UnimplementedPaymentCheckoutServiceServer
 // for forward compatibility.
@@ -59,6 +83,8 @@ func (c *paymentCheckoutServiceClient) CreateCheckoutSession(ctx context.Context
 // PaymentCheckoutService owns checkout-session creation.
 type PaymentCheckoutServiceServer interface {
 	CreateCheckoutSession(context.Context, *CreateCheckoutSessionRequest) (*CreateCheckoutSessionResponse, error)
+	ReleaseFunds(context.Context, *ReleaseFundsRequest) (*ReleaseFundsResponse, error)
+	GetReleaseByOrderId(context.Context, *GetReleaseByOrderIdRequest) (*GetReleaseByOrderIdResponse, error)
 }
 
 // UnimplementedPaymentCheckoutServiceServer should be embedded to have
@@ -70,6 +96,12 @@ type UnimplementedPaymentCheckoutServiceServer struct{}
 
 func (UnimplementedPaymentCheckoutServiceServer) CreateCheckoutSession(context.Context, *CreateCheckoutSessionRequest) (*CreateCheckoutSessionResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateCheckoutSession not implemented")
+}
+func (UnimplementedPaymentCheckoutServiceServer) ReleaseFunds(context.Context, *ReleaseFundsRequest) (*ReleaseFundsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ReleaseFunds not implemented")
+}
+func (UnimplementedPaymentCheckoutServiceServer) GetReleaseByOrderId(context.Context, *GetReleaseByOrderIdRequest) (*GetReleaseByOrderIdResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetReleaseByOrderId not implemented")
 }
 func (UnimplementedPaymentCheckoutServiceServer) testEmbeddedByValue() {}
 
@@ -109,6 +141,42 @@ func _PaymentCheckoutService_CreateCheckoutSession_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PaymentCheckoutService_ReleaseFunds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReleaseFundsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentCheckoutServiceServer).ReleaseFunds(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PaymentCheckoutService_ReleaseFunds_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentCheckoutServiceServer).ReleaseFunds(ctx, req.(*ReleaseFundsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PaymentCheckoutService_GetReleaseByOrderId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReleaseByOrderIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentCheckoutServiceServer).GetReleaseByOrderId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PaymentCheckoutService_GetReleaseByOrderId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentCheckoutServiceServer).GetReleaseByOrderId(ctx, req.(*GetReleaseByOrderIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PaymentCheckoutService_ServiceDesc is the grpc.ServiceDesc for PaymentCheckoutService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -119,6 +187,14 @@ var PaymentCheckoutService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCheckoutSession",
 			Handler:    _PaymentCheckoutService_CreateCheckoutSession_Handler,
+		},
+		{
+			MethodName: "ReleaseFunds",
+			Handler:    _PaymentCheckoutService_ReleaseFunds_Handler,
+		},
+		{
+			MethodName: "GetReleaseByOrderId",
+			Handler:    _PaymentCheckoutService_GetReleaseByOrderId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

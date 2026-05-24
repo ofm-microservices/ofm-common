@@ -22,14 +22,21 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OrderWriteService_CreateDraftOrder_FullMethodName        = "/orderwrite.v1.OrderWriteService/CreateDraftOrder"
-	OrderWriteService_SaveRequirementAnswers_FullMethodName  = "/orderwrite.v1.OrderWriteService/SaveRequirementAnswers"
-	OrderWriteService_SaveBuyerInitialMessage_FullMethodName = "/orderwrite.v1.OrderWriteService/SaveBuyerInitialMessage"
-	OrderWriteService_AttachFileToOrder_FullMethodName       = "/orderwrite.v1.OrderWriteService/AttachFileToOrder"
-	OrderWriteService_GetOrderPaymentSnapshot_FullMethodName = "/orderwrite.v1.OrderWriteService/GetOrderPaymentSnapshot"
-	OrderWriteService_MarkPaymentPending_FullMethodName      = "/orderwrite.v1.OrderWriteService/MarkPaymentPending"
-	OrderWriteService_MarkOrderFunded_FullMethodName         = "/orderwrite.v1.OrderWriteService/MarkOrderFunded"
-	OrderWriteService_MarkPaymentFailed_FullMethodName       = "/orderwrite.v1.OrderWriteService/MarkPaymentFailed"
+	OrderWriteService_CreateDraftOrder_FullMethodName          = "/orderwrite.v1.OrderWriteService/CreateDraftOrder"
+	OrderWriteService_SaveRequirementAnswers_FullMethodName    = "/orderwrite.v1.OrderWriteService/SaveRequirementAnswers"
+	OrderWriteService_SaveBuyerInitialMessage_FullMethodName   = "/orderwrite.v1.OrderWriteService/SaveBuyerInitialMessage"
+	OrderWriteService_AttachFileToOrder_FullMethodName         = "/orderwrite.v1.OrderWriteService/AttachFileToOrder"
+	OrderWriteService_GetOrderPaymentSnapshot_FullMethodName   = "/orderwrite.v1.OrderWriteService/GetOrderPaymentSnapshot"
+	OrderWriteService_MarkPaymentPending_FullMethodName        = "/orderwrite.v1.OrderWriteService/MarkPaymentPending"
+	OrderWriteService_MarkOrderFunded_FullMethodName           = "/orderwrite.v1.OrderWriteService/MarkOrderFunded"
+	OrderWriteService_MarkPaymentFailed_FullMethodName         = "/orderwrite.v1.OrderWriteService/MarkPaymentFailed"
+	OrderWriteService_GetOrderLifecycleSnapshot_FullMethodName = "/orderwrite.v1.OrderWriteService/GetOrderLifecycleSnapshot"
+	OrderWriteService_SaveDelivery_FullMethodName              = "/orderwrite.v1.OrderWriteService/SaveDelivery"
+	OrderWriteService_MarkReleasePending_FullMethodName        = "/orderwrite.v1.OrderWriteService/MarkReleasePending"
+	OrderWriteService_RequestRevision_FullMethodName           = "/orderwrite.v1.OrderWriteService/RequestRevision"
+	OrderWriteService_OpenDispute_FullMethodName               = "/orderwrite.v1.OrderWriteService/OpenDispute"
+	OrderWriteService_MarkOrderCompleted_FullMethodName        = "/orderwrite.v1.OrderWriteService/MarkOrderCompleted"
+	OrderWriteService_MarkReleaseFailed_FullMethodName         = "/orderwrite.v1.OrderWriteService/MarkReleaseFailed"
 )
 
 // OrderWriteServiceClient is the client API for OrderWriteService service.
@@ -46,6 +53,13 @@ type OrderWriteServiceClient interface {
 	MarkPaymentPending(ctx context.Context, in *MarkPaymentPendingRequest, opts ...grpc.CallOption) (*MarkPaymentPendingResponse, error)
 	MarkOrderFunded(ctx context.Context, in *MarkOrderFundedRequest, opts ...grpc.CallOption) (*MarkOrderFundedResponse, error)
 	MarkPaymentFailed(ctx context.Context, in *MarkPaymentFailedRequest, opts ...grpc.CallOption) (*MarkPaymentFailedResponse, error)
+	GetOrderLifecycleSnapshot(ctx context.Context, in *GetOrderLifecycleSnapshotRequest, opts ...grpc.CallOption) (*GetOrderLifecycleSnapshotResponse, error)
+	SaveDelivery(ctx context.Context, in *SaveDeliveryRequest, opts ...grpc.CallOption) (*SaveDeliveryResponse, error)
+	MarkReleasePending(ctx context.Context, in *MarkReleasePendingRequest, opts ...grpc.CallOption) (*MarkReleasePendingResponse, error)
+	RequestRevision(ctx context.Context, in *RequestRevisionRequest, opts ...grpc.CallOption) (*RequestRevisionResponse, error)
+	OpenDispute(ctx context.Context, in *OpenDisputeRequest, opts ...grpc.CallOption) (*OpenDisputeResponse, error)
+	MarkOrderCompleted(ctx context.Context, in *MarkOrderCompletedRequest, opts ...grpc.CallOption) (*MarkOrderCompletedResponse, error)
+	MarkReleaseFailed(ctx context.Context, in *MarkReleaseFailedRequest, opts ...grpc.CallOption) (*MarkReleaseFailedResponse, error)
 }
 
 type orderWriteServiceClient struct {
@@ -136,6 +150,76 @@ func (c *orderWriteServiceClient) MarkPaymentFailed(ctx context.Context, in *Mar
 	return out, nil
 }
 
+func (c *orderWriteServiceClient) GetOrderLifecycleSnapshot(ctx context.Context, in *GetOrderLifecycleSnapshotRequest, opts ...grpc.CallOption) (*GetOrderLifecycleSnapshotResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOrderLifecycleSnapshotResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_GetOrderLifecycleSnapshot_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderWriteServiceClient) SaveDelivery(ctx context.Context, in *SaveDeliveryRequest, opts ...grpc.CallOption) (*SaveDeliveryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SaveDeliveryResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_SaveDelivery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderWriteServiceClient) MarkReleasePending(ctx context.Context, in *MarkReleasePendingRequest, opts ...grpc.CallOption) (*MarkReleasePendingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MarkReleasePendingResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_MarkReleasePending_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderWriteServiceClient) RequestRevision(ctx context.Context, in *RequestRevisionRequest, opts ...grpc.CallOption) (*RequestRevisionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RequestRevisionResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_RequestRevision_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderWriteServiceClient) OpenDispute(ctx context.Context, in *OpenDisputeRequest, opts ...grpc.CallOption) (*OpenDisputeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OpenDisputeResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_OpenDispute_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderWriteServiceClient) MarkOrderCompleted(ctx context.Context, in *MarkOrderCompletedRequest, opts ...grpc.CallOption) (*MarkOrderCompletedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MarkOrderCompletedResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_MarkOrderCompleted_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderWriteServiceClient) MarkReleaseFailed(ctx context.Context, in *MarkReleaseFailedRequest, opts ...grpc.CallOption) (*MarkReleaseFailedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MarkReleaseFailedResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_MarkReleaseFailed_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderWriteServiceServer is the server API for OrderWriteService service.
 // All implementations should embed UnimplementedOrderWriteServiceServer
 // for forward compatibility.
@@ -150,6 +234,13 @@ type OrderWriteServiceServer interface {
 	MarkPaymentPending(context.Context, *MarkPaymentPendingRequest) (*MarkPaymentPendingResponse, error)
 	MarkOrderFunded(context.Context, *MarkOrderFundedRequest) (*MarkOrderFundedResponse, error)
 	MarkPaymentFailed(context.Context, *MarkPaymentFailedRequest) (*MarkPaymentFailedResponse, error)
+	GetOrderLifecycleSnapshot(context.Context, *GetOrderLifecycleSnapshotRequest) (*GetOrderLifecycleSnapshotResponse, error)
+	SaveDelivery(context.Context, *SaveDeliveryRequest) (*SaveDeliveryResponse, error)
+	MarkReleasePending(context.Context, *MarkReleasePendingRequest) (*MarkReleasePendingResponse, error)
+	RequestRevision(context.Context, *RequestRevisionRequest) (*RequestRevisionResponse, error)
+	OpenDispute(context.Context, *OpenDisputeRequest) (*OpenDisputeResponse, error)
+	MarkOrderCompleted(context.Context, *MarkOrderCompletedRequest) (*MarkOrderCompletedResponse, error)
+	MarkReleaseFailed(context.Context, *MarkReleaseFailedRequest) (*MarkReleaseFailedResponse, error)
 }
 
 // UnimplementedOrderWriteServiceServer should be embedded to have
@@ -182,6 +273,27 @@ func (UnimplementedOrderWriteServiceServer) MarkOrderFunded(context.Context, *Ma
 }
 func (UnimplementedOrderWriteServiceServer) MarkPaymentFailed(context.Context, *MarkPaymentFailedRequest) (*MarkPaymentFailedResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method MarkPaymentFailed not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) GetOrderLifecycleSnapshot(context.Context, *GetOrderLifecycleSnapshotRequest) (*GetOrderLifecycleSnapshotResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetOrderLifecycleSnapshot not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) SaveDelivery(context.Context, *SaveDeliveryRequest) (*SaveDeliveryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SaveDelivery not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) MarkReleasePending(context.Context, *MarkReleasePendingRequest) (*MarkReleasePendingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method MarkReleasePending not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) RequestRevision(context.Context, *RequestRevisionRequest) (*RequestRevisionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method RequestRevision not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) OpenDispute(context.Context, *OpenDisputeRequest) (*OpenDisputeResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method OpenDispute not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) MarkOrderCompleted(context.Context, *MarkOrderCompletedRequest) (*MarkOrderCompletedResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method MarkOrderCompleted not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) MarkReleaseFailed(context.Context, *MarkReleaseFailedRequest) (*MarkReleaseFailedResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method MarkReleaseFailed not implemented")
 }
 func (UnimplementedOrderWriteServiceServer) testEmbeddedByValue() {}
 
@@ -347,6 +459,132 @@ func _OrderWriteService_MarkPaymentFailed_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderWriteService_GetOrderLifecycleSnapshot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderLifecycleSnapshotRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).GetOrderLifecycleSnapshot(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_GetOrderLifecycleSnapshot_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).GetOrderLifecycleSnapshot(ctx, req.(*GetOrderLifecycleSnapshotRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderWriteService_SaveDelivery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveDeliveryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).SaveDelivery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_SaveDelivery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).SaveDelivery(ctx, req.(*SaveDeliveryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderWriteService_MarkReleasePending_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarkReleasePendingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).MarkReleasePending(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_MarkReleasePending_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).MarkReleasePending(ctx, req.(*MarkReleasePendingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderWriteService_RequestRevision_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestRevisionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).RequestRevision(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_RequestRevision_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).RequestRevision(ctx, req.(*RequestRevisionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderWriteService_OpenDispute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenDisputeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).OpenDispute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_OpenDispute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).OpenDispute(ctx, req.(*OpenDisputeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderWriteService_MarkOrderCompleted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarkOrderCompletedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).MarkOrderCompleted(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_MarkOrderCompleted_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).MarkOrderCompleted(ctx, req.(*MarkOrderCompletedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderWriteService_MarkReleaseFailed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarkReleaseFailedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).MarkReleaseFailed(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_MarkReleaseFailed_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).MarkReleaseFailed(ctx, req.(*MarkReleaseFailedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderWriteService_ServiceDesc is the grpc.ServiceDesc for OrderWriteService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -385,6 +623,34 @@ var OrderWriteService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MarkPaymentFailed",
 			Handler:    _OrderWriteService_MarkPaymentFailed_Handler,
+		},
+		{
+			MethodName: "GetOrderLifecycleSnapshot",
+			Handler:    _OrderWriteService_GetOrderLifecycleSnapshot_Handler,
+		},
+		{
+			MethodName: "SaveDelivery",
+			Handler:    _OrderWriteService_SaveDelivery_Handler,
+		},
+		{
+			MethodName: "MarkReleasePending",
+			Handler:    _OrderWriteService_MarkReleasePending_Handler,
+		},
+		{
+			MethodName: "RequestRevision",
+			Handler:    _OrderWriteService_RequestRevision_Handler,
+		},
+		{
+			MethodName: "OpenDispute",
+			Handler:    _OrderWriteService_OpenDispute_Handler,
+		},
+		{
+			MethodName: "MarkOrderCompleted",
+			Handler:    _OrderWriteService_MarkOrderCompleted_Handler,
+		},
+		{
+			MethodName: "MarkReleaseFailed",
+			Handler:    _OrderWriteService_MarkReleaseFailed_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

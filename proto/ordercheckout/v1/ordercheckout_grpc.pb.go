@@ -28,6 +28,10 @@ const (
 	OrderCheckoutService_CreateAttachmentUploadURL_FullMethodName = "/ordercheckout.v1.OrderCheckoutService/CreateAttachmentUploadURL"
 	OrderCheckoutService_CompleteAttachmentUpload_FullMethodName  = "/ordercheckout.v1.OrderCheckoutService/CompleteAttachmentUpload"
 	OrderCheckoutService_ConfirmOrder_FullMethodName              = "/ordercheckout.v1.OrderCheckoutService/ConfirmOrder"
+	OrderCheckoutService_DeliverOrder_FullMethodName              = "/ordercheckout.v1.OrderCheckoutService/DeliverOrder"
+	OrderCheckoutService_AcceptDelivery_FullMethodName            = "/ordercheckout.v1.OrderCheckoutService/AcceptDelivery"
+	OrderCheckoutService_RequestRevision_FullMethodName           = "/ordercheckout.v1.OrderCheckoutService/RequestRevision"
+	OrderCheckoutService_OpenDispute_FullMethodName               = "/ordercheckout.v1.OrderCheckoutService/OpenDispute"
 )
 
 // OrderCheckoutServiceClient is the client API for OrderCheckoutService service.
@@ -42,6 +46,10 @@ type OrderCheckoutServiceClient interface {
 	CreateAttachmentUploadURL(ctx context.Context, in *CreateAttachmentUploadURLRequest, opts ...grpc.CallOption) (*CreateAttachmentUploadURLResponse, error)
 	CompleteAttachmentUpload(ctx context.Context, in *CompleteAttachmentUploadRequest, opts ...grpc.CallOption) (*CompleteAttachmentUploadResponse, error)
 	ConfirmOrder(ctx context.Context, in *ConfirmOrderRequest, opts ...grpc.CallOption) (*ConfirmOrderResponse, error)
+	DeliverOrder(ctx context.Context, in *DeliverOrderRequest, opts ...grpc.CallOption) (*DeliverOrderResponse, error)
+	AcceptDelivery(ctx context.Context, in *AcceptDeliveryRequest, opts ...grpc.CallOption) (*AcceptDeliveryResponse, error)
+	RequestRevision(ctx context.Context, in *RequestRevisionRequest, opts ...grpc.CallOption) (*RequestRevisionResponse, error)
+	OpenDispute(ctx context.Context, in *OpenDisputeRequest, opts ...grpc.CallOption) (*OpenDisputeResponse, error)
 }
 
 type orderCheckoutServiceClient struct {
@@ -112,6 +120,46 @@ func (c *orderCheckoutServiceClient) ConfirmOrder(ctx context.Context, in *Confi
 	return out, nil
 }
 
+func (c *orderCheckoutServiceClient) DeliverOrder(ctx context.Context, in *DeliverOrderRequest, opts ...grpc.CallOption) (*DeliverOrderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeliverOrderResponse)
+	err := c.cc.Invoke(ctx, OrderCheckoutService_DeliverOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderCheckoutServiceClient) AcceptDelivery(ctx context.Context, in *AcceptDeliveryRequest, opts ...grpc.CallOption) (*AcceptDeliveryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AcceptDeliveryResponse)
+	err := c.cc.Invoke(ctx, OrderCheckoutService_AcceptDelivery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderCheckoutServiceClient) RequestRevision(ctx context.Context, in *RequestRevisionRequest, opts ...grpc.CallOption) (*RequestRevisionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RequestRevisionResponse)
+	err := c.cc.Invoke(ctx, OrderCheckoutService_RequestRevision_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderCheckoutServiceClient) OpenDispute(ctx context.Context, in *OpenDisputeRequest, opts ...grpc.CallOption) (*OpenDisputeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OpenDisputeResponse)
+	err := c.cc.Invoke(ctx, OrderCheckoutService_OpenDispute_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderCheckoutServiceServer is the server API for OrderCheckoutService service.
 // All implementations should embed UnimplementedOrderCheckoutServiceServer
 // for forward compatibility.
@@ -124,6 +172,10 @@ type OrderCheckoutServiceServer interface {
 	CreateAttachmentUploadURL(context.Context, *CreateAttachmentUploadURLRequest) (*CreateAttachmentUploadURLResponse, error)
 	CompleteAttachmentUpload(context.Context, *CompleteAttachmentUploadRequest) (*CompleteAttachmentUploadResponse, error)
 	ConfirmOrder(context.Context, *ConfirmOrderRequest) (*ConfirmOrderResponse, error)
+	DeliverOrder(context.Context, *DeliverOrderRequest) (*DeliverOrderResponse, error)
+	AcceptDelivery(context.Context, *AcceptDeliveryRequest) (*AcceptDeliveryResponse, error)
+	RequestRevision(context.Context, *RequestRevisionRequest) (*RequestRevisionResponse, error)
+	OpenDispute(context.Context, *OpenDisputeRequest) (*OpenDisputeResponse, error)
 }
 
 // UnimplementedOrderCheckoutServiceServer should be embedded to have
@@ -150,6 +202,18 @@ func (UnimplementedOrderCheckoutServiceServer) CompleteAttachmentUpload(context.
 }
 func (UnimplementedOrderCheckoutServiceServer) ConfirmOrder(context.Context, *ConfirmOrderRequest) (*ConfirmOrderResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ConfirmOrder not implemented")
+}
+func (UnimplementedOrderCheckoutServiceServer) DeliverOrder(context.Context, *DeliverOrderRequest) (*DeliverOrderResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeliverOrder not implemented")
+}
+func (UnimplementedOrderCheckoutServiceServer) AcceptDelivery(context.Context, *AcceptDeliveryRequest) (*AcceptDeliveryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AcceptDelivery not implemented")
+}
+func (UnimplementedOrderCheckoutServiceServer) RequestRevision(context.Context, *RequestRevisionRequest) (*RequestRevisionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method RequestRevision not implemented")
+}
+func (UnimplementedOrderCheckoutServiceServer) OpenDispute(context.Context, *OpenDisputeRequest) (*OpenDisputeResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method OpenDispute not implemented")
 }
 func (UnimplementedOrderCheckoutServiceServer) testEmbeddedByValue() {}
 
@@ -279,6 +343,78 @@ func _OrderCheckoutService_ConfirmOrder_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderCheckoutService_DeliverOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeliverOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderCheckoutServiceServer).DeliverOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderCheckoutService_DeliverOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderCheckoutServiceServer).DeliverOrder(ctx, req.(*DeliverOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderCheckoutService_AcceptDelivery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AcceptDeliveryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderCheckoutServiceServer).AcceptDelivery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderCheckoutService_AcceptDelivery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderCheckoutServiceServer).AcceptDelivery(ctx, req.(*AcceptDeliveryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderCheckoutService_RequestRevision_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestRevisionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderCheckoutServiceServer).RequestRevision(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderCheckoutService_RequestRevision_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderCheckoutServiceServer).RequestRevision(ctx, req.(*RequestRevisionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderCheckoutService_OpenDispute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenDisputeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderCheckoutServiceServer).OpenDispute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderCheckoutService_OpenDispute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderCheckoutServiceServer).OpenDispute(ctx, req.(*OpenDisputeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderCheckoutService_ServiceDesc is the grpc.ServiceDesc for OrderCheckoutService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -309,6 +445,22 @@ var OrderCheckoutService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConfirmOrder",
 			Handler:    _OrderCheckoutService_ConfirmOrder_Handler,
+		},
+		{
+			MethodName: "DeliverOrder",
+			Handler:    _OrderCheckoutService_DeliverOrder_Handler,
+		},
+		{
+			MethodName: "AcceptDelivery",
+			Handler:    _OrderCheckoutService_AcceptDelivery_Handler,
+		},
+		{
+			MethodName: "RequestRevision",
+			Handler:    _OrderCheckoutService_RequestRevision_Handler,
+		},
+		{
+			MethodName: "OpenDispute",
+			Handler:    _OrderCheckoutService_OpenDispute_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
