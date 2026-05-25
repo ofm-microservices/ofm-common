@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+// Package review.v1 defines the review contract used by api-gateway and
+// review-service.
+package review.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/review/v1;reviewv1";
+
+// ReviewService owns the buyer-authenticated review boundary.
+service ReviewService {
+  rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse);
+}
+
+message Review {
+  string review_id = 1;
+  string order_id = 2;
+  string gig_id = 3;
+  string buyer_user_id = 4;
+  string content = 5;
+  string created_at = 6;
+}
+
+message CreateReviewRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string content = 3;
+  string idempotency_key = 4;
+  string requested_at = 5;
+}
+
+message CreateReviewResponse {
+  Review review = 1;
+}
