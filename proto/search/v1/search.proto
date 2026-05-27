@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+// Package search.v1 defines the public gig search contract shared between
+// api-gateway and search-service.
+package search.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/search/v1;searchv1";
+
+// SearchService serves public gig search queries.
+service SearchService {
+  rpc Search(SearchRequest) returns (SearchResponse);
+}
+
+// SearchResult describes one searchable gig card.
+message SearchResult {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string picture = 4;
+  int64 reviews_count = 5;
+  double rating = 6;
+  int64 min_price = 7;
+  string slug = 8;
+  string freelancer_id = 9;
+  string published_at = 10;
+}
+
+// SearchRequest carries the public search query and paging controls.
+message SearchRequest {
+  string query = 1;
+  int32 sort = 2;
+  int32 order = 3;
+  string cursor = 4;
+}
+
+// SearchResponse returns a single page of gig search results.
+message SearchResponse {
+  repeated SearchResult services = 1;
+  string cursor = 2;
+  bool has_more = 3;
+}
