@@ -313,6 +313,162 @@ func (x *DeactivateUserResponse) GetStatus() string {
 	return ""
 }
 
+type GetUserPreviewByIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserPreviewByIDRequest) Reset() {
+	*x = GetUserPreviewByIDRequest{}
+	mi := &file_user_v1_query_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserPreviewByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserPreviewByIDRequest) ProtoMessage() {}
+
+func (x *GetUserPreviewByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_query_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserPreviewByIDRequest.ProtoReflect.Descriptor instead.
+func (*GetUserPreviewByIDRequest) Descriptor() ([]byte, []int) {
+	return file_user_v1_query_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetUserPreviewByIDRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type UserPreview struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	AvatarId      string                 `protobuf:"bytes,4,opt,name=avatar_id,json=avatarId,proto3" json:"avatar_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserPreview) Reset() {
+	*x = UserPreview{}
+	mi := &file_user_v1_query_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserPreview) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserPreview) ProtoMessage() {}
+
+func (x *UserPreview) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_query_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserPreview.ProtoReflect.Descriptor instead.
+func (*UserPreview) Descriptor() ([]byte, []int) {
+	return file_user_v1_query_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UserPreview) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserPreview) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *UserPreview) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *UserPreview) GetAvatarId() string {
+	if x != nil {
+		return x.AvatarId
+	}
+	return ""
+}
+
+type GetUserPreviewByIDResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *UserPreview           `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserPreviewByIDResponse) Reset() {
+	*x = GetUserPreviewByIDResponse{}
+	mi := &file_user_v1_query_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserPreviewByIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserPreviewByIDResponse) ProtoMessage() {}
+
+func (x *GetUserPreviewByIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_query_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserPreviewByIDResponse.ProtoReflect.Descriptor instead.
+func (*GetUserPreviewByIDResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_query_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetUserPreviewByIDResponse) GetUser() *UserPreview {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
 var File_user_v1_query_proto protoreflect.FileDescriptor
 
 const file_user_v1_query_proto_rawDesc = "" +
@@ -331,11 +487,21 @@ const file_user_v1_query_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"I\n" +
 	"\x16DeactivateUserResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status2\x8b\x02\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\"4\n" +
+	"\x19GetUserPreviewByIDRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x82\x01\n" +
+	"\vUserPreview\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
+	"\busername\x18\x02 \x01(\tR\busername\x12!\n" +
+	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12\x1b\n" +
+	"\tavatar_id\x18\x04 \x01(\tR\bavatarId\"F\n" +
+	"\x1aGetUserPreviewByIDResponse\x12(\n" +
+	"\x04user\x18\x01 \x01(\v2\x14.user.v1.UserPreviewR\x04user2\xea\x02\n" +
 	"\x10UserQueryService\x12W\n" +
 	"\x10ExistsByUsername\x12 .user.v1.ExistsByUsernameRequest\x1a!.user.v1.ExistsByUsernameResponse\x12K\n" +
 	"\fActivateUser\x12\x1c.user.v1.ActivateUserRequest\x1a\x1d.user.v1.ActivateUserResponse\x12Q\n" +
-	"\x0eDeactivateUser\x12\x1e.user.v1.DeactivateUserRequest\x1a\x1f.user.v1.DeactivateUserResponseB>Z<github.com/ofm-microservices/ofm-common/proto/user/v1;userv1b\x06proto3"
+	"\x0eDeactivateUser\x12\x1e.user.v1.DeactivateUserRequest\x1a\x1f.user.v1.DeactivateUserResponse\x12]\n" +
+	"\x12GetUserPreviewByID\x12\".user.v1.GetUserPreviewByIDRequest\x1a#.user.v1.GetUserPreviewByIDResponseB>Z<github.com/ofm-microservices/ofm-common/proto/user/v1;userv1b\x06proto3"
 
 var (
 	file_user_v1_query_proto_rawDescOnce sync.Once
@@ -349,27 +515,33 @@ func file_user_v1_query_proto_rawDescGZIP() []byte {
 	return file_user_v1_query_proto_rawDescData
 }
 
-var file_user_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_user_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_user_v1_query_proto_goTypes = []any{
-	(*ExistsByUsernameRequest)(nil),  // 0: user.v1.ExistsByUsernameRequest
-	(*ExistsByUsernameResponse)(nil), // 1: user.v1.ExistsByUsernameResponse
-	(*ActivateUserRequest)(nil),      // 2: user.v1.ActivateUserRequest
-	(*ActivateUserResponse)(nil),     // 3: user.v1.ActivateUserResponse
-	(*DeactivateUserRequest)(nil),    // 4: user.v1.DeactivateUserRequest
-	(*DeactivateUserResponse)(nil),   // 5: user.v1.DeactivateUserResponse
+	(*ExistsByUsernameRequest)(nil),    // 0: user.v1.ExistsByUsernameRequest
+	(*ExistsByUsernameResponse)(nil),   // 1: user.v1.ExistsByUsernameResponse
+	(*ActivateUserRequest)(nil),        // 2: user.v1.ActivateUserRequest
+	(*ActivateUserResponse)(nil),       // 3: user.v1.ActivateUserResponse
+	(*DeactivateUserRequest)(nil),      // 4: user.v1.DeactivateUserRequest
+	(*DeactivateUserResponse)(nil),     // 5: user.v1.DeactivateUserResponse
+	(*GetUserPreviewByIDRequest)(nil),  // 6: user.v1.GetUserPreviewByIDRequest
+	(*UserPreview)(nil),                // 7: user.v1.UserPreview
+	(*GetUserPreviewByIDResponse)(nil), // 8: user.v1.GetUserPreviewByIDResponse
 }
 var file_user_v1_query_proto_depIdxs = []int32{
-	0, // 0: user.v1.UserQueryService.ExistsByUsername:input_type -> user.v1.ExistsByUsernameRequest
-	2, // 1: user.v1.UserQueryService.ActivateUser:input_type -> user.v1.ActivateUserRequest
-	4, // 2: user.v1.UserQueryService.DeactivateUser:input_type -> user.v1.DeactivateUserRequest
-	1, // 3: user.v1.UserQueryService.ExistsByUsername:output_type -> user.v1.ExistsByUsernameResponse
-	3, // 4: user.v1.UserQueryService.ActivateUser:output_type -> user.v1.ActivateUserResponse
-	5, // 5: user.v1.UserQueryService.DeactivateUser:output_type -> user.v1.DeactivateUserResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	7, // 0: user.v1.GetUserPreviewByIDResponse.user:type_name -> user.v1.UserPreview
+	0, // 1: user.v1.UserQueryService.ExistsByUsername:input_type -> user.v1.ExistsByUsernameRequest
+	2, // 2: user.v1.UserQueryService.ActivateUser:input_type -> user.v1.ActivateUserRequest
+	4, // 3: user.v1.UserQueryService.DeactivateUser:input_type -> user.v1.DeactivateUserRequest
+	6, // 4: user.v1.UserQueryService.GetUserPreviewByID:input_type -> user.v1.GetUserPreviewByIDRequest
+	1, // 5: user.v1.UserQueryService.ExistsByUsername:output_type -> user.v1.ExistsByUsernameResponse
+	3, // 6: user.v1.UserQueryService.ActivateUser:output_type -> user.v1.ActivateUserResponse
+	5, // 7: user.v1.UserQueryService.DeactivateUser:output_type -> user.v1.DeactivateUserResponse
+	8, // 8: user.v1.UserQueryService.GetUserPreviewByID:output_type -> user.v1.GetUserPreviewByIDResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_user_v1_query_proto_init() }
@@ -383,7 +555,7 @@ func file_user_v1_query_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_v1_query_proto_rawDesc), len(file_user_v1_query_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

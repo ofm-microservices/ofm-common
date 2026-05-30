@@ -11,6 +11,7 @@ service UserQueryService {
   rpc ExistsByUsername(ExistsByUsernameRequest) returns (ExistsByUsernameResponse);
   rpc ActivateUser(ActivateUserRequest) returns (ActivateUserResponse);
   rpc DeactivateUser(DeactivateUserRequest) returns (DeactivateUserResponse);
+  rpc GetUserPreviewByID(GetUserPreviewByIDRequest) returns (GetUserPreviewByIDResponse);
 }
 
 // ExistsByUsernameRequest asks whether user-service already owns the supplied
@@ -46,4 +47,19 @@ message DeactivateUserRequest {
 message DeactivateUserResponse {
   string user_id = 1;
   string status = 2;
+}
+
+message GetUserPreviewByIDRequest {
+  string user_id = 1;
+}
+
+message UserPreview {
+  string user_id = 1;
+  string username = 2;
+  string display_name = 3;
+  string avatar_id = 4;
+}
+
+message GetUserPreviewByIDResponse {
+  UserPreview user = 1;
 }

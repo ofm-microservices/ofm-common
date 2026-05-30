@@ -11,6 +11,7 @@ service FileService {
   rpc UploadFile(UploadFileRequest) returns (UploadFileResponse);
   rpc UploadFiles(UploadFilesRequest) returns (UploadFilesResponse);
   rpc GetFile(GetFileRequest) returns (GetFileResponse);
+  rpc GetFileURL(GetFileURLRequest) returns (GetFileURLResponse);
   rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
 }
 
@@ -61,6 +62,15 @@ message GetFileRequest {
 
 message GetFileResponse {
   File file = 1;
+}
+
+message GetFileURLRequest {
+  string file_id = 1;
+}
+
+message GetFileURLResponse {
+  string file_id = 1;
+  string url = 2;
 }
 
 message DeleteFileRequest {
