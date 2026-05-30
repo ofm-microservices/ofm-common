@@ -9,6 +9,10 @@ option go_package = "github.com/ofm-microservices/ofm-common/proto/review/v1;rev
 // ReviewService owns the buyer-authenticated review boundary.
 service ReviewService {
   rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse);
+  rpc ListGigReviews(ListGigReviewsRequest) returns (ListGigReviewsResponse);
+  rpc ListSellerReviews(ListSellerReviewsRequest) returns (ListSellerReviewsResponse);
+  rpc GetGigRatingSummary(GetGigRatingSummaryRequest) returns (RatingSummary);
+  rpc GetSellerRatingSummary(GetSellerRatingSummaryRequest) returns (RatingSummary);
 }
 
 message Review {
@@ -17,17 +21,69 @@ message Review {
   string gig_id = 3;
   string buyer_user_id = 4;
   string content = 5;
-  string created_at = 6;
+  int32 rating = 6;
+  string created_at = 7;
+  ReviewAuthor author = 8;
+}
+
+message ReviewAuthor {
+  string user_id = 1;
+  string username = 2;
+  string display_name = 3;
+  string avatar_url = 4;
 }
 
 message CreateReviewRequest {
   string order_id = 1;
   string buyer_user_id = 2;
   string content = 3;
-  string idempotency_key = 4;
-  string requested_at = 5;
+  int32 rating = 4;
+  string idempotency_key = 5;
+  string requested_at = 6;
 }
 
 message CreateReviewResponse {
   Review review = 1;
+}
+
+message ListGigReviewsRequest {
+  string gig_id = 1;
+  string cursor = 2;
+  reserved 3;
+}
+
+message ListGigReviewsResponse {
+  repeated Review reviews = 1;
+  string cursor = 2;
+  bool has_more = 3;
+}
+
+message ListSellerReviewsRequest {
+  string seller_id = 1;
+  string cursor = 2;
+  reserved 3;
+}
+
+message ListSellerReviewsResponse {
+  repeated Review reviews = 1;
+  string cursor = 2;
+  bool has_more = 3;
+}
+
+message GetGigRatingSummaryRequest {
+  string gig_id = 1;
+}
+
+message GetSellerRatingSummaryRequest {
+  string seller_id = 1;
+}
+
+message RatingSummary {
+  double rating_avg = 1;
+  int64 total_reviews = 2;
+  int64 stars_5 = 3;
+  int64 stars_4 = 4;
+  int64 stars_3 = 5;
+  int64 stars_2 = 6;
+  int64 stars_1 = 7;
 }

@@ -22,9 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserQueryService_ExistsByUsername_FullMethodName = "/user.v1.UserQueryService/ExistsByUsername"
-	UserQueryService_ActivateUser_FullMethodName     = "/user.v1.UserQueryService/ActivateUser"
-	UserQueryService_DeactivateUser_FullMethodName   = "/user.v1.UserQueryService/DeactivateUser"
+	UserQueryService_ExistsByUsername_FullMethodName   = "/user.v1.UserQueryService/ExistsByUsername"
+	UserQueryService_ActivateUser_FullMethodName       = "/user.v1.UserQueryService/ActivateUser"
+	UserQueryService_DeactivateUser_FullMethodName     = "/user.v1.UserQueryService/DeactivateUser"
+	UserQueryService_GetUserPreviewByID_FullMethodName = "/user.v1.UserQueryService/GetUserPreviewByID"
 )
 
 // UserQueryServiceClient is the client API for UserQueryService service.
@@ -36,6 +37,7 @@ type UserQueryServiceClient interface {
 	ExistsByUsername(ctx context.Context, in *ExistsByUsernameRequest, opts ...grpc.CallOption) (*ExistsByUsernameResponse, error)
 	ActivateUser(ctx context.Context, in *ActivateUserRequest, opts ...grpc.CallOption) (*ActivateUserResponse, error)
 	DeactivateUser(ctx context.Context, in *DeactivateUserRequest, opts ...grpc.CallOption) (*DeactivateUserResponse, error)
+	GetUserPreviewByID(ctx context.Context, in *GetUserPreviewByIDRequest, opts ...grpc.CallOption) (*GetUserPreviewByIDResponse, error)
 }
 
 type userQueryServiceClient struct {
@@ -76,6 +78,16 @@ func (c *userQueryServiceClient) DeactivateUser(ctx context.Context, in *Deactiv
 	return out, nil
 }
 
+func (c *userQueryServiceClient) GetUserPreviewByID(ctx context.Context, in *GetUserPreviewByIDRequest, opts ...grpc.CallOption) (*GetUserPreviewByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserPreviewByIDResponse)
+	err := c.cc.Invoke(ctx, UserQueryService_GetUserPreviewByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserQueryServiceServer is the server API for UserQueryService service.
 // All implementations should embed UnimplementedUserQueryServiceServer
 // for forward compatibility.
@@ -85,6 +97,7 @@ type UserQueryServiceServer interface {
 	ExistsByUsername(context.Context, *ExistsByUsernameRequest) (*ExistsByUsernameResponse, error)
 	ActivateUser(context.Context, *ActivateUserRequest) (*ActivateUserResponse, error)
 	DeactivateUser(context.Context, *DeactivateUserRequest) (*DeactivateUserResponse, error)
+	GetUserPreviewByID(context.Context, *GetUserPreviewByIDRequest) (*GetUserPreviewByIDResponse, error)
 }
 
 // UnimplementedUserQueryServiceServer should be embedded to have
@@ -102,6 +115,9 @@ func (UnimplementedUserQueryServiceServer) ActivateUser(context.Context, *Activa
 }
 func (UnimplementedUserQueryServiceServer) DeactivateUser(context.Context, *DeactivateUserRequest) (*DeactivateUserResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeactivateUser not implemented")
+}
+func (UnimplementedUserQueryServiceServer) GetUserPreviewByID(context.Context, *GetUserPreviewByIDRequest) (*GetUserPreviewByIDResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserPreviewByID not implemented")
 }
 func (UnimplementedUserQueryServiceServer) testEmbeddedByValue() {}
 
@@ -177,6 +193,24 @@ func _UserQueryService_DeactivateUser_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserQueryService_GetUserPreviewByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserPreviewByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserQueryServiceServer).GetUserPreviewByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserQueryService_GetUserPreviewByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserQueryServiceServer).GetUserPreviewByID(ctx, req.(*GetUserPreviewByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserQueryService_ServiceDesc is the grpc.ServiceDesc for UserQueryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -195,6 +229,10 @@ var UserQueryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeactivateUser",
 			Handler:    _UserQueryService_DeactivateUser_Handler,
+		},
+		{
+			MethodName: "GetUserPreviewByID",
+			Handler:    _UserQueryService_GetUserPreviewByID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
