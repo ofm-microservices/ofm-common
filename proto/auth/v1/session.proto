@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+// Package auth.v1 defines the auth session exchange shared with api-gateway.
+package auth.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/auth/v1;authv1";
+
+// AuthSessionService exchanges credentials for auth-owned login tokens.
+service AuthSessionService {
+  rpc SignIn(SignInRequest) returns (AuthTokensResponse);
+}
+
+// SignInRequest submits a username-or-email identifier plus password.
+message SignInRequest {
+  string identifier = 1;
+  string password = 2;
+}
+
+// AuthTokensResponse returns access and refresh tokens for an authenticated
+// user.
+message AuthTokensResponse {
+  string user_id = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+  string token_type = 4;
+  int64 expires_in = 5;
+}
