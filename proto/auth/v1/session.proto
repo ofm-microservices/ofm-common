@@ -9,6 +9,7 @@ option go_package = "github.com/ofm-microservices/ofm-common/proto/auth/v1;authv
 service AuthSessionService {
   rpc SignIn(SignInRequest) returns (SignInResponse);
   rpc Refresh(RefreshRequest) returns (RefreshResponse);
+  rpc SignOut(SignOutRequest) returns (SignOutResponse);
 }
 
 // SignInRequest submits a username-or-email identifier plus password.
@@ -19,6 +20,11 @@ message SignInRequest {
 
 // RefreshRequest submits a refresh token for rotation.
 message RefreshRequest {
+  string refresh_token = 1;
+}
+
+// SignOutRequest submits a refresh token to revoke the current session.
+message SignOutRequest {
   string refresh_token = 1;
 }
 
@@ -39,4 +45,10 @@ message RefreshResponse {
   string refresh_token = 3;
   string token_type = 4;
   int64 expires_in = 5;
+}
+
+// SignOutResponse confirms that the refresh token was revoked.
+message SignOutResponse {
+  string user_id = 1;
+  string status = 2;
 }
