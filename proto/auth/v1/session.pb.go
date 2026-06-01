@@ -121,6 +121,51 @@ func (x *RefreshRequest) GetRefreshToken() string {
 	return ""
 }
 
+// SignOutRequest submits a refresh token to revoke the current session.
+type SignOutRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SignOutRequest) Reset() {
+	*x = SignOutRequest{}
+	mi := &file_auth_v1_session_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SignOutRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignOutRequest) ProtoMessage() {}
+
+func (x *SignOutRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_session_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignOutRequest.ProtoReflect.Descriptor instead.
+func (*SignOutRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_session_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *SignOutRequest) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
 // SignInResponse returns access and refresh tokens for an authenticated
 // user.
 type SignInResponse struct {
@@ -136,7 +181,7 @@ type SignInResponse struct {
 
 func (x *SignInResponse) Reset() {
 	*x = SignInResponse{}
-	mi := &file_auth_v1_session_proto_msgTypes[2]
+	mi := &file_auth_v1_session_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -148,7 +193,7 @@ func (x *SignInResponse) String() string {
 func (*SignInResponse) ProtoMessage() {}
 
 func (x *SignInResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_session_proto_msgTypes[2]
+	mi := &file_auth_v1_session_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -161,7 +206,7 @@ func (x *SignInResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignInResponse.ProtoReflect.Descriptor instead.
 func (*SignInResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_session_proto_rawDescGZIP(), []int{2}
+	return file_auth_v1_session_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SignInResponse) GetUserId() string {
@@ -213,7 +258,7 @@ type RefreshResponse struct {
 
 func (x *RefreshResponse) Reset() {
 	*x = RefreshResponse{}
-	mi := &file_auth_v1_session_proto_msgTypes[3]
+	mi := &file_auth_v1_session_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -225,7 +270,7 @@ func (x *RefreshResponse) String() string {
 func (*RefreshResponse) ProtoMessage() {}
 
 func (x *RefreshResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_session_proto_msgTypes[3]
+	mi := &file_auth_v1_session_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -238,7 +283,7 @@ func (x *RefreshResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshResponse.ProtoReflect.Descriptor instead.
 func (*RefreshResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_session_proto_rawDescGZIP(), []int{3}
+	return file_auth_v1_session_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *RefreshResponse) GetUserId() string {
@@ -276,6 +321,59 @@ func (x *RefreshResponse) GetExpiresIn() int64 {
 	return 0
 }
 
+// SignOutResponse confirms that the refresh token was revoked.
+type SignOutResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SignOutResponse) Reset() {
+	*x = SignOutResponse{}
+	mi := &file_auth_v1_session_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SignOutResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignOutResponse) ProtoMessage() {}
+
+func (x *SignOutResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_session_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignOutResponse.ProtoReflect.Descriptor instead.
+func (*SignOutResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_session_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *SignOutResponse) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *SignOutResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 var File_auth_v1_session_proto protoreflect.FileDescriptor
 
 const file_auth_v1_session_proto_rawDesc = "" +
@@ -287,6 +385,8 @@ const file_auth_v1_session_proto_rawDesc = "" +
 	"identifier\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"5\n" +
 	"\x0eRefreshRequest\x12#\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"5\n" +
+	"\x0eSignOutRequest\x12#\n" +
 	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"\xaf\x01\n" +
 	"\x0eSignInResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
@@ -303,10 +403,14 @@ const file_auth_v1_session_proto_rawDesc = "" +
 	"\n" +
 	"token_type\x18\x04 \x01(\tR\ttokenType\x12\x1d\n" +
 	"\n" +
-	"expires_in\x18\x05 \x01(\x03R\texpiresIn2\x8d\x01\n" +
+	"expires_in\x18\x05 \x01(\x03R\texpiresIn\"B\n" +
+	"\x0fSignOutResponse\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status2\xcb\x01\n" +
 	"\x12AuthSessionService\x129\n" +
 	"\x06SignIn\x12\x16.auth.v1.SignInRequest\x1a\x17.auth.v1.SignInResponse\x12<\n" +
-	"\aRefresh\x12\x17.auth.v1.RefreshRequest\x1a\x18.auth.v1.RefreshResponseB>Z<github.com/ofm-microservices/ofm-common/proto/auth/v1;authv1b\x06proto3"
+	"\aRefresh\x12\x17.auth.v1.RefreshRequest\x1a\x18.auth.v1.RefreshResponse\x12<\n" +
+	"\aSignOut\x12\x17.auth.v1.SignOutRequest\x1a\x18.auth.v1.SignOutResponseB>Z<github.com/ofm-microservices/ofm-common/proto/auth/v1;authv1b\x06proto3"
 
 var (
 	file_auth_v1_session_proto_rawDescOnce sync.Once
@@ -320,20 +424,24 @@ func file_auth_v1_session_proto_rawDescGZIP() []byte {
 	return file_auth_v1_session_proto_rawDescData
 }
 
-var file_auth_v1_session_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_auth_v1_session_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_auth_v1_session_proto_goTypes = []any{
 	(*SignInRequest)(nil),   // 0: auth.v1.SignInRequest
 	(*RefreshRequest)(nil),  // 1: auth.v1.RefreshRequest
-	(*SignInResponse)(nil),  // 2: auth.v1.SignInResponse
-	(*RefreshResponse)(nil), // 3: auth.v1.RefreshResponse
+	(*SignOutRequest)(nil),  // 2: auth.v1.SignOutRequest
+	(*SignInResponse)(nil),  // 3: auth.v1.SignInResponse
+	(*RefreshResponse)(nil), // 4: auth.v1.RefreshResponse
+	(*SignOutResponse)(nil), // 5: auth.v1.SignOutResponse
 }
 var file_auth_v1_session_proto_depIdxs = []int32{
 	0, // 0: auth.v1.AuthSessionService.SignIn:input_type -> auth.v1.SignInRequest
 	1, // 1: auth.v1.AuthSessionService.Refresh:input_type -> auth.v1.RefreshRequest
-	2, // 2: auth.v1.AuthSessionService.SignIn:output_type -> auth.v1.SignInResponse
-	3, // 3: auth.v1.AuthSessionService.Refresh:output_type -> auth.v1.RefreshResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	2, // 2: auth.v1.AuthSessionService.SignOut:input_type -> auth.v1.SignOutRequest
+	3, // 3: auth.v1.AuthSessionService.SignIn:output_type -> auth.v1.SignInResponse
+	4, // 4: auth.v1.AuthSessionService.Refresh:output_type -> auth.v1.RefreshResponse
+	5, // 5: auth.v1.AuthSessionService.SignOut:output_type -> auth.v1.SignOutResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -350,7 +458,7 @@ func file_auth_v1_session_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_session_proto_rawDesc), len(file_auth_v1_session_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

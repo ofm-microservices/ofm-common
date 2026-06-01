@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	AuthSessionService_SignIn_FullMethodName  = "/auth.v1.AuthSessionService/SignIn"
 	AuthSessionService_Refresh_FullMethodName = "/auth.v1.AuthSessionService/Refresh"
+	AuthSessionService_SignOut_FullMethodName = "/auth.v1.AuthSessionService/SignOut"
 )
 
 // AuthSessionServiceClient is the client API for AuthSessionService service.
@@ -33,6 +34,7 @@ const (
 type AuthSessionServiceClient interface {
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
 	Refresh(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
+	SignOut(ctx context.Context, in *SignOutRequest, opts ...grpc.CallOption) (*SignOutResponse, error)
 }
 
 type authSessionServiceClient struct {
@@ -63,6 +65,16 @@ func (c *authSessionServiceClient) Refresh(ctx context.Context, in *RefreshReque
 	return out, nil
 }
 
+func (c *authSessionServiceClient) SignOut(ctx context.Context, in *SignOutRequest, opts ...grpc.CallOption) (*SignOutResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SignOutResponse)
+	err := c.cc.Invoke(ctx, AuthSessionService_SignOut_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthSessionServiceServer is the server API for AuthSessionService service.
 // All implementations should embed UnimplementedAuthSessionServiceServer
 // for forward compatibility.
@@ -71,6 +83,7 @@ func (c *authSessionServiceClient) Refresh(ctx context.Context, in *RefreshReque
 type AuthSessionServiceServer interface {
 	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
 	Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error)
+	SignOut(context.Context, *SignOutRequest) (*SignOutResponse, error)
 }
 
 // UnimplementedAuthSessionServiceServer should be embedded to have
@@ -85,6 +98,9 @@ func (UnimplementedAuthSessionServiceServer) SignIn(context.Context, *SignInRequ
 }
 func (UnimplementedAuthSessionServiceServer) Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Refresh not implemented")
+}
+func (UnimplementedAuthSessionServiceServer) SignOut(context.Context, *SignOutRequest) (*SignOutResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SignOut not implemented")
 }
 func (UnimplementedAuthSessionServiceServer) testEmbeddedByValue() {}
 
@@ -142,6 +158,24 @@ func _AuthSessionService_Refresh_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthSessionService_SignOut_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignOutRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthSessionServiceServer).SignOut(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthSessionService_SignOut_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthSessionServiceServer).SignOut(ctx, req.(*SignOutRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthSessionService_ServiceDesc is the grpc.ServiceDesc for AuthSessionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +190,10 @@ var AuthSessionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Refresh",
 			Handler:    _AuthSessionService_Refresh_Handler,
+		},
+		{
+			MethodName: "SignOut",
+			Handler:    _AuthSessionService_SignOut_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
