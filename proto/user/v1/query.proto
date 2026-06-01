@@ -12,6 +12,7 @@ service UserQueryService {
   rpc ActivateUser(ActivateUserRequest) returns (ActivateUserResponse);
   rpc DeactivateUser(DeactivateUserRequest) returns (DeactivateUserResponse);
   rpc GetUserPreviewByID(GetUserPreviewByIDRequest) returns (GetUserPreviewByIDResponse);
+  rpc GetDetailedUserByUsername(GetDetailedUserByUsernameRequest) returns (GetDetailedUserByUsernameResponse);
 }
 
 // ExistsByUsernameRequest asks whether user-service already owns the supplied
@@ -62,4 +63,21 @@ message UserPreview {
 
 message GetUserPreviewByIDResponse {
   UserPreview user = 1;
+}
+
+message GetDetailedUserByUsernameRequest {
+  string username = 1;
+}
+
+message DetailedUser {
+  string user_id = 1;
+  string username = 2;
+  string display_name = 3;
+  string avatar_id = 4;
+  string avatar_url = 5;
+  string about = 6;
+}
+
+message GetDetailedUserByUsernameResponse {
+  DetailedUser user = 1;
 }
