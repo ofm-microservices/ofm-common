@@ -588,27 +588,27 @@ func (x *GetGigRatingSummaryRequest) GetGigId() string {
 	return ""
 }
 
-type GetSellerRatingSummaryRequest struct {
+type GetUserRatingSummaryByUsernameRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SellerId      string                 `protobuf:"bytes,1,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetSellerRatingSummaryRequest) Reset() {
-	*x = GetSellerRatingSummaryRequest{}
+func (x *GetUserRatingSummaryByUsernameRequest) Reset() {
+	*x = GetUserRatingSummaryByUsernameRequest{}
 	mi := &file_review_v1_review_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetSellerRatingSummaryRequest) String() string {
+func (x *GetUserRatingSummaryByUsernameRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetSellerRatingSummaryRequest) ProtoMessage() {}
+func (*GetUserRatingSummaryByUsernameRequest) ProtoMessage() {}
 
-func (x *GetSellerRatingSummaryRequest) ProtoReflect() protoreflect.Message {
+func (x *GetUserRatingSummaryByUsernameRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_review_v1_review_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -620,14 +620,14 @@ func (x *GetSellerRatingSummaryRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetSellerRatingSummaryRequest.ProtoReflect.Descriptor instead.
-func (*GetSellerRatingSummaryRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserRatingSummaryByUsernameRequest.ProtoReflect.Descriptor instead.
+func (*GetUserRatingSummaryByUsernameRequest) Descriptor() ([]byte, []int) {
 	return file_review_v1_review_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *GetSellerRatingSummaryRequest) GetSellerId() string {
+func (x *GetUserRatingSummaryByUsernameRequest) GetUsername() string {
 	if x != nil {
-		return x.SellerId
+		return x.Username
 	}
 	return ""
 }
@@ -769,9 +769,9 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\x06cursor\x18\x02 \x01(\tR\x06cursor\x12\x19\n" +
 	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"3\n" +
 	"\x1aGetGigRatingSummaryRequest\x12\x15\n" +
-	"\x06gig_id\x18\x01 \x01(\tR\x05gigId\"<\n" +
-	"\x1dGetSellerRatingSummaryRequest\x12\x1b\n" +
-	"\tseller_id\x18\x01 \x01(\tR\bsellerId\"\xd0\x01\n" +
+	"\x06gig_id\x18\x01 \x01(\tR\x05gigId\"C\n" +
+	"%GetUserRatingSummaryByUsernameRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\"\xd0\x01\n" +
 	"\rRatingSummary\x12\x1d\n" +
 	"\n" +
 	"rating_avg\x18\x01 \x01(\x01R\tratingAvg\x12#\n" +
@@ -780,13 +780,13 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\astars_4\x18\x04 \x01(\x03R\x06stars4\x12\x17\n" +
 	"\astars_3\x18\x05 \x01(\x03R\x06stars3\x12\x17\n" +
 	"\astars_2\x18\x06 \x01(\x03R\x06stars2\x12\x17\n" +
-	"\astars_1\x18\a \x01(\x03R\x06stars12\xcd\x03\n" +
+	"\astars_1\x18\a \x01(\x03R\x06stars12\xdd\x03\n" +
 	"\rReviewService\x12O\n" +
 	"\fCreateReview\x12\x1e.review.v1.CreateReviewRequest\x1a\x1f.review.v1.CreateReviewResponse\x12U\n" +
 	"\x0eListGigReviews\x12 .review.v1.ListGigReviewsRequest\x1a!.review.v1.ListGigReviewsResponse\x12^\n" +
 	"\x11ListSellerReviews\x12#.review.v1.ListSellerReviewsRequest\x1a$.review.v1.ListSellerReviewsResponse\x12V\n" +
-	"\x13GetGigRatingSummary\x12%.review.v1.GetGigRatingSummaryRequest\x1a\x18.review.v1.RatingSummary\x12\\\n" +
-	"\x16GetSellerRatingSummary\x12(.review.v1.GetSellerRatingSummaryRequest\x1a\x18.review.v1.RatingSummaryBBZ@github.com/ofm-microservices/ofm-common/proto/review/v1;reviewv1b\x06proto3"
+	"\x13GetGigRatingSummary\x12%.review.v1.GetGigRatingSummaryRequest\x1a\x18.review.v1.RatingSummary\x12l\n" +
+	"\x1eGetUserRatingSummaryByUsername\x120.review.v1.GetUserRatingSummaryByUsernameRequest\x1a\x18.review.v1.RatingSummaryBBZ@github.com/ofm-microservices/ofm-common/proto/review/v1;reviewv1b\x06proto3"
 
 var (
 	file_review_v1_review_proto_rawDescOnce sync.Once
@@ -802,17 +802,17 @@ func file_review_v1_review_proto_rawDescGZIP() []byte {
 
 var file_review_v1_review_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_review_v1_review_proto_goTypes = []any{
-	(*Review)(nil),                        // 0: review.v1.Review
-	(*ReviewAuthor)(nil),                  // 1: review.v1.ReviewAuthor
-	(*CreateReviewRequest)(nil),           // 2: review.v1.CreateReviewRequest
-	(*CreateReviewResponse)(nil),          // 3: review.v1.CreateReviewResponse
-	(*ListGigReviewsRequest)(nil),         // 4: review.v1.ListGigReviewsRequest
-	(*ListGigReviewsResponse)(nil),        // 5: review.v1.ListGigReviewsResponse
-	(*ListSellerReviewsRequest)(nil),      // 6: review.v1.ListSellerReviewsRequest
-	(*ListSellerReviewsResponse)(nil),     // 7: review.v1.ListSellerReviewsResponse
-	(*GetGigRatingSummaryRequest)(nil),    // 8: review.v1.GetGigRatingSummaryRequest
-	(*GetSellerRatingSummaryRequest)(nil), // 9: review.v1.GetSellerRatingSummaryRequest
-	(*RatingSummary)(nil),                 // 10: review.v1.RatingSummary
+	(*Review)(nil),                                // 0: review.v1.Review
+	(*ReviewAuthor)(nil),                          // 1: review.v1.ReviewAuthor
+	(*CreateReviewRequest)(nil),                   // 2: review.v1.CreateReviewRequest
+	(*CreateReviewResponse)(nil),                  // 3: review.v1.CreateReviewResponse
+	(*ListGigReviewsRequest)(nil),                 // 4: review.v1.ListGigReviewsRequest
+	(*ListGigReviewsResponse)(nil),                // 5: review.v1.ListGigReviewsResponse
+	(*ListSellerReviewsRequest)(nil),              // 6: review.v1.ListSellerReviewsRequest
+	(*ListSellerReviewsResponse)(nil),             // 7: review.v1.ListSellerReviewsResponse
+	(*GetGigRatingSummaryRequest)(nil),            // 8: review.v1.GetGigRatingSummaryRequest
+	(*GetUserRatingSummaryByUsernameRequest)(nil), // 9: review.v1.GetUserRatingSummaryByUsernameRequest
+	(*RatingSummary)(nil),                         // 10: review.v1.RatingSummary
 }
 var file_review_v1_review_proto_depIdxs = []int32{
 	1,  // 0: review.v1.Review.author:type_name -> review.v1.ReviewAuthor
@@ -823,12 +823,12 @@ var file_review_v1_review_proto_depIdxs = []int32{
 	4,  // 5: review.v1.ReviewService.ListGigReviews:input_type -> review.v1.ListGigReviewsRequest
 	6,  // 6: review.v1.ReviewService.ListSellerReviews:input_type -> review.v1.ListSellerReviewsRequest
 	8,  // 7: review.v1.ReviewService.GetGigRatingSummary:input_type -> review.v1.GetGigRatingSummaryRequest
-	9,  // 8: review.v1.ReviewService.GetSellerRatingSummary:input_type -> review.v1.GetSellerRatingSummaryRequest
+	9,  // 8: review.v1.ReviewService.GetUserRatingSummaryByUsername:input_type -> review.v1.GetUserRatingSummaryByUsernameRequest
 	3,  // 9: review.v1.ReviewService.CreateReview:output_type -> review.v1.CreateReviewResponse
 	5,  // 10: review.v1.ReviewService.ListGigReviews:output_type -> review.v1.ListGigReviewsResponse
 	7,  // 11: review.v1.ReviewService.ListSellerReviews:output_type -> review.v1.ListSellerReviewsResponse
 	10, // 12: review.v1.ReviewService.GetGigRatingSummary:output_type -> review.v1.RatingSummary
-	10, // 13: review.v1.ReviewService.GetSellerRatingSummary:output_type -> review.v1.RatingSummary
+	10, // 13: review.v1.ReviewService.GetUserRatingSummaryByUsername:output_type -> review.v1.RatingSummary
 	9,  // [9:14] is the sub-list for method output_type
 	4,  // [4:9] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name

@@ -12,7 +12,7 @@ service ReviewService {
   rpc ListGigReviews(ListGigReviewsRequest) returns (ListGigReviewsResponse);
   rpc ListSellerReviews(ListSellerReviewsRequest) returns (ListSellerReviewsResponse);
   rpc GetGigRatingSummary(GetGigRatingSummaryRequest) returns (RatingSummary);
-  rpc GetSellerRatingSummary(GetSellerRatingSummaryRequest) returns (RatingSummary);
+  rpc GetUserRatingSummaryByUsername(GetUserRatingSummaryByUsernameRequest) returns (RatingSummary);
 }
 
 message Review {
@@ -74,8 +74,8 @@ message GetGigRatingSummaryRequest {
   string gig_id = 1;
 }
 
-message GetSellerRatingSummaryRequest {
-  string seller_id = 1;
+message GetUserRatingSummaryByUsernameRequest {
+  string username = 1;
 }
 
 message RatingSummary {

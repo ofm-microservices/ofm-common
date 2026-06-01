@@ -26,6 +26,7 @@ const (
 	FileService_UploadFiles_FullMethodName = "/file.v1.FileService/UploadFiles"
 	FileService_GetFile_FullMethodName     = "/file.v1.FileService/GetFile"
 	FileService_GetFileURL_FullMethodName  = "/file.v1.FileService/GetFileURL"
+	FileService_GetFileURLs_FullMethodName = "/file.v1.FileService/GetFileURLs"
 	FileService_DeleteFile_FullMethodName  = "/file.v1.FileService/DeleteFile"
 )
 
@@ -39,6 +40,7 @@ type FileServiceClient interface {
 	UploadFiles(ctx context.Context, in *UploadFilesRequest, opts ...grpc.CallOption) (*UploadFilesResponse, error)
 	GetFile(ctx context.Context, in *GetFileRequest, opts ...grpc.CallOption) (*GetFileResponse, error)
 	GetFileURL(ctx context.Context, in *GetFileURLRequest, opts ...grpc.CallOption) (*GetFileURLResponse, error)
+	GetFileURLs(ctx context.Context, in *GetFileURLsRequest, opts ...grpc.CallOption) (*GetFileURLsResponse, error)
 	DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error)
 }
 
@@ -90,6 +92,16 @@ func (c *fileServiceClient) GetFileURL(ctx context.Context, in *GetFileURLReques
 	return out, nil
 }
 
+func (c *fileServiceClient) GetFileURLs(ctx context.Context, in *GetFileURLsRequest, opts ...grpc.CallOption) (*GetFileURLsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFileURLsResponse)
+	err := c.cc.Invoke(ctx, FileService_GetFileURLs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *fileServiceClient) DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteFileResponse)
@@ -110,6 +122,7 @@ type FileServiceServer interface {
 	UploadFiles(context.Context, *UploadFilesRequest) (*UploadFilesResponse, error)
 	GetFile(context.Context, *GetFileRequest) (*GetFileResponse, error)
 	GetFileURL(context.Context, *GetFileURLRequest) (*GetFileURLResponse, error)
+	GetFileURLs(context.Context, *GetFileURLsRequest) (*GetFileURLsResponse, error)
 	DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error)
 }
 
@@ -131,6 +144,9 @@ func (UnimplementedFileServiceServer) GetFile(context.Context, *GetFileRequest) 
 }
 func (UnimplementedFileServiceServer) GetFileURL(context.Context, *GetFileURLRequest) (*GetFileURLResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetFileURL not implemented")
+}
+func (UnimplementedFileServiceServer) GetFileURLs(context.Context, *GetFileURLsRequest) (*GetFileURLsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFileURLs not implemented")
 }
 func (UnimplementedFileServiceServer) DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteFile not implemented")
@@ -227,6 +243,24 @@ func _FileService_GetFileURL_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FileService_GetFileURLs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFileURLsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FileServiceServer).GetFileURLs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FileService_GetFileURLs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FileServiceServer).GetFileURLs(ctx, req.(*GetFileURLsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FileService_DeleteFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteFileRequest)
 	if err := dec(in); err != nil {
@@ -267,6 +301,10 @@ var FileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFileURL",
 			Handler:    _FileService_GetFileURL_Handler,
+		},
+		{
+			MethodName: "GetFileURLs",
+			Handler:    _FileService_GetFileURLs_Handler,
 		},
 		{
 			MethodName: "DeleteFile",

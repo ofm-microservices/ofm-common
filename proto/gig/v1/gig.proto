@@ -15,28 +15,31 @@ service GigCommandService {
   rpc ReplaceMedia(ReplaceMediaRequest) returns (ReplaceMediaResponse);
   rpc GetDraft(GetDraftRequest) returns (GetDraftResponse);
   rpc GetOrderStartSnapshot(GetOrderStartSnapshotRequest) returns (GetOrderStartSnapshotResponse);
+  rpc GetGigBySlug(GetGigBySlugRequest) returns (GetGigBySlugResponse);
   rpc Publish(PublishRequest) returns (PublishResponse);
 }
 
 message Gig {
   string gig_id = 1;
   string freelancer_id = 2;
-  string title = 3;
-  string description = 4;
-  int64 category_id = 5;
-  string currency = 6;
-  string status = 7;
-  bool basic_info_completed = 8;
-  bool packages_completed = 9;
-  bool requirements_completed = 10;
-  bool media_completed = 11;
-  string picture_file_id = 12;
-  string published_at = 13;
-  string created_at = 14;
-  string updated_at = 15;
-  repeated GigPackage packages = 16;
-  repeated GigQuestion questions = 17;
-  repeated GigMedia media = 18;
+  string slug = 3;
+  string title = 4;
+  string description = 5;
+  int64 category_id = 6;
+  string currency = 7;
+  string status = 8;
+  bool basic_info_completed = 9;
+  bool packages_completed = 10;
+  bool requirements_completed = 11;
+  bool media_completed = 12;
+  string picture_file_id = 13;
+  string picture_url = 14;
+  string published_at = 15;
+  string created_at = 16;
+  string updated_at = 17;
+  repeated GigPackage packages = 18;
+  repeated GigQuestion questions = 19;
+  repeated GigMedia media = 20;
 }
 
 message GigPackage {
@@ -61,7 +64,8 @@ message GigMedia {
   string id = 1;
   string gig_id = 2;
   string file_id = 3;
-  int32 sort_order = 4;
+  string url = 4;
+  int32 sort_order = 5;
 }
 
 message MediaUpload {
@@ -153,6 +157,14 @@ message GetOrderStartSnapshotRequest {
 
 message GetOrderStartSnapshotResponse {
   OrderStartSnapshot snapshot = 1;
+}
+
+message GetGigBySlugRequest {
+  string slug = 1;
+}
+
+message GetGigBySlugResponse {
+  Gig gig = 1;
 }
 
 message PublishRequest {

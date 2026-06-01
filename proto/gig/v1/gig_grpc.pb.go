@@ -29,6 +29,7 @@ const (
 	GigCommandService_ReplaceMedia_FullMethodName          = "/gig.v1.GigCommandService/ReplaceMedia"
 	GigCommandService_GetDraft_FullMethodName              = "/gig.v1.GigCommandService/GetDraft"
 	GigCommandService_GetOrderStartSnapshot_FullMethodName = "/gig.v1.GigCommandService/GetOrderStartSnapshot"
+	GigCommandService_GetGigBySlug_FullMethodName          = "/gig.v1.GigCommandService/GetGigBySlug"
 	GigCommandService_Publish_FullMethodName               = "/gig.v1.GigCommandService/Publish"
 )
 
@@ -45,6 +46,7 @@ type GigCommandServiceClient interface {
 	ReplaceMedia(ctx context.Context, in *ReplaceMediaRequest, opts ...grpc.CallOption) (*ReplaceMediaResponse, error)
 	GetDraft(ctx context.Context, in *GetDraftRequest, opts ...grpc.CallOption) (*GetDraftResponse, error)
 	GetOrderStartSnapshot(ctx context.Context, in *GetOrderStartSnapshotRequest, opts ...grpc.CallOption) (*GetOrderStartSnapshotResponse, error)
+	GetGigBySlug(ctx context.Context, in *GetGigBySlugRequest, opts ...grpc.CallOption) (*GetGigBySlugResponse, error)
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 }
 
@@ -126,6 +128,16 @@ func (c *gigCommandServiceClient) GetOrderStartSnapshot(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *gigCommandServiceClient) GetGigBySlug(ctx context.Context, in *GetGigBySlugRequest, opts ...grpc.CallOption) (*GetGigBySlugResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetGigBySlugResponse)
+	err := c.cc.Invoke(ctx, GigCommandService_GetGigBySlug_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gigCommandServiceClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PublishResponse)
@@ -149,6 +161,7 @@ type GigCommandServiceServer interface {
 	ReplaceMedia(context.Context, *ReplaceMediaRequest) (*ReplaceMediaResponse, error)
 	GetDraft(context.Context, *GetDraftRequest) (*GetDraftResponse, error)
 	GetOrderStartSnapshot(context.Context, *GetOrderStartSnapshotRequest) (*GetOrderStartSnapshotResponse, error)
+	GetGigBySlug(context.Context, *GetGigBySlugRequest) (*GetGigBySlugResponse, error)
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 }
 
@@ -179,6 +192,9 @@ func (UnimplementedGigCommandServiceServer) GetDraft(context.Context, *GetDraftR
 }
 func (UnimplementedGigCommandServiceServer) GetOrderStartSnapshot(context.Context, *GetOrderStartSnapshotRequest) (*GetOrderStartSnapshotResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetOrderStartSnapshot not implemented")
+}
+func (UnimplementedGigCommandServiceServer) GetGigBySlug(context.Context, *GetGigBySlugRequest) (*GetGigBySlugResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetGigBySlug not implemented")
 }
 func (UnimplementedGigCommandServiceServer) Publish(context.Context, *PublishRequest) (*PublishResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Publish not implemented")
@@ -329,6 +345,24 @@ func _GigCommandService_GetOrderStartSnapshot_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GigCommandService_GetGigBySlug_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGigBySlugRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GigCommandServiceServer).GetGigBySlug(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GigCommandService_GetGigBySlug_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GigCommandServiceServer).GetGigBySlug(ctx, req.(*GetGigBySlugRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GigCommandService_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PublishRequest)
 	if err := dec(in); err != nil {
@@ -381,6 +415,10 @@ var GigCommandService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrderStartSnapshot",
 			Handler:    _GigCommandService_GetOrderStartSnapshot_Handler,
+		},
+		{
+			MethodName: "GetGigBySlug",
+			Handler:    _GigCommandService_GetGigBySlug_Handler,
 		},
 		{
 			MethodName: "Publish",
