@@ -26,6 +26,7 @@ const (
 	UserQueryService_ActivateUser_FullMethodName              = "/user.v1.UserQueryService/ActivateUser"
 	UserQueryService_DeactivateUser_FullMethodName            = "/user.v1.UserQueryService/DeactivateUser"
 	UserQueryService_GetUserPreviewByID_FullMethodName        = "/user.v1.UserQueryService/GetUserPreviewByID"
+	UserQueryService_GetUserPreviewByIDNoCache_FullMethodName = "/user.v1.UserQueryService/GetUserPreviewByIDNoCache"
 	UserQueryService_GetDetailedUserByUsername_FullMethodName = "/user.v1.UserQueryService/GetDetailedUserByUsername"
 )
 
@@ -39,6 +40,7 @@ type UserQueryServiceClient interface {
 	ActivateUser(ctx context.Context, in *ActivateUserRequest, opts ...grpc.CallOption) (*ActivateUserResponse, error)
 	DeactivateUser(ctx context.Context, in *DeactivateUserRequest, opts ...grpc.CallOption) (*DeactivateUserResponse, error)
 	GetUserPreviewByID(ctx context.Context, in *GetUserPreviewByIDRequest, opts ...grpc.CallOption) (*GetUserPreviewByIDResponse, error)
+	GetUserPreviewByIDNoCache(ctx context.Context, in *GetUserPreviewByIDNoCacheRequest, opts ...grpc.CallOption) (*GetUserPreviewByIDNoCacheResponse, error)
 	GetDetailedUserByUsername(ctx context.Context, in *GetDetailedUserByUsernameRequest, opts ...grpc.CallOption) (*GetDetailedUserByUsernameResponse, error)
 }
 
@@ -90,6 +92,16 @@ func (c *userQueryServiceClient) GetUserPreviewByID(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *userQueryServiceClient) GetUserPreviewByIDNoCache(ctx context.Context, in *GetUserPreviewByIDNoCacheRequest, opts ...grpc.CallOption) (*GetUserPreviewByIDNoCacheResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserPreviewByIDNoCacheResponse)
+	err := c.cc.Invoke(ctx, UserQueryService_GetUserPreviewByIDNoCache_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userQueryServiceClient) GetDetailedUserByUsername(ctx context.Context, in *GetDetailedUserByUsernameRequest, opts ...grpc.CallOption) (*GetDetailedUserByUsernameResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetDetailedUserByUsernameResponse)
@@ -110,6 +122,7 @@ type UserQueryServiceServer interface {
 	ActivateUser(context.Context, *ActivateUserRequest) (*ActivateUserResponse, error)
 	DeactivateUser(context.Context, *DeactivateUserRequest) (*DeactivateUserResponse, error)
 	GetUserPreviewByID(context.Context, *GetUserPreviewByIDRequest) (*GetUserPreviewByIDResponse, error)
+	GetUserPreviewByIDNoCache(context.Context, *GetUserPreviewByIDNoCacheRequest) (*GetUserPreviewByIDNoCacheResponse, error)
 	GetDetailedUserByUsername(context.Context, *GetDetailedUserByUsernameRequest) (*GetDetailedUserByUsernameResponse, error)
 }
 
@@ -131,6 +144,9 @@ func (UnimplementedUserQueryServiceServer) DeactivateUser(context.Context, *Deac
 }
 func (UnimplementedUserQueryServiceServer) GetUserPreviewByID(context.Context, *GetUserPreviewByIDRequest) (*GetUserPreviewByIDResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserPreviewByID not implemented")
+}
+func (UnimplementedUserQueryServiceServer) GetUserPreviewByIDNoCache(context.Context, *GetUserPreviewByIDNoCacheRequest) (*GetUserPreviewByIDNoCacheResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserPreviewByIDNoCache not implemented")
 }
 func (UnimplementedUserQueryServiceServer) GetDetailedUserByUsername(context.Context, *GetDetailedUserByUsernameRequest) (*GetDetailedUserByUsernameResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDetailedUserByUsername not implemented")
@@ -227,6 +243,24 @@ func _UserQueryService_GetUserPreviewByID_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserQueryService_GetUserPreviewByIDNoCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserPreviewByIDNoCacheRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserQueryServiceServer).GetUserPreviewByIDNoCache(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserQueryService_GetUserPreviewByIDNoCache_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserQueryServiceServer).GetUserPreviewByIDNoCache(ctx, req.(*GetUserPreviewByIDNoCacheRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserQueryService_GetDetailedUserByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDetailedUserByUsernameRequest)
 	if err := dec(in); err != nil {
@@ -267,6 +301,10 @@ var UserQueryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserPreviewByID",
 			Handler:    _UserQueryService_GetUserPreviewByID_Handler,
+		},
+		{
+			MethodName: "GetUserPreviewByIDNoCache",
+			Handler:    _UserQueryService_GetUserPreviewByIDNoCache_Handler,
 		},
 		{
 			MethodName: "GetDetailedUserByUsername",
