@@ -16,30 +16,33 @@ service GigCommandService {
   rpc GetDraft(GetDraftRequest) returns (GetDraftResponse);
   rpc GetOrderStartSnapshot(GetOrderStartSnapshotRequest) returns (GetOrderStartSnapshotResponse);
   rpc GetGigBySlug(GetGigBySlugRequest) returns (GetGigBySlugResponse);
+  rpc GetPreviewGigsByFreelancerUsername(GetPreviewGigsByFreelancerUsernameRequest) returns (GetPreviewGigsByFreelancerUsernameResponse);
   rpc Publish(PublishRequest) returns (PublishResponse);
 }
 
 message Gig {
   string gig_id = 1;
   string freelancer_id = 2;
-  string slug = 3;
-  string title = 4;
-  string description = 5;
-  int64 category_id = 6;
-  string currency = 7;
-  string status = 8;
-  bool basic_info_completed = 9;
-  bool packages_completed = 10;
-  bool requirements_completed = 11;
-  bool media_completed = 12;
-  string picture_file_id = 13;
-  string picture_url = 14;
-  string published_at = 15;
-  string created_at = 16;
-  string updated_at = 17;
-  repeated GigPackage packages = 18;
-  repeated GigQuestion questions = 19;
-  repeated GigMedia media = 20;
+  string seller_username = 3;
+  string slug = 4;
+  string title = 5;
+  string short_info = 6;
+  string description = 7;
+  int64 category_id = 8;
+  string currency = 9;
+  string status = 10;
+  bool basic_info_completed = 11;
+  bool packages_completed = 12;
+  bool requirements_completed = 13;
+  bool media_completed = 14;
+  string picture_file_id = 15;
+  string picture_url = 16;
+  string published_at = 17;
+  string created_at = 18;
+  string updated_at = 19;
+  repeated GigPackage packages = 20;
+  repeated GigQuestion questions = 21;
+  repeated GigMedia media = 22;
 }
 
 message GigPackage {
@@ -86,9 +89,10 @@ message UpdateBasicInfoRequest {
   string gig_id = 1;
   string freelancer_id = 2;
   string title = 3;
-  string description = 4;
-  int64 category_id = 5;
-  string currency = 6;
+  string short_info = 4;
+  string description = 5;
+  int64 category_id = 6;
+  string currency = 7;
 }
 
 message UpdateBasicInfoResponse {
@@ -138,16 +142,17 @@ message OrderStartSnapshot {
   string gig_id = 1;
   string package_id = 2;
   string seller_user_id = 3;
-  string gig_title = 4;
-  string package_title = 5;
-  string package_description = 6;
-  int64 price_cents = 7;
-  string currency = 8;
-  int32 delivery_days = 9;
-  int32 revision_count = 10;
-  bool gig_published = 11;
-  bool package_available = 12;
-  repeated GigQuestion questions = 13;
+  string seller_username = 4;
+  string gig_title = 5;
+  string package_title = 6;
+  string package_description = 7;
+  int64 price_cents = 8;
+  string currency = 9;
+  int32 delivery_days = 10;
+  int32 revision_count = 11;
+  bool gig_published = 12;
+  bool package_available = 13;
+  repeated GigQuestion questions = 14;
 }
 
 message GetOrderStartSnapshotRequest {
@@ -167,9 +172,31 @@ message GetGigBySlugResponse {
   Gig gig = 1;
 }
 
+message GetPreviewGigsByFreelancerUsernameRequest {
+  string username = 1;
+  string cursor = 2;
+}
+
+message GigPreview {
+  string gig_id = 1;
+  string slug = 2;
+  string title = 3;
+  string short_info = 4;
+  int64 minimum_price_cents = 5;
+  string picture_url = 6;
+  string created_at = 7;
+}
+
+message GetPreviewGigsByFreelancerUsernameResponse {
+  repeated GigPreview gigs = 1;
+  string cursor = 2;
+  bool has_more = 3;
+}
+
 message PublishRequest {
   string gig_id = 1;
   string freelancer_id = 2;
+  string username = 3;
 }
 
 message PublishResponse {

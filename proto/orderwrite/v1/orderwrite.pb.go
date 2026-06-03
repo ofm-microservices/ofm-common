@@ -30,27 +30,28 @@ type OrderSnapshot struct {
 	SagaId                     string                 `protobuf:"bytes,2,opt,name=saga_id,json=sagaId,proto3" json:"saga_id,omitempty"`
 	BuyerUserId                string                 `protobuf:"bytes,3,opt,name=buyer_user_id,json=buyerUserId,proto3" json:"buyer_user_id,omitempty"`
 	SellerUserId               string                 `protobuf:"bytes,4,opt,name=seller_user_id,json=sellerUserId,proto3" json:"seller_user_id,omitempty"`
-	GigId                      string                 `protobuf:"bytes,5,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
-	GigTitleSnapshot           string                 `protobuf:"bytes,6,opt,name=gig_title_snapshot,json=gigTitleSnapshot,proto3" json:"gig_title_snapshot,omitempty"`
-	PackageId                  string                 `protobuf:"bytes,7,opt,name=package_id,json=packageId,proto3" json:"package_id,omitempty"`
-	PackageTitleSnapshot       string                 `protobuf:"bytes,8,opt,name=package_title_snapshot,json=packageTitleSnapshot,proto3" json:"package_title_snapshot,omitempty"`
-	PackageDescriptionSnapshot string                 `protobuf:"bytes,9,opt,name=package_description_snapshot,json=packageDescriptionSnapshot,proto3" json:"package_description_snapshot,omitempty"`
-	PriceAmountSnapshot        int64                  `protobuf:"varint,10,opt,name=price_amount_snapshot,json=priceAmountSnapshot,proto3" json:"price_amount_snapshot,omitempty"`
-	PriceCurrencySnapshot      string                 `protobuf:"bytes,11,opt,name=price_currency_snapshot,json=priceCurrencySnapshot,proto3" json:"price_currency_snapshot,omitempty"`
-	DeliveryDaysSnapshot       int32                  `protobuf:"varint,12,opt,name=delivery_days_snapshot,json=deliveryDaysSnapshot,proto3" json:"delivery_days_snapshot,omitempty"`
-	RevisionCountSnapshot      int32                  `protobuf:"varint,13,opt,name=revision_count_snapshot,json=revisionCountSnapshot,proto3" json:"revision_count_snapshot,omitempty"`
-	BuyerInitialMessage        string                 `protobuf:"bytes,14,opt,name=buyer_initial_message,json=buyerInitialMessage,proto3" json:"buyer_initial_message,omitempty"`
-	Status                     string                 `protobuf:"bytes,15,opt,name=status,proto3" json:"status,omitempty"`
-	PaymentIntentId            string                 `protobuf:"bytes,16,opt,name=payment_intent_id,json=paymentIntentId,proto3" json:"payment_intent_id,omitempty"`
-	CreatedAt                  string                 `protobuf:"bytes,17,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt                  string                 `protobuf:"bytes,18,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	FundedAt                   string                 `protobuf:"bytes,19,opt,name=funded_at,json=fundedAt,proto3" json:"funded_at,omitempty"`
-	DeliveredAt                string                 `protobuf:"bytes,20,opt,name=delivered_at,json=deliveredAt,proto3" json:"delivered_at,omitempty"`
-	CompletedAt                string                 `protobuf:"bytes,21,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
-	DisputedAt                 string                 `protobuf:"bytes,22,opt,name=disputed_at,json=disputedAt,proto3" json:"disputed_at,omitempty"`
-	RevisionCountUsed          int32                  `protobuf:"varint,23,opt,name=revision_count_used,json=revisionCountUsed,proto3" json:"revision_count_used,omitempty"`
-	BuyerResponseDeadline      string                 `protobuf:"bytes,24,opt,name=buyer_response_deadline,json=buyerResponseDeadline,proto3" json:"buyer_response_deadline,omitempty"`
-	PaymentReleaseId           string                 `protobuf:"bytes,25,opt,name=payment_release_id,json=paymentReleaseId,proto3" json:"payment_release_id,omitempty"`
+	SellerUsername             string                 `protobuf:"bytes,5,opt,name=seller_username,json=sellerUsername,proto3" json:"seller_username,omitempty"`
+	GigId                      string                 `protobuf:"bytes,6,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
+	GigTitleSnapshot           string                 `protobuf:"bytes,7,opt,name=gig_title_snapshot,json=gigTitleSnapshot,proto3" json:"gig_title_snapshot,omitempty"`
+	PackageId                  string                 `protobuf:"bytes,8,opt,name=package_id,json=packageId,proto3" json:"package_id,omitempty"`
+	PackageTitleSnapshot       string                 `protobuf:"bytes,9,opt,name=package_title_snapshot,json=packageTitleSnapshot,proto3" json:"package_title_snapshot,omitempty"`
+	PackageDescriptionSnapshot string                 `protobuf:"bytes,10,opt,name=package_description_snapshot,json=packageDescriptionSnapshot,proto3" json:"package_description_snapshot,omitempty"`
+	PriceAmountSnapshot        int64                  `protobuf:"varint,11,opt,name=price_amount_snapshot,json=priceAmountSnapshot,proto3" json:"price_amount_snapshot,omitempty"`
+	PriceCurrencySnapshot      string                 `protobuf:"bytes,12,opt,name=price_currency_snapshot,json=priceCurrencySnapshot,proto3" json:"price_currency_snapshot,omitempty"`
+	DeliveryDaysSnapshot       int32                  `protobuf:"varint,13,opt,name=delivery_days_snapshot,json=deliveryDaysSnapshot,proto3" json:"delivery_days_snapshot,omitempty"`
+	RevisionCountSnapshot      int32                  `protobuf:"varint,14,opt,name=revision_count_snapshot,json=revisionCountSnapshot,proto3" json:"revision_count_snapshot,omitempty"`
+	BuyerInitialMessage        string                 `protobuf:"bytes,15,opt,name=buyer_initial_message,json=buyerInitialMessage,proto3" json:"buyer_initial_message,omitempty"`
+	Status                     string                 `protobuf:"bytes,16,opt,name=status,proto3" json:"status,omitempty"`
+	PaymentIntentId            string                 `protobuf:"bytes,17,opt,name=payment_intent_id,json=paymentIntentId,proto3" json:"payment_intent_id,omitempty"`
+	CreatedAt                  string                 `protobuf:"bytes,18,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt                  string                 `protobuf:"bytes,19,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	FundedAt                   string                 `protobuf:"bytes,20,opt,name=funded_at,json=fundedAt,proto3" json:"funded_at,omitempty"`
+	DeliveredAt                string                 `protobuf:"bytes,21,opt,name=delivered_at,json=deliveredAt,proto3" json:"delivered_at,omitempty"`
+	CompletedAt                string                 `protobuf:"bytes,22,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
+	DisputedAt                 string                 `protobuf:"bytes,23,opt,name=disputed_at,json=disputedAt,proto3" json:"disputed_at,omitempty"`
+	RevisionCountUsed          int32                  `protobuf:"varint,24,opt,name=revision_count_used,json=revisionCountUsed,proto3" json:"revision_count_used,omitempty"`
+	BuyerResponseDeadline      string                 `protobuf:"bytes,25,opt,name=buyer_response_deadline,json=buyerResponseDeadline,proto3" json:"buyer_response_deadline,omitempty"`
+	PaymentReleaseId           string                 `protobuf:"bytes,26,opt,name=payment_release_id,json=paymentReleaseId,proto3" json:"payment_release_id,omitempty"`
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
 }
@@ -109,6 +110,13 @@ func (x *OrderSnapshot) GetBuyerUserId() string {
 func (x *OrderSnapshot) GetSellerUserId() string {
 	if x != nil {
 		return x.SellerUserId
+	}
+	return ""
+}
+
+func (x *OrderSnapshot) GetSellerUsername() string {
+	if x != nil {
+		return x.SellerUsername
 	}
 	return ""
 }
@@ -538,18 +546,19 @@ type CreateDraftOrderRequest struct {
 	OrderId                    string                   `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	BuyerUserId                string                   `protobuf:"bytes,3,opt,name=buyer_user_id,json=buyerUserId,proto3" json:"buyer_user_id,omitempty"`
 	SellerUserId               string                   `protobuf:"bytes,4,opt,name=seller_user_id,json=sellerUserId,proto3" json:"seller_user_id,omitempty"`
-	GigId                      string                   `protobuf:"bytes,5,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
-	GigTitleSnapshot           string                   `protobuf:"bytes,6,opt,name=gig_title_snapshot,json=gigTitleSnapshot,proto3" json:"gig_title_snapshot,omitempty"`
-	PackageId                  string                   `protobuf:"bytes,7,opt,name=package_id,json=packageId,proto3" json:"package_id,omitempty"`
-	PackageTitleSnapshot       string                   `protobuf:"bytes,8,opt,name=package_title_snapshot,json=packageTitleSnapshot,proto3" json:"package_title_snapshot,omitempty"`
-	PackageDescriptionSnapshot string                   `protobuf:"bytes,9,opt,name=package_description_snapshot,json=packageDescriptionSnapshot,proto3" json:"package_description_snapshot,omitempty"`
-	PriceAmountSnapshot        int64                    `protobuf:"varint,10,opt,name=price_amount_snapshot,json=priceAmountSnapshot,proto3" json:"price_amount_snapshot,omitempty"`
-	PriceCurrencySnapshot      string                   `protobuf:"bytes,11,opt,name=price_currency_snapshot,json=priceCurrencySnapshot,proto3" json:"price_currency_snapshot,omitempty"`
-	DeliveryDaysSnapshot       int32                    `protobuf:"varint,12,opt,name=delivery_days_snapshot,json=deliveryDaysSnapshot,proto3" json:"delivery_days_snapshot,omitempty"`
-	RevisionCountSnapshot      int32                    `protobuf:"varint,13,opt,name=revision_count_snapshot,json=revisionCountSnapshot,proto3" json:"revision_count_snapshot,omitempty"`
-	Questions                  []*OrderQuestionSnapshot `protobuf:"bytes,14,rep,name=questions,proto3" json:"questions,omitempty"`
-	IdempotencyKey             string                   `protobuf:"bytes,15,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
-	RequestedAt                string                   `protobuf:"bytes,16,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	SellerUsername             string                   `protobuf:"bytes,5,opt,name=seller_username,json=sellerUsername,proto3" json:"seller_username,omitempty"`
+	GigId                      string                   `protobuf:"bytes,6,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
+	GigTitleSnapshot           string                   `protobuf:"bytes,7,opt,name=gig_title_snapshot,json=gigTitleSnapshot,proto3" json:"gig_title_snapshot,omitempty"`
+	PackageId                  string                   `protobuf:"bytes,8,opt,name=package_id,json=packageId,proto3" json:"package_id,omitempty"`
+	PackageTitleSnapshot       string                   `protobuf:"bytes,9,opt,name=package_title_snapshot,json=packageTitleSnapshot,proto3" json:"package_title_snapshot,omitempty"`
+	PackageDescriptionSnapshot string                   `protobuf:"bytes,10,opt,name=package_description_snapshot,json=packageDescriptionSnapshot,proto3" json:"package_description_snapshot,omitempty"`
+	PriceAmountSnapshot        int64                    `protobuf:"varint,11,opt,name=price_amount_snapshot,json=priceAmountSnapshot,proto3" json:"price_amount_snapshot,omitempty"`
+	PriceCurrencySnapshot      string                   `protobuf:"bytes,12,opt,name=price_currency_snapshot,json=priceCurrencySnapshot,proto3" json:"price_currency_snapshot,omitempty"`
+	DeliveryDaysSnapshot       int32                    `protobuf:"varint,13,opt,name=delivery_days_snapshot,json=deliveryDaysSnapshot,proto3" json:"delivery_days_snapshot,omitempty"`
+	RevisionCountSnapshot      int32                    `protobuf:"varint,14,opt,name=revision_count_snapshot,json=revisionCountSnapshot,proto3" json:"revision_count_snapshot,omitempty"`
+	Questions                  []*OrderQuestionSnapshot `protobuf:"bytes,15,rep,name=questions,proto3" json:"questions,omitempty"`
+	IdempotencyKey             string                   `protobuf:"bytes,16,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	RequestedAt                string                   `protobuf:"bytes,17,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
 }
@@ -608,6 +617,13 @@ func (x *CreateDraftOrderRequest) GetBuyerUserId() string {
 func (x *CreateDraftOrderRequest) GetSellerUserId() string {
 	if x != nil {
 		return x.SellerUserId
+	}
+	return ""
+}
+
+func (x *CreateDraftOrderRequest) GetSellerUsername() string {
+	if x != nil {
+		return x.SellerUsername
 	}
 	return ""
 }
@@ -2296,38 +2312,39 @@ var File_orderwrite_v1_orderwrite_proto protoreflect.FileDescriptor
 
 const file_orderwrite_v1_orderwrite_proto_rawDesc = "" +
 	"\n" +
-	"\x1eorderwrite/v1/orderwrite.proto\x12\rorderwrite.v1\"\x93\b\n" +
+	"\x1eorderwrite/v1/orderwrite.proto\x12\rorderwrite.v1\"\xbc\b\n" +
 	"\rOrderSnapshot\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x17\n" +
 	"\asaga_id\x18\x02 \x01(\tR\x06sagaId\x12\"\n" +
 	"\rbuyer_user_id\x18\x03 \x01(\tR\vbuyerUserId\x12$\n" +
-	"\x0eseller_user_id\x18\x04 \x01(\tR\fsellerUserId\x12\x15\n" +
-	"\x06gig_id\x18\x05 \x01(\tR\x05gigId\x12,\n" +
-	"\x12gig_title_snapshot\x18\x06 \x01(\tR\x10gigTitleSnapshot\x12\x1d\n" +
+	"\x0eseller_user_id\x18\x04 \x01(\tR\fsellerUserId\x12'\n" +
+	"\x0fseller_username\x18\x05 \x01(\tR\x0esellerUsername\x12\x15\n" +
+	"\x06gig_id\x18\x06 \x01(\tR\x05gigId\x12,\n" +
+	"\x12gig_title_snapshot\x18\a \x01(\tR\x10gigTitleSnapshot\x12\x1d\n" +
 	"\n" +
-	"package_id\x18\a \x01(\tR\tpackageId\x124\n" +
-	"\x16package_title_snapshot\x18\b \x01(\tR\x14packageTitleSnapshot\x12@\n" +
-	"\x1cpackage_description_snapshot\x18\t \x01(\tR\x1apackageDescriptionSnapshot\x122\n" +
-	"\x15price_amount_snapshot\x18\n" +
-	" \x01(\x03R\x13priceAmountSnapshot\x126\n" +
-	"\x17price_currency_snapshot\x18\v \x01(\tR\x15priceCurrencySnapshot\x124\n" +
-	"\x16delivery_days_snapshot\x18\f \x01(\x05R\x14deliveryDaysSnapshot\x126\n" +
-	"\x17revision_count_snapshot\x18\r \x01(\x05R\x15revisionCountSnapshot\x122\n" +
-	"\x15buyer_initial_message\x18\x0e \x01(\tR\x13buyerInitialMessage\x12\x16\n" +
-	"\x06status\x18\x0f \x01(\tR\x06status\x12*\n" +
-	"\x11payment_intent_id\x18\x10 \x01(\tR\x0fpaymentIntentId\x12\x1d\n" +
+	"package_id\x18\b \x01(\tR\tpackageId\x124\n" +
+	"\x16package_title_snapshot\x18\t \x01(\tR\x14packageTitleSnapshot\x12@\n" +
+	"\x1cpackage_description_snapshot\x18\n" +
+	" \x01(\tR\x1apackageDescriptionSnapshot\x122\n" +
+	"\x15price_amount_snapshot\x18\v \x01(\x03R\x13priceAmountSnapshot\x126\n" +
+	"\x17price_currency_snapshot\x18\f \x01(\tR\x15priceCurrencySnapshot\x124\n" +
+	"\x16delivery_days_snapshot\x18\r \x01(\x05R\x14deliveryDaysSnapshot\x126\n" +
+	"\x17revision_count_snapshot\x18\x0e \x01(\x05R\x15revisionCountSnapshot\x122\n" +
+	"\x15buyer_initial_message\x18\x0f \x01(\tR\x13buyerInitialMessage\x12\x16\n" +
+	"\x06status\x18\x10 \x01(\tR\x06status\x12*\n" +
+	"\x11payment_intent_id\x18\x11 \x01(\tR\x0fpaymentIntentId\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x11 \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\x12 \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x12 \x01(\tR\tupdatedAt\x12\x1b\n" +
-	"\tfunded_at\x18\x13 \x01(\tR\bfundedAt\x12!\n" +
-	"\fdelivered_at\x18\x14 \x01(\tR\vdeliveredAt\x12!\n" +
-	"\fcompleted_at\x18\x15 \x01(\tR\vcompletedAt\x12\x1f\n" +
-	"\vdisputed_at\x18\x16 \x01(\tR\n" +
+	"updated_at\x18\x13 \x01(\tR\tupdatedAt\x12\x1b\n" +
+	"\tfunded_at\x18\x14 \x01(\tR\bfundedAt\x12!\n" +
+	"\fdelivered_at\x18\x15 \x01(\tR\vdeliveredAt\x12!\n" +
+	"\fcompleted_at\x18\x16 \x01(\tR\vcompletedAt\x12\x1f\n" +
+	"\vdisputed_at\x18\x17 \x01(\tR\n" +
 	"disputedAt\x12.\n" +
-	"\x13revision_count_used\x18\x17 \x01(\x05R\x11revisionCountUsed\x126\n" +
-	"\x17buyer_response_deadline\x18\x18 \x01(\tR\x15buyerResponseDeadline\x12,\n" +
-	"\x12payment_release_id\x18\x19 \x01(\tR\x10paymentReleaseId\"A\n" +
+	"\x13revision_count_used\x18\x18 \x01(\x05R\x11revisionCountUsed\x126\n" +
+	"\x17buyer_response_deadline\x18\x19 \x01(\tR\x15buyerResponseDeadline\x12,\n" +
+	"\x12payment_release_id\x18\x1a \x01(\tR\x10paymentReleaseId\"A\n" +
 	"\x13OrderQuestionOption\x12\x14\n" +
 	"\x05value\x18\x01 \x01(\tR\x05value\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\"\xd9\x01\n" +
@@ -2351,26 +2368,27 @@ const file_orderwrite_v1_orderwrite_proto_rawDesc = "" +
 	"\tmime_type\x18\x04 \x01(\tR\bmimeType\x12\x1d\n" +
 	"\n" +
 	"size_bytes\x18\x05 \x01(\x03R\tsizeBytes\x12\x16\n" +
-	"\x06status\x18\x06 \x01(\tR\x06status\"\xdd\x05\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\"\x86\x06\n" +
 	"\x17CreateDraftOrderRequest\x12\x17\n" +
 	"\asaga_id\x18\x01 \x01(\tR\x06sagaId\x12\x19\n" +
 	"\border_id\x18\x02 \x01(\tR\aorderId\x12\"\n" +
 	"\rbuyer_user_id\x18\x03 \x01(\tR\vbuyerUserId\x12$\n" +
-	"\x0eseller_user_id\x18\x04 \x01(\tR\fsellerUserId\x12\x15\n" +
-	"\x06gig_id\x18\x05 \x01(\tR\x05gigId\x12,\n" +
-	"\x12gig_title_snapshot\x18\x06 \x01(\tR\x10gigTitleSnapshot\x12\x1d\n" +
+	"\x0eseller_user_id\x18\x04 \x01(\tR\fsellerUserId\x12'\n" +
+	"\x0fseller_username\x18\x05 \x01(\tR\x0esellerUsername\x12\x15\n" +
+	"\x06gig_id\x18\x06 \x01(\tR\x05gigId\x12,\n" +
+	"\x12gig_title_snapshot\x18\a \x01(\tR\x10gigTitleSnapshot\x12\x1d\n" +
 	"\n" +
-	"package_id\x18\a \x01(\tR\tpackageId\x124\n" +
-	"\x16package_title_snapshot\x18\b \x01(\tR\x14packageTitleSnapshot\x12@\n" +
-	"\x1cpackage_description_snapshot\x18\t \x01(\tR\x1apackageDescriptionSnapshot\x122\n" +
-	"\x15price_amount_snapshot\x18\n" +
-	" \x01(\x03R\x13priceAmountSnapshot\x126\n" +
-	"\x17price_currency_snapshot\x18\v \x01(\tR\x15priceCurrencySnapshot\x124\n" +
-	"\x16delivery_days_snapshot\x18\f \x01(\x05R\x14deliveryDaysSnapshot\x126\n" +
-	"\x17revision_count_snapshot\x18\r \x01(\x05R\x15revisionCountSnapshot\x12B\n" +
-	"\tquestions\x18\x0e \x03(\v2$.orderwrite.v1.OrderQuestionSnapshotR\tquestions\x12'\n" +
-	"\x0fidempotency_key\x18\x0f \x01(\tR\x0eidempotencyKey\x12!\n" +
-	"\frequested_at\x18\x10 \x01(\tR\vrequestedAt\"\x92\x01\n" +
+	"package_id\x18\b \x01(\tR\tpackageId\x124\n" +
+	"\x16package_title_snapshot\x18\t \x01(\tR\x14packageTitleSnapshot\x12@\n" +
+	"\x1cpackage_description_snapshot\x18\n" +
+	" \x01(\tR\x1apackageDescriptionSnapshot\x122\n" +
+	"\x15price_amount_snapshot\x18\v \x01(\x03R\x13priceAmountSnapshot\x126\n" +
+	"\x17price_currency_snapshot\x18\f \x01(\tR\x15priceCurrencySnapshot\x124\n" +
+	"\x16delivery_days_snapshot\x18\r \x01(\x05R\x14deliveryDaysSnapshot\x126\n" +
+	"\x17revision_count_snapshot\x18\x0e \x01(\x05R\x15revisionCountSnapshot\x12B\n" +
+	"\tquestions\x18\x0f \x03(\v2$.orderwrite.v1.OrderQuestionSnapshotR\tquestions\x12'\n" +
+	"\x0fidempotency_key\x18\x10 \x01(\tR\x0eidempotencyKey\x12!\n" +
+	"\frequested_at\x18\x11 \x01(\tR\vrequestedAt\"\x92\x01\n" +
 	"\x18CreateDraftOrderResponse\x122\n" +
 	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order\x12B\n" +
 	"\tquestions\x18\x02 \x03(\v2$.orderwrite.v1.OrderQuestionSnapshotR\tquestions\"\xb7\x01\n" +

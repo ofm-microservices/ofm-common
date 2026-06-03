@@ -11,6 +11,7 @@ service ReviewService {
   rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse);
   rpc ListGigReviews(ListGigReviewsRequest) returns (ListGigReviewsResponse);
   rpc ListSellerReviews(ListSellerReviewsRequest) returns (ListSellerReviewsResponse);
+  rpc GetReviewsBySellerUsername(GetReviewsBySellerUsernameRequest) returns (ListSellerReviewsResponse);
   rpc GetGigRatingSummary(GetGigRatingSummaryRequest) returns (RatingSummary);
   rpc GetUserRatingSummaryByUsername(GetUserRatingSummaryByUsernameRequest) returns (RatingSummary);
 }
@@ -24,6 +25,7 @@ message Review {
   int32 rating = 6;
   string created_at = 7;
   ReviewAuthor author = 8;
+  string seller_username = 9;
 }
 
 message ReviewAuthor {
@@ -40,6 +42,7 @@ message CreateReviewRequest {
   int32 rating = 4;
   string idempotency_key = 5;
   string requested_at = 6;
+  string buyer_username = 7;
 }
 
 message CreateReviewResponse {
@@ -62,6 +65,11 @@ message ListSellerReviewsRequest {
   string seller_id = 1;
   string cursor = 2;
   reserved 3;
+}
+
+message GetReviewsBySellerUsernameRequest {
+  string username = 1;
+  string cursor = 2;
 }
 
 message ListSellerReviewsResponse {

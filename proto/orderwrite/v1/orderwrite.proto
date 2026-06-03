@@ -30,27 +30,28 @@ message OrderSnapshot {
   string saga_id = 2;
   string buyer_user_id = 3;
   string seller_user_id = 4;
-  string gig_id = 5;
-  string gig_title_snapshot = 6;
-  string package_id = 7;
-  string package_title_snapshot = 8;
-  string package_description_snapshot = 9;
-  int64 price_amount_snapshot = 10;
-  string price_currency_snapshot = 11;
-  int32 delivery_days_snapshot = 12;
-  int32 revision_count_snapshot = 13;
-  string buyer_initial_message = 14;
-  string status = 15;
-  string payment_intent_id = 16;
-  string created_at = 17;
-  string updated_at = 18;
-  string funded_at = 19;
-  string delivered_at = 20;
-  string completed_at = 21;
-  string disputed_at = 22;
-  int32 revision_count_used = 23;
-  string buyer_response_deadline = 24;
-  string payment_release_id = 25;
+  string seller_username = 5;
+  string gig_id = 6;
+  string gig_title_snapshot = 7;
+  string package_id = 8;
+  string package_title_snapshot = 9;
+  string package_description_snapshot = 10;
+  int64 price_amount_snapshot = 11;
+  string price_currency_snapshot = 12;
+  int32 delivery_days_snapshot = 13;
+  int32 revision_count_snapshot = 14;
+  string buyer_initial_message = 15;
+  string status = 16;
+  string payment_intent_id = 17;
+  string created_at = 18;
+  string updated_at = 19;
+  string funded_at = 20;
+  string delivered_at = 21;
+  string completed_at = 22;
+  string disputed_at = 23;
+  int32 revision_count_used = 24;
+  string buyer_response_deadline = 25;
+  string payment_release_id = 26;
 }
 
 message OrderQuestionOption {
@@ -86,18 +87,19 @@ message CreateDraftOrderRequest {
   string order_id = 2;
   string buyer_user_id = 3;
   string seller_user_id = 4;
-  string gig_id = 5;
-  string gig_title_snapshot = 6;
-  string package_id = 7;
-  string package_title_snapshot = 8;
-  string package_description_snapshot = 9;
-  int64 price_amount_snapshot = 10;
-  string price_currency_snapshot = 11;
-  int32 delivery_days_snapshot = 12;
-  int32 revision_count_snapshot = 13;
-  repeated OrderQuestionSnapshot questions = 14;
-  string idempotency_key = 15;
-  string requested_at = 16;
+  string seller_username = 5;
+  string gig_id = 6;
+  string gig_title_snapshot = 7;
+  string package_id = 8;
+  string package_title_snapshot = 9;
+  string package_description_snapshot = 10;
+  int64 price_amount_snapshot = 11;
+  string price_currency_snapshot = 12;
+  int32 delivery_days_snapshot = 13;
+  int32 revision_count_snapshot = 14;
+  repeated OrderQuestionSnapshot questions = 15;
+  string idempotency_key = 16;
+  string requested_at = 17;
 }
 
 message CreateDraftOrderResponse {

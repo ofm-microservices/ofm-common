@@ -25,17 +25,18 @@ const (
 )
 
 type Review struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ReviewId      string                 `protobuf:"bytes,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
-	OrderId       string                 `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	GigId         string                 `protobuf:"bytes,3,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
-	BuyerUserId   string                 `protobuf:"bytes,4,opt,name=buyer_user_id,json=buyerUserId,proto3" json:"buyer_user_id,omitempty"`
-	Content       string                 `protobuf:"bytes,5,opt,name=content,proto3" json:"content,omitempty"`
-	Rating        int32                  `protobuf:"varint,6,opt,name=rating,proto3" json:"rating,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Author        *ReviewAuthor          `protobuf:"bytes,8,opt,name=author,proto3" json:"author,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ReviewId       string                 `protobuf:"bytes,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
+	OrderId        string                 `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	GigId          string                 `protobuf:"bytes,3,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
+	BuyerUserId    string                 `protobuf:"bytes,4,opt,name=buyer_user_id,json=buyerUserId,proto3" json:"buyer_user_id,omitempty"`
+	Content        string                 `protobuf:"bytes,5,opt,name=content,proto3" json:"content,omitempty"`
+	Rating         int32                  `protobuf:"varint,6,opt,name=rating,proto3" json:"rating,omitempty"`
+	CreatedAt      string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Author         *ReviewAuthor          `protobuf:"bytes,8,opt,name=author,proto3" json:"author,omitempty"`
+	SellerUsername string                 `protobuf:"bytes,9,opt,name=seller_username,json=sellerUsername,proto3" json:"seller_username,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *Review) Reset() {
@@ -124,6 +125,13 @@ func (x *Review) GetAuthor() *ReviewAuthor {
 	return nil
 }
 
+func (x *Review) GetSellerUsername() string {
+	if x != nil {
+		return x.SellerUsername
+	}
+	return ""
+}
+
 type ReviewAuthor struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -200,6 +208,7 @@ type CreateReviewRequest struct {
 	Rating         int32                  `protobuf:"varint,4,opt,name=rating,proto3" json:"rating,omitempty"`
 	IdempotencyKey string                 `protobuf:"bytes,5,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
 	RequestedAt    string                 `protobuf:"bytes,6,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	BuyerUsername  string                 `protobuf:"bytes,7,opt,name=buyer_username,json=buyerUsername,proto3" json:"buyer_username,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -272,6 +281,13 @@ func (x *CreateReviewRequest) GetIdempotencyKey() string {
 func (x *CreateReviewRequest) GetRequestedAt() string {
 	if x != nil {
 		return x.RequestedAt
+	}
+	return ""
+}
+
+func (x *CreateReviewRequest) GetBuyerUsername() string {
+	if x != nil {
+		return x.BuyerUsername
 	}
 	return ""
 }
@@ -484,6 +500,58 @@ func (x *ListSellerReviewsRequest) GetCursor() string {
 	return ""
 }
 
+type GetReviewsBySellerUsernameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Cursor        string                 `protobuf:"bytes,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetReviewsBySellerUsernameRequest) Reset() {
+	*x = GetReviewsBySellerUsernameRequest{}
+	mi := &file_review_v1_review_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetReviewsBySellerUsernameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetReviewsBySellerUsernameRequest) ProtoMessage() {}
+
+func (x *GetReviewsBySellerUsernameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_review_v1_review_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetReviewsBySellerUsernameRequest.ProtoReflect.Descriptor instead.
+func (*GetReviewsBySellerUsernameRequest) Descriptor() ([]byte, []int) {
+	return file_review_v1_review_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetReviewsBySellerUsernameRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *GetReviewsBySellerUsernameRequest) GetCursor() string {
+	if x != nil {
+		return x.Cursor
+	}
+	return ""
+}
+
 type ListSellerReviewsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Reviews       []*Review              `protobuf:"bytes,1,rep,name=reviews,proto3" json:"reviews,omitempty"`
@@ -495,7 +563,7 @@ type ListSellerReviewsResponse struct {
 
 func (x *ListSellerReviewsResponse) Reset() {
 	*x = ListSellerReviewsResponse{}
-	mi := &file_review_v1_review_proto_msgTypes[7]
+	mi := &file_review_v1_review_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -507,7 +575,7 @@ func (x *ListSellerReviewsResponse) String() string {
 func (*ListSellerReviewsResponse) ProtoMessage() {}
 
 func (x *ListSellerReviewsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_review_v1_review_proto_msgTypes[7]
+	mi := &file_review_v1_review_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -520,7 +588,7 @@ func (x *ListSellerReviewsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSellerReviewsResponse.ProtoReflect.Descriptor instead.
 func (*ListSellerReviewsResponse) Descriptor() ([]byte, []int) {
-	return file_review_v1_review_proto_rawDescGZIP(), []int{7}
+	return file_review_v1_review_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListSellerReviewsResponse) GetReviews() []*Review {
@@ -553,7 +621,7 @@ type GetGigRatingSummaryRequest struct {
 
 func (x *GetGigRatingSummaryRequest) Reset() {
 	*x = GetGigRatingSummaryRequest{}
-	mi := &file_review_v1_review_proto_msgTypes[8]
+	mi := &file_review_v1_review_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -565,7 +633,7 @@ func (x *GetGigRatingSummaryRequest) String() string {
 func (*GetGigRatingSummaryRequest) ProtoMessage() {}
 
 func (x *GetGigRatingSummaryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_review_v1_review_proto_msgTypes[8]
+	mi := &file_review_v1_review_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -578,7 +646,7 @@ func (x *GetGigRatingSummaryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGigRatingSummaryRequest.ProtoReflect.Descriptor instead.
 func (*GetGigRatingSummaryRequest) Descriptor() ([]byte, []int) {
-	return file_review_v1_review_proto_rawDescGZIP(), []int{8}
+	return file_review_v1_review_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetGigRatingSummaryRequest) GetGigId() string {
@@ -597,7 +665,7 @@ type GetUserRatingSummaryByUsernameRequest struct {
 
 func (x *GetUserRatingSummaryByUsernameRequest) Reset() {
 	*x = GetUserRatingSummaryByUsernameRequest{}
-	mi := &file_review_v1_review_proto_msgTypes[9]
+	mi := &file_review_v1_review_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -609,7 +677,7 @@ func (x *GetUserRatingSummaryByUsernameRequest) String() string {
 func (*GetUserRatingSummaryByUsernameRequest) ProtoMessage() {}
 
 func (x *GetUserRatingSummaryByUsernameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_review_v1_review_proto_msgTypes[9]
+	mi := &file_review_v1_review_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -622,7 +690,7 @@ func (x *GetUserRatingSummaryByUsernameRequest) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use GetUserRatingSummaryByUsernameRequest.ProtoReflect.Descriptor instead.
 func (*GetUserRatingSummaryByUsernameRequest) Descriptor() ([]byte, []int) {
-	return file_review_v1_review_proto_rawDescGZIP(), []int{9}
+	return file_review_v1_review_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetUserRatingSummaryByUsernameRequest) GetUsername() string {
@@ -647,7 +715,7 @@ type RatingSummary struct {
 
 func (x *RatingSummary) Reset() {
 	*x = RatingSummary{}
-	mi := &file_review_v1_review_proto_msgTypes[10]
+	mi := &file_review_v1_review_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -659,7 +727,7 @@ func (x *RatingSummary) String() string {
 func (*RatingSummary) ProtoMessage() {}
 
 func (x *RatingSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_review_v1_review_proto_msgTypes[10]
+	mi := &file_review_v1_review_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -672,7 +740,7 @@ func (x *RatingSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RatingSummary.ProtoReflect.Descriptor instead.
 func (*RatingSummary) Descriptor() ([]byte, []int) {
-	return file_review_v1_review_proto_rawDescGZIP(), []int{10}
+	return file_review_v1_review_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *RatingSummary) GetRatingAvg() float64 {
@@ -728,7 +796,7 @@ var File_review_v1_review_proto protoreflect.FileDescriptor
 
 const file_review_v1_review_proto_rawDesc = "" +
 	"\n" +
-	"\x16review/v1/review.proto\x12\treview.v1\"\xfd\x01\n" +
+	"\x16review/v1/review.proto\x12\treview.v1\"\xa6\x02\n" +
 	"\x06Review\x12\x1b\n" +
 	"\treview_id\x18\x01 \x01(\tR\breviewId\x12\x19\n" +
 	"\border_id\x18\x02 \x01(\tR\aorderId\x12\x15\n" +
@@ -738,20 +806,22 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\x06rating\x18\x06 \x01(\x05R\x06rating\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\a \x01(\tR\tcreatedAt\x12/\n" +
-	"\x06author\x18\b \x01(\v2\x17.review.v1.ReviewAuthorR\x06author\"\x85\x01\n" +
+	"\x06author\x18\b \x01(\v2\x17.review.v1.ReviewAuthorR\x06author\x12'\n" +
+	"\x0fseller_username\x18\t \x01(\tR\x0esellerUsername\"\x85\x01\n" +
 	"\fReviewAuthor\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12!\n" +
 	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12\x1d\n" +
 	"\n" +
-	"avatar_url\x18\x04 \x01(\tR\tavatarUrl\"\xd2\x01\n" +
+	"avatar_url\x18\x04 \x01(\tR\tavatarUrl\"\xf9\x01\n" +
 	"\x13CreateReviewRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\"\n" +
 	"\rbuyer_user_id\x18\x02 \x01(\tR\vbuyerUserId\x12\x18\n" +
 	"\acontent\x18\x03 \x01(\tR\acontent\x12\x16\n" +
 	"\x06rating\x18\x04 \x01(\x05R\x06rating\x12'\n" +
 	"\x0fidempotency_key\x18\x05 \x01(\tR\x0eidempotencyKey\x12!\n" +
-	"\frequested_at\x18\x06 \x01(\tR\vrequestedAt\"A\n" +
+	"\frequested_at\x18\x06 \x01(\tR\vrequestedAt\x12%\n" +
+	"\x0ebuyer_username\x18\a \x01(\tR\rbuyerUsername\"A\n" +
 	"\x14CreateReviewResponse\x12)\n" +
 	"\x06review\x18\x01 \x01(\v2\x11.review.v1.ReviewR\x06review\"L\n" +
 	"\x15ListGigReviewsRequest\x12\x15\n" +
@@ -763,7 +833,10 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"U\n" +
 	"\x18ListSellerReviewsRequest\x12\x1b\n" +
 	"\tseller_id\x18\x01 \x01(\tR\bsellerId\x12\x16\n" +
-	"\x06cursor\x18\x02 \x01(\tR\x06cursorJ\x04\b\x03\x10\x04\"{\n" +
+	"\x06cursor\x18\x02 \x01(\tR\x06cursorJ\x04\b\x03\x10\x04\"W\n" +
+	"!GetReviewsBySellerUsernameRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x16\n" +
+	"\x06cursor\x18\x02 \x01(\tR\x06cursor\"{\n" +
 	"\x19ListSellerReviewsResponse\x12+\n" +
 	"\areviews\x18\x01 \x03(\v2\x11.review.v1.ReviewR\areviews\x12\x16\n" +
 	"\x06cursor\x18\x02 \x01(\tR\x06cursor\x12\x19\n" +
@@ -780,11 +853,12 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\astars_4\x18\x04 \x01(\x03R\x06stars4\x12\x17\n" +
 	"\astars_3\x18\x05 \x01(\x03R\x06stars3\x12\x17\n" +
 	"\astars_2\x18\x06 \x01(\x03R\x06stars2\x12\x17\n" +
-	"\astars_1\x18\a \x01(\x03R\x06stars12\xdd\x03\n" +
+	"\astars_1\x18\a \x01(\x03R\x06stars12\xcf\x04\n" +
 	"\rReviewService\x12O\n" +
 	"\fCreateReview\x12\x1e.review.v1.CreateReviewRequest\x1a\x1f.review.v1.CreateReviewResponse\x12U\n" +
 	"\x0eListGigReviews\x12 .review.v1.ListGigReviewsRequest\x1a!.review.v1.ListGigReviewsResponse\x12^\n" +
-	"\x11ListSellerReviews\x12#.review.v1.ListSellerReviewsRequest\x1a$.review.v1.ListSellerReviewsResponse\x12V\n" +
+	"\x11ListSellerReviews\x12#.review.v1.ListSellerReviewsRequest\x1a$.review.v1.ListSellerReviewsResponse\x12p\n" +
+	"\x1aGetReviewsBySellerUsername\x12,.review.v1.GetReviewsBySellerUsernameRequest\x1a$.review.v1.ListSellerReviewsResponse\x12V\n" +
 	"\x13GetGigRatingSummary\x12%.review.v1.GetGigRatingSummaryRequest\x1a\x18.review.v1.RatingSummary\x12l\n" +
 	"\x1eGetUserRatingSummaryByUsername\x120.review.v1.GetUserRatingSummaryByUsernameRequest\x1a\x18.review.v1.RatingSummaryBBZ@github.com/ofm-microservices/ofm-common/proto/review/v1;reviewv1b\x06proto3"
 
@@ -800,7 +874,7 @@ func file_review_v1_review_proto_rawDescGZIP() []byte {
 	return file_review_v1_review_proto_rawDescData
 }
 
-var file_review_v1_review_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_review_v1_review_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_review_v1_review_proto_goTypes = []any{
 	(*Review)(nil),                                // 0: review.v1.Review
 	(*ReviewAuthor)(nil),                          // 1: review.v1.ReviewAuthor
@@ -809,10 +883,11 @@ var file_review_v1_review_proto_goTypes = []any{
 	(*ListGigReviewsRequest)(nil),                 // 4: review.v1.ListGigReviewsRequest
 	(*ListGigReviewsResponse)(nil),                // 5: review.v1.ListGigReviewsResponse
 	(*ListSellerReviewsRequest)(nil),              // 6: review.v1.ListSellerReviewsRequest
-	(*ListSellerReviewsResponse)(nil),             // 7: review.v1.ListSellerReviewsResponse
-	(*GetGigRatingSummaryRequest)(nil),            // 8: review.v1.GetGigRatingSummaryRequest
-	(*GetUserRatingSummaryByUsernameRequest)(nil), // 9: review.v1.GetUserRatingSummaryByUsernameRequest
-	(*RatingSummary)(nil),                         // 10: review.v1.RatingSummary
+	(*GetReviewsBySellerUsernameRequest)(nil),     // 7: review.v1.GetReviewsBySellerUsernameRequest
+	(*ListSellerReviewsResponse)(nil),             // 8: review.v1.ListSellerReviewsResponse
+	(*GetGigRatingSummaryRequest)(nil),            // 9: review.v1.GetGigRatingSummaryRequest
+	(*GetUserRatingSummaryByUsernameRequest)(nil), // 10: review.v1.GetUserRatingSummaryByUsernameRequest
+	(*RatingSummary)(nil),                         // 11: review.v1.RatingSummary
 }
 var file_review_v1_review_proto_depIdxs = []int32{
 	1,  // 0: review.v1.Review.author:type_name -> review.v1.ReviewAuthor
@@ -822,15 +897,17 @@ var file_review_v1_review_proto_depIdxs = []int32{
 	2,  // 4: review.v1.ReviewService.CreateReview:input_type -> review.v1.CreateReviewRequest
 	4,  // 5: review.v1.ReviewService.ListGigReviews:input_type -> review.v1.ListGigReviewsRequest
 	6,  // 6: review.v1.ReviewService.ListSellerReviews:input_type -> review.v1.ListSellerReviewsRequest
-	8,  // 7: review.v1.ReviewService.GetGigRatingSummary:input_type -> review.v1.GetGigRatingSummaryRequest
-	9,  // 8: review.v1.ReviewService.GetUserRatingSummaryByUsername:input_type -> review.v1.GetUserRatingSummaryByUsernameRequest
-	3,  // 9: review.v1.ReviewService.CreateReview:output_type -> review.v1.CreateReviewResponse
-	5,  // 10: review.v1.ReviewService.ListGigReviews:output_type -> review.v1.ListGigReviewsResponse
-	7,  // 11: review.v1.ReviewService.ListSellerReviews:output_type -> review.v1.ListSellerReviewsResponse
-	10, // 12: review.v1.ReviewService.GetGigRatingSummary:output_type -> review.v1.RatingSummary
-	10, // 13: review.v1.ReviewService.GetUserRatingSummaryByUsername:output_type -> review.v1.RatingSummary
-	9,  // [9:14] is the sub-list for method output_type
-	4,  // [4:9] is the sub-list for method input_type
+	7,  // 7: review.v1.ReviewService.GetReviewsBySellerUsername:input_type -> review.v1.GetReviewsBySellerUsernameRequest
+	9,  // 8: review.v1.ReviewService.GetGigRatingSummary:input_type -> review.v1.GetGigRatingSummaryRequest
+	10, // 9: review.v1.ReviewService.GetUserRatingSummaryByUsername:input_type -> review.v1.GetUserRatingSummaryByUsernameRequest
+	3,  // 10: review.v1.ReviewService.CreateReview:output_type -> review.v1.CreateReviewResponse
+	5,  // 11: review.v1.ReviewService.ListGigReviews:output_type -> review.v1.ListGigReviewsResponse
+	8,  // 12: review.v1.ReviewService.ListSellerReviews:output_type -> review.v1.ListSellerReviewsResponse
+	8,  // 13: review.v1.ReviewService.GetReviewsBySellerUsername:output_type -> review.v1.ListSellerReviewsResponse
+	11, // 14: review.v1.ReviewService.GetGigRatingSummary:output_type -> review.v1.RatingSummary
+	11, // 15: review.v1.ReviewService.GetUserRatingSummaryByUsername:output_type -> review.v1.RatingSummary
+	10, // [10:16] is the sub-list for method output_type
+	4,  // [4:10] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name
@@ -847,7 +924,7 @@ func file_review_v1_review_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_review_v1_review_proto_rawDesc), len(file_review_v1_review_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
