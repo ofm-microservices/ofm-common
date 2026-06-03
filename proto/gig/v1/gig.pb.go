@@ -28,24 +28,26 @@ type Gig struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
 	GigId                 string                 `protobuf:"bytes,1,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
 	FreelancerId          string                 `protobuf:"bytes,2,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
-	Slug                  string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
-	Title                 string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	Description           string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	CategoryId            int64                  `protobuf:"varint,6,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
-	Currency              string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`
-	Status                string                 `protobuf:"bytes,8,opt,name=status,proto3" json:"status,omitempty"`
-	BasicInfoCompleted    bool                   `protobuf:"varint,9,opt,name=basic_info_completed,json=basicInfoCompleted,proto3" json:"basic_info_completed,omitempty"`
-	PackagesCompleted     bool                   `protobuf:"varint,10,opt,name=packages_completed,json=packagesCompleted,proto3" json:"packages_completed,omitempty"`
-	RequirementsCompleted bool                   `protobuf:"varint,11,opt,name=requirements_completed,json=requirementsCompleted,proto3" json:"requirements_completed,omitempty"`
-	MediaCompleted        bool                   `protobuf:"varint,12,opt,name=media_completed,json=mediaCompleted,proto3" json:"media_completed,omitempty"`
-	PictureFileId         string                 `protobuf:"bytes,13,opt,name=picture_file_id,json=pictureFileId,proto3" json:"picture_file_id,omitempty"`
-	PictureUrl            string                 `protobuf:"bytes,14,opt,name=picture_url,json=pictureUrl,proto3" json:"picture_url,omitempty"`
-	PublishedAt           string                 `protobuf:"bytes,15,opt,name=published_at,json=publishedAt,proto3" json:"published_at,omitempty"`
-	CreatedAt             string                 `protobuf:"bytes,16,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt             string                 `protobuf:"bytes,17,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Packages              []*GigPackage          `protobuf:"bytes,18,rep,name=packages,proto3" json:"packages,omitempty"`
-	Questions             []*GigQuestion         `protobuf:"bytes,19,rep,name=questions,proto3" json:"questions,omitempty"`
-	Media                 []*GigMedia            `protobuf:"bytes,20,rep,name=media,proto3" json:"media,omitempty"`
+	SellerUsername        string                 `protobuf:"bytes,3,opt,name=seller_username,json=sellerUsername,proto3" json:"seller_username,omitempty"`
+	Slug                  string                 `protobuf:"bytes,4,opt,name=slug,proto3" json:"slug,omitempty"`
+	Title                 string                 `protobuf:"bytes,5,opt,name=title,proto3" json:"title,omitempty"`
+	ShortInfo             string                 `protobuf:"bytes,6,opt,name=short_info,json=shortInfo,proto3" json:"short_info,omitempty"`
+	Description           string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
+	CategoryId            int64                  `protobuf:"varint,8,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	Currency              string                 `protobuf:"bytes,9,opt,name=currency,proto3" json:"currency,omitempty"`
+	Status                string                 `protobuf:"bytes,10,opt,name=status,proto3" json:"status,omitempty"`
+	BasicInfoCompleted    bool                   `protobuf:"varint,11,opt,name=basic_info_completed,json=basicInfoCompleted,proto3" json:"basic_info_completed,omitempty"`
+	PackagesCompleted     bool                   `protobuf:"varint,12,opt,name=packages_completed,json=packagesCompleted,proto3" json:"packages_completed,omitempty"`
+	RequirementsCompleted bool                   `protobuf:"varint,13,opt,name=requirements_completed,json=requirementsCompleted,proto3" json:"requirements_completed,omitempty"`
+	MediaCompleted        bool                   `protobuf:"varint,14,opt,name=media_completed,json=mediaCompleted,proto3" json:"media_completed,omitempty"`
+	PictureFileId         string                 `protobuf:"bytes,15,opt,name=picture_file_id,json=pictureFileId,proto3" json:"picture_file_id,omitempty"`
+	PictureUrl            string                 `protobuf:"bytes,16,opt,name=picture_url,json=pictureUrl,proto3" json:"picture_url,omitempty"`
+	PublishedAt           string                 `protobuf:"bytes,17,opt,name=published_at,json=publishedAt,proto3" json:"published_at,omitempty"`
+	CreatedAt             string                 `protobuf:"bytes,18,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt             string                 `protobuf:"bytes,19,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Packages              []*GigPackage          `protobuf:"bytes,20,rep,name=packages,proto3" json:"packages,omitempty"`
+	Questions             []*GigQuestion         `protobuf:"bytes,21,rep,name=questions,proto3" json:"questions,omitempty"`
+	Media                 []*GigMedia            `protobuf:"bytes,22,rep,name=media,proto3" json:"media,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -94,6 +96,13 @@ func (x *Gig) GetFreelancerId() string {
 	return ""
 }
 
+func (x *Gig) GetSellerUsername() string {
+	if x != nil {
+		return x.SellerUsername
+	}
+	return ""
+}
+
 func (x *Gig) GetSlug() string {
 	if x != nil {
 		return x.Slug
@@ -104,6 +113,13 @@ func (x *Gig) GetSlug() string {
 func (x *Gig) GetTitle() string {
 	if x != nil {
 		return x.Title
+	}
+	return ""
+}
+
+func (x *Gig) GetShortInfo() string {
+	if x != nil {
+		return x.ShortInfo
 	}
 	return ""
 }
@@ -609,9 +625,10 @@ type UpdateBasicInfoRequest struct {
 	GigId         string                 `protobuf:"bytes,1,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
 	FreelancerId  string                 `protobuf:"bytes,2,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
 	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
-	CategoryId    int64                  `protobuf:"varint,5,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
-	Currency      string                 `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
+	ShortInfo     string                 `protobuf:"bytes,4,opt,name=short_info,json=shortInfo,proto3" json:"short_info,omitempty"`
+	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	CategoryId    int64                  `protobuf:"varint,6,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	Currency      string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -663,6 +680,13 @@ func (x *UpdateBasicInfoRequest) GetFreelancerId() string {
 func (x *UpdateBasicInfoRequest) GetTitle() string {
 	if x != nil {
 		return x.Title
+	}
+	return ""
+}
+
+func (x *UpdateBasicInfoRequest) GetShortInfo() string {
+	if x != nil {
+		return x.ShortInfo
 	}
 	return ""
 }
@@ -1145,16 +1169,17 @@ type OrderStartSnapshot struct {
 	GigId              string                 `protobuf:"bytes,1,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
 	PackageId          string                 `protobuf:"bytes,2,opt,name=package_id,json=packageId,proto3" json:"package_id,omitempty"`
 	SellerUserId       string                 `protobuf:"bytes,3,opt,name=seller_user_id,json=sellerUserId,proto3" json:"seller_user_id,omitempty"`
-	GigTitle           string                 `protobuf:"bytes,4,opt,name=gig_title,json=gigTitle,proto3" json:"gig_title,omitempty"`
-	PackageTitle       string                 `protobuf:"bytes,5,opt,name=package_title,json=packageTitle,proto3" json:"package_title,omitempty"`
-	PackageDescription string                 `protobuf:"bytes,6,opt,name=package_description,json=packageDescription,proto3" json:"package_description,omitempty"`
-	PriceCents         int64                  `protobuf:"varint,7,opt,name=price_cents,json=priceCents,proto3" json:"price_cents,omitempty"`
-	Currency           string                 `protobuf:"bytes,8,opt,name=currency,proto3" json:"currency,omitempty"`
-	DeliveryDays       int32                  `protobuf:"varint,9,opt,name=delivery_days,json=deliveryDays,proto3" json:"delivery_days,omitempty"`
-	RevisionCount      int32                  `protobuf:"varint,10,opt,name=revision_count,json=revisionCount,proto3" json:"revision_count,omitempty"`
-	GigPublished       bool                   `protobuf:"varint,11,opt,name=gig_published,json=gigPublished,proto3" json:"gig_published,omitempty"`
-	PackageAvailable   bool                   `protobuf:"varint,12,opt,name=package_available,json=packageAvailable,proto3" json:"package_available,omitempty"`
-	Questions          []*GigQuestion         `protobuf:"bytes,13,rep,name=questions,proto3" json:"questions,omitempty"`
+	SellerUsername     string                 `protobuf:"bytes,4,opt,name=seller_username,json=sellerUsername,proto3" json:"seller_username,omitempty"`
+	GigTitle           string                 `protobuf:"bytes,5,opt,name=gig_title,json=gigTitle,proto3" json:"gig_title,omitempty"`
+	PackageTitle       string                 `protobuf:"bytes,6,opt,name=package_title,json=packageTitle,proto3" json:"package_title,omitempty"`
+	PackageDescription string                 `protobuf:"bytes,7,opt,name=package_description,json=packageDescription,proto3" json:"package_description,omitempty"`
+	PriceCents         int64                  `protobuf:"varint,8,opt,name=price_cents,json=priceCents,proto3" json:"price_cents,omitempty"`
+	Currency           string                 `protobuf:"bytes,9,opt,name=currency,proto3" json:"currency,omitempty"`
+	DeliveryDays       int32                  `protobuf:"varint,10,opt,name=delivery_days,json=deliveryDays,proto3" json:"delivery_days,omitempty"`
+	RevisionCount      int32                  `protobuf:"varint,11,opt,name=revision_count,json=revisionCount,proto3" json:"revision_count,omitempty"`
+	GigPublished       bool                   `protobuf:"varint,12,opt,name=gig_published,json=gigPublished,proto3" json:"gig_published,omitempty"`
+	PackageAvailable   bool                   `protobuf:"varint,13,opt,name=package_available,json=packageAvailable,proto3" json:"package_available,omitempty"`
+	Questions          []*GigQuestion         `protobuf:"bytes,14,rep,name=questions,proto3" json:"questions,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1206,6 +1231,13 @@ func (x *OrderStartSnapshot) GetPackageId() string {
 func (x *OrderStartSnapshot) GetSellerUserId() string {
 	if x != nil {
 		return x.SellerUserId
+	}
+	return ""
+}
+
+func (x *OrderStartSnapshot) GetSellerUsername() string {
+	if x != nil {
+		return x.SellerUsername
 	}
 	return ""
 }
@@ -1464,17 +1496,222 @@ func (x *GetGigBySlugResponse) GetGig() *Gig {
 	return nil
 }
 
+type GetPreviewGigsByFreelancerUsernameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Cursor        string                 `protobuf:"bytes,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPreviewGigsByFreelancerUsernameRequest) Reset() {
+	*x = GetPreviewGigsByFreelancerUsernameRequest{}
+	mi := &file_gig_v1_gig_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPreviewGigsByFreelancerUsernameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPreviewGigsByFreelancerUsernameRequest) ProtoMessage() {}
+
+func (x *GetPreviewGigsByFreelancerUsernameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_gig_v1_gig_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPreviewGigsByFreelancerUsernameRequest.ProtoReflect.Descriptor instead.
+func (*GetPreviewGigsByFreelancerUsernameRequest) Descriptor() ([]byte, []int) {
+	return file_gig_v1_gig_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *GetPreviewGigsByFreelancerUsernameRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *GetPreviewGigsByFreelancerUsernameRequest) GetCursor() string {
+	if x != nil {
+		return x.Cursor
+	}
+	return ""
+}
+
+type GigPreview struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	GigId             string                 `protobuf:"bytes,1,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
+	Slug              string                 `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
+	Title             string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	ShortInfo         string                 `protobuf:"bytes,4,opt,name=short_info,json=shortInfo,proto3" json:"short_info,omitempty"`
+	MinimumPriceCents int64                  `protobuf:"varint,5,opt,name=minimum_price_cents,json=minimumPriceCents,proto3" json:"minimum_price_cents,omitempty"`
+	PictureUrl        string                 `protobuf:"bytes,6,opt,name=picture_url,json=pictureUrl,proto3" json:"picture_url,omitempty"`
+	CreatedAt         string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *GigPreview) Reset() {
+	*x = GigPreview{}
+	mi := &file_gig_v1_gig_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GigPreview) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GigPreview) ProtoMessage() {}
+
+func (x *GigPreview) ProtoReflect() protoreflect.Message {
+	mi := &file_gig_v1_gig_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GigPreview.ProtoReflect.Descriptor instead.
+func (*GigPreview) Descriptor() ([]byte, []int) {
+	return file_gig_v1_gig_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GigPreview) GetGigId() string {
+	if x != nil {
+		return x.GigId
+	}
+	return ""
+}
+
+func (x *GigPreview) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *GigPreview) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *GigPreview) GetShortInfo() string {
+	if x != nil {
+		return x.ShortInfo
+	}
+	return ""
+}
+
+func (x *GigPreview) GetMinimumPriceCents() int64 {
+	if x != nil {
+		return x.MinimumPriceCents
+	}
+	return 0
+}
+
+func (x *GigPreview) GetPictureUrl() string {
+	if x != nil {
+		return x.PictureUrl
+	}
+	return ""
+}
+
+func (x *GigPreview) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+type GetPreviewGigsByFreelancerUsernameResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Gigs          []*GigPreview          `protobuf:"bytes,1,rep,name=gigs,proto3" json:"gigs,omitempty"`
+	Cursor        string                 `protobuf:"bytes,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
+	HasMore       bool                   `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPreviewGigsByFreelancerUsernameResponse) Reset() {
+	*x = GetPreviewGigsByFreelancerUsernameResponse{}
+	mi := &file_gig_v1_gig_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPreviewGigsByFreelancerUsernameResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPreviewGigsByFreelancerUsernameResponse) ProtoMessage() {}
+
+func (x *GetPreviewGigsByFreelancerUsernameResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_gig_v1_gig_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPreviewGigsByFreelancerUsernameResponse.ProtoReflect.Descriptor instead.
+func (*GetPreviewGigsByFreelancerUsernameResponse) Descriptor() ([]byte, []int) {
+	return file_gig_v1_gig_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetPreviewGigsByFreelancerUsernameResponse) GetGigs() []*GigPreview {
+	if x != nil {
+		return x.Gigs
+	}
+	return nil
+}
+
+func (x *GetPreviewGigsByFreelancerUsernameResponse) GetCursor() string {
+	if x != nil {
+		return x.Cursor
+	}
+	return ""
+}
+
+func (x *GetPreviewGigsByFreelancerUsernameResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
+}
+
 type PublishRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	GigId         string                 `protobuf:"bytes,1,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
 	FreelancerId  string                 `protobuf:"bytes,2,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
+	Username      string                 `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PublishRequest) Reset() {
 	*x = PublishRequest{}
-	mi := &file_gig_v1_gig_proto_msgTypes[22]
+	mi := &file_gig_v1_gig_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1486,7 +1723,7 @@ func (x *PublishRequest) String() string {
 func (*PublishRequest) ProtoMessage() {}
 
 func (x *PublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_gig_v1_gig_proto_msgTypes[22]
+	mi := &file_gig_v1_gig_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1499,7 +1736,7 @@ func (x *PublishRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishRequest.ProtoReflect.Descriptor instead.
 func (*PublishRequest) Descriptor() ([]byte, []int) {
-	return file_gig_v1_gig_proto_rawDescGZIP(), []int{22}
+	return file_gig_v1_gig_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *PublishRequest) GetGigId() string {
@@ -1516,6 +1753,13 @@ func (x *PublishRequest) GetFreelancerId() string {
 	return ""
 }
 
+func (x *PublishRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
 type PublishResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Gig           *Gig                   `protobuf:"bytes,1,opt,name=gig,proto3" json:"gig,omitempty"`
@@ -1525,7 +1769,7 @@ type PublishResponse struct {
 
 func (x *PublishResponse) Reset() {
 	*x = PublishResponse{}
-	mi := &file_gig_v1_gig_proto_msgTypes[23]
+	mi := &file_gig_v1_gig_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1537,7 +1781,7 @@ func (x *PublishResponse) String() string {
 func (*PublishResponse) ProtoMessage() {}
 
 func (x *PublishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_gig_v1_gig_proto_msgTypes[23]
+	mi := &file_gig_v1_gig_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1550,7 +1794,7 @@ func (x *PublishResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishResponse.ProtoReflect.Descriptor instead.
 func (*PublishResponse) Descriptor() ([]byte, []int) {
-	return file_gig_v1_gig_proto_rawDescGZIP(), []int{23}
+	return file_gig_v1_gig_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *PublishResponse) GetGig() *Gig {
@@ -1564,33 +1808,36 @@ var File_gig_v1_gig_proto protoreflect.FileDescriptor
 
 const file_gig_v1_gig_proto_rawDesc = "" +
 	"\n" +
-	"\x10gig/v1/gig.proto\x12\x06gig.v1\"\xd8\x05\n" +
+	"\x10gig/v1/gig.proto\x12\x06gig.v1\"\xa0\x06\n" +
 	"\x03Gig\x12\x15\n" +
 	"\x06gig_id\x18\x01 \x01(\tR\x05gigId\x12#\n" +
-	"\rfreelancer_id\x18\x02 \x01(\tR\ffreelancerId\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\x1f\n" +
-	"\vcategory_id\x18\x06 \x01(\x03R\n" +
+	"\rfreelancer_id\x18\x02 \x01(\tR\ffreelancerId\x12'\n" +
+	"\x0fseller_username\x18\x03 \x01(\tR\x0esellerUsername\x12\x12\n" +
+	"\x04slug\x18\x04 \x01(\tR\x04slug\x12\x14\n" +
+	"\x05title\x18\x05 \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"short_info\x18\x06 \x01(\tR\tshortInfo\x12 \n" +
+	"\vdescription\x18\a \x01(\tR\vdescription\x12\x1f\n" +
+	"\vcategory_id\x18\b \x01(\x03R\n" +
 	"categoryId\x12\x1a\n" +
-	"\bcurrency\x18\a \x01(\tR\bcurrency\x12\x16\n" +
-	"\x06status\x18\b \x01(\tR\x06status\x120\n" +
-	"\x14basic_info_completed\x18\t \x01(\bR\x12basicInfoCompleted\x12-\n" +
-	"\x12packages_completed\x18\n" +
-	" \x01(\bR\x11packagesCompleted\x125\n" +
-	"\x16requirements_completed\x18\v \x01(\bR\x15requirementsCompleted\x12'\n" +
-	"\x0fmedia_completed\x18\f \x01(\bR\x0emediaCompleted\x12&\n" +
-	"\x0fpicture_file_id\x18\r \x01(\tR\rpictureFileId\x12\x1f\n" +
-	"\vpicture_url\x18\x0e \x01(\tR\n" +
+	"\bcurrency\x18\t \x01(\tR\bcurrency\x12\x16\n" +
+	"\x06status\x18\n" +
+	" \x01(\tR\x06status\x120\n" +
+	"\x14basic_info_completed\x18\v \x01(\bR\x12basicInfoCompleted\x12-\n" +
+	"\x12packages_completed\x18\f \x01(\bR\x11packagesCompleted\x125\n" +
+	"\x16requirements_completed\x18\r \x01(\bR\x15requirementsCompleted\x12'\n" +
+	"\x0fmedia_completed\x18\x0e \x01(\bR\x0emediaCompleted\x12&\n" +
+	"\x0fpicture_file_id\x18\x0f \x01(\tR\rpictureFileId\x12\x1f\n" +
+	"\vpicture_url\x18\x10 \x01(\tR\n" +
 	"pictureUrl\x12!\n" +
-	"\fpublished_at\x18\x0f \x01(\tR\vpublishedAt\x12\x1d\n" +
+	"\fpublished_at\x18\x11 \x01(\tR\vpublishedAt\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x10 \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\x12 \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x11 \x01(\tR\tupdatedAt\x12.\n" +
-	"\bpackages\x18\x12 \x03(\v2\x12.gig.v1.GigPackageR\bpackages\x121\n" +
-	"\tquestions\x18\x13 \x03(\v2\x13.gig.v1.GigQuestionR\tquestions\x12&\n" +
-	"\x05media\x18\x14 \x03(\v2\x10.gig.v1.GigMediaR\x05media\"\xd4\x01\n" +
+	"updated_at\x18\x13 \x01(\tR\tupdatedAt\x12.\n" +
+	"\bpackages\x18\x14 \x03(\v2\x12.gig.v1.GigPackageR\bpackages\x121\n" +
+	"\tquestions\x18\x15 \x03(\v2\x13.gig.v1.GigQuestionR\tquestions\x12&\n" +
+	"\x05media\x18\x16 \x03(\v2\x10.gig.v1.GigMediaR\x05media\"\xd4\x01\n" +
 	"\n" +
 	"GigPackage\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x15\n" +
@@ -1622,15 +1869,17 @@ const file_gig_v1_gig_proto_rawDesc = "" +
 	"\x12CreateDraftRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\tR\ffreelancerId\"4\n" +
 	"\x13CreateDraftResponse\x12\x1d\n" +
-	"\x03gig\x18\x01 \x01(\v2\v.gig.v1.GigR\x03gig\"\xc9\x01\n" +
+	"\x03gig\x18\x01 \x01(\v2\v.gig.v1.GigR\x03gig\"\xe8\x01\n" +
 	"\x16UpdateBasicInfoRequest\x12\x15\n" +
 	"\x06gig_id\x18\x01 \x01(\tR\x05gigId\x12#\n" +
 	"\rfreelancer_id\x18\x02 \x01(\tR\ffreelancerId\x12\x14\n" +
-	"\x05title\x18\x03 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x1f\n" +
-	"\vcategory_id\x18\x05 \x01(\x03R\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"short_info\x18\x04 \x01(\tR\tshortInfo\x12 \n" +
+	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\x1f\n" +
+	"\vcategory_id\x18\x06 \x01(\x03R\n" +
 	"categoryId\x12\x1a\n" +
-	"\bcurrency\x18\x06 \x01(\tR\bcurrency\"8\n" +
+	"\bcurrency\x18\a \x01(\tR\bcurrency\"8\n" +
 	"\x17UpdateBasicInfoResponse\x12\x1d\n" +
 	"\x03gig\x18\x01 \x01(\v2\v.gig.v1.GigR\x03gig\"\x84\x01\n" +
 	"\x16ReplacePackagesRequest\x12\x15\n" +
@@ -1655,24 +1904,25 @@ const file_gig_v1_gig_proto_rawDesc = "" +
 	"\x06gig_id\x18\x01 \x01(\tR\x05gigId\x12#\n" +
 	"\rfreelancer_id\x18\x02 \x01(\tR\ffreelancerId\"1\n" +
 	"\x10GetDraftResponse\x12\x1d\n" +
-	"\x03gig\x18\x01 \x01(\v2\v.gig.v1.GigR\x03gig\"\xf1\x03\n" +
+	"\x03gig\x18\x01 \x01(\v2\v.gig.v1.GigR\x03gig\"\x9a\x04\n" +
 	"\x12OrderStartSnapshot\x12\x15\n" +
 	"\x06gig_id\x18\x01 \x01(\tR\x05gigId\x12\x1d\n" +
 	"\n" +
 	"package_id\x18\x02 \x01(\tR\tpackageId\x12$\n" +
-	"\x0eseller_user_id\x18\x03 \x01(\tR\fsellerUserId\x12\x1b\n" +
-	"\tgig_title\x18\x04 \x01(\tR\bgigTitle\x12#\n" +
-	"\rpackage_title\x18\x05 \x01(\tR\fpackageTitle\x12/\n" +
-	"\x13package_description\x18\x06 \x01(\tR\x12packageDescription\x12\x1f\n" +
-	"\vprice_cents\x18\a \x01(\x03R\n" +
+	"\x0eseller_user_id\x18\x03 \x01(\tR\fsellerUserId\x12'\n" +
+	"\x0fseller_username\x18\x04 \x01(\tR\x0esellerUsername\x12\x1b\n" +
+	"\tgig_title\x18\x05 \x01(\tR\bgigTitle\x12#\n" +
+	"\rpackage_title\x18\x06 \x01(\tR\fpackageTitle\x12/\n" +
+	"\x13package_description\x18\a \x01(\tR\x12packageDescription\x12\x1f\n" +
+	"\vprice_cents\x18\b \x01(\x03R\n" +
 	"priceCents\x12\x1a\n" +
-	"\bcurrency\x18\b \x01(\tR\bcurrency\x12#\n" +
-	"\rdelivery_days\x18\t \x01(\x05R\fdeliveryDays\x12%\n" +
-	"\x0erevision_count\x18\n" +
-	" \x01(\x05R\rrevisionCount\x12#\n" +
-	"\rgig_published\x18\v \x01(\bR\fgigPublished\x12+\n" +
-	"\x11package_available\x18\f \x01(\bR\x10packageAvailable\x121\n" +
-	"\tquestions\x18\r \x03(\v2\x13.gig.v1.GigQuestionR\tquestions\"T\n" +
+	"\bcurrency\x18\t \x01(\tR\bcurrency\x12#\n" +
+	"\rdelivery_days\x18\n" +
+	" \x01(\x05R\fdeliveryDays\x12%\n" +
+	"\x0erevision_count\x18\v \x01(\x05R\rrevisionCount\x12#\n" +
+	"\rgig_published\x18\f \x01(\bR\fgigPublished\x12+\n" +
+	"\x11package_available\x18\r \x01(\bR\x10packageAvailable\x121\n" +
+	"\tquestions\x18\x0e \x03(\v2\x13.gig.v1.GigQuestionR\tquestions\"T\n" +
 	"\x1cGetOrderStartSnapshotRequest\x12\x15\n" +
 	"\x06gig_id\x18\x01 \x01(\tR\x05gigId\x12\x1d\n" +
 	"\n" +
@@ -1682,12 +1932,32 @@ const file_gig_v1_gig_proto_rawDesc = "" +
 	"\x13GetGigBySlugRequest\x12\x12\n" +
 	"\x04slug\x18\x01 \x01(\tR\x04slug\"5\n" +
 	"\x14GetGigBySlugResponse\x12\x1d\n" +
-	"\x03gig\x18\x01 \x01(\v2\v.gig.v1.GigR\x03gig\"L\n" +
+	"\x03gig\x18\x01 \x01(\v2\v.gig.v1.GigR\x03gig\"_\n" +
+	")GetPreviewGigsByFreelancerUsernameRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x16\n" +
+	"\x06cursor\x18\x02 \x01(\tR\x06cursor\"\xdc\x01\n" +
+	"\n" +
+	"GigPreview\x12\x15\n" +
+	"\x06gig_id\x18\x01 \x01(\tR\x05gigId\x12\x12\n" +
+	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"short_info\x18\x04 \x01(\tR\tshortInfo\x12.\n" +
+	"\x13minimum_price_cents\x18\x05 \x01(\x03R\x11minimumPriceCents\x12\x1f\n" +
+	"\vpicture_url\x18\x06 \x01(\tR\n" +
+	"pictureUrl\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\a \x01(\tR\tcreatedAt\"\x87\x01\n" +
+	"*GetPreviewGigsByFreelancerUsernameResponse\x12&\n" +
+	"\x04gigs\x18\x01 \x03(\v2\x12.gig.v1.GigPreviewR\x04gigs\x12\x16\n" +
+	"\x06cursor\x18\x02 \x01(\tR\x06cursor\x12\x19\n" +
+	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"h\n" +
 	"\x0ePublishRequest\x12\x15\n" +
 	"\x06gig_id\x18\x01 \x01(\tR\x05gigId\x12#\n" +
-	"\rfreelancer_id\x18\x02 \x01(\tR\ffreelancerId\"0\n" +
+	"\rfreelancer_id\x18\x02 \x01(\tR\ffreelancerId\x12\x1a\n" +
+	"\busername\x18\x03 \x01(\tR\busername\"0\n" +
 	"\x0fPublishResponse\x12\x1d\n" +
-	"\x03gig\x18\x01 \x01(\v2\v.gig.v1.GigR\x03gig2\xd1\x05\n" +
+	"\x03gig\x18\x01 \x01(\v2\v.gig.v1.GigR\x03gig2\xdf\x06\n" +
 	"\x11GigCommandService\x12F\n" +
 	"\vCreateDraft\x12\x1a.gig.v1.CreateDraftRequest\x1a\x1b.gig.v1.CreateDraftResponse\x12R\n" +
 	"\x0fUpdateBasicInfo\x12\x1e.gig.v1.UpdateBasicInfoRequest\x1a\x1f.gig.v1.UpdateBasicInfoResponse\x12R\n" +
@@ -1696,7 +1966,8 @@ const file_gig_v1_gig_proto_rawDesc = "" +
 	"\fReplaceMedia\x12\x1b.gig.v1.ReplaceMediaRequest\x1a\x1c.gig.v1.ReplaceMediaResponse\x12=\n" +
 	"\bGetDraft\x12\x17.gig.v1.GetDraftRequest\x1a\x18.gig.v1.GetDraftResponse\x12d\n" +
 	"\x15GetOrderStartSnapshot\x12$.gig.v1.GetOrderStartSnapshotRequest\x1a%.gig.v1.GetOrderStartSnapshotResponse\x12I\n" +
-	"\fGetGigBySlug\x12\x1b.gig.v1.GetGigBySlugRequest\x1a\x1c.gig.v1.GetGigBySlugResponse\x12:\n" +
+	"\fGetGigBySlug\x12\x1b.gig.v1.GetGigBySlugRequest\x1a\x1c.gig.v1.GetGigBySlugResponse\x12\x8b\x01\n" +
+	"\"GetPreviewGigsByFreelancerUsername\x121.gig.v1.GetPreviewGigsByFreelancerUsernameRequest\x1a2.gig.v1.GetPreviewGigsByFreelancerUsernameResponse\x12:\n" +
 	"\aPublish\x12\x16.gig.v1.PublishRequest\x1a\x17.gig.v1.PublishResponseB<Z:github.com/ofm-microservices/ofm-common/proto/gig/v1;gigv1b\x06proto3"
 
 var (
@@ -1711,32 +1982,35 @@ func file_gig_v1_gig_proto_rawDescGZIP() []byte {
 	return file_gig_v1_gig_proto_rawDescData
 }
 
-var file_gig_v1_gig_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_gig_v1_gig_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_gig_v1_gig_proto_goTypes = []any{
-	(*Gig)(nil),                           // 0: gig.v1.Gig
-	(*GigPackage)(nil),                    // 1: gig.v1.GigPackage
-	(*GigQuestion)(nil),                   // 2: gig.v1.GigQuestion
-	(*GigMedia)(nil),                      // 3: gig.v1.GigMedia
-	(*MediaUpload)(nil),                   // 4: gig.v1.MediaUpload
-	(*CreateDraftRequest)(nil),            // 5: gig.v1.CreateDraftRequest
-	(*CreateDraftResponse)(nil),           // 6: gig.v1.CreateDraftResponse
-	(*UpdateBasicInfoRequest)(nil),        // 7: gig.v1.UpdateBasicInfoRequest
-	(*UpdateBasicInfoResponse)(nil),       // 8: gig.v1.UpdateBasicInfoResponse
-	(*ReplacePackagesRequest)(nil),        // 9: gig.v1.ReplacePackagesRequest
-	(*ReplacePackagesResponse)(nil),       // 10: gig.v1.ReplacePackagesResponse
-	(*ReplaceQuestionsRequest)(nil),       // 11: gig.v1.ReplaceQuestionsRequest
-	(*ReplaceQuestionsResponse)(nil),      // 12: gig.v1.ReplaceQuestionsResponse
-	(*ReplaceMediaRequest)(nil),           // 13: gig.v1.ReplaceMediaRequest
-	(*ReplaceMediaResponse)(nil),          // 14: gig.v1.ReplaceMediaResponse
-	(*GetDraftRequest)(nil),               // 15: gig.v1.GetDraftRequest
-	(*GetDraftResponse)(nil),              // 16: gig.v1.GetDraftResponse
-	(*OrderStartSnapshot)(nil),            // 17: gig.v1.OrderStartSnapshot
-	(*GetOrderStartSnapshotRequest)(nil),  // 18: gig.v1.GetOrderStartSnapshotRequest
-	(*GetOrderStartSnapshotResponse)(nil), // 19: gig.v1.GetOrderStartSnapshotResponse
-	(*GetGigBySlugRequest)(nil),           // 20: gig.v1.GetGigBySlugRequest
-	(*GetGigBySlugResponse)(nil),          // 21: gig.v1.GetGigBySlugResponse
-	(*PublishRequest)(nil),                // 22: gig.v1.PublishRequest
-	(*PublishResponse)(nil),               // 23: gig.v1.PublishResponse
+	(*Gig)(nil),                                        // 0: gig.v1.Gig
+	(*GigPackage)(nil),                                 // 1: gig.v1.GigPackage
+	(*GigQuestion)(nil),                                // 2: gig.v1.GigQuestion
+	(*GigMedia)(nil),                                   // 3: gig.v1.GigMedia
+	(*MediaUpload)(nil),                                // 4: gig.v1.MediaUpload
+	(*CreateDraftRequest)(nil),                         // 5: gig.v1.CreateDraftRequest
+	(*CreateDraftResponse)(nil),                        // 6: gig.v1.CreateDraftResponse
+	(*UpdateBasicInfoRequest)(nil),                     // 7: gig.v1.UpdateBasicInfoRequest
+	(*UpdateBasicInfoResponse)(nil),                    // 8: gig.v1.UpdateBasicInfoResponse
+	(*ReplacePackagesRequest)(nil),                     // 9: gig.v1.ReplacePackagesRequest
+	(*ReplacePackagesResponse)(nil),                    // 10: gig.v1.ReplacePackagesResponse
+	(*ReplaceQuestionsRequest)(nil),                    // 11: gig.v1.ReplaceQuestionsRequest
+	(*ReplaceQuestionsResponse)(nil),                   // 12: gig.v1.ReplaceQuestionsResponse
+	(*ReplaceMediaRequest)(nil),                        // 13: gig.v1.ReplaceMediaRequest
+	(*ReplaceMediaResponse)(nil),                       // 14: gig.v1.ReplaceMediaResponse
+	(*GetDraftRequest)(nil),                            // 15: gig.v1.GetDraftRequest
+	(*GetDraftResponse)(nil),                           // 16: gig.v1.GetDraftResponse
+	(*OrderStartSnapshot)(nil),                         // 17: gig.v1.OrderStartSnapshot
+	(*GetOrderStartSnapshotRequest)(nil),               // 18: gig.v1.GetOrderStartSnapshotRequest
+	(*GetOrderStartSnapshotResponse)(nil),              // 19: gig.v1.GetOrderStartSnapshotResponse
+	(*GetGigBySlugRequest)(nil),                        // 20: gig.v1.GetGigBySlugRequest
+	(*GetGigBySlugResponse)(nil),                       // 21: gig.v1.GetGigBySlugResponse
+	(*GetPreviewGigsByFreelancerUsernameRequest)(nil),  // 22: gig.v1.GetPreviewGigsByFreelancerUsernameRequest
+	(*GigPreview)(nil),                                 // 23: gig.v1.GigPreview
+	(*GetPreviewGigsByFreelancerUsernameResponse)(nil), // 24: gig.v1.GetPreviewGigsByFreelancerUsernameResponse
+	(*PublishRequest)(nil),                             // 25: gig.v1.PublishRequest
+	(*PublishResponse)(nil),                            // 26: gig.v1.PublishResponse
 }
 var file_gig_v1_gig_proto_depIdxs = []int32{
 	1,  // 0: gig.v1.Gig.packages:type_name -> gig.v1.GigPackage
@@ -1754,30 +2028,33 @@ var file_gig_v1_gig_proto_depIdxs = []int32{
 	2,  // 12: gig.v1.OrderStartSnapshot.questions:type_name -> gig.v1.GigQuestion
 	17, // 13: gig.v1.GetOrderStartSnapshotResponse.snapshot:type_name -> gig.v1.OrderStartSnapshot
 	0,  // 14: gig.v1.GetGigBySlugResponse.gig:type_name -> gig.v1.Gig
-	0,  // 15: gig.v1.PublishResponse.gig:type_name -> gig.v1.Gig
-	5,  // 16: gig.v1.GigCommandService.CreateDraft:input_type -> gig.v1.CreateDraftRequest
-	7,  // 17: gig.v1.GigCommandService.UpdateBasicInfo:input_type -> gig.v1.UpdateBasicInfoRequest
-	9,  // 18: gig.v1.GigCommandService.ReplacePackages:input_type -> gig.v1.ReplacePackagesRequest
-	11, // 19: gig.v1.GigCommandService.ReplaceQuestions:input_type -> gig.v1.ReplaceQuestionsRequest
-	13, // 20: gig.v1.GigCommandService.ReplaceMedia:input_type -> gig.v1.ReplaceMediaRequest
-	15, // 21: gig.v1.GigCommandService.GetDraft:input_type -> gig.v1.GetDraftRequest
-	18, // 22: gig.v1.GigCommandService.GetOrderStartSnapshot:input_type -> gig.v1.GetOrderStartSnapshotRequest
-	20, // 23: gig.v1.GigCommandService.GetGigBySlug:input_type -> gig.v1.GetGigBySlugRequest
-	22, // 24: gig.v1.GigCommandService.Publish:input_type -> gig.v1.PublishRequest
-	6,  // 25: gig.v1.GigCommandService.CreateDraft:output_type -> gig.v1.CreateDraftResponse
-	8,  // 26: gig.v1.GigCommandService.UpdateBasicInfo:output_type -> gig.v1.UpdateBasicInfoResponse
-	10, // 27: gig.v1.GigCommandService.ReplacePackages:output_type -> gig.v1.ReplacePackagesResponse
-	12, // 28: gig.v1.GigCommandService.ReplaceQuestions:output_type -> gig.v1.ReplaceQuestionsResponse
-	14, // 29: gig.v1.GigCommandService.ReplaceMedia:output_type -> gig.v1.ReplaceMediaResponse
-	16, // 30: gig.v1.GigCommandService.GetDraft:output_type -> gig.v1.GetDraftResponse
-	19, // 31: gig.v1.GigCommandService.GetOrderStartSnapshot:output_type -> gig.v1.GetOrderStartSnapshotResponse
-	21, // 32: gig.v1.GigCommandService.GetGigBySlug:output_type -> gig.v1.GetGigBySlugResponse
-	23, // 33: gig.v1.GigCommandService.Publish:output_type -> gig.v1.PublishResponse
-	25, // [25:34] is the sub-list for method output_type
-	16, // [16:25] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	23, // 15: gig.v1.GetPreviewGigsByFreelancerUsernameResponse.gigs:type_name -> gig.v1.GigPreview
+	0,  // 16: gig.v1.PublishResponse.gig:type_name -> gig.v1.Gig
+	5,  // 17: gig.v1.GigCommandService.CreateDraft:input_type -> gig.v1.CreateDraftRequest
+	7,  // 18: gig.v1.GigCommandService.UpdateBasicInfo:input_type -> gig.v1.UpdateBasicInfoRequest
+	9,  // 19: gig.v1.GigCommandService.ReplacePackages:input_type -> gig.v1.ReplacePackagesRequest
+	11, // 20: gig.v1.GigCommandService.ReplaceQuestions:input_type -> gig.v1.ReplaceQuestionsRequest
+	13, // 21: gig.v1.GigCommandService.ReplaceMedia:input_type -> gig.v1.ReplaceMediaRequest
+	15, // 22: gig.v1.GigCommandService.GetDraft:input_type -> gig.v1.GetDraftRequest
+	18, // 23: gig.v1.GigCommandService.GetOrderStartSnapshot:input_type -> gig.v1.GetOrderStartSnapshotRequest
+	20, // 24: gig.v1.GigCommandService.GetGigBySlug:input_type -> gig.v1.GetGigBySlugRequest
+	22, // 25: gig.v1.GigCommandService.GetPreviewGigsByFreelancerUsername:input_type -> gig.v1.GetPreviewGigsByFreelancerUsernameRequest
+	25, // 26: gig.v1.GigCommandService.Publish:input_type -> gig.v1.PublishRequest
+	6,  // 27: gig.v1.GigCommandService.CreateDraft:output_type -> gig.v1.CreateDraftResponse
+	8,  // 28: gig.v1.GigCommandService.UpdateBasicInfo:output_type -> gig.v1.UpdateBasicInfoResponse
+	10, // 29: gig.v1.GigCommandService.ReplacePackages:output_type -> gig.v1.ReplacePackagesResponse
+	12, // 30: gig.v1.GigCommandService.ReplaceQuestions:output_type -> gig.v1.ReplaceQuestionsResponse
+	14, // 31: gig.v1.GigCommandService.ReplaceMedia:output_type -> gig.v1.ReplaceMediaResponse
+	16, // 32: gig.v1.GigCommandService.GetDraft:output_type -> gig.v1.GetDraftResponse
+	19, // 33: gig.v1.GigCommandService.GetOrderStartSnapshot:output_type -> gig.v1.GetOrderStartSnapshotResponse
+	21, // 34: gig.v1.GigCommandService.GetGigBySlug:output_type -> gig.v1.GetGigBySlugResponse
+	24, // 35: gig.v1.GigCommandService.GetPreviewGigsByFreelancerUsername:output_type -> gig.v1.GetPreviewGigsByFreelancerUsernameResponse
+	26, // 36: gig.v1.GigCommandService.Publish:output_type -> gig.v1.PublishResponse
+	27, // [27:37] is the sub-list for method output_type
+	17, // [17:27] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_gig_v1_gig_proto_init() }
@@ -1791,7 +2068,7 @@ func file_gig_v1_gig_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_gig_v1_gig_proto_rawDesc), len(file_gig_v1_gig_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -25,6 +25,7 @@ const (
 	ReviewService_CreateReview_FullMethodName                   = "/review.v1.ReviewService/CreateReview"
 	ReviewService_ListGigReviews_FullMethodName                 = "/review.v1.ReviewService/ListGigReviews"
 	ReviewService_ListSellerReviews_FullMethodName              = "/review.v1.ReviewService/ListSellerReviews"
+	ReviewService_GetReviewsBySellerUsername_FullMethodName     = "/review.v1.ReviewService/GetReviewsBySellerUsername"
 	ReviewService_GetGigRatingSummary_FullMethodName            = "/review.v1.ReviewService/GetGigRatingSummary"
 	ReviewService_GetUserRatingSummaryByUsername_FullMethodName = "/review.v1.ReviewService/GetUserRatingSummaryByUsername"
 )
@@ -38,6 +39,7 @@ type ReviewServiceClient interface {
 	CreateReview(ctx context.Context, in *CreateReviewRequest, opts ...grpc.CallOption) (*CreateReviewResponse, error)
 	ListGigReviews(ctx context.Context, in *ListGigReviewsRequest, opts ...grpc.CallOption) (*ListGigReviewsResponse, error)
 	ListSellerReviews(ctx context.Context, in *ListSellerReviewsRequest, opts ...grpc.CallOption) (*ListSellerReviewsResponse, error)
+	GetReviewsBySellerUsername(ctx context.Context, in *GetReviewsBySellerUsernameRequest, opts ...grpc.CallOption) (*ListSellerReviewsResponse, error)
 	GetGigRatingSummary(ctx context.Context, in *GetGigRatingSummaryRequest, opts ...grpc.CallOption) (*RatingSummary, error)
 	GetUserRatingSummaryByUsername(ctx context.Context, in *GetUserRatingSummaryByUsernameRequest, opts ...grpc.CallOption) (*RatingSummary, error)
 }
@@ -80,6 +82,16 @@ func (c *reviewServiceClient) ListSellerReviews(ctx context.Context, in *ListSel
 	return out, nil
 }
 
+func (c *reviewServiceClient) GetReviewsBySellerUsername(ctx context.Context, in *GetReviewsBySellerUsernameRequest, opts ...grpc.CallOption) (*ListSellerReviewsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSellerReviewsResponse)
+	err := c.cc.Invoke(ctx, ReviewService_GetReviewsBySellerUsername_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *reviewServiceClient) GetGigRatingSummary(ctx context.Context, in *GetGigRatingSummaryRequest, opts ...grpc.CallOption) (*RatingSummary, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RatingSummary)
@@ -109,6 +121,7 @@ type ReviewServiceServer interface {
 	CreateReview(context.Context, *CreateReviewRequest) (*CreateReviewResponse, error)
 	ListGigReviews(context.Context, *ListGigReviewsRequest) (*ListGigReviewsResponse, error)
 	ListSellerReviews(context.Context, *ListSellerReviewsRequest) (*ListSellerReviewsResponse, error)
+	GetReviewsBySellerUsername(context.Context, *GetReviewsBySellerUsernameRequest) (*ListSellerReviewsResponse, error)
 	GetGigRatingSummary(context.Context, *GetGigRatingSummaryRequest) (*RatingSummary, error)
 	GetUserRatingSummaryByUsername(context.Context, *GetUserRatingSummaryByUsernameRequest) (*RatingSummary, error)
 }
@@ -128,6 +141,9 @@ func (UnimplementedReviewServiceServer) ListGigReviews(context.Context, *ListGig
 }
 func (UnimplementedReviewServiceServer) ListSellerReviews(context.Context, *ListSellerReviewsRequest) (*ListSellerReviewsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListSellerReviews not implemented")
+}
+func (UnimplementedReviewServiceServer) GetReviewsBySellerUsername(context.Context, *GetReviewsBySellerUsernameRequest) (*ListSellerReviewsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetReviewsBySellerUsername not implemented")
 }
 func (UnimplementedReviewServiceServer) GetGigRatingSummary(context.Context, *GetGigRatingSummaryRequest) (*RatingSummary, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetGigRatingSummary not implemented")
@@ -209,6 +225,24 @@ func _ReviewService_ListSellerReviews_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ReviewService_GetReviewsBySellerUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReviewsBySellerUsernameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReviewServiceServer).GetReviewsBySellerUsername(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ReviewService_GetReviewsBySellerUsername_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReviewServiceServer).GetReviewsBySellerUsername(ctx, req.(*GetReviewsBySellerUsernameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ReviewService_GetGigRatingSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetGigRatingSummaryRequest)
 	if err := dec(in); err != nil {
@@ -263,6 +297,10 @@ var ReviewService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListSellerReviews",
 			Handler:    _ReviewService_ListSellerReviews_Handler,
+		},
+		{
+			MethodName: "GetReviewsBySellerUsername",
+			Handler:    _ReviewService_GetReviewsBySellerUsername_Handler,
 		},
 		{
 			MethodName: "GetGigRatingSummary",

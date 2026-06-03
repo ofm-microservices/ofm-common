@@ -182,16 +182,17 @@ type OrderCreateCommand struct {
 	OrderId             string                 `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	BuyerId             string                 `protobuf:"bytes,3,opt,name=buyer_id,json=buyerId,proto3" json:"buyer_id,omitempty"`
 	SellerId            string                 `protobuf:"bytes,4,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
-	GigId               string                 `protobuf:"bytes,5,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
-	GigTitle            string                 `protobuf:"bytes,6,opt,name=gig_title,json=gigTitle,proto3" json:"gig_title,omitempty"`
-	PackageId           string                 `protobuf:"bytes,7,opt,name=package_id,json=packageId,proto3" json:"package_id,omitempty"`
-	PackageTier         string                 `protobuf:"bytes,8,opt,name=package_tier,json=packageTier,proto3" json:"package_tier,omitempty"`
-	PackageDescription  string                 `protobuf:"bytes,9,opt,name=package_description,json=packageDescription,proto3" json:"package_description,omitempty"`
-	PackageDeliveryDays int32                  `protobuf:"varint,10,opt,name=package_delivery_days,json=packageDeliveryDays,proto3" json:"package_delivery_days,omitempty"`
-	PriceCents          int64                  `protobuf:"varint,11,opt,name=price_cents,json=priceCents,proto3" json:"price_cents,omitempty"`
-	Currency            string                 `protobuf:"bytes,12,opt,name=currency,proto3" json:"currency,omitempty"`
-	IdempotencyKey      string                 `protobuf:"bytes,13,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
-	RequestedAt         string                 `protobuf:"bytes,14,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	SellerUsername      string                 `protobuf:"bytes,5,opt,name=seller_username,json=sellerUsername,proto3" json:"seller_username,omitempty"`
+	GigId               string                 `protobuf:"bytes,6,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
+	GigTitle            string                 `protobuf:"bytes,7,opt,name=gig_title,json=gigTitle,proto3" json:"gig_title,omitempty"`
+	PackageId           string                 `protobuf:"bytes,8,opt,name=package_id,json=packageId,proto3" json:"package_id,omitempty"`
+	PackageTier         string                 `protobuf:"bytes,9,opt,name=package_tier,json=packageTier,proto3" json:"package_tier,omitempty"`
+	PackageDescription  string                 `protobuf:"bytes,10,opt,name=package_description,json=packageDescription,proto3" json:"package_description,omitempty"`
+	PackageDeliveryDays int32                  `protobuf:"varint,11,opt,name=package_delivery_days,json=packageDeliveryDays,proto3" json:"package_delivery_days,omitempty"`
+	PriceCents          int64                  `protobuf:"varint,12,opt,name=price_cents,json=priceCents,proto3" json:"price_cents,omitempty"`
+	Currency            string                 `protobuf:"bytes,13,opt,name=currency,proto3" json:"currency,omitempty"`
+	IdempotencyKey      string                 `protobuf:"bytes,14,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	RequestedAt         string                 `protobuf:"bytes,15,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -250,6 +251,13 @@ func (x *OrderCreateCommand) GetBuyerId() string {
 func (x *OrderCreateCommand) GetSellerId() string {
 	if x != nil {
 		return x.SellerId
+	}
+	return ""
+}
+
+func (x *OrderCreateCommand) GetSellerUsername() string {
+	if x != nil {
+		return x.SellerUsername
 	}
 	return ""
 }
@@ -331,17 +339,18 @@ type OrderSnapshot struct {
 	SagaId              string                 `protobuf:"bytes,2,opt,name=saga_id,json=sagaId,proto3" json:"saga_id,omitempty"`
 	BuyerId             string                 `protobuf:"bytes,3,opt,name=buyer_id,json=buyerId,proto3" json:"buyer_id,omitempty"`
 	SellerId            string                 `protobuf:"bytes,4,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
-	GigId               string                 `protobuf:"bytes,5,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
-	GigTitle            string                 `protobuf:"bytes,6,opt,name=gig_title,json=gigTitle,proto3" json:"gig_title,omitempty"`
-	PackageId           string                 `protobuf:"bytes,7,opt,name=package_id,json=packageId,proto3" json:"package_id,omitempty"`
-	PackageTier         string                 `protobuf:"bytes,8,opt,name=package_tier,json=packageTier,proto3" json:"package_tier,omitempty"`
-	PackageDescription  string                 `protobuf:"bytes,9,opt,name=package_description,json=packageDescription,proto3" json:"package_description,omitempty"`
-	PackageDeliveryDays int32                  `protobuf:"varint,10,opt,name=package_delivery_days,json=packageDeliveryDays,proto3" json:"package_delivery_days,omitempty"`
-	PriceCents          int64                  `protobuf:"varint,11,opt,name=price_cents,json=priceCents,proto3" json:"price_cents,omitempty"`
-	Currency            string                 `protobuf:"bytes,12,opt,name=currency,proto3" json:"currency,omitempty"`
-	Status              string                 `protobuf:"bytes,13,opt,name=status,proto3" json:"status,omitempty"`
-	CreatedAt           string                 `protobuf:"bytes,14,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt           string                 `protobuf:"bytes,15,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	SellerUsername      string                 `protobuf:"bytes,5,opt,name=seller_username,json=sellerUsername,proto3" json:"seller_username,omitempty"`
+	GigId               string                 `protobuf:"bytes,6,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
+	GigTitle            string                 `protobuf:"bytes,7,opt,name=gig_title,json=gigTitle,proto3" json:"gig_title,omitempty"`
+	PackageId           string                 `protobuf:"bytes,8,opt,name=package_id,json=packageId,proto3" json:"package_id,omitempty"`
+	PackageTier         string                 `protobuf:"bytes,9,opt,name=package_tier,json=packageTier,proto3" json:"package_tier,omitempty"`
+	PackageDescription  string                 `protobuf:"bytes,10,opt,name=package_description,json=packageDescription,proto3" json:"package_description,omitempty"`
+	PackageDeliveryDays int32                  `protobuf:"varint,11,opt,name=package_delivery_days,json=packageDeliveryDays,proto3" json:"package_delivery_days,omitempty"`
+	PriceCents          int64                  `protobuf:"varint,12,opt,name=price_cents,json=priceCents,proto3" json:"price_cents,omitempty"`
+	Currency            string                 `protobuf:"bytes,13,opt,name=currency,proto3" json:"currency,omitempty"`
+	Status              string                 `protobuf:"bytes,14,opt,name=status,proto3" json:"status,omitempty"`
+	CreatedAt           string                 `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt           string                 `protobuf:"bytes,16,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -400,6 +409,13 @@ func (x *OrderSnapshot) GetBuyerId() string {
 func (x *OrderSnapshot) GetSellerId() string {
 	if x != nil {
 		return x.SellerId
+	}
+	return ""
+}
+
+func (x *OrderSnapshot) GetSellerUsername() string {
+	if x != nil {
+		return x.SellerUsername
 	}
 	return ""
 }
@@ -806,46 +822,48 @@ const file_orderflow_v1_orderflow_proto_rawDesc = "" +
 	"priceCents\x12\x1a\n" +
 	"\bcurrency\x18\f \x01(\tR\bcurrency\x12'\n" +
 	"\x0fidempotency_key\x18\r \x01(\tR\x0eidempotencyKey\x12!\n" +
-	"\frequested_at\x18\x0e \x01(\tR\vrequestedAt\"\xe4\x03\n" +
+	"\frequested_at\x18\x0e \x01(\tR\vrequestedAt\"\x8d\x04\n" +
 	"\x12OrderCreateCommand\x12\x17\n" +
 	"\asaga_id\x18\x01 \x01(\tR\x06sagaId\x12\x19\n" +
 	"\border_id\x18\x02 \x01(\tR\aorderId\x12\x19\n" +
 	"\bbuyer_id\x18\x03 \x01(\tR\abuyerId\x12\x1b\n" +
-	"\tseller_id\x18\x04 \x01(\tR\bsellerId\x12\x15\n" +
-	"\x06gig_id\x18\x05 \x01(\tR\x05gigId\x12\x1b\n" +
-	"\tgig_title\x18\x06 \x01(\tR\bgigTitle\x12\x1d\n" +
+	"\tseller_id\x18\x04 \x01(\tR\bsellerId\x12'\n" +
+	"\x0fseller_username\x18\x05 \x01(\tR\x0esellerUsername\x12\x15\n" +
+	"\x06gig_id\x18\x06 \x01(\tR\x05gigId\x12\x1b\n" +
+	"\tgig_title\x18\a \x01(\tR\bgigTitle\x12\x1d\n" +
 	"\n" +
-	"package_id\x18\a \x01(\tR\tpackageId\x12!\n" +
-	"\fpackage_tier\x18\b \x01(\tR\vpackageTier\x12/\n" +
-	"\x13package_description\x18\t \x01(\tR\x12packageDescription\x122\n" +
-	"\x15package_delivery_days\x18\n" +
-	" \x01(\x05R\x13packageDeliveryDays\x12\x1f\n" +
-	"\vprice_cents\x18\v \x01(\x03R\n" +
+	"package_id\x18\b \x01(\tR\tpackageId\x12!\n" +
+	"\fpackage_tier\x18\t \x01(\tR\vpackageTier\x12/\n" +
+	"\x13package_description\x18\n" +
+	" \x01(\tR\x12packageDescription\x122\n" +
+	"\x15package_delivery_days\x18\v \x01(\x05R\x13packageDeliveryDays\x12\x1f\n" +
+	"\vprice_cents\x18\f \x01(\x03R\n" +
 	"priceCents\x12\x1a\n" +
-	"\bcurrency\x18\f \x01(\tR\bcurrency\x12'\n" +
-	"\x0fidempotency_key\x18\r \x01(\tR\x0eidempotencyKey\x12!\n" +
-	"\frequested_at\x18\x0e \x01(\tR\vrequestedAt\"\xe9\x03\n" +
+	"\bcurrency\x18\r \x01(\tR\bcurrency\x12'\n" +
+	"\x0fidempotency_key\x18\x0e \x01(\tR\x0eidempotencyKey\x12!\n" +
+	"\frequested_at\x18\x0f \x01(\tR\vrequestedAt\"\x92\x04\n" +
 	"\rOrderSnapshot\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x17\n" +
 	"\asaga_id\x18\x02 \x01(\tR\x06sagaId\x12\x19\n" +
 	"\bbuyer_id\x18\x03 \x01(\tR\abuyerId\x12\x1b\n" +
-	"\tseller_id\x18\x04 \x01(\tR\bsellerId\x12\x15\n" +
-	"\x06gig_id\x18\x05 \x01(\tR\x05gigId\x12\x1b\n" +
-	"\tgig_title\x18\x06 \x01(\tR\bgigTitle\x12\x1d\n" +
+	"\tseller_id\x18\x04 \x01(\tR\bsellerId\x12'\n" +
+	"\x0fseller_username\x18\x05 \x01(\tR\x0esellerUsername\x12\x15\n" +
+	"\x06gig_id\x18\x06 \x01(\tR\x05gigId\x12\x1b\n" +
+	"\tgig_title\x18\a \x01(\tR\bgigTitle\x12\x1d\n" +
 	"\n" +
-	"package_id\x18\a \x01(\tR\tpackageId\x12!\n" +
-	"\fpackage_tier\x18\b \x01(\tR\vpackageTier\x12/\n" +
-	"\x13package_description\x18\t \x01(\tR\x12packageDescription\x122\n" +
-	"\x15package_delivery_days\x18\n" +
-	" \x01(\x05R\x13packageDeliveryDays\x12\x1f\n" +
-	"\vprice_cents\x18\v \x01(\x03R\n" +
+	"package_id\x18\b \x01(\tR\tpackageId\x12!\n" +
+	"\fpackage_tier\x18\t \x01(\tR\vpackageTier\x12/\n" +
+	"\x13package_description\x18\n" +
+	" \x01(\tR\x12packageDescription\x122\n" +
+	"\x15package_delivery_days\x18\v \x01(\x05R\x13packageDeliveryDays\x12\x1f\n" +
+	"\vprice_cents\x18\f \x01(\x03R\n" +
 	"priceCents\x12\x1a\n" +
-	"\bcurrency\x18\f \x01(\tR\bcurrency\x12\x16\n" +
-	"\x06status\x18\r \x01(\tR\x06status\x12\x1d\n" +
+	"\bcurrency\x18\r \x01(\tR\bcurrency\x12\x16\n" +
+	"\x06status\x18\x0e \x01(\tR\x06status\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x0e \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\x0f \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x0f \x01(\tR\tupdatedAt\"\xb2\x01\n" +
+	"updated_at\x18\x10 \x01(\tR\tupdatedAt\"\xb2\x01\n" +
 	"\x0fOrderSagaResult\x12\x17\n" +
 	"\asaga_id\x18\x01 \x01(\tR\x06sagaId\x12\x19\n" +
 	"\border_id\x18\x02 \x01(\tR\aorderId\x12\x16\n" +

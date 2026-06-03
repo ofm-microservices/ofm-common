@@ -22,15 +22,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GigCommandService_CreateDraft_FullMethodName           = "/gig.v1.GigCommandService/CreateDraft"
-	GigCommandService_UpdateBasicInfo_FullMethodName       = "/gig.v1.GigCommandService/UpdateBasicInfo"
-	GigCommandService_ReplacePackages_FullMethodName       = "/gig.v1.GigCommandService/ReplacePackages"
-	GigCommandService_ReplaceQuestions_FullMethodName      = "/gig.v1.GigCommandService/ReplaceQuestions"
-	GigCommandService_ReplaceMedia_FullMethodName          = "/gig.v1.GigCommandService/ReplaceMedia"
-	GigCommandService_GetDraft_FullMethodName              = "/gig.v1.GigCommandService/GetDraft"
-	GigCommandService_GetOrderStartSnapshot_FullMethodName = "/gig.v1.GigCommandService/GetOrderStartSnapshot"
-	GigCommandService_GetGigBySlug_FullMethodName          = "/gig.v1.GigCommandService/GetGigBySlug"
-	GigCommandService_Publish_FullMethodName               = "/gig.v1.GigCommandService/Publish"
+	GigCommandService_CreateDraft_FullMethodName                        = "/gig.v1.GigCommandService/CreateDraft"
+	GigCommandService_UpdateBasicInfo_FullMethodName                    = "/gig.v1.GigCommandService/UpdateBasicInfo"
+	GigCommandService_ReplacePackages_FullMethodName                    = "/gig.v1.GigCommandService/ReplacePackages"
+	GigCommandService_ReplaceQuestions_FullMethodName                   = "/gig.v1.GigCommandService/ReplaceQuestions"
+	GigCommandService_ReplaceMedia_FullMethodName                       = "/gig.v1.GigCommandService/ReplaceMedia"
+	GigCommandService_GetDraft_FullMethodName                           = "/gig.v1.GigCommandService/GetDraft"
+	GigCommandService_GetOrderStartSnapshot_FullMethodName              = "/gig.v1.GigCommandService/GetOrderStartSnapshot"
+	GigCommandService_GetGigBySlug_FullMethodName                       = "/gig.v1.GigCommandService/GetGigBySlug"
+	GigCommandService_GetPreviewGigsByFreelancerUsername_FullMethodName = "/gig.v1.GigCommandService/GetPreviewGigsByFreelancerUsername"
+	GigCommandService_Publish_FullMethodName                            = "/gig.v1.GigCommandService/Publish"
 )
 
 // GigCommandServiceClient is the client API for GigCommandService service.
@@ -47,6 +48,7 @@ type GigCommandServiceClient interface {
 	GetDraft(ctx context.Context, in *GetDraftRequest, opts ...grpc.CallOption) (*GetDraftResponse, error)
 	GetOrderStartSnapshot(ctx context.Context, in *GetOrderStartSnapshotRequest, opts ...grpc.CallOption) (*GetOrderStartSnapshotResponse, error)
 	GetGigBySlug(ctx context.Context, in *GetGigBySlugRequest, opts ...grpc.CallOption) (*GetGigBySlugResponse, error)
+	GetPreviewGigsByFreelancerUsername(ctx context.Context, in *GetPreviewGigsByFreelancerUsernameRequest, opts ...grpc.CallOption) (*GetPreviewGigsByFreelancerUsernameResponse, error)
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 }
 
@@ -138,6 +140,16 @@ func (c *gigCommandServiceClient) GetGigBySlug(ctx context.Context, in *GetGigBy
 	return out, nil
 }
 
+func (c *gigCommandServiceClient) GetPreviewGigsByFreelancerUsername(ctx context.Context, in *GetPreviewGigsByFreelancerUsernameRequest, opts ...grpc.CallOption) (*GetPreviewGigsByFreelancerUsernameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPreviewGigsByFreelancerUsernameResponse)
+	err := c.cc.Invoke(ctx, GigCommandService_GetPreviewGigsByFreelancerUsername_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gigCommandServiceClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PublishResponse)
@@ -162,6 +174,7 @@ type GigCommandServiceServer interface {
 	GetDraft(context.Context, *GetDraftRequest) (*GetDraftResponse, error)
 	GetOrderStartSnapshot(context.Context, *GetOrderStartSnapshotRequest) (*GetOrderStartSnapshotResponse, error)
 	GetGigBySlug(context.Context, *GetGigBySlugRequest) (*GetGigBySlugResponse, error)
+	GetPreviewGigsByFreelancerUsername(context.Context, *GetPreviewGigsByFreelancerUsernameRequest) (*GetPreviewGigsByFreelancerUsernameResponse, error)
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 }
 
@@ -195,6 +208,9 @@ func (UnimplementedGigCommandServiceServer) GetOrderStartSnapshot(context.Contex
 }
 func (UnimplementedGigCommandServiceServer) GetGigBySlug(context.Context, *GetGigBySlugRequest) (*GetGigBySlugResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetGigBySlug not implemented")
+}
+func (UnimplementedGigCommandServiceServer) GetPreviewGigsByFreelancerUsername(context.Context, *GetPreviewGigsByFreelancerUsernameRequest) (*GetPreviewGigsByFreelancerUsernameResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPreviewGigsByFreelancerUsername not implemented")
 }
 func (UnimplementedGigCommandServiceServer) Publish(context.Context, *PublishRequest) (*PublishResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Publish not implemented")
@@ -363,6 +379,24 @@ func _GigCommandService_GetGigBySlug_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GigCommandService_GetPreviewGigsByFreelancerUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPreviewGigsByFreelancerUsernameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GigCommandServiceServer).GetPreviewGigsByFreelancerUsername(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GigCommandService_GetPreviewGigsByFreelancerUsername_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GigCommandServiceServer).GetPreviewGigsByFreelancerUsername(ctx, req.(*GetPreviewGigsByFreelancerUsernameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GigCommandService_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PublishRequest)
 	if err := dec(in); err != nil {
@@ -419,6 +453,10 @@ var GigCommandService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGigBySlug",
 			Handler:    _GigCommandService_GetGigBySlug_Handler,
+		},
+		{
+			MethodName: "GetPreviewGigsByFreelancerUsername",
+			Handler:    _GigCommandService_GetPreviewGigsByFreelancerUsername_Handler,
 		},
 		{
 			MethodName: "Publish",
