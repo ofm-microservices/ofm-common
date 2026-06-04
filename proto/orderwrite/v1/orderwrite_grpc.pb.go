@@ -28,6 +28,7 @@ const (
 	OrderWriteService_AttachFileToOrder_FullMethodName         = "/orderwrite.v1.OrderWriteService/AttachFileToOrder"
 	OrderWriteService_GetOrderPaymentSnapshot_FullMethodName   = "/orderwrite.v1.OrderWriteService/GetOrderPaymentSnapshot"
 	OrderWriteService_GetOrderPreviewByID_FullMethodName       = "/orderwrite.v1.OrderWriteService/GetOrderPreviewByID"
+	OrderWriteService_GetOrderRequirementsByID_FullMethodName  = "/orderwrite.v1.OrderWriteService/GetOrderRequirementsByID"
 	OrderWriteService_MarkPaymentPending_FullMethodName        = "/orderwrite.v1.OrderWriteService/MarkPaymentPending"
 	OrderWriteService_MarkOrderFunded_FullMethodName           = "/orderwrite.v1.OrderWriteService/MarkOrderFunded"
 	OrderWriteService_MarkPaymentFailed_FullMethodName         = "/orderwrite.v1.OrderWriteService/MarkPaymentFailed"
@@ -52,6 +53,7 @@ type OrderWriteServiceClient interface {
 	AttachFileToOrder(ctx context.Context, in *AttachFileToOrderRequest, opts ...grpc.CallOption) (*AttachFileToOrderResponse, error)
 	GetOrderPaymentSnapshot(ctx context.Context, in *GetOrderPaymentSnapshotRequest, opts ...grpc.CallOption) (*GetOrderPaymentSnapshotResponse, error)
 	GetOrderPreviewByID(ctx context.Context, in *GetOrderPreviewByIDRequest, opts ...grpc.CallOption) (*GetOrderPreviewByIDResponse, error)
+	GetOrderRequirementsByID(ctx context.Context, in *GetOrderRequirementsByIDRequest, opts ...grpc.CallOption) (*GetOrderRequirementsByIDResponse, error)
 	MarkPaymentPending(ctx context.Context, in *MarkPaymentPendingRequest, opts ...grpc.CallOption) (*MarkPaymentPendingResponse, error)
 	MarkOrderFunded(ctx context.Context, in *MarkOrderFundedRequest, opts ...grpc.CallOption) (*MarkOrderFundedResponse, error)
 	MarkPaymentFailed(ctx context.Context, in *MarkPaymentFailedRequest, opts ...grpc.CallOption) (*MarkPaymentFailedResponse, error)
@@ -126,6 +128,16 @@ func (c *orderWriteServiceClient) GetOrderPreviewByID(ctx context.Context, in *G
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetOrderPreviewByIDResponse)
 	err := c.cc.Invoke(ctx, OrderWriteService_GetOrderPreviewByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderWriteServiceClient) GetOrderRequirementsByID(ctx context.Context, in *GetOrderRequirementsByIDRequest, opts ...grpc.CallOption) (*GetOrderRequirementsByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOrderRequirementsByIDResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_GetOrderRequirementsByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -244,6 +256,7 @@ type OrderWriteServiceServer interface {
 	AttachFileToOrder(context.Context, *AttachFileToOrderRequest) (*AttachFileToOrderResponse, error)
 	GetOrderPaymentSnapshot(context.Context, *GetOrderPaymentSnapshotRequest) (*GetOrderPaymentSnapshotResponse, error)
 	GetOrderPreviewByID(context.Context, *GetOrderPreviewByIDRequest) (*GetOrderPreviewByIDResponse, error)
+	GetOrderRequirementsByID(context.Context, *GetOrderRequirementsByIDRequest) (*GetOrderRequirementsByIDResponse, error)
 	MarkPaymentPending(context.Context, *MarkPaymentPendingRequest) (*MarkPaymentPendingResponse, error)
 	MarkOrderFunded(context.Context, *MarkOrderFundedRequest) (*MarkOrderFundedResponse, error)
 	MarkPaymentFailed(context.Context, *MarkPaymentFailedRequest) (*MarkPaymentFailedResponse, error)
@@ -280,6 +293,9 @@ func (UnimplementedOrderWriteServiceServer) GetOrderPaymentSnapshot(context.Cont
 }
 func (UnimplementedOrderWriteServiceServer) GetOrderPreviewByID(context.Context, *GetOrderPreviewByIDRequest) (*GetOrderPreviewByIDResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetOrderPreviewByID not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) GetOrderRequirementsByID(context.Context, *GetOrderRequirementsByIDRequest) (*GetOrderRequirementsByIDResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetOrderRequirementsByID not implemented")
 }
 func (UnimplementedOrderWriteServiceServer) MarkPaymentPending(context.Context, *MarkPaymentPendingRequest) (*MarkPaymentPendingResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method MarkPaymentPending not implemented")
@@ -435,6 +451,24 @@ func _OrderWriteService_GetOrderPreviewByID_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OrderWriteServiceServer).GetOrderPreviewByID(ctx, req.(*GetOrderPreviewByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderWriteService_GetOrderRequirementsByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderRequirementsByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).GetOrderRequirementsByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_GetOrderRequirementsByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).GetOrderRequirementsByID(ctx, req.(*GetOrderRequirementsByIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -649,6 +683,10 @@ var OrderWriteService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrderPreviewByID",
 			Handler:    _OrderWriteService_GetOrderPreviewByID_Handler,
+		},
+		{
+			MethodName: "GetOrderRequirementsByID",
+			Handler:    _OrderWriteService_GetOrderRequirementsByID_Handler,
 		},
 		{
 			MethodName: "MarkPaymentPending",
