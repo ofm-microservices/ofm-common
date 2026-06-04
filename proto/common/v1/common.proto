@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+// Package common.v1 defines reusable cross-service proto types.
+package common.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/common/v1;commonv1";
+
+// ParticipantRole is a shared view-role enum reused by user-scoped resources.
+enum ParticipantRole {
+  PARTICIPANT_ROLE_UNSPECIFIED = 0;
+  PARTICIPANT_ROLE_BUYER = 1;
+  PARTICIPANT_ROLE_SELLER = 2;
+}

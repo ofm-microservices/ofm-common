@@ -63,3 +63,10 @@ message PaymentCompensationCommand {
   string reason = 4;
   string occurred_at = 5;
 }
+
+// PaymentProjectionRequest asks payment-service to rebuild the Redis order
+// payment projection from canonical YugabyteDB data.
+message PaymentProjectionRequest {
+  string order_id = 1;
+  string requested_at = 2;
+}
