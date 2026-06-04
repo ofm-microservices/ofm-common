@@ -6,6 +6,8 @@ package orderwrite.v1;
 
 option go_package = "github.com/ofm-microservices/ofm-common/proto/orderwrite/v1;orderwritev1";
 
+import "common/v1/common.proto";
+
 // OrderWriteService owns the authoritative order persistence boundary.
 service OrderWriteService {
   rpc CreateDraftOrder(CreateDraftOrderRequest) returns (CreateDraftOrderResponse);
@@ -13,6 +15,7 @@ service OrderWriteService {
   rpc SaveBuyerInitialMessage(SaveBuyerInitialMessageRequest) returns (SaveBuyerInitialMessageResponse);
   rpc AttachFileToOrder(AttachFileToOrderRequest) returns (AttachFileToOrderResponse);
   rpc GetOrderPaymentSnapshot(GetOrderPaymentSnapshotRequest) returns (GetOrderPaymentSnapshotResponse);
+  rpc GetOrderPreviewByID(GetOrderPreviewByIDRequest) returns (GetOrderPreviewByIDResponse);
   rpc MarkPaymentPending(MarkPaymentPendingRequest) returns (MarkPaymentPendingResponse);
   rpc MarkOrderFunded(MarkOrderFundedRequest) returns (MarkOrderFundedResponse);
   rpc MarkPaymentFailed(MarkPaymentFailedRequest) returns (MarkPaymentFailedResponse);
@@ -52,6 +55,32 @@ message OrderSnapshot {
   int32 revision_count_used = 24;
   string buyer_response_deadline = 25;
   string payment_release_id = 26;
+}
+
+message OrderPreview {
+  string order_id = 1;
+  string created_at = 2;
+  string status = 3;
+}
+
+message OrderGigSnapshot {
+  string gig_id = 1;
+  string title = 2;
+  string picture_file_id = 3;
+  string picture_url = 4;
+  string package_id = 5;
+  string package_title = 6;
+  int64 price_cents = 7;
+  string currency = 8;
+  string description = 9;
+  int32 package_delivery_days = 10;
+}
+
+message OrderUserSnapshot {
+  string user_id = 1;
+  string username = 2;
+  string display_name = 3;
+  string avatar_url = 4;
 }
 
 message OrderQuestionOption {
@@ -100,6 +129,7 @@ message CreateDraftOrderRequest {
   repeated OrderQuestionSnapshot questions = 15;
   string idempotency_key = 16;
   string requested_at = 17;
+  string picture_file_id = 18;
 }
 
 message CreateDraftOrderResponse {
@@ -152,6 +182,19 @@ message GetOrderPaymentSnapshotRequest {
 
 message GetOrderPaymentSnapshotResponse {
   OrderSnapshot order = 1;
+}
+
+message GetOrderPreviewByIDRequest {
+  string order_id = 1;
+  string user_id = 2;
+  common.v1.ParticipantRole role = 3;
+}
+
+message GetOrderPreviewByIDResponse {
+  OrderPreview order = 1;
+  OrderGigSnapshot gig = 2;
+  OrderUserSnapshot customer = 3;
+  OrderUserSnapshot freelancer = 4;
 }
 
 message MarkPaymentPendingRequest {

@@ -153,6 +153,7 @@ message OrderStartSnapshot {
   bool gig_published = 12;
   bool package_available = 13;
   repeated GigQuestion questions = 14;
+  string picture_file_id = 15;
 }
 
 message GetOrderStartSnapshotRequest {

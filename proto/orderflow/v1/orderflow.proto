@@ -43,6 +43,7 @@ message OrderCreateCommand {
   string currency = 13;
   string idempotency_key = 14;
   string requested_at = 15;
+  string picture_file_id = 16;
 }
 
 // OrderSnapshot carries the immutable business fields the order-service owns.
