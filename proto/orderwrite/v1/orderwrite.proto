@@ -16,6 +16,7 @@ service OrderWriteService {
   rpc AttachFileToOrder(AttachFileToOrderRequest) returns (AttachFileToOrderResponse);
   rpc GetOrderPaymentSnapshot(GetOrderPaymentSnapshotRequest) returns (GetOrderPaymentSnapshotResponse);
   rpc GetOrderPreviewByID(GetOrderPreviewByIDRequest) returns (GetOrderPreviewByIDResponse);
+  rpc GetOrderRequirementsByID(GetOrderRequirementsByIDRequest) returns (GetOrderRequirementsByIDResponse);
   rpc MarkPaymentPending(MarkPaymentPendingRequest) returns (MarkPaymentPendingResponse);
   rpc MarkOrderFunded(MarkOrderFundedRequest) returns (MarkOrderFundedResponse);
   rpc MarkPaymentFailed(MarkPaymentFailedRequest) returns (MarkPaymentFailedResponse);
@@ -197,6 +198,39 @@ message GetOrderPreviewByIDResponse {
   OrderGigSnapshot gig = 2;
   OrderUserSnapshot customer = 3;
   OrderUserSnapshot freelancer = 4;
+}
+
+message OrderRequirementQuestion {
+  string question_id = 1;
+  string text = 2;
+  string type = 3;
+  bool required = 4;
+  int32 sort_order = 5;
+}
+
+message OrderRequirementAnswer {
+  string value = 1;
+}
+
+message OrderRequirementQuestionAnswer {
+  OrderRequirementQuestion question = 1;
+  OrderRequirementAnswer answer = 2;
+}
+
+message OrderRequirementCustomerMessage {
+  string message = 1;
+  string created_at = 2;
+  string updated_at = 3;
+}
+
+message GetOrderRequirementsByIDRequest {
+  string order_id = 1;
+  string user_id = 2;
+}
+
+message GetOrderRequirementsByIDResponse {
+  repeated OrderRequirementQuestionAnswer questions_answers = 1;
+  OrderRequirementCustomerMessage customer_message = 2;
 }
 
 message MarkPaymentPendingRequest {
