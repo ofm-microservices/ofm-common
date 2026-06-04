@@ -1969,6 +1969,230 @@ func (x *GetOrderRequirementsByIDResponse) GetCustomerMessage() *OrderRequiremen
 	return nil
 }
 
+type OrderDelivery struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	DeliveryMessage string                 `protobuf:"bytes,1,opt,name=delivery_message,json=deliveryMessage,proto3" json:"delivery_message,omitempty"`
+	CreatedAt       string                 `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *OrderDelivery) Reset() {
+	*x = OrderDelivery{}
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OrderDelivery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OrderDelivery) ProtoMessage() {}
+
+func (x *OrderDelivery) ProtoReflect() protoreflect.Message {
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OrderDelivery.ProtoReflect.Descriptor instead.
+func (*OrderDelivery) Descriptor() ([]byte, []int) {
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *OrderDelivery) GetDeliveryMessage() string {
+	if x != nil {
+		return x.DeliveryMessage
+	}
+	return ""
+}
+
+func (x *OrderDelivery) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+type OrderDeliveryFile struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FileId        string                 `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	FileUrl       string                 `protobuf:"bytes,2,opt,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty"`
+	SortOrder     int32                  `protobuf:"varint,3,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OrderDeliveryFile) Reset() {
+	*x = OrderDeliveryFile{}
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OrderDeliveryFile) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OrderDeliveryFile) ProtoMessage() {}
+
+func (x *OrderDeliveryFile) ProtoReflect() protoreflect.Message {
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OrderDeliveryFile.ProtoReflect.Descriptor instead.
+func (*OrderDeliveryFile) Descriptor() ([]byte, []int) {
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *OrderDeliveryFile) GetFileId() string {
+	if x != nil {
+		return x.FileId
+	}
+	return ""
+}
+
+func (x *OrderDeliveryFile) GetFileUrl() string {
+	if x != nil {
+		return x.FileUrl
+	}
+	return ""
+}
+
+func (x *OrderDeliveryFile) GetSortOrder() int32 {
+	if x != nil {
+		return x.SortOrder
+	}
+	return 0
+}
+
+func (x *OrderDeliveryFile) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+type GetOrderDeliveryByIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetOrderDeliveryByIDRequest) Reset() {
+	*x = GetOrderDeliveryByIDRequest{}
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetOrderDeliveryByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrderDeliveryByIDRequest) ProtoMessage() {}
+
+func (x *GetOrderDeliveryByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrderDeliveryByIDRequest.ProtoReflect.Descriptor instead.
+func (*GetOrderDeliveryByIDRequest) Descriptor() ([]byte, []int) {
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *GetOrderDeliveryByIDRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *GetOrderDeliveryByIDRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetOrderDeliveryByIDResponse struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	OrderDelivery      *OrderDelivery         `protobuf:"bytes,1,opt,name=order_delivery,json=orderDelivery,proto3" json:"order_delivery,omitempty"`
+	OrderDeliveryFiles []*OrderDeliveryFile   `protobuf:"bytes,2,rep,name=order_delivery_files,json=orderDeliveryFiles,proto3" json:"order_delivery_files,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *GetOrderDeliveryByIDResponse) Reset() {
+	*x = GetOrderDeliveryByIDResponse{}
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetOrderDeliveryByIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrderDeliveryByIDResponse) ProtoMessage() {}
+
+func (x *GetOrderDeliveryByIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrderDeliveryByIDResponse.ProtoReflect.Descriptor instead.
+func (*GetOrderDeliveryByIDResponse) Descriptor() ([]byte, []int) {
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *GetOrderDeliveryByIDResponse) GetOrderDelivery() *OrderDelivery {
+	if x != nil {
+		return x.OrderDelivery
+	}
+	return nil
+}
+
+func (x *GetOrderDeliveryByIDResponse) GetOrderDeliveryFiles() []*OrderDeliveryFile {
+	if x != nil {
+		return x.OrderDeliveryFiles
+	}
+	return nil
+}
+
 type MarkPaymentPendingRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
@@ -1981,7 +2205,7 @@ type MarkPaymentPendingRequest struct {
 
 func (x *MarkPaymentPendingRequest) Reset() {
 	*x = MarkPaymentPendingRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[26]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1993,7 +2217,7 @@ func (x *MarkPaymentPendingRequest) String() string {
 func (*MarkPaymentPendingRequest) ProtoMessage() {}
 
 func (x *MarkPaymentPendingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[26]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2006,7 +2230,7 @@ func (x *MarkPaymentPendingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkPaymentPendingRequest.ProtoReflect.Descriptor instead.
 func (*MarkPaymentPendingRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{26}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *MarkPaymentPendingRequest) GetOrderId() string {
@@ -2046,7 +2270,7 @@ type MarkPaymentPendingResponse struct {
 
 func (x *MarkPaymentPendingResponse) Reset() {
 	*x = MarkPaymentPendingResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[27]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2058,7 +2282,7 @@ func (x *MarkPaymentPendingResponse) String() string {
 func (*MarkPaymentPendingResponse) ProtoMessage() {}
 
 func (x *MarkPaymentPendingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[27]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2071,7 +2295,7 @@ func (x *MarkPaymentPendingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkPaymentPendingResponse.ProtoReflect.Descriptor instead.
 func (*MarkPaymentPendingResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{27}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *MarkPaymentPendingResponse) GetOrder() *OrderSnapshot {
@@ -2092,7 +2316,7 @@ type MarkOrderFundedRequest struct {
 
 func (x *MarkOrderFundedRequest) Reset() {
 	*x = MarkOrderFundedRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[28]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2104,7 +2328,7 @@ func (x *MarkOrderFundedRequest) String() string {
 func (*MarkOrderFundedRequest) ProtoMessage() {}
 
 func (x *MarkOrderFundedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[28]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2117,7 +2341,7 @@ func (x *MarkOrderFundedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkOrderFundedRequest.ProtoReflect.Descriptor instead.
 func (*MarkOrderFundedRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{28}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *MarkOrderFundedRequest) GetOrderId() string {
@@ -2150,7 +2374,7 @@ type MarkOrderFundedResponse struct {
 
 func (x *MarkOrderFundedResponse) Reset() {
 	*x = MarkOrderFundedResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[29]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2162,7 +2386,7 @@ func (x *MarkOrderFundedResponse) String() string {
 func (*MarkOrderFundedResponse) ProtoMessage() {}
 
 func (x *MarkOrderFundedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[29]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2175,7 +2399,7 @@ func (x *MarkOrderFundedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkOrderFundedResponse.ProtoReflect.Descriptor instead.
 func (*MarkOrderFundedResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{29}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *MarkOrderFundedResponse) GetOrder() *OrderSnapshot {
@@ -2197,7 +2421,7 @@ type MarkPaymentFailedRequest struct {
 
 func (x *MarkPaymentFailedRequest) Reset() {
 	*x = MarkPaymentFailedRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[30]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2209,7 +2433,7 @@ func (x *MarkPaymentFailedRequest) String() string {
 func (*MarkPaymentFailedRequest) ProtoMessage() {}
 
 func (x *MarkPaymentFailedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[30]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2222,7 +2446,7 @@ func (x *MarkPaymentFailedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkPaymentFailedRequest.ProtoReflect.Descriptor instead.
 func (*MarkPaymentFailedRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{30}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *MarkPaymentFailedRequest) GetOrderId() string {
@@ -2262,7 +2486,7 @@ type MarkPaymentFailedResponse struct {
 
 func (x *MarkPaymentFailedResponse) Reset() {
 	*x = MarkPaymentFailedResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[31]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2274,7 +2498,7 @@ func (x *MarkPaymentFailedResponse) String() string {
 func (*MarkPaymentFailedResponse) ProtoMessage() {}
 
 func (x *MarkPaymentFailedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[31]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2287,7 +2511,7 @@ func (x *MarkPaymentFailedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkPaymentFailedResponse.ProtoReflect.Descriptor instead.
 func (*MarkPaymentFailedResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{31}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *MarkPaymentFailedResponse) GetOrder() *OrderSnapshot {
@@ -2306,7 +2530,7 @@ type GetOrderLifecycleSnapshotRequest struct {
 
 func (x *GetOrderLifecycleSnapshotRequest) Reset() {
 	*x = GetOrderLifecycleSnapshotRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[32]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2318,7 +2542,7 @@ func (x *GetOrderLifecycleSnapshotRequest) String() string {
 func (*GetOrderLifecycleSnapshotRequest) ProtoMessage() {}
 
 func (x *GetOrderLifecycleSnapshotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[32]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2331,7 +2555,7 @@ func (x *GetOrderLifecycleSnapshotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOrderLifecycleSnapshotRequest.ProtoReflect.Descriptor instead.
 func (*GetOrderLifecycleSnapshotRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{32}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *GetOrderLifecycleSnapshotRequest) GetOrderId() string {
@@ -2350,7 +2574,7 @@ type GetOrderLifecycleSnapshotResponse struct {
 
 func (x *GetOrderLifecycleSnapshotResponse) Reset() {
 	*x = GetOrderLifecycleSnapshotResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[33]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2362,7 +2586,7 @@ func (x *GetOrderLifecycleSnapshotResponse) String() string {
 func (*GetOrderLifecycleSnapshotResponse) ProtoMessage() {}
 
 func (x *GetOrderLifecycleSnapshotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[33]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2375,7 +2599,7 @@ func (x *GetOrderLifecycleSnapshotResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetOrderLifecycleSnapshotResponse.ProtoReflect.Descriptor instead.
 func (*GetOrderLifecycleSnapshotResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{33}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *GetOrderLifecycleSnapshotResponse) GetOrder() *OrderSnapshot {
@@ -2398,7 +2622,7 @@ type SaveDeliveryRequest struct {
 
 func (x *SaveDeliveryRequest) Reset() {
 	*x = SaveDeliveryRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[34]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2410,7 +2634,7 @@ func (x *SaveDeliveryRequest) String() string {
 func (*SaveDeliveryRequest) ProtoMessage() {}
 
 func (x *SaveDeliveryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[34]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2423,7 +2647,7 @@ func (x *SaveDeliveryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveDeliveryRequest.ProtoReflect.Descriptor instead.
 func (*SaveDeliveryRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{34}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *SaveDeliveryRequest) GetOrderId() string {
@@ -2470,7 +2694,7 @@ type SaveDeliveryResponse struct {
 
 func (x *SaveDeliveryResponse) Reset() {
 	*x = SaveDeliveryResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[35]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2482,7 +2706,7 @@ func (x *SaveDeliveryResponse) String() string {
 func (*SaveDeliveryResponse) ProtoMessage() {}
 
 func (x *SaveDeliveryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[35]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2495,7 +2719,7 @@ func (x *SaveDeliveryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveDeliveryResponse.ProtoReflect.Descriptor instead.
 func (*SaveDeliveryResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{35}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *SaveDeliveryResponse) GetOrder() *OrderSnapshot {
@@ -2516,7 +2740,7 @@ type MarkReleasePendingRequest struct {
 
 func (x *MarkReleasePendingRequest) Reset() {
 	*x = MarkReleasePendingRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[36]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2528,7 +2752,7 @@ func (x *MarkReleasePendingRequest) String() string {
 func (*MarkReleasePendingRequest) ProtoMessage() {}
 
 func (x *MarkReleasePendingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[36]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2541,7 +2765,7 @@ func (x *MarkReleasePendingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkReleasePendingRequest.ProtoReflect.Descriptor instead.
 func (*MarkReleasePendingRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{36}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *MarkReleasePendingRequest) GetOrderId() string {
@@ -2574,7 +2798,7 @@ type MarkReleasePendingResponse struct {
 
 func (x *MarkReleasePendingResponse) Reset() {
 	*x = MarkReleasePendingResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[37]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2586,7 +2810,7 @@ func (x *MarkReleasePendingResponse) String() string {
 func (*MarkReleasePendingResponse) ProtoMessage() {}
 
 func (x *MarkReleasePendingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[37]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2599,7 +2823,7 @@ func (x *MarkReleasePendingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkReleasePendingResponse.ProtoReflect.Descriptor instead.
 func (*MarkReleasePendingResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{37}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *MarkReleasePendingResponse) GetOrder() *OrderSnapshot {
@@ -2621,7 +2845,7 @@ type RequestRevisionRequest struct {
 
 func (x *RequestRevisionRequest) Reset() {
 	*x = RequestRevisionRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[38]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2633,7 +2857,7 @@ func (x *RequestRevisionRequest) String() string {
 func (*RequestRevisionRequest) ProtoMessage() {}
 
 func (x *RequestRevisionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[38]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2646,7 +2870,7 @@ func (x *RequestRevisionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RequestRevisionRequest.ProtoReflect.Descriptor instead.
 func (*RequestRevisionRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{38}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *RequestRevisionRequest) GetOrderId() string {
@@ -2686,7 +2910,7 @@ type RequestRevisionResponse struct {
 
 func (x *RequestRevisionResponse) Reset() {
 	*x = RequestRevisionResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[39]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2698,7 +2922,7 @@ func (x *RequestRevisionResponse) String() string {
 func (*RequestRevisionResponse) ProtoMessage() {}
 
 func (x *RequestRevisionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[39]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2711,7 +2935,7 @@ func (x *RequestRevisionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RequestRevisionResponse.ProtoReflect.Descriptor instead.
 func (*RequestRevisionResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{39}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *RequestRevisionResponse) GetOrder() *OrderSnapshot {
@@ -2733,7 +2957,7 @@ type OpenDisputeRequest struct {
 
 func (x *OpenDisputeRequest) Reset() {
 	*x = OpenDisputeRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[40]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2745,7 +2969,7 @@ func (x *OpenDisputeRequest) String() string {
 func (*OpenDisputeRequest) ProtoMessage() {}
 
 func (x *OpenDisputeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[40]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2758,7 +2982,7 @@ func (x *OpenDisputeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OpenDisputeRequest.ProtoReflect.Descriptor instead.
 func (*OpenDisputeRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{40}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *OpenDisputeRequest) GetOrderId() string {
@@ -2798,7 +3022,7 @@ type OpenDisputeResponse struct {
 
 func (x *OpenDisputeResponse) Reset() {
 	*x = OpenDisputeResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[41]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2810,7 +3034,7 @@ func (x *OpenDisputeResponse) String() string {
 func (*OpenDisputeResponse) ProtoMessage() {}
 
 func (x *OpenDisputeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[41]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2823,7 +3047,7 @@ func (x *OpenDisputeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OpenDisputeResponse.ProtoReflect.Descriptor instead.
 func (*OpenDisputeResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{41}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *OpenDisputeResponse) GetOrder() *OrderSnapshot {
@@ -2844,7 +3068,7 @@ type MarkOrderCompletedRequest struct {
 
 func (x *MarkOrderCompletedRequest) Reset() {
 	*x = MarkOrderCompletedRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[42]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2856,7 +3080,7 @@ func (x *MarkOrderCompletedRequest) String() string {
 func (*MarkOrderCompletedRequest) ProtoMessage() {}
 
 func (x *MarkOrderCompletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[42]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2869,7 +3093,7 @@ func (x *MarkOrderCompletedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkOrderCompletedRequest.ProtoReflect.Descriptor instead.
 func (*MarkOrderCompletedRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{42}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *MarkOrderCompletedRequest) GetOrderId() string {
@@ -2902,7 +3126,7 @@ type MarkOrderCompletedResponse struct {
 
 func (x *MarkOrderCompletedResponse) Reset() {
 	*x = MarkOrderCompletedResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[43]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2914,7 +3138,7 @@ func (x *MarkOrderCompletedResponse) String() string {
 func (*MarkOrderCompletedResponse) ProtoMessage() {}
 
 func (x *MarkOrderCompletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[43]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2927,7 +3151,7 @@ func (x *MarkOrderCompletedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkOrderCompletedResponse.ProtoReflect.Descriptor instead.
 func (*MarkOrderCompletedResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{43}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *MarkOrderCompletedResponse) GetOrder() *OrderSnapshot {
@@ -2948,7 +3172,7 @@ type MarkReleaseFailedRequest struct {
 
 func (x *MarkReleaseFailedRequest) Reset() {
 	*x = MarkReleaseFailedRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[44]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2960,7 +3184,7 @@ func (x *MarkReleaseFailedRequest) String() string {
 func (*MarkReleaseFailedRequest) ProtoMessage() {}
 
 func (x *MarkReleaseFailedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[44]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2973,7 +3197,7 @@ func (x *MarkReleaseFailedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkReleaseFailedRequest.ProtoReflect.Descriptor instead.
 func (*MarkReleaseFailedRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{44}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *MarkReleaseFailedRequest) GetOrderId() string {
@@ -3006,7 +3230,7 @@ type MarkReleaseFailedResponse struct {
 
 func (x *MarkReleaseFailedResponse) Reset() {
 	*x = MarkReleaseFailedResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[45]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3018,7 +3242,7 @@ func (x *MarkReleaseFailedResponse) String() string {
 func (*MarkReleaseFailedResponse) ProtoMessage() {}
 
 func (x *MarkReleaseFailedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[45]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3031,7 +3255,7 @@ func (x *MarkReleaseFailedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkReleaseFailedResponse.ProtoReflect.Descriptor instead.
 func (*MarkReleaseFailedResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{45}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *MarkReleaseFailedResponse) GetOrder() *OrderSnapshot {
@@ -3223,7 +3447,24 @@ const file_orderwrite_v1_orderwrite_proto_rawDesc = "" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xd9\x01\n" +
 	" GetOrderRequirementsByIDResponse\x12Z\n" +
 	"\x11questions_answers\x18\x01 \x03(\v2-.orderwrite.v1.OrderRequirementQuestionAnswerR\x10questionsAnswers\x12Y\n" +
-	"\x10customer_message\x18\x02 \x01(\v2..orderwrite.v1.OrderRequirementCustomerMessageR\x0fcustomerMessage\"\x9b\x01\n" +
+	"\x10customer_message\x18\x02 \x01(\v2..orderwrite.v1.OrderRequirementCustomerMessageR\x0fcustomerMessage\"Y\n" +
+	"\rOrderDelivery\x12)\n" +
+	"\x10delivery_message\x18\x01 \x01(\tR\x0fdeliveryMessage\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x02 \x01(\tR\tcreatedAt\"\x85\x01\n" +
+	"\x11OrderDeliveryFile\x12\x17\n" +
+	"\afile_id\x18\x01 \x01(\tR\x06fileId\x12\x19\n" +
+	"\bfile_url\x18\x02 \x01(\tR\afileUrl\x12\x1d\n" +
+	"\n" +
+	"sort_order\x18\x03 \x01(\x05R\tsortOrder\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x04 \x01(\tR\tcreatedAt\"Q\n" +
+	"\x1bGetOrderDeliveryByIDRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xb7\x01\n" +
+	"\x1cGetOrderDeliveryByIDResponse\x12C\n" +
+	"\x0eorder_delivery\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderDeliveryR\rorderDelivery\x12R\n" +
+	"\x14order_delivery_files\x18\x02 \x03(\v2 .orderwrite.v1.OrderDeliveryFileR\x12orderDeliveryFiles\"\x9b\x01\n" +
 	"\x19MarkPaymentPendingRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x1d\n" +
 	"\n" +
@@ -3290,7 +3531,7 @@ const file_orderwrite_v1_orderwrite_proto_rawDesc = "" +
 	"\x06reason\x18\x02 \x01(\tR\x06reason\x12!\n" +
 	"\frequested_at\x18\x03 \x01(\tR\vrequestedAt\"O\n" +
 	"\x19MarkReleaseFailedResponse\x122\n" +
-	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order2\xba\x0e\n" +
+	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order2\xab\x0f\n" +
 	"\x11OrderWriteService\x12c\n" +
 	"\x10CreateDraftOrder\x12&.orderwrite.v1.CreateDraftOrderRequest\x1a'.orderwrite.v1.CreateDraftOrderResponse\x12u\n" +
 	"\x16SaveRequirementAnswers\x12,.orderwrite.v1.SaveRequirementAnswersRequest\x1a-.orderwrite.v1.SaveRequirementAnswersResponse\x12x\n" +
@@ -3298,7 +3539,8 @@ const file_orderwrite_v1_orderwrite_proto_rawDesc = "" +
 	"\x11AttachFileToOrder\x12'.orderwrite.v1.AttachFileToOrderRequest\x1a(.orderwrite.v1.AttachFileToOrderResponse\x12x\n" +
 	"\x17GetOrderPaymentSnapshot\x12-.orderwrite.v1.GetOrderPaymentSnapshotRequest\x1a..orderwrite.v1.GetOrderPaymentSnapshotResponse\x12l\n" +
 	"\x13GetOrderPreviewByID\x12).orderwrite.v1.GetOrderPreviewByIDRequest\x1a*.orderwrite.v1.GetOrderPreviewByIDResponse\x12{\n" +
-	"\x18GetOrderRequirementsByID\x12..orderwrite.v1.GetOrderRequirementsByIDRequest\x1a/.orderwrite.v1.GetOrderRequirementsByIDResponse\x12i\n" +
+	"\x18GetOrderRequirementsByID\x12..orderwrite.v1.GetOrderRequirementsByIDRequest\x1a/.orderwrite.v1.GetOrderRequirementsByIDResponse\x12o\n" +
+	"\x14GetOrderDeliveryByID\x12*.orderwrite.v1.GetOrderDeliveryByIDRequest\x1a+.orderwrite.v1.GetOrderDeliveryByIDResponse\x12i\n" +
 	"\x12MarkPaymentPending\x12(.orderwrite.v1.MarkPaymentPendingRequest\x1a).orderwrite.v1.MarkPaymentPendingResponse\x12`\n" +
 	"\x0fMarkOrderFunded\x12%.orderwrite.v1.MarkOrderFundedRequest\x1a&.orderwrite.v1.MarkOrderFundedResponse\x12f\n" +
 	"\x11MarkPaymentFailed\x12'.orderwrite.v1.MarkPaymentFailedRequest\x1a(.orderwrite.v1.MarkPaymentFailedResponse\x12~\n" +
@@ -3322,7 +3564,7 @@ func file_orderwrite_v1_orderwrite_proto_rawDescGZIP() []byte {
 	return file_orderwrite_v1_orderwrite_proto_rawDescData
 }
 
-var file_orderwrite_v1_orderwrite_proto_msgTypes = make([]protoimpl.MessageInfo, 46)
+var file_orderwrite_v1_orderwrite_proto_msgTypes = make([]protoimpl.MessageInfo, 50)
 var file_orderwrite_v1_orderwrite_proto_goTypes = []any{
 	(*OrderSnapshot)(nil),                     // 0: orderwrite.v1.OrderSnapshot
 	(*OrderPreview)(nil),                      // 1: orderwrite.v1.OrderPreview
@@ -3350,27 +3592,31 @@ var file_orderwrite_v1_orderwrite_proto_goTypes = []any{
 	(*OrderRequirementCustomerMessage)(nil),   // 23: orderwrite.v1.OrderRequirementCustomerMessage
 	(*GetOrderRequirementsByIDRequest)(nil),   // 24: orderwrite.v1.GetOrderRequirementsByIDRequest
 	(*GetOrderRequirementsByIDResponse)(nil),  // 25: orderwrite.v1.GetOrderRequirementsByIDResponse
-	(*MarkPaymentPendingRequest)(nil),         // 26: orderwrite.v1.MarkPaymentPendingRequest
-	(*MarkPaymentPendingResponse)(nil),        // 27: orderwrite.v1.MarkPaymentPendingResponse
-	(*MarkOrderFundedRequest)(nil),            // 28: orderwrite.v1.MarkOrderFundedRequest
-	(*MarkOrderFundedResponse)(nil),           // 29: orderwrite.v1.MarkOrderFundedResponse
-	(*MarkPaymentFailedRequest)(nil),          // 30: orderwrite.v1.MarkPaymentFailedRequest
-	(*MarkPaymentFailedResponse)(nil),         // 31: orderwrite.v1.MarkPaymentFailedResponse
-	(*GetOrderLifecycleSnapshotRequest)(nil),  // 32: orderwrite.v1.GetOrderLifecycleSnapshotRequest
-	(*GetOrderLifecycleSnapshotResponse)(nil), // 33: orderwrite.v1.GetOrderLifecycleSnapshotResponse
-	(*SaveDeliveryRequest)(nil),               // 34: orderwrite.v1.SaveDeliveryRequest
-	(*SaveDeliveryResponse)(nil),              // 35: orderwrite.v1.SaveDeliveryResponse
-	(*MarkReleasePendingRequest)(nil),         // 36: orderwrite.v1.MarkReleasePendingRequest
-	(*MarkReleasePendingResponse)(nil),        // 37: orderwrite.v1.MarkReleasePendingResponse
-	(*RequestRevisionRequest)(nil),            // 38: orderwrite.v1.RequestRevisionRequest
-	(*RequestRevisionResponse)(nil),           // 39: orderwrite.v1.RequestRevisionResponse
-	(*OpenDisputeRequest)(nil),                // 40: orderwrite.v1.OpenDisputeRequest
-	(*OpenDisputeResponse)(nil),               // 41: orderwrite.v1.OpenDisputeResponse
-	(*MarkOrderCompletedRequest)(nil),         // 42: orderwrite.v1.MarkOrderCompletedRequest
-	(*MarkOrderCompletedResponse)(nil),        // 43: orderwrite.v1.MarkOrderCompletedResponse
-	(*MarkReleaseFailedRequest)(nil),          // 44: orderwrite.v1.MarkReleaseFailedRequest
-	(*MarkReleaseFailedResponse)(nil),         // 45: orderwrite.v1.MarkReleaseFailedResponse
-	(v1.ParticipantRole)(0),                   // 46: common.v1.ParticipantRole
+	(*OrderDelivery)(nil),                     // 26: orderwrite.v1.OrderDelivery
+	(*OrderDeliveryFile)(nil),                 // 27: orderwrite.v1.OrderDeliveryFile
+	(*GetOrderDeliveryByIDRequest)(nil),       // 28: orderwrite.v1.GetOrderDeliveryByIDRequest
+	(*GetOrderDeliveryByIDResponse)(nil),      // 29: orderwrite.v1.GetOrderDeliveryByIDResponse
+	(*MarkPaymentPendingRequest)(nil),         // 30: orderwrite.v1.MarkPaymentPendingRequest
+	(*MarkPaymentPendingResponse)(nil),        // 31: orderwrite.v1.MarkPaymentPendingResponse
+	(*MarkOrderFundedRequest)(nil),            // 32: orderwrite.v1.MarkOrderFundedRequest
+	(*MarkOrderFundedResponse)(nil),           // 33: orderwrite.v1.MarkOrderFundedResponse
+	(*MarkPaymentFailedRequest)(nil),          // 34: orderwrite.v1.MarkPaymentFailedRequest
+	(*MarkPaymentFailedResponse)(nil),         // 35: orderwrite.v1.MarkPaymentFailedResponse
+	(*GetOrderLifecycleSnapshotRequest)(nil),  // 36: orderwrite.v1.GetOrderLifecycleSnapshotRequest
+	(*GetOrderLifecycleSnapshotResponse)(nil), // 37: orderwrite.v1.GetOrderLifecycleSnapshotResponse
+	(*SaveDeliveryRequest)(nil),               // 38: orderwrite.v1.SaveDeliveryRequest
+	(*SaveDeliveryResponse)(nil),              // 39: orderwrite.v1.SaveDeliveryResponse
+	(*MarkReleasePendingRequest)(nil),         // 40: orderwrite.v1.MarkReleasePendingRequest
+	(*MarkReleasePendingResponse)(nil),        // 41: orderwrite.v1.MarkReleasePendingResponse
+	(*RequestRevisionRequest)(nil),            // 42: orderwrite.v1.RequestRevisionRequest
+	(*RequestRevisionResponse)(nil),           // 43: orderwrite.v1.RequestRevisionResponse
+	(*OpenDisputeRequest)(nil),                // 44: orderwrite.v1.OpenDisputeRequest
+	(*OpenDisputeResponse)(nil),               // 45: orderwrite.v1.OpenDisputeResponse
+	(*MarkOrderCompletedRequest)(nil),         // 46: orderwrite.v1.MarkOrderCompletedRequest
+	(*MarkOrderCompletedResponse)(nil),        // 47: orderwrite.v1.MarkOrderCompletedResponse
+	(*MarkReleaseFailedRequest)(nil),          // 48: orderwrite.v1.MarkReleaseFailedRequest
+	(*MarkReleaseFailedResponse)(nil),         // 49: orderwrite.v1.MarkReleaseFailedResponse
+	(v1.ParticipantRole)(0),                   // 50: common.v1.ParticipantRole
 }
 var file_orderwrite_v1_orderwrite_proto_depIdxs = []int32{
 	4,  // 0: orderwrite.v1.OrderQuestionSnapshot.options:type_name -> orderwrite.v1.OrderQuestionOption
@@ -3383,7 +3629,7 @@ var file_orderwrite_v1_orderwrite_proto_depIdxs = []int32{
 	0,  // 7: orderwrite.v1.AttachFileToOrderResponse.order:type_name -> orderwrite.v1.OrderSnapshot
 	7,  // 8: orderwrite.v1.AttachFileToOrderResponse.attachment:type_name -> orderwrite.v1.AttachmentSnapshot
 	0,  // 9: orderwrite.v1.GetOrderPaymentSnapshotResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	46, // 10: orderwrite.v1.GetOrderPreviewByIDRequest.role:type_name -> common.v1.ParticipantRole
+	50, // 10: orderwrite.v1.GetOrderPreviewByIDRequest.role:type_name -> common.v1.ParticipantRole
 	1,  // 11: orderwrite.v1.GetOrderPreviewByIDResponse.order:type_name -> orderwrite.v1.OrderPreview
 	2,  // 12: orderwrite.v1.GetOrderPreviewByIDResponse.gig:type_name -> orderwrite.v1.OrderGigSnapshot
 	3,  // 13: orderwrite.v1.GetOrderPreviewByIDResponse.customer:type_name -> orderwrite.v1.OrderUserSnapshot
@@ -3392,55 +3638,59 @@ var file_orderwrite_v1_orderwrite_proto_depIdxs = []int32{
 	21, // 16: orderwrite.v1.OrderRequirementQuestionAnswer.answer:type_name -> orderwrite.v1.OrderRequirementAnswer
 	22, // 17: orderwrite.v1.GetOrderRequirementsByIDResponse.questions_answers:type_name -> orderwrite.v1.OrderRequirementQuestionAnswer
 	23, // 18: orderwrite.v1.GetOrderRequirementsByIDResponse.customer_message:type_name -> orderwrite.v1.OrderRequirementCustomerMessage
-	0,  // 19: orderwrite.v1.MarkPaymentPendingResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 20: orderwrite.v1.MarkOrderFundedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 21: orderwrite.v1.MarkPaymentFailedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 22: orderwrite.v1.GetOrderLifecycleSnapshotResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 23: orderwrite.v1.SaveDeliveryResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 24: orderwrite.v1.MarkReleasePendingResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 25: orderwrite.v1.RequestRevisionResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 26: orderwrite.v1.OpenDisputeResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 27: orderwrite.v1.MarkOrderCompletedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 28: orderwrite.v1.MarkReleaseFailedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	8,  // 29: orderwrite.v1.OrderWriteService.CreateDraftOrder:input_type -> orderwrite.v1.CreateDraftOrderRequest
-	10, // 30: orderwrite.v1.OrderWriteService.SaveRequirementAnswers:input_type -> orderwrite.v1.SaveRequirementAnswersRequest
-	12, // 31: orderwrite.v1.OrderWriteService.SaveBuyerInitialMessage:input_type -> orderwrite.v1.SaveBuyerInitialMessageRequest
-	14, // 32: orderwrite.v1.OrderWriteService.AttachFileToOrder:input_type -> orderwrite.v1.AttachFileToOrderRequest
-	16, // 33: orderwrite.v1.OrderWriteService.GetOrderPaymentSnapshot:input_type -> orderwrite.v1.GetOrderPaymentSnapshotRequest
-	18, // 34: orderwrite.v1.OrderWriteService.GetOrderPreviewByID:input_type -> orderwrite.v1.GetOrderPreviewByIDRequest
-	24, // 35: orderwrite.v1.OrderWriteService.GetOrderRequirementsByID:input_type -> orderwrite.v1.GetOrderRequirementsByIDRequest
-	26, // 36: orderwrite.v1.OrderWriteService.MarkPaymentPending:input_type -> orderwrite.v1.MarkPaymentPendingRequest
-	28, // 37: orderwrite.v1.OrderWriteService.MarkOrderFunded:input_type -> orderwrite.v1.MarkOrderFundedRequest
-	30, // 38: orderwrite.v1.OrderWriteService.MarkPaymentFailed:input_type -> orderwrite.v1.MarkPaymentFailedRequest
-	32, // 39: orderwrite.v1.OrderWriteService.GetOrderLifecycleSnapshot:input_type -> orderwrite.v1.GetOrderLifecycleSnapshotRequest
-	34, // 40: orderwrite.v1.OrderWriteService.SaveDelivery:input_type -> orderwrite.v1.SaveDeliveryRequest
-	36, // 41: orderwrite.v1.OrderWriteService.MarkReleasePending:input_type -> orderwrite.v1.MarkReleasePendingRequest
-	38, // 42: orderwrite.v1.OrderWriteService.RequestRevision:input_type -> orderwrite.v1.RequestRevisionRequest
-	40, // 43: orderwrite.v1.OrderWriteService.OpenDispute:input_type -> orderwrite.v1.OpenDisputeRequest
-	42, // 44: orderwrite.v1.OrderWriteService.MarkOrderCompleted:input_type -> orderwrite.v1.MarkOrderCompletedRequest
-	44, // 45: orderwrite.v1.OrderWriteService.MarkReleaseFailed:input_type -> orderwrite.v1.MarkReleaseFailedRequest
-	9,  // 46: orderwrite.v1.OrderWriteService.CreateDraftOrder:output_type -> orderwrite.v1.CreateDraftOrderResponse
-	11, // 47: orderwrite.v1.OrderWriteService.SaveRequirementAnswers:output_type -> orderwrite.v1.SaveRequirementAnswersResponse
-	13, // 48: orderwrite.v1.OrderWriteService.SaveBuyerInitialMessage:output_type -> orderwrite.v1.SaveBuyerInitialMessageResponse
-	15, // 49: orderwrite.v1.OrderWriteService.AttachFileToOrder:output_type -> orderwrite.v1.AttachFileToOrderResponse
-	17, // 50: orderwrite.v1.OrderWriteService.GetOrderPaymentSnapshot:output_type -> orderwrite.v1.GetOrderPaymentSnapshotResponse
-	19, // 51: orderwrite.v1.OrderWriteService.GetOrderPreviewByID:output_type -> orderwrite.v1.GetOrderPreviewByIDResponse
-	25, // 52: orderwrite.v1.OrderWriteService.GetOrderRequirementsByID:output_type -> orderwrite.v1.GetOrderRequirementsByIDResponse
-	27, // 53: orderwrite.v1.OrderWriteService.MarkPaymentPending:output_type -> orderwrite.v1.MarkPaymentPendingResponse
-	29, // 54: orderwrite.v1.OrderWriteService.MarkOrderFunded:output_type -> orderwrite.v1.MarkOrderFundedResponse
-	31, // 55: orderwrite.v1.OrderWriteService.MarkPaymentFailed:output_type -> orderwrite.v1.MarkPaymentFailedResponse
-	33, // 56: orderwrite.v1.OrderWriteService.GetOrderLifecycleSnapshot:output_type -> orderwrite.v1.GetOrderLifecycleSnapshotResponse
-	35, // 57: orderwrite.v1.OrderWriteService.SaveDelivery:output_type -> orderwrite.v1.SaveDeliveryResponse
-	37, // 58: orderwrite.v1.OrderWriteService.MarkReleasePending:output_type -> orderwrite.v1.MarkReleasePendingResponse
-	39, // 59: orderwrite.v1.OrderWriteService.RequestRevision:output_type -> orderwrite.v1.RequestRevisionResponse
-	41, // 60: orderwrite.v1.OrderWriteService.OpenDispute:output_type -> orderwrite.v1.OpenDisputeResponse
-	43, // 61: orderwrite.v1.OrderWriteService.MarkOrderCompleted:output_type -> orderwrite.v1.MarkOrderCompletedResponse
-	45, // 62: orderwrite.v1.OrderWriteService.MarkReleaseFailed:output_type -> orderwrite.v1.MarkReleaseFailedResponse
-	46, // [46:63] is the sub-list for method output_type
-	29, // [29:46] is the sub-list for method input_type
-	29, // [29:29] is the sub-list for extension type_name
-	29, // [29:29] is the sub-list for extension extendee
-	0,  // [0:29] is the sub-list for field type_name
+	26, // 19: orderwrite.v1.GetOrderDeliveryByIDResponse.order_delivery:type_name -> orderwrite.v1.OrderDelivery
+	27, // 20: orderwrite.v1.GetOrderDeliveryByIDResponse.order_delivery_files:type_name -> orderwrite.v1.OrderDeliveryFile
+	0,  // 21: orderwrite.v1.MarkPaymentPendingResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 22: orderwrite.v1.MarkOrderFundedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 23: orderwrite.v1.MarkPaymentFailedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 24: orderwrite.v1.GetOrderLifecycleSnapshotResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 25: orderwrite.v1.SaveDeliveryResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 26: orderwrite.v1.MarkReleasePendingResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 27: orderwrite.v1.RequestRevisionResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 28: orderwrite.v1.OpenDisputeResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 29: orderwrite.v1.MarkOrderCompletedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 30: orderwrite.v1.MarkReleaseFailedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	8,  // 31: orderwrite.v1.OrderWriteService.CreateDraftOrder:input_type -> orderwrite.v1.CreateDraftOrderRequest
+	10, // 32: orderwrite.v1.OrderWriteService.SaveRequirementAnswers:input_type -> orderwrite.v1.SaveRequirementAnswersRequest
+	12, // 33: orderwrite.v1.OrderWriteService.SaveBuyerInitialMessage:input_type -> orderwrite.v1.SaveBuyerInitialMessageRequest
+	14, // 34: orderwrite.v1.OrderWriteService.AttachFileToOrder:input_type -> orderwrite.v1.AttachFileToOrderRequest
+	16, // 35: orderwrite.v1.OrderWriteService.GetOrderPaymentSnapshot:input_type -> orderwrite.v1.GetOrderPaymentSnapshotRequest
+	18, // 36: orderwrite.v1.OrderWriteService.GetOrderPreviewByID:input_type -> orderwrite.v1.GetOrderPreviewByIDRequest
+	24, // 37: orderwrite.v1.OrderWriteService.GetOrderRequirementsByID:input_type -> orderwrite.v1.GetOrderRequirementsByIDRequest
+	28, // 38: orderwrite.v1.OrderWriteService.GetOrderDeliveryByID:input_type -> orderwrite.v1.GetOrderDeliveryByIDRequest
+	30, // 39: orderwrite.v1.OrderWriteService.MarkPaymentPending:input_type -> orderwrite.v1.MarkPaymentPendingRequest
+	32, // 40: orderwrite.v1.OrderWriteService.MarkOrderFunded:input_type -> orderwrite.v1.MarkOrderFundedRequest
+	34, // 41: orderwrite.v1.OrderWriteService.MarkPaymentFailed:input_type -> orderwrite.v1.MarkPaymentFailedRequest
+	36, // 42: orderwrite.v1.OrderWriteService.GetOrderLifecycleSnapshot:input_type -> orderwrite.v1.GetOrderLifecycleSnapshotRequest
+	38, // 43: orderwrite.v1.OrderWriteService.SaveDelivery:input_type -> orderwrite.v1.SaveDeliveryRequest
+	40, // 44: orderwrite.v1.OrderWriteService.MarkReleasePending:input_type -> orderwrite.v1.MarkReleasePendingRequest
+	42, // 45: orderwrite.v1.OrderWriteService.RequestRevision:input_type -> orderwrite.v1.RequestRevisionRequest
+	44, // 46: orderwrite.v1.OrderWriteService.OpenDispute:input_type -> orderwrite.v1.OpenDisputeRequest
+	46, // 47: orderwrite.v1.OrderWriteService.MarkOrderCompleted:input_type -> orderwrite.v1.MarkOrderCompletedRequest
+	48, // 48: orderwrite.v1.OrderWriteService.MarkReleaseFailed:input_type -> orderwrite.v1.MarkReleaseFailedRequest
+	9,  // 49: orderwrite.v1.OrderWriteService.CreateDraftOrder:output_type -> orderwrite.v1.CreateDraftOrderResponse
+	11, // 50: orderwrite.v1.OrderWriteService.SaveRequirementAnswers:output_type -> orderwrite.v1.SaveRequirementAnswersResponse
+	13, // 51: orderwrite.v1.OrderWriteService.SaveBuyerInitialMessage:output_type -> orderwrite.v1.SaveBuyerInitialMessageResponse
+	15, // 52: orderwrite.v1.OrderWriteService.AttachFileToOrder:output_type -> orderwrite.v1.AttachFileToOrderResponse
+	17, // 53: orderwrite.v1.OrderWriteService.GetOrderPaymentSnapshot:output_type -> orderwrite.v1.GetOrderPaymentSnapshotResponse
+	19, // 54: orderwrite.v1.OrderWriteService.GetOrderPreviewByID:output_type -> orderwrite.v1.GetOrderPreviewByIDResponse
+	25, // 55: orderwrite.v1.OrderWriteService.GetOrderRequirementsByID:output_type -> orderwrite.v1.GetOrderRequirementsByIDResponse
+	29, // 56: orderwrite.v1.OrderWriteService.GetOrderDeliveryByID:output_type -> orderwrite.v1.GetOrderDeliveryByIDResponse
+	31, // 57: orderwrite.v1.OrderWriteService.MarkPaymentPending:output_type -> orderwrite.v1.MarkPaymentPendingResponse
+	33, // 58: orderwrite.v1.OrderWriteService.MarkOrderFunded:output_type -> orderwrite.v1.MarkOrderFundedResponse
+	35, // 59: orderwrite.v1.OrderWriteService.MarkPaymentFailed:output_type -> orderwrite.v1.MarkPaymentFailedResponse
+	37, // 60: orderwrite.v1.OrderWriteService.GetOrderLifecycleSnapshot:output_type -> orderwrite.v1.GetOrderLifecycleSnapshotResponse
+	39, // 61: orderwrite.v1.OrderWriteService.SaveDelivery:output_type -> orderwrite.v1.SaveDeliveryResponse
+	41, // 62: orderwrite.v1.OrderWriteService.MarkReleasePending:output_type -> orderwrite.v1.MarkReleasePendingResponse
+	43, // 63: orderwrite.v1.OrderWriteService.RequestRevision:output_type -> orderwrite.v1.RequestRevisionResponse
+	45, // 64: orderwrite.v1.OrderWriteService.OpenDispute:output_type -> orderwrite.v1.OpenDisputeResponse
+	47, // 65: orderwrite.v1.OrderWriteService.MarkOrderCompleted:output_type -> orderwrite.v1.MarkOrderCompletedResponse
+	49, // 66: orderwrite.v1.OrderWriteService.MarkReleaseFailed:output_type -> orderwrite.v1.MarkReleaseFailedResponse
+	49, // [49:67] is the sub-list for method output_type
+	31, // [31:49] is the sub-list for method input_type
+	31, // [31:31] is the sub-list for extension type_name
+	31, // [31:31] is the sub-list for extension extendee
+	0,  // [0:31] is the sub-list for field type_name
 }
 
 func init() { file_orderwrite_v1_orderwrite_proto_init() }
@@ -3454,7 +3704,7 @@ func file_orderwrite_v1_orderwrite_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_orderwrite_v1_orderwrite_proto_rawDesc), len(file_orderwrite_v1_orderwrite_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   46,
+			NumMessages:   50,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
