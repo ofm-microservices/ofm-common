@@ -31,6 +31,7 @@ const (
 	GigCommandService_GetOrderStartSnapshot_FullMethodName              = "/gig.v1.GigCommandService/GetOrderStartSnapshot"
 	GigCommandService_GetGigBySlug_FullMethodName                       = "/gig.v1.GigCommandService/GetGigBySlug"
 	GigCommandService_GetPreviewGigsByFreelancerUsername_FullMethodName = "/gig.v1.GigCommandService/GetPreviewGigsByFreelancerUsername"
+	GigCommandService_GetMyGigs_FullMethodName                          = "/gig.v1.GigCommandService/GetMyGigs"
 	GigCommandService_Publish_FullMethodName                            = "/gig.v1.GigCommandService/Publish"
 )
 
@@ -49,6 +50,7 @@ type GigCommandServiceClient interface {
 	GetOrderStartSnapshot(ctx context.Context, in *GetOrderStartSnapshotRequest, opts ...grpc.CallOption) (*GetOrderStartSnapshotResponse, error)
 	GetGigBySlug(ctx context.Context, in *GetGigBySlugRequest, opts ...grpc.CallOption) (*GetGigBySlugResponse, error)
 	GetPreviewGigsByFreelancerUsername(ctx context.Context, in *GetPreviewGigsByFreelancerUsernameRequest, opts ...grpc.CallOption) (*GetPreviewGigsByFreelancerUsernameResponse, error)
+	GetMyGigs(ctx context.Context, in *GetMyGigsRequest, opts ...grpc.CallOption) (*GetMyGigsResponse, error)
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 }
 
@@ -150,6 +152,16 @@ func (c *gigCommandServiceClient) GetPreviewGigsByFreelancerUsername(ctx context
 	return out, nil
 }
 
+func (c *gigCommandServiceClient) GetMyGigs(ctx context.Context, in *GetMyGigsRequest, opts ...grpc.CallOption) (*GetMyGigsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMyGigsResponse)
+	err := c.cc.Invoke(ctx, GigCommandService_GetMyGigs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gigCommandServiceClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PublishResponse)
@@ -175,6 +187,7 @@ type GigCommandServiceServer interface {
 	GetOrderStartSnapshot(context.Context, *GetOrderStartSnapshotRequest) (*GetOrderStartSnapshotResponse, error)
 	GetGigBySlug(context.Context, *GetGigBySlugRequest) (*GetGigBySlugResponse, error)
 	GetPreviewGigsByFreelancerUsername(context.Context, *GetPreviewGigsByFreelancerUsernameRequest) (*GetPreviewGigsByFreelancerUsernameResponse, error)
+	GetMyGigs(context.Context, *GetMyGigsRequest) (*GetMyGigsResponse, error)
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 }
 
@@ -211,6 +224,9 @@ func (UnimplementedGigCommandServiceServer) GetGigBySlug(context.Context, *GetGi
 }
 func (UnimplementedGigCommandServiceServer) GetPreviewGigsByFreelancerUsername(context.Context, *GetPreviewGigsByFreelancerUsernameRequest) (*GetPreviewGigsByFreelancerUsernameResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPreviewGigsByFreelancerUsername not implemented")
+}
+func (UnimplementedGigCommandServiceServer) GetMyGigs(context.Context, *GetMyGigsRequest) (*GetMyGigsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMyGigs not implemented")
 }
 func (UnimplementedGigCommandServiceServer) Publish(context.Context, *PublishRequest) (*PublishResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Publish not implemented")
@@ -397,6 +413,24 @@ func _GigCommandService_GetPreviewGigsByFreelancerUsername_Handler(srv interface
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GigCommandService_GetMyGigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMyGigsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GigCommandServiceServer).GetMyGigs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GigCommandService_GetMyGigs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GigCommandServiceServer).GetMyGigs(ctx, req.(*GetMyGigsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GigCommandService_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PublishRequest)
 	if err := dec(in); err != nil {
@@ -457,6 +491,10 @@ var GigCommandService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPreviewGigsByFreelancerUsername",
 			Handler:    _GigCommandService_GetPreviewGigsByFreelancerUsername_Handler,
+		},
+		{
+			MethodName: "GetMyGigs",
+			Handler:    _GigCommandService_GetMyGigs_Handler,
 		},
 		{
 			MethodName: "Publish",
