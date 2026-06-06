@@ -30,6 +30,7 @@ const (
 	OrderWriteService_GetOrderPreviewByID_FullMethodName       = "/orderwrite.v1.OrderWriteService/GetOrderPreviewByID"
 	OrderWriteService_GetOrderRequirementsByID_FullMethodName  = "/orderwrite.v1.OrderWriteService/GetOrderRequirementsByID"
 	OrderWriteService_GetOrderDeliveryByID_FullMethodName      = "/orderwrite.v1.OrderWriteService/GetOrderDeliveryByID"
+	OrderWriteService_GetOrderCountByGigID_FullMethodName      = "/orderwrite.v1.OrderWriteService/GetOrderCountByGigID"
 	OrderWriteService_MarkPaymentPending_FullMethodName        = "/orderwrite.v1.OrderWriteService/MarkPaymentPending"
 	OrderWriteService_MarkOrderFunded_FullMethodName           = "/orderwrite.v1.OrderWriteService/MarkOrderFunded"
 	OrderWriteService_MarkPaymentFailed_FullMethodName         = "/orderwrite.v1.OrderWriteService/MarkPaymentFailed"
@@ -56,6 +57,7 @@ type OrderWriteServiceClient interface {
 	GetOrderPreviewByID(ctx context.Context, in *GetOrderPreviewByIDRequest, opts ...grpc.CallOption) (*GetOrderPreviewByIDResponse, error)
 	GetOrderRequirementsByID(ctx context.Context, in *GetOrderRequirementsByIDRequest, opts ...grpc.CallOption) (*GetOrderRequirementsByIDResponse, error)
 	GetOrderDeliveryByID(ctx context.Context, in *GetOrderDeliveryByIDRequest, opts ...grpc.CallOption) (*GetOrderDeliveryByIDResponse, error)
+	GetOrderCountByGigID(ctx context.Context, in *GetOrderCountByGigIDRequest, opts ...grpc.CallOption) (*GetOrderCountByGigIDResponse, error)
 	MarkPaymentPending(ctx context.Context, in *MarkPaymentPendingRequest, opts ...grpc.CallOption) (*MarkPaymentPendingResponse, error)
 	MarkOrderFunded(ctx context.Context, in *MarkOrderFundedRequest, opts ...grpc.CallOption) (*MarkOrderFundedResponse, error)
 	MarkPaymentFailed(ctx context.Context, in *MarkPaymentFailedRequest, opts ...grpc.CallOption) (*MarkPaymentFailedResponse, error)
@@ -150,6 +152,16 @@ func (c *orderWriteServiceClient) GetOrderDeliveryByID(ctx context.Context, in *
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetOrderDeliveryByIDResponse)
 	err := c.cc.Invoke(ctx, OrderWriteService_GetOrderDeliveryByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderWriteServiceClient) GetOrderCountByGigID(ctx context.Context, in *GetOrderCountByGigIDRequest, opts ...grpc.CallOption) (*GetOrderCountByGigIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOrderCountByGigIDResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_GetOrderCountByGigID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -270,6 +282,7 @@ type OrderWriteServiceServer interface {
 	GetOrderPreviewByID(context.Context, *GetOrderPreviewByIDRequest) (*GetOrderPreviewByIDResponse, error)
 	GetOrderRequirementsByID(context.Context, *GetOrderRequirementsByIDRequest) (*GetOrderRequirementsByIDResponse, error)
 	GetOrderDeliveryByID(context.Context, *GetOrderDeliveryByIDRequest) (*GetOrderDeliveryByIDResponse, error)
+	GetOrderCountByGigID(context.Context, *GetOrderCountByGigIDRequest) (*GetOrderCountByGigIDResponse, error)
 	MarkPaymentPending(context.Context, *MarkPaymentPendingRequest) (*MarkPaymentPendingResponse, error)
 	MarkOrderFunded(context.Context, *MarkOrderFundedRequest) (*MarkOrderFundedResponse, error)
 	MarkPaymentFailed(context.Context, *MarkPaymentFailedRequest) (*MarkPaymentFailedResponse, error)
@@ -312,6 +325,9 @@ func (UnimplementedOrderWriteServiceServer) GetOrderRequirementsByID(context.Con
 }
 func (UnimplementedOrderWriteServiceServer) GetOrderDeliveryByID(context.Context, *GetOrderDeliveryByIDRequest) (*GetOrderDeliveryByIDResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetOrderDeliveryByID not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) GetOrderCountByGigID(context.Context, *GetOrderCountByGigIDRequest) (*GetOrderCountByGigIDResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetOrderCountByGigID not implemented")
 }
 func (UnimplementedOrderWriteServiceServer) MarkPaymentPending(context.Context, *MarkPaymentPendingRequest) (*MarkPaymentPendingResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method MarkPaymentPending not implemented")
@@ -503,6 +519,24 @@ func _OrderWriteService_GetOrderDeliveryByID_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OrderWriteServiceServer).GetOrderDeliveryByID(ctx, req.(*GetOrderDeliveryByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderWriteService_GetOrderCountByGigID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderCountByGigIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).GetOrderCountByGigID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_GetOrderCountByGigID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).GetOrderCountByGigID(ctx, req.(*GetOrderCountByGigIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -725,6 +759,10 @@ var OrderWriteService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrderDeliveryByID",
 			Handler:    _OrderWriteService_GetOrderDeliveryByID_Handler,
+		},
+		{
+			MethodName: "GetOrderCountByGigID",
+			Handler:    _OrderWriteService_GetOrderCountByGigID_Handler,
 		},
 		{
 			MethodName: "MarkPaymentPending",

@@ -17,6 +17,7 @@ service GigCommandService {
   rpc GetOrderStartSnapshot(GetOrderStartSnapshotRequest) returns (GetOrderStartSnapshotResponse);
   rpc GetGigBySlug(GetGigBySlugRequest) returns (GetGigBySlugResponse);
   rpc GetPreviewGigsByFreelancerUsername(GetPreviewGigsByFreelancerUsernameRequest) returns (GetPreviewGigsByFreelancerUsernameResponse);
+  rpc GetMyGigs(GetMyGigsRequest) returns (GetMyGigsResponse);
   rpc Publish(PublishRequest) returns (PublishResponse);
 }
 
@@ -175,7 +176,8 @@ message GetGigBySlugResponse {
 
 message GetPreviewGigsByFreelancerUsernameRequest {
   string username = 1;
-  string cursor = 2;
+  int32 page = 2;
+  int32 limit = 3;
 }
 
 message GigPreview {
@@ -186,12 +188,35 @@ message GigPreview {
   int64 minimum_price_cents = 5;
   string picture_url = 6;
   string created_at = 7;
+  string status = 8;
+  string published_at = 9;
+  string updated_at = 10;
+  double rating_avg = 11;
+  int64 total_reviews = 12;
+  int64 order_count = 13;
 }
 
 message GetPreviewGigsByFreelancerUsernameResponse {
   repeated GigPreview gigs = 1;
-  string cursor = 2;
-  bool has_more = 3;
+  int32 page = 2;
+  int32 limit = 3;
+  int32 total_pages = 4;
+}
+
+message GetMyGigsRequest {
+  string user_id = 1;
+  string status = 2;
+  string sort = 3;
+  string order = 4;
+  int32 page = 5;
+  int32 limit = 6;
+}
+
+message GetMyGigsResponse {
+  repeated GigPreview gigs = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  int32 total_pages = 4;
 }
 
 message PublishRequest {

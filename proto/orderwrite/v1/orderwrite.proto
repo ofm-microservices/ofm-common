@@ -18,6 +18,7 @@ service OrderWriteService {
   rpc GetOrderPreviewByID(GetOrderPreviewByIDRequest) returns (GetOrderPreviewByIDResponse);
   rpc GetOrderRequirementsByID(GetOrderRequirementsByIDRequest) returns (GetOrderRequirementsByIDResponse);
   rpc GetOrderDeliveryByID(GetOrderDeliveryByIDRequest) returns (GetOrderDeliveryByIDResponse);
+  rpc GetOrderCountByGigID(GetOrderCountByGigIDRequest) returns (GetOrderCountByGigIDResponse);
   rpc MarkPaymentPending(MarkPaymentPendingRequest) returns (MarkPaymentPendingResponse);
   rpc MarkOrderFunded(MarkOrderFundedRequest) returns (MarkOrderFundedResponse);
   rpc MarkPaymentFailed(MarkPaymentFailedRequest) returns (MarkPaymentFailedResponse);
@@ -254,6 +255,15 @@ message GetOrderDeliveryByIDRequest {
 message GetOrderDeliveryByIDResponse {
   OrderDelivery order_delivery = 1;
   repeated OrderDeliveryFile order_delivery_files = 2;
+}
+
+message GetOrderCountByGigIDRequest {
+  string gig_id = 1;
+}
+
+message GetOrderCountByGigIDResponse {
+  string gig_id = 1;
+  int64 order_count = 2;
 }
 
 message MarkPaymentPendingRequest {

@@ -70,10 +70,11 @@ message OrderSnapshot {
 message OrderSagaResult {
   string saga_id = 1;
   string order_id = 2;
-  string status = 3;
-  string error = 4;
-  string operation = 5;
-  string occurred_at = 6;
+  string gig_id = 3;
+  string status = 4;
+  string error = 5;
+  string operation = 6;
+  string occurred_at = 7;
 }
 
 // OrderConfirmedEvent is emitted once payment is captured and the order is

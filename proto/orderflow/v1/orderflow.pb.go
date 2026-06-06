@@ -510,10 +510,11 @@ type OrderSagaResult struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SagaId        string                 `protobuf:"bytes,1,opt,name=saga_id,json=sagaId,proto3" json:"saga_id,omitempty"`
 	OrderId       string                 `protobuf:"bytes,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	Status        string                 `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
-	Error         string                 `protobuf:"bytes,4,opt,name=error,proto3" json:"error,omitempty"`
-	Operation     string                 `protobuf:"bytes,5,opt,name=operation,proto3" json:"operation,omitempty"`
-	OccurredAt    string                 `protobuf:"bytes,6,opt,name=occurred_at,json=occurredAt,proto3" json:"occurred_at,omitempty"`
+	GigId         string                 `protobuf:"bytes,3,opt,name=gig_id,json=gigId,proto3" json:"gig_id,omitempty"`
+	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	Error         string                 `protobuf:"bytes,5,opt,name=error,proto3" json:"error,omitempty"`
+	Operation     string                 `protobuf:"bytes,6,opt,name=operation,proto3" json:"operation,omitempty"`
+	OccurredAt    string                 `protobuf:"bytes,7,opt,name=occurred_at,json=occurredAt,proto3" json:"occurred_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -558,6 +559,13 @@ func (x *OrderSagaResult) GetSagaId() string {
 func (x *OrderSagaResult) GetOrderId() string {
 	if x != nil {
 		return x.OrderId
+	}
+	return ""
+}
+
+func (x *OrderSagaResult) GetGigId() string {
+	if x != nil {
+		return x.GigId
 	}
 	return ""
 }
@@ -872,14 +880,15 @@ const file_orderflow_v1_orderflow_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x0f \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x10 \x01(\tR\tupdatedAt\"\xb2\x01\n" +
+	"updated_at\x18\x10 \x01(\tR\tupdatedAt\"\xc9\x01\n" +
 	"\x0fOrderSagaResult\x12\x17\n" +
 	"\asaga_id\x18\x01 \x01(\tR\x06sagaId\x12\x19\n" +
-	"\border_id\x18\x02 \x01(\tR\aorderId\x12\x16\n" +
-	"\x06status\x18\x03 \x01(\tR\x06status\x12\x14\n" +
-	"\x05error\x18\x04 \x01(\tR\x05error\x12\x1c\n" +
-	"\toperation\x18\x05 \x01(\tR\toperation\x12\x1f\n" +
-	"\voccurred_at\x18\x06 \x01(\tR\n" +
+	"\border_id\x18\x02 \x01(\tR\aorderId\x12\x15\n" +
+	"\x06gig_id\x18\x03 \x01(\tR\x05gigId\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x12\x14\n" +
+	"\x05error\x18\x05 \x01(\tR\x05error\x12\x1c\n" +
+	"\toperation\x18\x06 \x01(\tR\toperation\x12\x1f\n" +
+	"\voccurred_at\x18\a \x01(\tR\n" +
 	"occurredAt\"\xb9\x01\n" +
 	"\x13OrderConfirmedEvent\x12\x17\n" +
 	"\asaga_id\x18\x01 \x01(\tR\x06sagaId\x12\x19\n" +
