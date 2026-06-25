@@ -40,6 +40,7 @@ const (
 	OrderWriteService_RequestRevision_FullMethodName           = "/orderwrite.v1.OrderWriteService/RequestRevision"
 	OrderWriteService_OpenDispute_FullMethodName               = "/orderwrite.v1.OrderWriteService/OpenDispute"
 	OrderWriteService_MarkOrderCompleted_FullMethodName        = "/orderwrite.v1.OrderWriteService/MarkOrderCompleted"
+	OrderWriteService_MarkDisputeResolved_FullMethodName       = "/orderwrite.v1.OrderWriteService/MarkDisputeResolved"
 	OrderWriteService_MarkReleaseFailed_FullMethodName         = "/orderwrite.v1.OrderWriteService/MarkReleaseFailed"
 )
 
@@ -67,6 +68,7 @@ type OrderWriteServiceClient interface {
 	RequestRevision(ctx context.Context, in *RequestRevisionRequest, opts ...grpc.CallOption) (*RequestRevisionResponse, error)
 	OpenDispute(ctx context.Context, in *OpenDisputeRequest, opts ...grpc.CallOption) (*OpenDisputeResponse, error)
 	MarkOrderCompleted(ctx context.Context, in *MarkOrderCompletedRequest, opts ...grpc.CallOption) (*MarkOrderCompletedResponse, error)
+	MarkDisputeResolved(ctx context.Context, in *MarkDisputeResolvedRequest, opts ...grpc.CallOption) (*MarkDisputeResolvedResponse, error)
 	MarkReleaseFailed(ctx context.Context, in *MarkReleaseFailedRequest, opts ...grpc.CallOption) (*MarkReleaseFailedResponse, error)
 }
 
@@ -258,6 +260,16 @@ func (c *orderWriteServiceClient) MarkOrderCompleted(ctx context.Context, in *Ma
 	return out, nil
 }
 
+func (c *orderWriteServiceClient) MarkDisputeResolved(ctx context.Context, in *MarkDisputeResolvedRequest, opts ...grpc.CallOption) (*MarkDisputeResolvedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MarkDisputeResolvedResponse)
+	err := c.cc.Invoke(ctx, OrderWriteService_MarkDisputeResolved_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *orderWriteServiceClient) MarkReleaseFailed(ctx context.Context, in *MarkReleaseFailedRequest, opts ...grpc.CallOption) (*MarkReleaseFailedResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MarkReleaseFailedResponse)
@@ -292,6 +304,7 @@ type OrderWriteServiceServer interface {
 	RequestRevision(context.Context, *RequestRevisionRequest) (*RequestRevisionResponse, error)
 	OpenDispute(context.Context, *OpenDisputeRequest) (*OpenDisputeResponse, error)
 	MarkOrderCompleted(context.Context, *MarkOrderCompletedRequest) (*MarkOrderCompletedResponse, error)
+	MarkDisputeResolved(context.Context, *MarkDisputeResolvedRequest) (*MarkDisputeResolvedResponse, error)
 	MarkReleaseFailed(context.Context, *MarkReleaseFailedRequest) (*MarkReleaseFailedResponse, error)
 }
 
@@ -355,6 +368,9 @@ func (UnimplementedOrderWriteServiceServer) OpenDispute(context.Context, *OpenDi
 }
 func (UnimplementedOrderWriteServiceServer) MarkOrderCompleted(context.Context, *MarkOrderCompletedRequest) (*MarkOrderCompletedResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method MarkOrderCompleted not implemented")
+}
+func (UnimplementedOrderWriteServiceServer) MarkDisputeResolved(context.Context, *MarkDisputeResolvedRequest) (*MarkDisputeResolvedResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method MarkDisputeResolved not implemented")
 }
 func (UnimplementedOrderWriteServiceServer) MarkReleaseFailed(context.Context, *MarkReleaseFailedRequest) (*MarkReleaseFailedResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method MarkReleaseFailed not implemented")
@@ -703,6 +719,24 @@ func _OrderWriteService_MarkOrderCompleted_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderWriteService_MarkDisputeResolved_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarkDisputeResolvedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderWriteServiceServer).MarkDisputeResolved(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderWriteService_MarkDisputeResolved_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderWriteServiceServer).MarkDisputeResolved(ctx, req.(*MarkDisputeResolvedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _OrderWriteService_MarkReleaseFailed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MarkReleaseFailedRequest)
 	if err := dec(in); err != nil {
@@ -799,6 +833,10 @@ var OrderWriteService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MarkOrderCompleted",
 			Handler:    _OrderWriteService_MarkOrderCompleted_Handler,
+		},
+		{
+			MethodName: "MarkDisputeResolved",
+			Handler:    _OrderWriteService_MarkDisputeResolved_Handler,
 		},
 		{
 			MethodName: "MarkReleaseFailed",

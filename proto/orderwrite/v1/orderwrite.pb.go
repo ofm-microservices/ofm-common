@@ -3047,6 +3047,7 @@ type OpenDisputeRequest struct {
 	BuyerUserId   string                 `protobuf:"bytes,2,opt,name=buyer_user_id,json=buyerUserId,proto3" json:"buyer_user_id,omitempty"`
 	Reason        string                 `protobuf:"bytes,3,opt,name=reason,proto3" json:"reason,omitempty"`
 	RequestedAt   string                 `protobuf:"bytes,4,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	DisputeType   string                 `protobuf:"bytes,5,opt,name=dispute_type,json=disputeType,proto3" json:"dispute_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3105,6 +3106,13 @@ func (x *OpenDisputeRequest) GetReason() string {
 func (x *OpenDisputeRequest) GetRequestedAt() string {
 	if x != nil {
 		return x.RequestedAt
+	}
+	return ""
+}
+
+func (x *OpenDisputeRequest) GetDisputeType() string {
+	if x != nil {
+		return x.DisputeType
 	}
 	return ""
 }
@@ -3257,6 +3265,110 @@ func (x *MarkOrderCompletedResponse) GetOrder() *OrderSnapshot {
 	return nil
 }
 
+type MarkDisputeResolvedRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OrderId          string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	PaymentReleaseId string                 `protobuf:"bytes,2,opt,name=payment_release_id,json=paymentReleaseId,proto3" json:"payment_release_id,omitempty"`
+	RequestedAt      string                 `protobuf:"bytes,3,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *MarkDisputeResolvedRequest) Reset() {
+	*x = MarkDisputeResolvedRequest{}
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MarkDisputeResolvedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MarkDisputeResolvedRequest) ProtoMessage() {}
+
+func (x *MarkDisputeResolvedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MarkDisputeResolvedRequest.ProtoReflect.Descriptor instead.
+func (*MarkDisputeResolvedRequest) Descriptor() ([]byte, []int) {
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *MarkDisputeResolvedRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *MarkDisputeResolvedRequest) GetPaymentReleaseId() string {
+	if x != nil {
+		return x.PaymentReleaseId
+	}
+	return ""
+}
+
+func (x *MarkDisputeResolvedRequest) GetRequestedAt() string {
+	if x != nil {
+		return x.RequestedAt
+	}
+	return ""
+}
+
+type MarkDisputeResolvedResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Order         *OrderSnapshot         `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MarkDisputeResolvedResponse) Reset() {
+	*x = MarkDisputeResolvedResponse{}
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[51]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MarkDisputeResolvedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MarkDisputeResolvedResponse) ProtoMessage() {}
+
+func (x *MarkDisputeResolvedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[51]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MarkDisputeResolvedResponse.ProtoReflect.Descriptor instead.
+func (*MarkDisputeResolvedResponse) Descriptor() ([]byte, []int) {
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *MarkDisputeResolvedResponse) GetOrder() *OrderSnapshot {
+	if x != nil {
+		return x.Order
+	}
+	return nil
+}
+
 type MarkReleaseFailedRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
@@ -3268,7 +3380,7 @@ type MarkReleaseFailedRequest struct {
 
 func (x *MarkReleaseFailedRequest) Reset() {
 	*x = MarkReleaseFailedRequest{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[50]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3280,7 +3392,7 @@ func (x *MarkReleaseFailedRequest) String() string {
 func (*MarkReleaseFailedRequest) ProtoMessage() {}
 
 func (x *MarkReleaseFailedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[50]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3293,7 +3405,7 @@ func (x *MarkReleaseFailedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkReleaseFailedRequest.ProtoReflect.Descriptor instead.
 func (*MarkReleaseFailedRequest) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{50}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *MarkReleaseFailedRequest) GetOrderId() string {
@@ -3326,7 +3438,7 @@ type MarkReleaseFailedResponse struct {
 
 func (x *MarkReleaseFailedResponse) Reset() {
 	*x = MarkReleaseFailedResponse{}
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[51]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3338,7 +3450,7 @@ func (x *MarkReleaseFailedResponse) String() string {
 func (*MarkReleaseFailedResponse) ProtoMessage() {}
 
 func (x *MarkReleaseFailedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[51]
+	mi := &file_orderwrite_v1_orderwrite_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3351,7 +3463,7 @@ func (x *MarkReleaseFailedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkReleaseFailedResponse.ProtoReflect.Descriptor instead.
 func (*MarkReleaseFailedResponse) Descriptor() ([]byte, []int) {
-	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{51}
+	return file_orderwrite_v1_orderwrite_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *MarkReleaseFailedResponse) GetOrder() *OrderSnapshot {
@@ -3614,12 +3726,13 @@ const file_orderwrite_v1_orderwrite_proto_rawDesc = "" +
 	"\x06reason\x18\x03 \x01(\tR\x06reason\x12!\n" +
 	"\frequested_at\x18\x04 \x01(\tR\vrequestedAt\"M\n" +
 	"\x17RequestRevisionResponse\x122\n" +
-	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order\"\x8e\x01\n" +
+	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order\"\xb1\x01\n" +
 	"\x12OpenDisputeRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\"\n" +
 	"\rbuyer_user_id\x18\x02 \x01(\tR\vbuyerUserId\x12\x16\n" +
 	"\x06reason\x18\x03 \x01(\tR\x06reason\x12!\n" +
-	"\frequested_at\x18\x04 \x01(\tR\vrequestedAt\"I\n" +
+	"\frequested_at\x18\x04 \x01(\tR\vrequestedAt\x12!\n" +
+	"\fdispute_type\x18\x05 \x01(\tR\vdisputeType\"I\n" +
 	"\x13OpenDisputeResponse\x122\n" +
 	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order\"\x87\x01\n" +
 	"\x19MarkOrderCompletedRequest\x12\x19\n" +
@@ -3627,13 +3740,19 @@ const file_orderwrite_v1_orderwrite_proto_rawDesc = "" +
 	"\x12payment_release_id\x18\x02 \x01(\tR\x10paymentReleaseId\x12!\n" +
 	"\frequested_at\x18\x03 \x01(\tR\vrequestedAt\"P\n" +
 	"\x1aMarkOrderCompletedResponse\x122\n" +
+	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order\"\x88\x01\n" +
+	"\x1aMarkDisputeResolvedRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12,\n" +
+	"\x12payment_release_id\x18\x02 \x01(\tR\x10paymentReleaseId\x12!\n" +
+	"\frequested_at\x18\x03 \x01(\tR\vrequestedAt\"Q\n" +
+	"\x1bMarkDisputeResolvedResponse\x122\n" +
 	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order\"p\n" +
 	"\x18MarkReleaseFailedRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
 	"\x06reason\x18\x02 \x01(\tR\x06reason\x12!\n" +
 	"\frequested_at\x18\x03 \x01(\tR\vrequestedAt\"O\n" +
 	"\x19MarkReleaseFailedResponse\x122\n" +
-	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order2\x9c\x10\n" +
+	"\x05order\x18\x01 \x01(\v2\x1c.orderwrite.v1.OrderSnapshotR\x05order2\x8a\x11\n" +
 	"\x11OrderWriteService\x12c\n" +
 	"\x10CreateDraftOrder\x12&.orderwrite.v1.CreateDraftOrderRequest\x1a'.orderwrite.v1.CreateDraftOrderResponse\x12u\n" +
 	"\x16SaveRequirementAnswers\x12,.orderwrite.v1.SaveRequirementAnswersRequest\x1a-.orderwrite.v1.SaveRequirementAnswersResponse\x12x\n" +
@@ -3652,7 +3771,8 @@ const file_orderwrite_v1_orderwrite_proto_rawDesc = "" +
 	"\x12MarkReleasePending\x12(.orderwrite.v1.MarkReleasePendingRequest\x1a).orderwrite.v1.MarkReleasePendingResponse\x12`\n" +
 	"\x0fRequestRevision\x12%.orderwrite.v1.RequestRevisionRequest\x1a&.orderwrite.v1.RequestRevisionResponse\x12T\n" +
 	"\vOpenDispute\x12!.orderwrite.v1.OpenDisputeRequest\x1a\".orderwrite.v1.OpenDisputeResponse\x12i\n" +
-	"\x12MarkOrderCompleted\x12(.orderwrite.v1.MarkOrderCompletedRequest\x1a).orderwrite.v1.MarkOrderCompletedResponse\x12f\n" +
+	"\x12MarkOrderCompleted\x12(.orderwrite.v1.MarkOrderCompletedRequest\x1a).orderwrite.v1.MarkOrderCompletedResponse\x12l\n" +
+	"\x13MarkDisputeResolved\x12).orderwrite.v1.MarkDisputeResolvedRequest\x1a*.orderwrite.v1.MarkDisputeResolvedResponse\x12f\n" +
 	"\x11MarkReleaseFailed\x12'.orderwrite.v1.MarkReleaseFailedRequest\x1a(.orderwrite.v1.MarkReleaseFailedResponseBJZHgithub.com/ofm-microservices/ofm-common/proto/orderwrite/v1;orderwritev1b\x06proto3"
 
 var (
@@ -3667,7 +3787,7 @@ func file_orderwrite_v1_orderwrite_proto_rawDescGZIP() []byte {
 	return file_orderwrite_v1_orderwrite_proto_rawDescData
 }
 
-var file_orderwrite_v1_orderwrite_proto_msgTypes = make([]protoimpl.MessageInfo, 52)
+var file_orderwrite_v1_orderwrite_proto_msgTypes = make([]protoimpl.MessageInfo, 54)
 var file_orderwrite_v1_orderwrite_proto_goTypes = []any{
 	(*OrderSnapshot)(nil),                     // 0: orderwrite.v1.OrderSnapshot
 	(*OrderPreview)(nil),                      // 1: orderwrite.v1.OrderPreview
@@ -3719,9 +3839,11 @@ var file_orderwrite_v1_orderwrite_proto_goTypes = []any{
 	(*OpenDisputeResponse)(nil),               // 47: orderwrite.v1.OpenDisputeResponse
 	(*MarkOrderCompletedRequest)(nil),         // 48: orderwrite.v1.MarkOrderCompletedRequest
 	(*MarkOrderCompletedResponse)(nil),        // 49: orderwrite.v1.MarkOrderCompletedResponse
-	(*MarkReleaseFailedRequest)(nil),          // 50: orderwrite.v1.MarkReleaseFailedRequest
-	(*MarkReleaseFailedResponse)(nil),         // 51: orderwrite.v1.MarkReleaseFailedResponse
-	(v1.ParticipantRole)(0),                   // 52: common.v1.ParticipantRole
+	(*MarkDisputeResolvedRequest)(nil),        // 50: orderwrite.v1.MarkDisputeResolvedRequest
+	(*MarkDisputeResolvedResponse)(nil),       // 51: orderwrite.v1.MarkDisputeResolvedResponse
+	(*MarkReleaseFailedRequest)(nil),          // 52: orderwrite.v1.MarkReleaseFailedRequest
+	(*MarkReleaseFailedResponse)(nil),         // 53: orderwrite.v1.MarkReleaseFailedResponse
+	(v1.ParticipantRole)(0),                   // 54: common.v1.ParticipantRole
 }
 var file_orderwrite_v1_orderwrite_proto_depIdxs = []int32{
 	4,  // 0: orderwrite.v1.OrderQuestionSnapshot.options:type_name -> orderwrite.v1.OrderQuestionOption
@@ -3734,7 +3856,7 @@ var file_orderwrite_v1_orderwrite_proto_depIdxs = []int32{
 	0,  // 7: orderwrite.v1.AttachFileToOrderResponse.order:type_name -> orderwrite.v1.OrderSnapshot
 	7,  // 8: orderwrite.v1.AttachFileToOrderResponse.attachment:type_name -> orderwrite.v1.AttachmentSnapshot
 	0,  // 9: orderwrite.v1.GetOrderPaymentSnapshotResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	52, // 10: orderwrite.v1.GetOrderPreviewByIDRequest.role:type_name -> common.v1.ParticipantRole
+	54, // 10: orderwrite.v1.GetOrderPreviewByIDRequest.role:type_name -> common.v1.ParticipantRole
 	1,  // 11: orderwrite.v1.GetOrderPreviewByIDResponse.order:type_name -> orderwrite.v1.OrderPreview
 	2,  // 12: orderwrite.v1.GetOrderPreviewByIDResponse.gig:type_name -> orderwrite.v1.OrderGigSnapshot
 	3,  // 13: orderwrite.v1.GetOrderPreviewByIDResponse.customer:type_name -> orderwrite.v1.OrderUserSnapshot
@@ -3754,50 +3876,53 @@ var file_orderwrite_v1_orderwrite_proto_depIdxs = []int32{
 	0,  // 27: orderwrite.v1.RequestRevisionResponse.order:type_name -> orderwrite.v1.OrderSnapshot
 	0,  // 28: orderwrite.v1.OpenDisputeResponse.order:type_name -> orderwrite.v1.OrderSnapshot
 	0,  // 29: orderwrite.v1.MarkOrderCompletedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	0,  // 30: orderwrite.v1.MarkReleaseFailedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
-	8,  // 31: orderwrite.v1.OrderWriteService.CreateDraftOrder:input_type -> orderwrite.v1.CreateDraftOrderRequest
-	10, // 32: orderwrite.v1.OrderWriteService.SaveRequirementAnswers:input_type -> orderwrite.v1.SaveRequirementAnswersRequest
-	12, // 33: orderwrite.v1.OrderWriteService.SaveBuyerInitialMessage:input_type -> orderwrite.v1.SaveBuyerInitialMessageRequest
-	14, // 34: orderwrite.v1.OrderWriteService.AttachFileToOrder:input_type -> orderwrite.v1.AttachFileToOrderRequest
-	16, // 35: orderwrite.v1.OrderWriteService.GetOrderPaymentSnapshot:input_type -> orderwrite.v1.GetOrderPaymentSnapshotRequest
-	18, // 36: orderwrite.v1.OrderWriteService.GetOrderPreviewByID:input_type -> orderwrite.v1.GetOrderPreviewByIDRequest
-	24, // 37: orderwrite.v1.OrderWriteService.GetOrderRequirementsByID:input_type -> orderwrite.v1.GetOrderRequirementsByIDRequest
-	28, // 38: orderwrite.v1.OrderWriteService.GetOrderDeliveryByID:input_type -> orderwrite.v1.GetOrderDeliveryByIDRequest
-	30, // 39: orderwrite.v1.OrderWriteService.GetOrderCountByGigID:input_type -> orderwrite.v1.GetOrderCountByGigIDRequest
-	32, // 40: orderwrite.v1.OrderWriteService.MarkPaymentPending:input_type -> orderwrite.v1.MarkPaymentPendingRequest
-	34, // 41: orderwrite.v1.OrderWriteService.MarkOrderFunded:input_type -> orderwrite.v1.MarkOrderFundedRequest
-	36, // 42: orderwrite.v1.OrderWriteService.MarkPaymentFailed:input_type -> orderwrite.v1.MarkPaymentFailedRequest
-	38, // 43: orderwrite.v1.OrderWriteService.GetOrderLifecycleSnapshot:input_type -> orderwrite.v1.GetOrderLifecycleSnapshotRequest
-	40, // 44: orderwrite.v1.OrderWriteService.SaveDelivery:input_type -> orderwrite.v1.SaveDeliveryRequest
-	42, // 45: orderwrite.v1.OrderWriteService.MarkReleasePending:input_type -> orderwrite.v1.MarkReleasePendingRequest
-	44, // 46: orderwrite.v1.OrderWriteService.RequestRevision:input_type -> orderwrite.v1.RequestRevisionRequest
-	46, // 47: orderwrite.v1.OrderWriteService.OpenDispute:input_type -> orderwrite.v1.OpenDisputeRequest
-	48, // 48: orderwrite.v1.OrderWriteService.MarkOrderCompleted:input_type -> orderwrite.v1.MarkOrderCompletedRequest
-	50, // 49: orderwrite.v1.OrderWriteService.MarkReleaseFailed:input_type -> orderwrite.v1.MarkReleaseFailedRequest
-	9,  // 50: orderwrite.v1.OrderWriteService.CreateDraftOrder:output_type -> orderwrite.v1.CreateDraftOrderResponse
-	11, // 51: orderwrite.v1.OrderWriteService.SaveRequirementAnswers:output_type -> orderwrite.v1.SaveRequirementAnswersResponse
-	13, // 52: orderwrite.v1.OrderWriteService.SaveBuyerInitialMessage:output_type -> orderwrite.v1.SaveBuyerInitialMessageResponse
-	15, // 53: orderwrite.v1.OrderWriteService.AttachFileToOrder:output_type -> orderwrite.v1.AttachFileToOrderResponse
-	17, // 54: orderwrite.v1.OrderWriteService.GetOrderPaymentSnapshot:output_type -> orderwrite.v1.GetOrderPaymentSnapshotResponse
-	19, // 55: orderwrite.v1.OrderWriteService.GetOrderPreviewByID:output_type -> orderwrite.v1.GetOrderPreviewByIDResponse
-	25, // 56: orderwrite.v1.OrderWriteService.GetOrderRequirementsByID:output_type -> orderwrite.v1.GetOrderRequirementsByIDResponse
-	29, // 57: orderwrite.v1.OrderWriteService.GetOrderDeliveryByID:output_type -> orderwrite.v1.GetOrderDeliveryByIDResponse
-	31, // 58: orderwrite.v1.OrderWriteService.GetOrderCountByGigID:output_type -> orderwrite.v1.GetOrderCountByGigIDResponse
-	33, // 59: orderwrite.v1.OrderWriteService.MarkPaymentPending:output_type -> orderwrite.v1.MarkPaymentPendingResponse
-	35, // 60: orderwrite.v1.OrderWriteService.MarkOrderFunded:output_type -> orderwrite.v1.MarkOrderFundedResponse
-	37, // 61: orderwrite.v1.OrderWriteService.MarkPaymentFailed:output_type -> orderwrite.v1.MarkPaymentFailedResponse
-	39, // 62: orderwrite.v1.OrderWriteService.GetOrderLifecycleSnapshot:output_type -> orderwrite.v1.GetOrderLifecycleSnapshotResponse
-	41, // 63: orderwrite.v1.OrderWriteService.SaveDelivery:output_type -> orderwrite.v1.SaveDeliveryResponse
-	43, // 64: orderwrite.v1.OrderWriteService.MarkReleasePending:output_type -> orderwrite.v1.MarkReleasePendingResponse
-	45, // 65: orderwrite.v1.OrderWriteService.RequestRevision:output_type -> orderwrite.v1.RequestRevisionResponse
-	47, // 66: orderwrite.v1.OrderWriteService.OpenDispute:output_type -> orderwrite.v1.OpenDisputeResponse
-	49, // 67: orderwrite.v1.OrderWriteService.MarkOrderCompleted:output_type -> orderwrite.v1.MarkOrderCompletedResponse
-	51, // 68: orderwrite.v1.OrderWriteService.MarkReleaseFailed:output_type -> orderwrite.v1.MarkReleaseFailedResponse
-	50, // [50:69] is the sub-list for method output_type
-	31, // [31:50] is the sub-list for method input_type
-	31, // [31:31] is the sub-list for extension type_name
-	31, // [31:31] is the sub-list for extension extendee
-	0,  // [0:31] is the sub-list for field type_name
+	0,  // 30: orderwrite.v1.MarkDisputeResolvedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	0,  // 31: orderwrite.v1.MarkReleaseFailedResponse.order:type_name -> orderwrite.v1.OrderSnapshot
+	8,  // 32: orderwrite.v1.OrderWriteService.CreateDraftOrder:input_type -> orderwrite.v1.CreateDraftOrderRequest
+	10, // 33: orderwrite.v1.OrderWriteService.SaveRequirementAnswers:input_type -> orderwrite.v1.SaveRequirementAnswersRequest
+	12, // 34: orderwrite.v1.OrderWriteService.SaveBuyerInitialMessage:input_type -> orderwrite.v1.SaveBuyerInitialMessageRequest
+	14, // 35: orderwrite.v1.OrderWriteService.AttachFileToOrder:input_type -> orderwrite.v1.AttachFileToOrderRequest
+	16, // 36: orderwrite.v1.OrderWriteService.GetOrderPaymentSnapshot:input_type -> orderwrite.v1.GetOrderPaymentSnapshotRequest
+	18, // 37: orderwrite.v1.OrderWriteService.GetOrderPreviewByID:input_type -> orderwrite.v1.GetOrderPreviewByIDRequest
+	24, // 38: orderwrite.v1.OrderWriteService.GetOrderRequirementsByID:input_type -> orderwrite.v1.GetOrderRequirementsByIDRequest
+	28, // 39: orderwrite.v1.OrderWriteService.GetOrderDeliveryByID:input_type -> orderwrite.v1.GetOrderDeliveryByIDRequest
+	30, // 40: orderwrite.v1.OrderWriteService.GetOrderCountByGigID:input_type -> orderwrite.v1.GetOrderCountByGigIDRequest
+	32, // 41: orderwrite.v1.OrderWriteService.MarkPaymentPending:input_type -> orderwrite.v1.MarkPaymentPendingRequest
+	34, // 42: orderwrite.v1.OrderWriteService.MarkOrderFunded:input_type -> orderwrite.v1.MarkOrderFundedRequest
+	36, // 43: orderwrite.v1.OrderWriteService.MarkPaymentFailed:input_type -> orderwrite.v1.MarkPaymentFailedRequest
+	38, // 44: orderwrite.v1.OrderWriteService.GetOrderLifecycleSnapshot:input_type -> orderwrite.v1.GetOrderLifecycleSnapshotRequest
+	40, // 45: orderwrite.v1.OrderWriteService.SaveDelivery:input_type -> orderwrite.v1.SaveDeliveryRequest
+	42, // 46: orderwrite.v1.OrderWriteService.MarkReleasePending:input_type -> orderwrite.v1.MarkReleasePendingRequest
+	44, // 47: orderwrite.v1.OrderWriteService.RequestRevision:input_type -> orderwrite.v1.RequestRevisionRequest
+	46, // 48: orderwrite.v1.OrderWriteService.OpenDispute:input_type -> orderwrite.v1.OpenDisputeRequest
+	48, // 49: orderwrite.v1.OrderWriteService.MarkOrderCompleted:input_type -> orderwrite.v1.MarkOrderCompletedRequest
+	50, // 50: orderwrite.v1.OrderWriteService.MarkDisputeResolved:input_type -> orderwrite.v1.MarkDisputeResolvedRequest
+	52, // 51: orderwrite.v1.OrderWriteService.MarkReleaseFailed:input_type -> orderwrite.v1.MarkReleaseFailedRequest
+	9,  // 52: orderwrite.v1.OrderWriteService.CreateDraftOrder:output_type -> orderwrite.v1.CreateDraftOrderResponse
+	11, // 53: orderwrite.v1.OrderWriteService.SaveRequirementAnswers:output_type -> orderwrite.v1.SaveRequirementAnswersResponse
+	13, // 54: orderwrite.v1.OrderWriteService.SaveBuyerInitialMessage:output_type -> orderwrite.v1.SaveBuyerInitialMessageResponse
+	15, // 55: orderwrite.v1.OrderWriteService.AttachFileToOrder:output_type -> orderwrite.v1.AttachFileToOrderResponse
+	17, // 56: orderwrite.v1.OrderWriteService.GetOrderPaymentSnapshot:output_type -> orderwrite.v1.GetOrderPaymentSnapshotResponse
+	19, // 57: orderwrite.v1.OrderWriteService.GetOrderPreviewByID:output_type -> orderwrite.v1.GetOrderPreviewByIDResponse
+	25, // 58: orderwrite.v1.OrderWriteService.GetOrderRequirementsByID:output_type -> orderwrite.v1.GetOrderRequirementsByIDResponse
+	29, // 59: orderwrite.v1.OrderWriteService.GetOrderDeliveryByID:output_type -> orderwrite.v1.GetOrderDeliveryByIDResponse
+	31, // 60: orderwrite.v1.OrderWriteService.GetOrderCountByGigID:output_type -> orderwrite.v1.GetOrderCountByGigIDResponse
+	33, // 61: orderwrite.v1.OrderWriteService.MarkPaymentPending:output_type -> orderwrite.v1.MarkPaymentPendingResponse
+	35, // 62: orderwrite.v1.OrderWriteService.MarkOrderFunded:output_type -> orderwrite.v1.MarkOrderFundedResponse
+	37, // 63: orderwrite.v1.OrderWriteService.MarkPaymentFailed:output_type -> orderwrite.v1.MarkPaymentFailedResponse
+	39, // 64: orderwrite.v1.OrderWriteService.GetOrderLifecycleSnapshot:output_type -> orderwrite.v1.GetOrderLifecycleSnapshotResponse
+	41, // 65: orderwrite.v1.OrderWriteService.SaveDelivery:output_type -> orderwrite.v1.SaveDeliveryResponse
+	43, // 66: orderwrite.v1.OrderWriteService.MarkReleasePending:output_type -> orderwrite.v1.MarkReleasePendingResponse
+	45, // 67: orderwrite.v1.OrderWriteService.RequestRevision:output_type -> orderwrite.v1.RequestRevisionResponse
+	47, // 68: orderwrite.v1.OrderWriteService.OpenDispute:output_type -> orderwrite.v1.OpenDisputeResponse
+	49, // 69: orderwrite.v1.OrderWriteService.MarkOrderCompleted:output_type -> orderwrite.v1.MarkOrderCompletedResponse
+	51, // 70: orderwrite.v1.OrderWriteService.MarkDisputeResolved:output_type -> orderwrite.v1.MarkDisputeResolvedResponse
+	53, // 71: orderwrite.v1.OrderWriteService.MarkReleaseFailed:output_type -> orderwrite.v1.MarkReleaseFailedResponse
+	52, // [52:72] is the sub-list for method output_type
+	32, // [32:52] is the sub-list for method input_type
+	32, // [32:32] is the sub-list for extension type_name
+	32, // [32:32] is the sub-list for extension extendee
+	0,  // [0:32] is the sub-list for field type_name
 }
 
 func init() { file_orderwrite_v1_orderwrite_proto_init() }
@@ -3811,7 +3936,7 @@ func file_orderwrite_v1_orderwrite_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_orderwrite_v1_orderwrite_proto_rawDesc), len(file_orderwrite_v1_orderwrite_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   52,
+			NumMessages:   54,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

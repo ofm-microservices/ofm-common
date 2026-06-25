@@ -1696,6 +1696,174 @@ func (x *OpenDisputeResponse) GetCurrentStep() string {
 	return ""
 }
 
+type ResolveDisputeRequest struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	OrderId              string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	AdminUserId          string                 `protobuf:"bytes,2,opt,name=admin_user_id,json=adminUserId,proto3" json:"admin_user_id,omitempty"`
+	FreelancerPercentage int32                  `protobuf:"varint,3,opt,name=freelancer_percentage,json=freelancerPercentage,proto3" json:"freelancer_percentage,omitempty"`
+	CustomerPercentage   int32                  `protobuf:"varint,4,opt,name=customer_percentage,json=customerPercentage,proto3" json:"customer_percentage,omitempty"`
+	Reason               string                 `protobuf:"bytes,5,opt,name=reason,proto3" json:"reason,omitempty"`
+	RequestedAt          string                 `protobuf:"bytes,6,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *ResolveDisputeRequest) Reset() {
+	*x = ResolveDisputeRequest{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveDisputeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveDisputeRequest) ProtoMessage() {}
+
+func (x *ResolveDisputeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveDisputeRequest.ProtoReflect.Descriptor instead.
+func (*ResolveDisputeRequest) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ResolveDisputeRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *ResolveDisputeRequest) GetAdminUserId() string {
+	if x != nil {
+		return x.AdminUserId
+	}
+	return ""
+}
+
+func (x *ResolveDisputeRequest) GetFreelancerPercentage() int32 {
+	if x != nil {
+		return x.FreelancerPercentage
+	}
+	return 0
+}
+
+func (x *ResolveDisputeRequest) GetCustomerPercentage() int32 {
+	if x != nil {
+		return x.CustomerPercentage
+	}
+	return 0
+}
+
+func (x *ResolveDisputeRequest) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
+func (x *ResolveDisputeRequest) GetRequestedAt() string {
+	if x != nil {
+		return x.RequestedAt
+	}
+	return ""
+}
+
+type ResolveDisputeResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OrderId          string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	Status           string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	CurrentStep      string                 `protobuf:"bytes,3,opt,name=current_step,json=currentStep,proto3" json:"current_step,omitempty"`
+	PaymentReleaseId string                 `protobuf:"bytes,4,opt,name=payment_release_id,json=paymentReleaseId,proto3" json:"payment_release_id,omitempty"`
+	StripeTransferId string                 `protobuf:"bytes,5,opt,name=stripe_transfer_id,json=stripeTransferId,proto3" json:"stripe_transfer_id,omitempty"`
+	StripeRefundId   string                 `protobuf:"bytes,6,opt,name=stripe_refund_id,json=stripeRefundId,proto3" json:"stripe_refund_id,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ResolveDisputeResponse) Reset() {
+	*x = ResolveDisputeResponse{}
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveDisputeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveDisputeResponse) ProtoMessage() {}
+
+func (x *ResolveDisputeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ordercheckout_v1_ordercheckout_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveDisputeResponse.ProtoReflect.Descriptor instead.
+func (*ResolveDisputeResponse) Descriptor() ([]byte, []int) {
+	return file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *ResolveDisputeResponse) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *ResolveDisputeResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *ResolveDisputeResponse) GetCurrentStep() string {
+	if x != nil {
+		return x.CurrentStep
+	}
+	return ""
+}
+
+func (x *ResolveDisputeResponse) GetPaymentReleaseId() string {
+	if x != nil {
+		return x.PaymentReleaseId
+	}
+	return ""
+}
+
+func (x *ResolveDisputeResponse) GetStripeTransferId() string {
+	if x != nil {
+		return x.StripeTransferId
+	}
+	return ""
+}
+
+func (x *ResolveDisputeResponse) GetStripeRefundId() string {
+	if x != nil {
+		return x.StripeRefundId
+	}
+	return ""
+}
+
 var File_ordercheckout_v1_ordercheckout_proto protoreflect.FileDescriptor
 
 const file_ordercheckout_v1_ordercheckout_proto_rawDesc = "" +
@@ -1835,7 +2003,21 @@ const file_ordercheckout_v1_ordercheckout_proto_rawDesc = "" +
 	"\x13OpenDisputeResponse\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12!\n" +
-	"\fcurrent_step\x18\x03 \x01(\tR\vcurrentStep2\xb4\b\n" +
+	"\fcurrent_step\x18\x03 \x01(\tR\vcurrentStep\"\xf7\x01\n" +
+	"\x15ResolveDisputeRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\"\n" +
+	"\radmin_user_id\x18\x02 \x01(\tR\vadminUserId\x123\n" +
+	"\x15freelancer_percentage\x18\x03 \x01(\x05R\x14freelancerPercentage\x12/\n" +
+	"\x13customer_percentage\x18\x04 \x01(\x05R\x12customerPercentage\x12\x16\n" +
+	"\x06reason\x18\x05 \x01(\tR\x06reason\x12!\n" +
+	"\frequested_at\x18\x06 \x01(\tR\vrequestedAt\"\xf4\x01\n" +
+	"\x16ResolveDisputeResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12!\n" +
+	"\fcurrent_step\x18\x03 \x01(\tR\vcurrentStep\x12,\n" +
+	"\x12payment_release_id\x18\x04 \x01(\tR\x10paymentReleaseId\x12,\n" +
+	"\x12stripe_transfer_id\x18\x05 \x01(\tR\x10stripeTransferId\x12(\n" +
+	"\x10stripe_refund_id\x18\x06 \x01(\tR\x0estripeRefundId2\x99\t\n" +
 	"\x14OrderCheckoutService\x12W\n" +
 	"\n" +
 	"StartOrder\x12#.ordercheckout.v1.StartOrderRequest\x1a$.ordercheckout.v1.StartOrderResponse\x12o\n" +
@@ -1847,7 +2029,8 @@ const file_ordercheckout_v1_ordercheckout_proto_rawDesc = "" +
 	"\fDeliverOrder\x12%.ordercheckout.v1.DeliverOrderRequest\x1a&.ordercheckout.v1.DeliverOrderResponse\x12c\n" +
 	"\x0eAcceptDelivery\x12'.ordercheckout.v1.AcceptDeliveryRequest\x1a(.ordercheckout.v1.AcceptDeliveryResponse\x12f\n" +
 	"\x0fRequestRevision\x12(.ordercheckout.v1.RequestRevisionRequest\x1a).ordercheckout.v1.RequestRevisionResponse\x12Z\n" +
-	"\vOpenDispute\x12$.ordercheckout.v1.OpenDisputeRequest\x1a%.ordercheckout.v1.OpenDisputeResponseBPZNgithub.com/ofm-microservices/ofm-common/proto/ordercheckout/v1;ordercheckoutv1b\x06proto3"
+	"\vOpenDispute\x12$.ordercheckout.v1.OpenDisputeRequest\x1a%.ordercheckout.v1.OpenDisputeResponse\x12c\n" +
+	"\x0eResolveDispute\x12'.ordercheckout.v1.ResolveDisputeRequest\x1a(.ordercheckout.v1.ResolveDisputeResponseBPZNgithub.com/ofm-microservices/ofm-common/proto/ordercheckout/v1;ordercheckoutv1b\x06proto3"
 
 var (
 	file_ordercheckout_v1_ordercheckout_proto_rawDescOnce sync.Once
@@ -1861,7 +2044,7 @@ func file_ordercheckout_v1_ordercheckout_proto_rawDescGZIP() []byte {
 	return file_ordercheckout_v1_ordercheckout_proto_rawDescData
 }
 
-var file_ordercheckout_v1_ordercheckout_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_ordercheckout_v1_ordercheckout_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_ordercheckout_v1_ordercheckout_proto_goTypes = []any{
 	(*OrderSnapshot)(nil),                     // 0: ordercheckout.v1.OrderSnapshot
 	(*OrderQuestionOption)(nil),               // 1: ordercheckout.v1.OrderQuestionOption
@@ -1887,6 +2070,8 @@ var file_ordercheckout_v1_ordercheckout_proto_goTypes = []any{
 	(*RequestRevisionResponse)(nil),           // 21: ordercheckout.v1.RequestRevisionResponse
 	(*OpenDisputeRequest)(nil),                // 22: ordercheckout.v1.OpenDisputeRequest
 	(*OpenDisputeResponse)(nil),               // 23: ordercheckout.v1.OpenDisputeResponse
+	(*ResolveDisputeRequest)(nil),             // 24: ordercheckout.v1.ResolveDisputeRequest
+	(*ResolveDisputeResponse)(nil),            // 25: ordercheckout.v1.ResolveDisputeResponse
 }
 var file_ordercheckout_v1_ordercheckout_proto_depIdxs = []int32{
 	1,  // 0: ordercheckout.v1.OrderQuestion.options:type_name -> ordercheckout.v1.OrderQuestionOption
@@ -1903,18 +2088,20 @@ var file_ordercheckout_v1_ordercheckout_proto_depIdxs = []int32{
 	18, // 11: ordercheckout.v1.OrderCheckoutService.AcceptDelivery:input_type -> ordercheckout.v1.AcceptDeliveryRequest
 	20, // 12: ordercheckout.v1.OrderCheckoutService.RequestRevision:input_type -> ordercheckout.v1.RequestRevisionRequest
 	22, // 13: ordercheckout.v1.OrderCheckoutService.OpenDispute:input_type -> ordercheckout.v1.OpenDisputeRequest
-	4,  // 14: ordercheckout.v1.OrderCheckoutService.StartOrder:output_type -> ordercheckout.v1.StartOrderResponse
-	7,  // 15: ordercheckout.v1.OrderCheckoutService.SubmitRequirements:output_type -> ordercheckout.v1.SubmitRequirementsResponse
-	9,  // 16: ordercheckout.v1.OrderCheckoutService.SubmitMessage:output_type -> ordercheckout.v1.SubmitMessageResponse
-	11, // 17: ordercheckout.v1.OrderCheckoutService.CreateAttachmentUploadURL:output_type -> ordercheckout.v1.CreateAttachmentUploadURLResponse
-	13, // 18: ordercheckout.v1.OrderCheckoutService.CompleteAttachmentUpload:output_type -> ordercheckout.v1.CompleteAttachmentUploadResponse
-	15, // 19: ordercheckout.v1.OrderCheckoutService.ConfirmOrder:output_type -> ordercheckout.v1.ConfirmOrderResponse
-	17, // 20: ordercheckout.v1.OrderCheckoutService.DeliverOrder:output_type -> ordercheckout.v1.DeliverOrderResponse
-	19, // 21: ordercheckout.v1.OrderCheckoutService.AcceptDelivery:output_type -> ordercheckout.v1.AcceptDeliveryResponse
-	21, // 22: ordercheckout.v1.OrderCheckoutService.RequestRevision:output_type -> ordercheckout.v1.RequestRevisionResponse
-	23, // 23: ordercheckout.v1.OrderCheckoutService.OpenDispute:output_type -> ordercheckout.v1.OpenDisputeResponse
-	14, // [14:24] is the sub-list for method output_type
-	4,  // [4:14] is the sub-list for method input_type
+	24, // 14: ordercheckout.v1.OrderCheckoutService.ResolveDispute:input_type -> ordercheckout.v1.ResolveDisputeRequest
+	4,  // 15: ordercheckout.v1.OrderCheckoutService.StartOrder:output_type -> ordercheckout.v1.StartOrderResponse
+	7,  // 16: ordercheckout.v1.OrderCheckoutService.SubmitRequirements:output_type -> ordercheckout.v1.SubmitRequirementsResponse
+	9,  // 17: ordercheckout.v1.OrderCheckoutService.SubmitMessage:output_type -> ordercheckout.v1.SubmitMessageResponse
+	11, // 18: ordercheckout.v1.OrderCheckoutService.CreateAttachmentUploadURL:output_type -> ordercheckout.v1.CreateAttachmentUploadURLResponse
+	13, // 19: ordercheckout.v1.OrderCheckoutService.CompleteAttachmentUpload:output_type -> ordercheckout.v1.CompleteAttachmentUploadResponse
+	15, // 20: ordercheckout.v1.OrderCheckoutService.ConfirmOrder:output_type -> ordercheckout.v1.ConfirmOrderResponse
+	17, // 21: ordercheckout.v1.OrderCheckoutService.DeliverOrder:output_type -> ordercheckout.v1.DeliverOrderResponse
+	19, // 22: ordercheckout.v1.OrderCheckoutService.AcceptDelivery:output_type -> ordercheckout.v1.AcceptDeliveryResponse
+	21, // 23: ordercheckout.v1.OrderCheckoutService.RequestRevision:output_type -> ordercheckout.v1.RequestRevisionResponse
+	23, // 24: ordercheckout.v1.OrderCheckoutService.OpenDispute:output_type -> ordercheckout.v1.OpenDisputeResponse
+	25, // 25: ordercheckout.v1.OrderCheckoutService.ResolveDispute:output_type -> ordercheckout.v1.ResolveDisputeResponse
+	15, // [15:26] is the sub-list for method output_type
+	4,  // [4:15] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name
@@ -1931,7 +2118,7 @@ func file_ordercheckout_v1_ordercheckout_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ordercheckout_v1_ordercheckout_proto_rawDesc), len(file_ordercheckout_v1_ordercheckout_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

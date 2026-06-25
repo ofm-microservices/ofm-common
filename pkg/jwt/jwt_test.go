@@ -18,6 +18,7 @@ func TestSignerAndVerifierRoundTrip(t *testing.T) {
 		Subject:   "user-1",
 		Email:     "user@example.com",
 		Username:  "alex",
+		Roles:     []string{"admin", "freelancer"},
 		ExpiresAt: time.Unix(1700000600, 0).UTC().Unix(),
 	})
 	if err != nil {
@@ -44,6 +45,9 @@ func TestSignerAndVerifierRoundTrip(t *testing.T) {
 	}
 	if claims.Username != "alex" {
 		t.Fatalf("username = %q", claims.Username)
+	}
+	if len(claims.Roles) != 2 || claims.Roles[0] != "admin" || claims.Roles[1] != "freelancer" {
+		t.Fatalf("roles = %#v", claims.Roles)
 	}
 	if claims.ExpiresAt == 0 {
 		t.Fatalf("expected exp to be set")
