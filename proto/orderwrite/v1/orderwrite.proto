@@ -28,6 +28,7 @@ service OrderWriteService {
   rpc RequestRevision(RequestRevisionRequest) returns (RequestRevisionResponse);
   rpc OpenDispute(OpenDisputeRequest) returns (OpenDisputeResponse);
   rpc MarkOrderCompleted(MarkOrderCompletedRequest) returns (MarkOrderCompletedResponse);
+  rpc MarkDisputeResolved(MarkDisputeResolvedRequest) returns (MarkDisputeResolvedResponse);
   rpc MarkReleaseFailed(MarkReleaseFailedRequest) returns (MarkReleaseFailedResponse);
 }
 
@@ -344,6 +345,7 @@ message OpenDisputeRequest {
   string buyer_user_id = 2;
   string reason = 3;
   string requested_at = 4;
+  string dispute_type = 5;
 }
 
 message OpenDisputeResponse {
@@ -357,6 +359,16 @@ message MarkOrderCompletedRequest {
 }
 
 message MarkOrderCompletedResponse {
+  OrderSnapshot order = 1;
+}
+
+message MarkDisputeResolvedRequest {
+  string order_id = 1;
+  string payment_release_id = 2;
+  string requested_at = 3;
+}
+
+message MarkDisputeResolvedResponse {
   OrderSnapshot order = 1;
 }
 

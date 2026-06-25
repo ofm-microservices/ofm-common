@@ -24,6 +24,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	PaymentCheckoutService_CreateCheckoutSession_FullMethodName = "/paymentcheckout.v1.PaymentCheckoutService/CreateCheckoutSession"
 	PaymentCheckoutService_ReleaseFunds_FullMethodName          = "/paymentcheckout.v1.PaymentCheckoutService/ReleaseFunds"
+	PaymentCheckoutService_SettleDispute_FullMethodName         = "/paymentcheckout.v1.PaymentCheckoutService/SettleDispute"
 	PaymentCheckoutService_GetReleaseByOrderId_FullMethodName   = "/paymentcheckout.v1.PaymentCheckoutService/GetReleaseByOrderId"
 	PaymentCheckoutService_GetPaymentByOrderId_FullMethodName   = "/paymentcheckout.v1.PaymentCheckoutService/GetPaymentByOrderId"
 )
@@ -36,6 +37,7 @@ const (
 type PaymentCheckoutServiceClient interface {
 	CreateCheckoutSession(ctx context.Context, in *CreateCheckoutSessionRequest, opts ...grpc.CallOption) (*CreateCheckoutSessionResponse, error)
 	ReleaseFunds(ctx context.Context, in *ReleaseFundsRequest, opts ...grpc.CallOption) (*ReleaseFundsResponse, error)
+	SettleDispute(ctx context.Context, in *SettleDisputeRequest, opts ...grpc.CallOption) (*SettleDisputeResponse, error)
 	GetReleaseByOrderId(ctx context.Context, in *GetReleaseByOrderIdRequest, opts ...grpc.CallOption) (*GetReleaseByOrderIdResponse, error)
 	GetPaymentByOrderId(ctx context.Context, in *GetPaymentByOrderIdRequest, opts ...grpc.CallOption) (*GetPaymentByOrderIdResponse, error)
 }
@@ -62,6 +64,16 @@ func (c *paymentCheckoutServiceClient) ReleaseFunds(ctx context.Context, in *Rel
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ReleaseFundsResponse)
 	err := c.cc.Invoke(ctx, PaymentCheckoutService_ReleaseFunds_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *paymentCheckoutServiceClient) SettleDispute(ctx context.Context, in *SettleDisputeRequest, opts ...grpc.CallOption) (*SettleDisputeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SettleDisputeResponse)
+	err := c.cc.Invoke(ctx, PaymentCheckoutService_SettleDispute_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,6 +108,7 @@ func (c *paymentCheckoutServiceClient) GetPaymentByOrderId(ctx context.Context, 
 type PaymentCheckoutServiceServer interface {
 	CreateCheckoutSession(context.Context, *CreateCheckoutSessionRequest) (*CreateCheckoutSessionResponse, error)
 	ReleaseFunds(context.Context, *ReleaseFundsRequest) (*ReleaseFundsResponse, error)
+	SettleDispute(context.Context, *SettleDisputeRequest) (*SettleDisputeResponse, error)
 	GetReleaseByOrderId(context.Context, *GetReleaseByOrderIdRequest) (*GetReleaseByOrderIdResponse, error)
 	GetPaymentByOrderId(context.Context, *GetPaymentByOrderIdRequest) (*GetPaymentByOrderIdResponse, error)
 }
@@ -112,6 +125,9 @@ func (UnimplementedPaymentCheckoutServiceServer) CreateCheckoutSession(context.C
 }
 func (UnimplementedPaymentCheckoutServiceServer) ReleaseFunds(context.Context, *ReleaseFundsRequest) (*ReleaseFundsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ReleaseFunds not implemented")
+}
+func (UnimplementedPaymentCheckoutServiceServer) SettleDispute(context.Context, *SettleDisputeRequest) (*SettleDisputeResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SettleDispute not implemented")
 }
 func (UnimplementedPaymentCheckoutServiceServer) GetReleaseByOrderId(context.Context, *GetReleaseByOrderIdRequest) (*GetReleaseByOrderIdResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetReleaseByOrderId not implemented")
@@ -175,6 +191,24 @@ func _PaymentCheckoutService_ReleaseFunds_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PaymentCheckoutService_SettleDispute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SettleDisputeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentCheckoutServiceServer).SettleDispute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PaymentCheckoutService_SettleDispute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentCheckoutServiceServer).SettleDispute(ctx, req.(*SettleDisputeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PaymentCheckoutService_GetReleaseByOrderId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetReleaseByOrderIdRequest)
 	if err := dec(in); err != nil {
@@ -225,6 +259,10 @@ var PaymentCheckoutService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReleaseFunds",
 			Handler:    _PaymentCheckoutService_ReleaseFunds_Handler,
+		},
+		{
+			MethodName: "SettleDispute",
+			Handler:    _PaymentCheckoutService_SettleDispute_Handler,
 		},
 		{
 			MethodName: "GetReleaseByOrderId",

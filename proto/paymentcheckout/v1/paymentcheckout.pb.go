@@ -384,6 +384,214 @@ func (x *ReleaseFundsResponse) GetOccurredAt() string {
 	return ""
 }
 
+type SettleDisputeRequest struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	OrderId              string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	PaymentId            string                 `protobuf:"bytes,2,opt,name=payment_id,json=paymentId,proto3" json:"payment_id,omitempty"`
+	SellerUserId         string                 `protobuf:"bytes,3,opt,name=seller_user_id,json=sellerUserId,proto3" json:"seller_user_id,omitempty"`
+	AmountCents          int64                  `protobuf:"varint,4,opt,name=amount_cents,json=amountCents,proto3" json:"amount_cents,omitempty"`
+	Currency             string                 `protobuf:"bytes,5,opt,name=currency,proto3" json:"currency,omitempty"`
+	FreelancerPercentage int32                  `protobuf:"varint,6,opt,name=freelancer_percentage,json=freelancerPercentage,proto3" json:"freelancer_percentage,omitempty"`
+	CustomerPercentage   int32                  `protobuf:"varint,7,opt,name=customer_percentage,json=customerPercentage,proto3" json:"customer_percentage,omitempty"`
+	IdempotencyKey       string                 `protobuf:"bytes,8,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	RequestedAt          string                 `protobuf:"bytes,9,opt,name=requested_at,json=requestedAt,proto3" json:"requested_at,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *SettleDisputeRequest) Reset() {
+	*x = SettleDisputeRequest{}
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SettleDisputeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SettleDisputeRequest) ProtoMessage() {}
+
+func (x *SettleDisputeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SettleDisputeRequest.ProtoReflect.Descriptor instead.
+func (*SettleDisputeRequest) Descriptor() ([]byte, []int) {
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *SettleDisputeRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *SettleDisputeRequest) GetPaymentId() string {
+	if x != nil {
+		return x.PaymentId
+	}
+	return ""
+}
+
+func (x *SettleDisputeRequest) GetSellerUserId() string {
+	if x != nil {
+		return x.SellerUserId
+	}
+	return ""
+}
+
+func (x *SettleDisputeRequest) GetAmountCents() int64 {
+	if x != nil {
+		return x.AmountCents
+	}
+	return 0
+}
+
+func (x *SettleDisputeRequest) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *SettleDisputeRequest) GetFreelancerPercentage() int32 {
+	if x != nil {
+		return x.FreelancerPercentage
+	}
+	return 0
+}
+
+func (x *SettleDisputeRequest) GetCustomerPercentage() int32 {
+	if x != nil {
+		return x.CustomerPercentage
+	}
+	return 0
+}
+
+func (x *SettleDisputeRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
+func (x *SettleDisputeRequest) GetRequestedAt() string {
+	if x != nil {
+		return x.RequestedAt
+	}
+	return ""
+}
+
+type SettleDisputeResponse struct {
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	OrderId               string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	PaymentReleaseId      string                 `protobuf:"bytes,2,opt,name=payment_release_id,json=paymentReleaseId,proto3" json:"payment_release_id,omitempty"`
+	StripeTransferId      string                 `protobuf:"bytes,3,opt,name=stripe_transfer_id,json=stripeTransferId,proto3" json:"stripe_transfer_id,omitempty"`
+	StripeRefundId        string                 `protobuf:"bytes,4,opt,name=stripe_refund_id,json=stripeRefundId,proto3" json:"stripe_refund_id,omitempty"`
+	FreelancerAmountCents int64                  `protobuf:"varint,5,opt,name=freelancer_amount_cents,json=freelancerAmountCents,proto3" json:"freelancer_amount_cents,omitempty"`
+	CustomerAmountCents   int64                  `protobuf:"varint,6,opt,name=customer_amount_cents,json=customerAmountCents,proto3" json:"customer_amount_cents,omitempty"`
+	Status                string                 `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
+	OccurredAt            string                 `protobuf:"bytes,8,opt,name=occurred_at,json=occurredAt,proto3" json:"occurred_at,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *SettleDisputeResponse) Reset() {
+	*x = SettleDisputeResponse{}
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SettleDisputeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SettleDisputeResponse) ProtoMessage() {}
+
+func (x *SettleDisputeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SettleDisputeResponse.ProtoReflect.Descriptor instead.
+func (*SettleDisputeResponse) Descriptor() ([]byte, []int) {
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *SettleDisputeResponse) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *SettleDisputeResponse) GetPaymentReleaseId() string {
+	if x != nil {
+		return x.PaymentReleaseId
+	}
+	return ""
+}
+
+func (x *SettleDisputeResponse) GetStripeTransferId() string {
+	if x != nil {
+		return x.StripeTransferId
+	}
+	return ""
+}
+
+func (x *SettleDisputeResponse) GetStripeRefundId() string {
+	if x != nil {
+		return x.StripeRefundId
+	}
+	return ""
+}
+
+func (x *SettleDisputeResponse) GetFreelancerAmountCents() int64 {
+	if x != nil {
+		return x.FreelancerAmountCents
+	}
+	return 0
+}
+
+func (x *SettleDisputeResponse) GetCustomerAmountCents() int64 {
+	if x != nil {
+		return x.CustomerAmountCents
+	}
+	return 0
+}
+
+func (x *SettleDisputeResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *SettleDisputeResponse) GetOccurredAt() string {
+	if x != nil {
+		return x.OccurredAt
+	}
+	return ""
+}
+
 type GetReleaseByOrderIdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
@@ -393,7 +601,7 @@ type GetReleaseByOrderIdRequest struct {
 
 func (x *GetReleaseByOrderIdRequest) Reset() {
 	*x = GetReleaseByOrderIdRequest{}
-	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[4]
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -405,7 +613,7 @@ func (x *GetReleaseByOrderIdRequest) String() string {
 func (*GetReleaseByOrderIdRequest) ProtoMessage() {}
 
 func (x *GetReleaseByOrderIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[4]
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -418,7 +626,7 @@ func (x *GetReleaseByOrderIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetReleaseByOrderIdRequest.ProtoReflect.Descriptor instead.
 func (*GetReleaseByOrderIdRequest) Descriptor() ([]byte, []int) {
-	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{4}
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetReleaseByOrderIdRequest) GetOrderId() string {
@@ -447,7 +655,7 @@ type GetReleaseByOrderIdResponse struct {
 
 func (x *GetReleaseByOrderIdResponse) Reset() {
 	*x = GetReleaseByOrderIdResponse{}
-	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[5]
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -459,7 +667,7 @@ func (x *GetReleaseByOrderIdResponse) String() string {
 func (*GetReleaseByOrderIdResponse) ProtoMessage() {}
 
 func (x *GetReleaseByOrderIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[5]
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -472,7 +680,7 @@ func (x *GetReleaseByOrderIdResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetReleaseByOrderIdResponse.ProtoReflect.Descriptor instead.
 func (*GetReleaseByOrderIdResponse) Descriptor() ([]byte, []int) {
-	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{5}
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetReleaseByOrderIdResponse) GetOrderId() string {
@@ -561,7 +769,7 @@ type GetPaymentByOrderIdRequest struct {
 
 func (x *GetPaymentByOrderIdRequest) Reset() {
 	*x = GetPaymentByOrderIdRequest{}
-	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[6]
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -573,7 +781,7 @@ func (x *GetPaymentByOrderIdRequest) String() string {
 func (*GetPaymentByOrderIdRequest) ProtoMessage() {}
 
 func (x *GetPaymentByOrderIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[6]
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -586,7 +794,7 @@ func (x *GetPaymentByOrderIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPaymentByOrderIdRequest.ProtoReflect.Descriptor instead.
 func (*GetPaymentByOrderIdRequest) Descriptor() ([]byte, []int) {
-	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{6}
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetPaymentByOrderIdRequest) GetOrderId() string {
@@ -609,7 +817,7 @@ type GetPaymentByOrderIdResponse struct {
 
 func (x *GetPaymentByOrderIdResponse) Reset() {
 	*x = GetPaymentByOrderIdResponse{}
-	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[7]
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -621,7 +829,7 @@ func (x *GetPaymentByOrderIdResponse) String() string {
 func (*GetPaymentByOrderIdResponse) ProtoMessage() {}
 
 func (x *GetPaymentByOrderIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[7]
+	mi := &file_paymentcheckout_v1_paymentcheckout_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -634,7 +842,7 @@ func (x *GetPaymentByOrderIdResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPaymentByOrderIdResponse.ProtoReflect.Descriptor instead.
 func (*GetPaymentByOrderIdResponse) Descriptor() ([]byte, []int) {
-	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{7}
+	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetPaymentByOrderIdResponse) GetPaymentId() string {
@@ -711,6 +919,27 @@ const file_paymentcheckout_v1_paymentcheckout_proto_rawDesc = "" +
 	"\x12stripe_transfer_id\x18\x03 \x01(\tR\x10stripeTransferId\x12\x16\n" +
 	"\x06status\x18\x04 \x01(\tR\x06status\x12\x1f\n" +
 	"\voccurred_at\x18\x05 \x01(\tR\n" +
+	"occurredAt\"\xe7\x02\n" +
+	"\x14SettleDisputeRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x1d\n" +
+	"\n" +
+	"payment_id\x18\x02 \x01(\tR\tpaymentId\x12$\n" +
+	"\x0eseller_user_id\x18\x03 \x01(\tR\fsellerUserId\x12!\n" +
+	"\famount_cents\x18\x04 \x01(\x03R\vamountCents\x12\x1a\n" +
+	"\bcurrency\x18\x05 \x01(\tR\bcurrency\x123\n" +
+	"\x15freelancer_percentage\x18\x06 \x01(\x05R\x14freelancerPercentage\x12/\n" +
+	"\x13customer_percentage\x18\a \x01(\x05R\x12customerPercentage\x12'\n" +
+	"\x0fidempotency_key\x18\b \x01(\tR\x0eidempotencyKey\x12!\n" +
+	"\frequested_at\x18\t \x01(\tR\vrequestedAt\"\xdd\x02\n" +
+	"\x15SettleDisputeResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12,\n" +
+	"\x12payment_release_id\x18\x02 \x01(\tR\x10paymentReleaseId\x12,\n" +
+	"\x12stripe_transfer_id\x18\x03 \x01(\tR\x10stripeTransferId\x12(\n" +
+	"\x10stripe_refund_id\x18\x04 \x01(\tR\x0estripeRefundId\x126\n" +
+	"\x17freelancer_amount_cents\x18\x05 \x01(\x03R\x15freelancerAmountCents\x122\n" +
+	"\x15customer_amount_cents\x18\x06 \x01(\x03R\x13customerAmountCents\x12\x16\n" +
+	"\x06status\x18\a \x01(\tR\x06status\x12\x1f\n" +
+	"\voccurred_at\x18\b \x01(\tR\n" +
 	"occurredAt\"7\n" +
 	"\x1aGetReleaseByOrderIdRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\"\xae\x03\n" +
@@ -738,10 +967,11 @@ const file_paymentcheckout_v1_paymentcheckout_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x04 \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x05 \x01(\tR\tupdatedAt2\xe9\x03\n" +
+	"updated_at\x18\x05 \x01(\tR\tupdatedAt2\xcf\x04\n" +
 	"\x16PaymentCheckoutService\x12|\n" +
 	"\x15CreateCheckoutSession\x120.paymentcheckout.v1.CreateCheckoutSessionRequest\x1a1.paymentcheckout.v1.CreateCheckoutSessionResponse\x12a\n" +
-	"\fReleaseFunds\x12'.paymentcheckout.v1.ReleaseFundsRequest\x1a(.paymentcheckout.v1.ReleaseFundsResponse\x12v\n" +
+	"\fReleaseFunds\x12'.paymentcheckout.v1.ReleaseFundsRequest\x1a(.paymentcheckout.v1.ReleaseFundsResponse\x12d\n" +
+	"\rSettleDispute\x12(.paymentcheckout.v1.SettleDisputeRequest\x1a).paymentcheckout.v1.SettleDisputeResponse\x12v\n" +
 	"\x13GetReleaseByOrderId\x12..paymentcheckout.v1.GetReleaseByOrderIdRequest\x1a/.paymentcheckout.v1.GetReleaseByOrderIdResponse\x12v\n" +
 	"\x13GetPaymentByOrderId\x12..paymentcheckout.v1.GetPaymentByOrderIdRequest\x1a/.paymentcheckout.v1.GetPaymentByOrderIdResponseBTZRgithub.com/ofm-microservices/ofm-common/proto/paymentcheckout/v1;paymentcheckoutv1b\x06proto3"
 
@@ -757,28 +987,32 @@ func file_paymentcheckout_v1_paymentcheckout_proto_rawDescGZIP() []byte {
 	return file_paymentcheckout_v1_paymentcheckout_proto_rawDescData
 }
 
-var file_paymentcheckout_v1_paymentcheckout_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_paymentcheckout_v1_paymentcheckout_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_paymentcheckout_v1_paymentcheckout_proto_goTypes = []any{
 	(*CreateCheckoutSessionRequest)(nil),  // 0: paymentcheckout.v1.CreateCheckoutSessionRequest
 	(*CreateCheckoutSessionResponse)(nil), // 1: paymentcheckout.v1.CreateCheckoutSessionResponse
 	(*ReleaseFundsRequest)(nil),           // 2: paymentcheckout.v1.ReleaseFundsRequest
 	(*ReleaseFundsResponse)(nil),          // 3: paymentcheckout.v1.ReleaseFundsResponse
-	(*GetReleaseByOrderIdRequest)(nil),    // 4: paymentcheckout.v1.GetReleaseByOrderIdRequest
-	(*GetReleaseByOrderIdResponse)(nil),   // 5: paymentcheckout.v1.GetReleaseByOrderIdResponse
-	(*GetPaymentByOrderIdRequest)(nil),    // 6: paymentcheckout.v1.GetPaymentByOrderIdRequest
-	(*GetPaymentByOrderIdResponse)(nil),   // 7: paymentcheckout.v1.GetPaymentByOrderIdResponse
+	(*SettleDisputeRequest)(nil),          // 4: paymentcheckout.v1.SettleDisputeRequest
+	(*SettleDisputeResponse)(nil),         // 5: paymentcheckout.v1.SettleDisputeResponse
+	(*GetReleaseByOrderIdRequest)(nil),    // 6: paymentcheckout.v1.GetReleaseByOrderIdRequest
+	(*GetReleaseByOrderIdResponse)(nil),   // 7: paymentcheckout.v1.GetReleaseByOrderIdResponse
+	(*GetPaymentByOrderIdRequest)(nil),    // 8: paymentcheckout.v1.GetPaymentByOrderIdRequest
+	(*GetPaymentByOrderIdResponse)(nil),   // 9: paymentcheckout.v1.GetPaymentByOrderIdResponse
 }
 var file_paymentcheckout_v1_paymentcheckout_proto_depIdxs = []int32{
 	0, // 0: paymentcheckout.v1.PaymentCheckoutService.CreateCheckoutSession:input_type -> paymentcheckout.v1.CreateCheckoutSessionRequest
 	2, // 1: paymentcheckout.v1.PaymentCheckoutService.ReleaseFunds:input_type -> paymentcheckout.v1.ReleaseFundsRequest
-	4, // 2: paymentcheckout.v1.PaymentCheckoutService.GetReleaseByOrderId:input_type -> paymentcheckout.v1.GetReleaseByOrderIdRequest
-	6, // 3: paymentcheckout.v1.PaymentCheckoutService.GetPaymentByOrderId:input_type -> paymentcheckout.v1.GetPaymentByOrderIdRequest
-	1, // 4: paymentcheckout.v1.PaymentCheckoutService.CreateCheckoutSession:output_type -> paymentcheckout.v1.CreateCheckoutSessionResponse
-	3, // 5: paymentcheckout.v1.PaymentCheckoutService.ReleaseFunds:output_type -> paymentcheckout.v1.ReleaseFundsResponse
-	5, // 6: paymentcheckout.v1.PaymentCheckoutService.GetReleaseByOrderId:output_type -> paymentcheckout.v1.GetReleaseByOrderIdResponse
-	7, // 7: paymentcheckout.v1.PaymentCheckoutService.GetPaymentByOrderId:output_type -> paymentcheckout.v1.GetPaymentByOrderIdResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	4, // 2: paymentcheckout.v1.PaymentCheckoutService.SettleDispute:input_type -> paymentcheckout.v1.SettleDisputeRequest
+	6, // 3: paymentcheckout.v1.PaymentCheckoutService.GetReleaseByOrderId:input_type -> paymentcheckout.v1.GetReleaseByOrderIdRequest
+	8, // 4: paymentcheckout.v1.PaymentCheckoutService.GetPaymentByOrderId:input_type -> paymentcheckout.v1.GetPaymentByOrderIdRequest
+	1, // 5: paymentcheckout.v1.PaymentCheckoutService.CreateCheckoutSession:output_type -> paymentcheckout.v1.CreateCheckoutSessionResponse
+	3, // 6: paymentcheckout.v1.PaymentCheckoutService.ReleaseFunds:output_type -> paymentcheckout.v1.ReleaseFundsResponse
+	5, // 7: paymentcheckout.v1.PaymentCheckoutService.SettleDispute:output_type -> paymentcheckout.v1.SettleDisputeResponse
+	7, // 8: paymentcheckout.v1.PaymentCheckoutService.GetReleaseByOrderId:output_type -> paymentcheckout.v1.GetReleaseByOrderIdResponse
+	9, // 9: paymentcheckout.v1.PaymentCheckoutService.GetPaymentByOrderId:output_type -> paymentcheckout.v1.GetPaymentByOrderIdResponse
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -795,7 +1029,7 @@ func file_paymentcheckout_v1_paymentcheckout_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_paymentcheckout_v1_paymentcheckout_proto_rawDesc), len(file_paymentcheckout_v1_paymentcheckout_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

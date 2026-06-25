@@ -18,6 +18,7 @@ service OrderCheckoutService {
   rpc AcceptDelivery(AcceptDeliveryRequest) returns (AcceptDeliveryResponse);
   rpc RequestRevision(RequestRevisionRequest) returns (RequestRevisionResponse);
   rpc OpenDispute(OpenDisputeRequest) returns (OpenDisputeResponse);
+  rpc ResolveDispute(ResolveDisputeRequest) returns (ResolveDisputeResponse);
 }
 
 message OrderSnapshot {
@@ -191,4 +192,22 @@ message OpenDisputeResponse {
   string order_id = 1;
   string status = 2;
   string current_step = 3;
+}
+
+message ResolveDisputeRequest {
+  string order_id = 1;
+  string admin_user_id = 2;
+  int32 freelancer_percentage = 3;
+  int32 customer_percentage = 4;
+  string reason = 5;
+  string requested_at = 6;
+}
+
+message ResolveDisputeResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+  string payment_release_id = 4;
+  string stripe_transfer_id = 5;
+  string stripe_refund_id = 6;
 }

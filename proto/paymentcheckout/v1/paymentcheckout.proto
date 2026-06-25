@@ -10,6 +10,7 @@ option go_package = "github.com/ofm-microservices/ofm-common/proto/paymentchecko
 service PaymentCheckoutService {
   rpc CreateCheckoutSession(CreateCheckoutSessionRequest) returns (CreateCheckoutSessionResponse);
   rpc ReleaseFunds(ReleaseFundsRequest) returns (ReleaseFundsResponse);
+  rpc SettleDispute(SettleDisputeRequest) returns (SettleDisputeResponse);
   rpc GetReleaseByOrderId(GetReleaseByOrderIdRequest) returns (GetReleaseByOrderIdResponse);
   rpc GetPaymentByOrderId(GetPaymentByOrderIdRequest) returns (GetPaymentByOrderIdResponse);
 }
@@ -51,6 +52,29 @@ message ReleaseFundsResponse {
   string stripe_transfer_id = 3;
   string status = 4;
   string occurred_at = 5;
+}
+
+message SettleDisputeRequest {
+  string order_id = 1;
+  string payment_id = 2;
+  string seller_user_id = 3;
+  int64 amount_cents = 4;
+  string currency = 5;
+  int32 freelancer_percentage = 6;
+  int32 customer_percentage = 7;
+  string idempotency_key = 8;
+  string requested_at = 9;
+}
+
+message SettleDisputeResponse {
+  string order_id = 1;
+  string payment_release_id = 2;
+  string stripe_transfer_id = 3;
+  string stripe_refund_id = 4;
+  int64 freelancer_amount_cents = 5;
+  int64 customer_amount_cents = 6;
+  string status = 7;
+  string occurred_at = 8;
 }
 
 message GetReleaseByOrderIdRequest {

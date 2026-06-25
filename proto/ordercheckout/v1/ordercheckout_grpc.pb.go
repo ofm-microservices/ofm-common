@@ -32,6 +32,7 @@ const (
 	OrderCheckoutService_AcceptDelivery_FullMethodName            = "/ordercheckout.v1.OrderCheckoutService/AcceptDelivery"
 	OrderCheckoutService_RequestRevision_FullMethodName           = "/ordercheckout.v1.OrderCheckoutService/RequestRevision"
 	OrderCheckoutService_OpenDispute_FullMethodName               = "/ordercheckout.v1.OrderCheckoutService/OpenDispute"
+	OrderCheckoutService_ResolveDispute_FullMethodName            = "/ordercheckout.v1.OrderCheckoutService/ResolveDispute"
 )
 
 // OrderCheckoutServiceClient is the client API for OrderCheckoutService service.
@@ -50,6 +51,7 @@ type OrderCheckoutServiceClient interface {
 	AcceptDelivery(ctx context.Context, in *AcceptDeliveryRequest, opts ...grpc.CallOption) (*AcceptDeliveryResponse, error)
 	RequestRevision(ctx context.Context, in *RequestRevisionRequest, opts ...grpc.CallOption) (*RequestRevisionResponse, error)
 	OpenDispute(ctx context.Context, in *OpenDisputeRequest, opts ...grpc.CallOption) (*OpenDisputeResponse, error)
+	ResolveDispute(ctx context.Context, in *ResolveDisputeRequest, opts ...grpc.CallOption) (*ResolveDisputeResponse, error)
 }
 
 type orderCheckoutServiceClient struct {
@@ -160,6 +162,16 @@ func (c *orderCheckoutServiceClient) OpenDispute(ctx context.Context, in *OpenDi
 	return out, nil
 }
 
+func (c *orderCheckoutServiceClient) ResolveDispute(ctx context.Context, in *ResolveDisputeRequest, opts ...grpc.CallOption) (*ResolveDisputeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResolveDisputeResponse)
+	err := c.cc.Invoke(ctx, OrderCheckoutService_ResolveDispute_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderCheckoutServiceServer is the server API for OrderCheckoutService service.
 // All implementations should embed UnimplementedOrderCheckoutServiceServer
 // for forward compatibility.
@@ -176,6 +188,7 @@ type OrderCheckoutServiceServer interface {
 	AcceptDelivery(context.Context, *AcceptDeliveryRequest) (*AcceptDeliveryResponse, error)
 	RequestRevision(context.Context, *RequestRevisionRequest) (*RequestRevisionResponse, error)
 	OpenDispute(context.Context, *OpenDisputeRequest) (*OpenDisputeResponse, error)
+	ResolveDispute(context.Context, *ResolveDisputeRequest) (*ResolveDisputeResponse, error)
 }
 
 // UnimplementedOrderCheckoutServiceServer should be embedded to have
@@ -214,6 +227,9 @@ func (UnimplementedOrderCheckoutServiceServer) RequestRevision(context.Context, 
 }
 func (UnimplementedOrderCheckoutServiceServer) OpenDispute(context.Context, *OpenDisputeRequest) (*OpenDisputeResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method OpenDispute not implemented")
+}
+func (UnimplementedOrderCheckoutServiceServer) ResolveDispute(context.Context, *ResolveDisputeRequest) (*ResolveDisputeResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ResolveDispute not implemented")
 }
 func (UnimplementedOrderCheckoutServiceServer) testEmbeddedByValue() {}
 
@@ -415,6 +431,24 @@ func _OrderCheckoutService_OpenDispute_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderCheckoutService_ResolveDispute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResolveDisputeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderCheckoutServiceServer).ResolveDispute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderCheckoutService_ResolveDispute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderCheckoutServiceServer).ResolveDispute(ctx, req.(*ResolveDisputeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderCheckoutService_ServiceDesc is the grpc.ServiceDesc for OrderCheckoutService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -461,6 +495,10 @@ var OrderCheckoutService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "OpenDispute",
 			Handler:    _OrderCheckoutService_OpenDispute_Handler,
+		},
+		{
+			MethodName: "ResolveDispute",
+			Handler:    _OrderCheckoutService_ResolveDispute_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
