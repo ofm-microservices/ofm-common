@@ -10,6 +10,8 @@ option go_package = "github.com/ofm-microservices/ofm-common/proto/file/v1;filev
 service FileService {
   rpc UploadFile(UploadFileRequest) returns (UploadFileResponse);
   rpc UploadFiles(UploadFilesRequest) returns (UploadFilesResponse);
+  rpc CreateDirectUpload(CreateDirectUploadRequest) returns (CreateDirectUploadResponse);
+  rpc CompleteDirectUpload(CompleteDirectUploadRequest) returns (CompleteDirectUploadResponse);
   rpc GetFile(GetFileRequest) returns (GetFileResponse);
   rpc GetFileURL(GetFileURLRequest) returns (GetFileURLResponse);
   rpc GetFileURLs(GetFileURLsRequest) returns (GetFileURLsResponse);
@@ -55,6 +57,30 @@ message UploadFilesRequest {
 
 message UploadFilesResponse {
   repeated File files = 1;
+}
+
+message CreateDirectUploadRequest {
+  string owner_id = 1;
+  string filename = 2;
+  string content_type = 3;
+  int64 size_bytes = 4;
+}
+
+message CreateDirectUploadResponse {
+  string file_id = 1;
+  string upload_url = 2;
+  string method = 3;
+  map<string, string> headers = 4;
+  string expires_at = 5;
+}
+
+message CompleteDirectUploadRequest {
+  string file_id = 1;
+}
+
+message CompleteDirectUploadResponse {
+  File file = 1;
+  string url = 2;
 }
 
 message GetFileRequest {

@@ -22,12 +22,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FileService_UploadFile_FullMethodName  = "/file.v1.FileService/UploadFile"
-	FileService_UploadFiles_FullMethodName = "/file.v1.FileService/UploadFiles"
-	FileService_GetFile_FullMethodName     = "/file.v1.FileService/GetFile"
-	FileService_GetFileURL_FullMethodName  = "/file.v1.FileService/GetFileURL"
-	FileService_GetFileURLs_FullMethodName = "/file.v1.FileService/GetFileURLs"
-	FileService_DeleteFile_FullMethodName  = "/file.v1.FileService/DeleteFile"
+	FileService_UploadFile_FullMethodName           = "/file.v1.FileService/UploadFile"
+	FileService_UploadFiles_FullMethodName          = "/file.v1.FileService/UploadFiles"
+	FileService_CreateDirectUpload_FullMethodName   = "/file.v1.FileService/CreateDirectUpload"
+	FileService_CompleteDirectUpload_FullMethodName = "/file.v1.FileService/CompleteDirectUpload"
+	FileService_GetFile_FullMethodName              = "/file.v1.FileService/GetFile"
+	FileService_GetFileURL_FullMethodName           = "/file.v1.FileService/GetFileURL"
+	FileService_GetFileURLs_FullMethodName          = "/file.v1.FileService/GetFileURLs"
+	FileService_DeleteFile_FullMethodName           = "/file.v1.FileService/DeleteFile"
 )
 
 // FileServiceClient is the client API for FileService service.
@@ -38,6 +40,8 @@ const (
 type FileServiceClient interface {
 	UploadFile(ctx context.Context, in *UploadFileRequest, opts ...grpc.CallOption) (*UploadFileResponse, error)
 	UploadFiles(ctx context.Context, in *UploadFilesRequest, opts ...grpc.CallOption) (*UploadFilesResponse, error)
+	CreateDirectUpload(ctx context.Context, in *CreateDirectUploadRequest, opts ...grpc.CallOption) (*CreateDirectUploadResponse, error)
+	CompleteDirectUpload(ctx context.Context, in *CompleteDirectUploadRequest, opts ...grpc.CallOption) (*CompleteDirectUploadResponse, error)
 	GetFile(ctx context.Context, in *GetFileRequest, opts ...grpc.CallOption) (*GetFileResponse, error)
 	GetFileURL(ctx context.Context, in *GetFileURLRequest, opts ...grpc.CallOption) (*GetFileURLResponse, error)
 	GetFileURLs(ctx context.Context, in *GetFileURLsRequest, opts ...grpc.CallOption) (*GetFileURLsResponse, error)
@@ -66,6 +70,26 @@ func (c *fileServiceClient) UploadFiles(ctx context.Context, in *UploadFilesRequ
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UploadFilesResponse)
 	err := c.cc.Invoke(ctx, FileService_UploadFiles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fileServiceClient) CreateDirectUpload(ctx context.Context, in *CreateDirectUploadRequest, opts ...grpc.CallOption) (*CreateDirectUploadResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateDirectUploadResponse)
+	err := c.cc.Invoke(ctx, FileService_CreateDirectUpload_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fileServiceClient) CompleteDirectUpload(ctx context.Context, in *CompleteDirectUploadRequest, opts ...grpc.CallOption) (*CompleteDirectUploadResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompleteDirectUploadResponse)
+	err := c.cc.Invoke(ctx, FileService_CompleteDirectUpload_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -120,6 +144,8 @@ func (c *fileServiceClient) DeleteFile(ctx context.Context, in *DeleteFileReques
 type FileServiceServer interface {
 	UploadFile(context.Context, *UploadFileRequest) (*UploadFileResponse, error)
 	UploadFiles(context.Context, *UploadFilesRequest) (*UploadFilesResponse, error)
+	CreateDirectUpload(context.Context, *CreateDirectUploadRequest) (*CreateDirectUploadResponse, error)
+	CompleteDirectUpload(context.Context, *CompleteDirectUploadRequest) (*CompleteDirectUploadResponse, error)
 	GetFile(context.Context, *GetFileRequest) (*GetFileResponse, error)
 	GetFileURL(context.Context, *GetFileURLRequest) (*GetFileURLResponse, error)
 	GetFileURLs(context.Context, *GetFileURLsRequest) (*GetFileURLsResponse, error)
@@ -138,6 +164,12 @@ func (UnimplementedFileServiceServer) UploadFile(context.Context, *UploadFileReq
 }
 func (UnimplementedFileServiceServer) UploadFiles(context.Context, *UploadFilesRequest) (*UploadFilesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UploadFiles not implemented")
+}
+func (UnimplementedFileServiceServer) CreateDirectUpload(context.Context, *CreateDirectUploadRequest) (*CreateDirectUploadResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateDirectUpload not implemented")
+}
+func (UnimplementedFileServiceServer) CompleteDirectUpload(context.Context, *CompleteDirectUploadRequest) (*CompleteDirectUploadResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CompleteDirectUpload not implemented")
 }
 func (UnimplementedFileServiceServer) GetFile(context.Context, *GetFileRequest) (*GetFileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetFile not implemented")
@@ -203,6 +235,42 @@ func _FileService_UploadFiles_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FileServiceServer).UploadFiles(ctx, req.(*UploadFilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FileService_CreateDirectUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateDirectUploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FileServiceServer).CreateDirectUpload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FileService_CreateDirectUpload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FileServiceServer).CreateDirectUpload(ctx, req.(*CreateDirectUploadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FileService_CompleteDirectUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompleteDirectUploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FileServiceServer).CompleteDirectUpload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FileService_CompleteDirectUpload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FileServiceServer).CompleteDirectUpload(ctx, req.(*CompleteDirectUploadRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -293,6 +361,14 @@ var FileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UploadFiles",
 			Handler:    _FileService_UploadFiles_Handler,
+		},
+		{
+			MethodName: "CreateDirectUpload",
+			Handler:    _FileService_CreateDirectUpload_Handler,
+		},
+		{
+			MethodName: "CompleteDirectUpload",
+			Handler:    _FileService_CompleteDirectUpload_Handler,
 		},
 		{
 			MethodName: "GetFile",
