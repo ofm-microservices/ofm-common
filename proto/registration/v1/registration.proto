@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+// Package registration.v1 defines the public registration saga API shared
+// between api-gateway and registration-saga-service.
+package registration.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/registration/v1;registrationv1";
+
+// RegistrationService starts registration sessions and returns the immediate
+// orchestration result.
+service RegistrationService {
+  rpc StartRegistration(StartRegistrationRequest) returns (StartRegistrationResponse);
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse);
+  rpc GetRegistrationStatus(GetRegistrationStatusRequest) returns (GetRegistrationStatusResponse);
+}
+
+// StartRegistrationRequest carries the public signup payload from api-gateway
+// to registration-saga-service.
+message StartRegistrationRequest {
+  // client_id identifies the caller's anonymous realtime session when already
+  // known.
+  string client_id = 1;
+  // email is the registration email address owned by auth-service.
+  string email = 2;
+  // username is the public identity owned by user-service.
+  string username = 3;
+  // password is the raw signup secret received at the public boundary.
+  string password = 4;
+  // first_name is the user's given name.
+  string first_name = 5;
+  // surname is the public API surname field mapped to user-service last_name.
+  string surname = 6;
+}
+
+// StartRegistrationResponse is returned immediately after duplicate checks and
+// session allocation.
+message StartRegistrationResponse {
+  // session_id identifies the registration saga session.
+  string session_id = 1;
+  // client_id identifies the realtime registration connection.
+  string client_id = 2;
+  // user_id is the future user identifier allocated by the saga.
+  string user_id = 3;
+  // status describes the immediate registration outcome.
+  string status = 4;
+  // conflict_state explains why the request could not start when status is a
+  // conflict outcome.
+  string conflict_state = 5;
+  // username_taken reports whether the requested username is already reserved.
+  bool username_taken = 6;
+  // email_taken reports whether the requested email is already reserved.
+  bool email_taken = 7;
+}
+
+// VerifyEmailRequest carries the email verification command from api-gateway to
+// registration-saga-service.
+message VerifyEmailRequest {
+  string session_id = 1;
+  string client_id = 2;
+  string code = 3;
+}
+
+// VerifyEmailResponse is returned immediately after the saga accepts the email
+// verification command.
+message VerifyEmailResponse {
+  string session_id = 1;
+  string client_id = 2;
+  string status = 3;
+}
+
+// GetRegistrationStatusRequest asks the saga whether a registration session has
+// completed and can be exchanged for auth tokens.
+message GetRegistrationStatusRequest {
+  string session_id = 1;
+  string client_id = 2;
+}
+
+// GetRegistrationStatusResponse reports the current saga state for token
+// completion.
+message GetRegistrationStatusResponse {
+  string session_id = 1;
+  string client_id = 2;
+  string user_id = 3;
+  string status = 4;
+}

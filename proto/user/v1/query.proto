@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+// Package user.v1 defines the user ownership queries shared with
+// registration-saga-service.
+package user.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/user/v1;userv1";
+
+// UserQueryService exposes read-only user ownership checks over gRPC.
+service UserQueryService {
+  rpc ExistsByUsername(ExistsByUsernameRequest) returns (ExistsByUsernameResponse);
+  rpc ActivateUser(ActivateUserRequest) returns (ActivateUserResponse);
+  rpc DeactivateUser(DeactivateUserRequest) returns (DeactivateUserResponse);
+  rpc GetUserPreviewByID(GetUserPreviewByIDRequest) returns (GetUserPreviewByIDResponse);
+  rpc GetUserPreviewByIDNoCache(GetUserPreviewByIDNoCacheRequest) returns (GetUserPreviewByIDNoCacheResponse);
+  rpc GetDetailedUserByUsername(GetDetailedUserByUsernameRequest) returns (GetDetailedUserByUsernameResponse);
+}
+
+// ExistsByUsernameRequest asks whether user-service already owns the supplied
+// username.
+message ExistsByUsernameRequest {
+  string username = 1;
+}
+
+// ExistsByUsernameResponse reports whether the username is already owned by
+// user-service.
+message ExistsByUsernameResponse {
+  bool exists = 1;
+}
+
+// ActivateUserRequest asks user-service to make a created profile active.
+message ActivateUserRequest {
+  string user_id = 1;
+}
+
+// ActivateUserResponse reports profile activation.
+message ActivateUserResponse {
+  string user_id = 1;
+  string status = 2;
+}
+
+// DeactivateUserRequest asks user-service to mark a profile inactive as
+// compensation.
+message DeactivateUserRequest {
+  string user_id = 1;
+}
+
+// DeactivateUserResponse reports profile deactivation.
+message DeactivateUserResponse {
+  string user_id = 1;
+  string status = 2;
+}
+
+message GetUserPreviewByIDRequest {
+  string user_id = 1;
+}
+
+message UserPreview {
+  string user_id = 1;
+  string username = 2;
+  string display_name = 3;
+  string avatar_id = 4;
+  string avatar_url = 5;
+}
+
+message GetUserPreviewByIDResponse {
+  UserPreview user = 1;
+}
+
+message GetUserPreviewByIDNoCacheRequest {
+  string user_id = 1;
+}
+
+message GetUserPreviewByIDNoCacheResponse {
+  UserPreview user = 1;
+}
+
+message GetDetailedUserByUsernameRequest {
+  string username = 1;
+}
+
+message DetailedUser {
+  string user_id = 1;
+  string username = 2;
+  string display_name = 3;
+  string avatar_id = 4;
+  string avatar_url = 5;
+  string about = 6;
+}
+
+message GetDetailedUserByUsernameResponse {
+  DetailedUser user = 1;
+}

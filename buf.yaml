@@ -1,0 +1,10 @@
+version: v2
+modules:
+  - path: proto
+    name: buf.build/ofm-microservices/ofm-common
+lint:
+  use:
+    - STANDARD
+breaking:
+  use:
+    - FILE

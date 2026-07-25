@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+// Package paymentconnect.v1 defines the gRPC onboarding contract used by the
+// API gateway and payment-service to provision Stripe Connect accounts.
+package paymentconnect.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/paymentconnect/v1;paymentconnectv1";
+
+// PaymentOnboardingService provisions Stripe Connect onboarding for a user.
+service PaymentOnboardingService {
+  rpc StartFreelancerOnboarding(StartFreelancerOnboardingRequest) returns (StartFreelancerOnboardingResponse);
+  rpc GetConnectStatus(GetConnectStatusRequest) returns (GetConnectStatusResponse);
+}
+
+// StartFreelancerOnboardingRequest identifies the authenticated user and the
+// URLs Stripe should redirect to after onboarding or refresh.
+message StartFreelancerOnboardingRequest {
+  string user_id = 1;
+  string email = 2;
+  string country = 3;
+  string return_url = 4;
+  string refresh_url = 5;
+  string idempotency_key = 6;
+  string requested_at = 7;
+}
+
+// StartFreelancerOnboardingResponse returns the Stripe account metadata and a
+// fresh onboarding URL when onboarding is still incomplete.
+message StartFreelancerOnboardingResponse {
+  string user_id = 1;
+  string stripe_account_id = 2;
+  string onboarding_url = 3;
+  string status = 4;
+  bool details_submitted = 5;
+  bool charges_enabled = 6;
+  bool payouts_enabled = 7;
+  string disabled_reason = 8;
+  string occurred_at = 9;
+}
+
+// GetConnectStatusRequest asks payment-service for the latest Connect onboarding
+// status for one authenticated freelancer.
+message GetConnectStatusRequest {
+  string user_id = 1;
+}
+
+// GetConnectStatusResponse returns the normalized Connect onboarding status for
+// one freelancer.
+message GetConnectStatusResponse {
+  string user_id = 1;
+  string status = 2;
+  string stripe_account_id = 3;
+  string disabled_reason = 4;
+  string occurred_at = 5;
+}

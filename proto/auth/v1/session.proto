@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+// Package auth.v1 defines the auth session exchange shared with api-gateway.
+package auth.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/auth/v1;authv1";
+
+// AuthSessionService exchanges credentials for auth-owned login tokens.
+service AuthSessionService {
+  rpc SignIn(SignInRequest) returns (SignInResponse);
+  rpc Refresh(RefreshRequest) returns (RefreshResponse);
+  rpc SignOut(SignOutRequest) returns (SignOutResponse);
+}
+
+// SignInRequest submits a username-or-email identifier plus password.
+message SignInRequest {
+  string identifier = 1;
+  string password = 2;
+}
+
+// RefreshRequest submits a refresh token for rotation.
+message RefreshRequest {
+  string refresh_token = 1;
+}
+
+// SignOutRequest submits a refresh token to revoke the current session.
+message SignOutRequest {
+  string refresh_token = 1;
+}
+
+// SignInResponse returns access and refresh tokens for an authenticated
+// user.
+message SignInResponse {
+  string user_id = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+  string token_type = 4;
+  int64 expires_in = 5;
+}
+
+// RefreshResponse returns the rotated access and refresh tokens.
+message RefreshResponse {
+  string user_id = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+  string token_type = 4;
+  int64 expires_in = 5;
+}
+
+// SignOutResponse confirms that the refresh token was revoked.
+message SignOutResponse {
+  string user_id = 1;
+  string status = 2;
+}

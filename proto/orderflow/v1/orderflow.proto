@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+// Package orderflow.v1 defines the NATS payload contracts for the OFM order
+// saga workflow.
+package orderflow.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/orderflow/v1;orderflowv1";
+
+// OrderSagaCommand is the root command published by api-gateway to start an
+// order saga.
+message OrderSagaCommand {
+  string saga_id = 1;
+  string order_id = 2;
+  string buyer_id = 3;
+  string buyer_email = 4;
+  string gig_id = 5;
+  string gig_title = 6;
+  string package_id = 7;
+  string package_tier = 8;
+  string package_description = 9;
+  int32 package_delivery_days = 10;
+  int64 price_cents = 11;
+  string currency = 12;
+  string idempotency_key = 13;
+  string requested_at = 14;
+}
+
+// OrderCreateCommand asks order-service to persist the immutable order
+// snapshot for the saga.
+message OrderCreateCommand {
+  string saga_id = 1;
+  string order_id = 2;
+  string buyer_id = 3;
+  string seller_id = 4;
+  string seller_username = 5;
+  string gig_id = 6;
+  string gig_title = 7;
+  string package_id = 8;
+  string package_tier = 9;
+  string package_description = 10;
+  int32 package_delivery_days = 11;
+  int64 price_cents = 12;
+  string currency = 13;
+  string idempotency_key = 14;
+  string requested_at = 15;
+  string picture_file_id = 16;
+}
+
+// OrderSnapshot carries the immutable business fields the order-service owns.
+message OrderSnapshot {
+  string order_id = 1;
+  string saga_id = 2;
+  string buyer_id = 3;
+  string seller_id = 4;
+  string seller_username = 5;
+  string gig_id = 6;
+  string gig_title = 7;
+  string package_id = 8;
+  string package_tier = 9;
+  string package_description = 10;
+  int32 package_delivery_days = 11;
+  int64 price_cents = 12;
+  string currency = 13;
+  string status = 14;
+  string created_at = 15;
+  string updated_at = 16;
+}
+
+// OrderSagaResult is emitted when the order-service finishes a command.
+message OrderSagaResult {
+  string saga_id = 1;
+  string order_id = 2;
+  string gig_id = 3;
+  string status = 4;
+  string error = 5;
+  string operation = 6;
+  string occurred_at = 7;
+}
+
+// OrderConfirmedEvent is emitted once payment is captured and the order is
+// finalized.
+message OrderConfirmedEvent {
+  string saga_id = 1;
+  string order_id = 2;
+  string payment_intent_id = 3;
+  string checkout_url = 4;
+  string occurred_at = 5;
+}
+
+// OrderFailedEvent is emitted when the saga cannot complete the order.
+message OrderFailedEvent {
+  string saga_id = 1;
+  string order_id = 2;
+  string reason = 3;
+  string occurred_at = 4;
+}
+
+// OrderCompensationCommand is published when the saga needs to unwind a
+// previously created order.
+message OrderCompensationCommand {
+  string saga_id = 1;
+  string order_id = 2;
+  string reason = 3;
+  string occurred_at = 4;
+}

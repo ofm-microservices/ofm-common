@@ -1,0 +1,213 @@
+syntax = "proto3";
+
+// Package ordercheckout.v1 defines the synchronous checkout wizard contract
+// used by api-gateway and order-saga-service.
+package ordercheckout.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/ordercheckout/v1;ordercheckoutv1";
+
+// OrderCheckoutService owns the public order wizard API.
+service OrderCheckoutService {
+  rpc StartOrder(StartOrderRequest) returns (StartOrderResponse);
+  rpc SubmitRequirements(SubmitRequirementsRequest) returns (SubmitRequirementsResponse);
+  rpc SubmitMessage(SubmitMessageRequest) returns (SubmitMessageResponse);
+  rpc CreateAttachmentUploadURL(CreateAttachmentUploadURLRequest) returns (CreateAttachmentUploadURLResponse);
+  rpc CompleteAttachmentUpload(CompleteAttachmentUploadRequest) returns (CompleteAttachmentUploadResponse);
+  rpc ConfirmOrder(ConfirmOrderRequest) returns (ConfirmOrderResponse);
+  rpc DeliverOrder(DeliverOrderRequest) returns (DeliverOrderResponse);
+  rpc AcceptDelivery(AcceptDeliveryRequest) returns (AcceptDeliveryResponse);
+  rpc RequestRevision(RequestRevisionRequest) returns (RequestRevisionResponse);
+  rpc OpenDispute(OpenDisputeRequest) returns (OpenDisputeResponse);
+  rpc ResolveDispute(ResolveDisputeRequest) returns (ResolveDisputeResponse);
+}
+
+message OrderSnapshot {
+  string gig_id = 1;
+  string package_id = 2;
+  string seller_user_id = 3;
+  string gig_title = 4;
+  string package_title = 5;
+  string package_description = 6;
+  int64 price_amount = 7;
+  string price_currency = 8;
+  int32 delivery_days = 9;
+  int32 revision_count = 10;
+}
+
+message OrderQuestionOption {
+  string value = 1;
+  string label = 2;
+}
+
+message OrderQuestion {
+  string question_id = 1;
+  string text = 2;
+  string type = 3;
+  bool required = 4;
+  repeated OrderQuestionOption options = 5;
+  int32 sort_order = 6;
+}
+
+message StartOrderRequest {
+  string buyer_user_id = 1;
+  string buyer_email = 2;
+  string gig_id = 3;
+  string package_id = 4;
+  string idempotency_key = 5;
+  string correlation_id = 6;
+  string realtime_connection_id = 7;
+  string requested_at = 8;
+}
+
+message StartOrderResponse {
+  string saga_id = 1;
+  string order_id = 2;
+  string status = 3;
+  string current_step = 4;
+  OrderSnapshot snapshot = 5;
+  repeated OrderQuestion questions = 6;
+}
+
+message OrderRequirementAnswer {
+  string question_id = 1;
+  string value = 2;
+}
+
+message SubmitRequirementsRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  repeated OrderRequirementAnswer answers = 3;
+  string requested_at = 4;
+}
+
+message SubmitRequirementsResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+}
+
+message SubmitMessageRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string message = 3;
+  string requested_at = 4;
+}
+
+message SubmitMessageResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+}
+
+message CreateAttachmentUploadURLRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string file_name = 3;
+  string mime_type = 4;
+  int64 size_bytes = 5;
+  string requested_at = 6;
+}
+
+message CreateAttachmentUploadURLResponse {
+  string order_id = 1;
+  string attachment_id = 2;
+  string upload_url = 3;
+  string file_key = 4;
+}
+
+message CompleteAttachmentUploadRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string attachment_id = 3;
+  string file_key = 4;
+  string requested_at = 5;
+}
+
+message CompleteAttachmentUploadResponse {
+  string order_id = 1;
+  string attachment_id = 2;
+  string status = 3;
+}
+
+message ConfirmOrderRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string requested_at = 3;
+}
+
+message ConfirmOrderResponse {
+  string order_id = 1;
+  string payment_id = 2;
+  string status = 3;
+  string checkout_url = 4;
+}
+
+message DeliverOrderRequest {
+  string order_id = 1;
+  string seller_user_id = 2;
+  string delivery_message = 3;
+  repeated string attachment_ids = 4;
+  string requested_at = 5;
+}
+
+message DeliverOrderResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+}
+
+message AcceptDeliveryRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string requested_at = 3;
+}
+
+message AcceptDeliveryResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+}
+
+message RequestRevisionRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string reason = 3;
+  string requested_at = 4;
+}
+
+message RequestRevisionResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+}
+
+message OpenDisputeRequest {
+  string order_id = 1;
+  string buyer_user_id = 2;
+  string reason = 3;
+  string requested_at = 4;
+}
+
+message OpenDisputeResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+}
+
+message ResolveDisputeRequest {
+  string order_id = 1;
+  string admin_user_id = 2;
+  int32 freelancer_percentage = 3;
+  int32 customer_percentage = 4;
+  string reason = 5;
+  string requested_at = 6;
+}
+
+message ResolveDisputeResponse {
+  string order_id = 1;
+  string status = 2;
+  string current_step = 3;
+  string payment_release_id = 4;
+  string stripe_transfer_id = 5;
+  string stripe_refund_id = 6;
+}

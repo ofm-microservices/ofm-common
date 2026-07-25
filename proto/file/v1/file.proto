@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+// Package file.v1 defines the public file metadata API shared between
+// api-gateway, gig-service, and file-service.
+package file.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/file/v1;filev1";
+
+// FileService uploads, retrieves, and deletes file metadata.
+service FileService {
+  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse);
+  rpc UploadFiles(UploadFilesRequest) returns (UploadFilesResponse);
+  rpc CreateDirectUpload(CreateDirectUploadRequest) returns (CreateDirectUploadResponse);
+  rpc CompleteDirectUpload(CompleteDirectUploadRequest) returns (CompleteDirectUploadResponse);
+  rpc GetFile(GetFileRequest) returns (GetFileResponse);
+  rpc GetFileURL(GetFileURLRequest) returns (GetFileURLResponse);
+  rpc GetFileURLs(GetFileURLsRequest) returns (GetFileURLsResponse);
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+}
+
+message File {
+  string file_id = 1;
+  string owner_id = 2;
+  string filename = 3;
+  string extension = 4;
+  string content_type = 5;
+  string bucket = 6;
+  string storage_path = 7;
+  int64 size_bytes = 8;
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message UploadFileRequest {
+  string owner_id = 1;
+  string filename = 2;
+  string content_type = 3;
+  string prefix = 4;
+  bytes data = 5;
+}
+
+message UploadFileResponse {
+  File file = 1;
+}
+
+message UploadFileInput {
+  string filename = 1;
+  string content_type = 2;
+  bytes data = 3;
+}
+
+message UploadFilesRequest {
+  string owner_id = 1;
+  string prefix = 2;
+  repeated UploadFileInput files = 3;
+}
+
+message UploadFilesResponse {
+  repeated File files = 1;
+}
+
+message CreateDirectUploadRequest {
+  string owner_id = 1;
+  string filename = 2;
+  string content_type = 3;
+  int64 size_bytes = 4;
+}
+
+message CreateDirectUploadResponse {
+  string file_id = 1;
+  string upload_url = 2;
+  string method = 3;
+  map<string, string> headers = 4;
+  string expires_at = 5;
+}
+
+message CompleteDirectUploadRequest {
+  string file_id = 1;
+}
+
+message CompleteDirectUploadResponse {
+  File file = 1;
+  string url = 2;
+}
+
+message GetFileRequest {
+  string file_id = 1;
+}
+
+message GetFileResponse {
+  File file = 1;
+}
+
+message GetFileURLRequest {
+  string file_id = 1;
+}
+
+message GetFileURLResponse {
+  string file_id = 1;
+  string url = 2;
+}
+
+message FileURL {
+  string file_id = 1;
+  string url = 2;
+}
+
+message GetFileURLsRequest {
+  repeated string file_ids = 1;
+}
+
+message GetFileURLsResponse {
+  repeated FileURL file_urls = 1;
+}
+
+message DeleteFileRequest {
+  string file_id = 1;
+}
+
+message DeleteFileResponse {
+  string file_id = 1;
+}

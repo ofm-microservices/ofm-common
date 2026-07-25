@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+// Package chat.v1 defines the order chat contract shared between
+// api-gateway and chat-service.
+package chat.v1;
+
+option go_package = "github.com/ofm-microservices/ofm-common/proto/chat/v1;chatv1";
+
+service ChatService {
+  rpc GetOrderChat(GetOrderChatRequest) returns (GetOrderChatResponse);
+  rpc CreateMessage(CreateMessageRequest) returns (CreateMessageResponse);
+  rpc EditMessage(EditMessageRequest) returns (EditMessageResponse);
+  rpc DeleteMessage(DeleteMessageRequest) returns (DeleteMessageResponse);
+  rpc CreateAttachmentUploadURL(CreateAttachmentUploadURLRequest) returns (CreateAttachmentUploadURLResponse);
+  rpc CompleteAttachmentUpload(CompleteAttachmentUploadRequest) returns (CompleteAttachmentUploadResponse);
+}
+
+message ChatAttachment {
+  string file_id = 1;
+  string filename = 2;
+  string content_type = 3;
+  int64 size_bytes = 4;
+  string url = 5;
+}
+
+message ChatMessage {
+  string message_id = 1;
+  string order_id = 2;
+  string sender_user_id = 3;
+  string message_type = 4;
+  string text = 5;
+  bool deleted = 6;
+  bool edited = 7;
+  repeated ChatAttachment attachments = 8;
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message GetOrderChatRequest {
+  string order_id = 1;
+  string user_id = 2;
+  string cursor = 3;
+  int32 limit = 4;
+}
+
+message GetOrderChatResponse {
+  string order_id = 1;
+  string buyer_id = 2;
+  string seller_id = 3;
+  string status = 4;
+  string close_reason = 5;
+  repeated ChatMessage messages = 6;
+  string next_cursor = 7;
+}
+
+message CreateMessageRequest {
+  string order_id = 1;
+  string user_id = 2;
+  string text = 3;
+  repeated string attachment_ids = 4;
+}
+
+message CreateMessageResponse {
+  ChatMessage message = 1;
+}
+
+message EditMessageRequest {
+  string order_id = 1;
+  string user_id = 2;
+  string message_id = 3;
+  string text = 4;
+}
+
+message EditMessageResponse {
+  ChatMessage message = 1;
+}
+
+message DeleteMessageRequest {
+  string order_id = 1;
+  string user_id = 2;
+  string message_id = 3;
+}
+
+message DeleteMessageResponse {
+  ChatMessage message = 1;
+}
+
+message CreateAttachmentUploadURLRequest {
+  string order_id = 1;
+  string user_id = 2;
+  string filename = 3;
+  string content_type = 4;
+  int64 size_bytes = 5;
+}
+
+message CreateAttachmentUploadURLResponse {
+  string file_id = 1;
+  string upload_url = 2;
+  string method = 3;
+  map<string, string> headers = 4;
+  string expires_at = 5;
+}
+
+message CompleteAttachmentUploadRequest {
+  string order_id = 1;
+  string user_id = 2;
+  string file_id = 3;
+}
+
+message CompleteAttachmentUploadResponse {
+  ChatAttachment attachment = 1;
+}
