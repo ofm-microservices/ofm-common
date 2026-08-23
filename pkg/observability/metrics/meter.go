@@ -21,6 +21,7 @@ type prometheusMeter struct {
 	grpcServerDuration *prometheus.HistogramVec
 	grpcClientRequests *prometheus.CounterVec
 	grpcClientDuration *prometheus.HistogramVec
+	circuitState       *prometheus.GaugeVec
 
 	natsReceived          *prometheus.CounterVec
 	natsProcessed         *prometheus.CounterVec
@@ -30,6 +31,12 @@ type prometheusMeter struct {
 	natsFetchErrors       *prometheus.CounterVec
 	natsConsumerPending   *prometheus.GaugeVec
 	natsConsumerBatchSize *prometheus.GaugeVec
+	kafkaReceived         *prometheus.CounterVec
+	kafkaProcessed        *prometheus.CounterVec
+	kafkaProcessingTime   *prometheus.HistogramVec
+	kafkaRetries          *prometheus.CounterVec
+	kafkaErrors           *prometheus.CounterVec
+	kafkaDLQ              *prometheus.CounterVec
 
 	dbOperations    *prometheus.CounterVec
 	dbDuration      *prometheus.HistogramVec
@@ -67,6 +74,7 @@ func New(service, env string) Meter {
 	m.grpcServerDuration = histogram(reg, "ofm_grpc_server_duration_seconds", "gRPC server request duration.", labels, []string{"grpc_service", "grpc_method", "grpc_code"}, transportBuckets)
 	m.grpcClientRequests = counter(reg, "ofm_grpc_client_requests_total", "gRPC client requests.", labels, []string{"grpc_service", "grpc_method", "grpc_code"})
 	m.grpcClientDuration = histogram(reg, "ofm_grpc_client_duration_seconds", "gRPC client request duration.", labels, []string{"grpc_service", "grpc_method", "grpc_code"}, transportBuckets)
+	m.circuitState = gaugeVec(reg, "ofm_circuit_breaker_state", "Current circuit breaker state.", labels, []string{"dependency", "state"})
 
 	m.natsReceived = counter(reg, "ofm_nats_messages_received_total", "NATS messages received.", labels, []string{"stream", "subject", "durable"})
 	m.natsProcessed = counter(reg, "ofm_nats_messages_processed_total", "NATS messages processed.", labels, []string{"stream", "subject", "durable", "status"})
@@ -76,6 +84,12 @@ func New(service, env string) Meter {
 	m.natsFetchErrors = counter(reg, "ofm_nats_fetch_errors_total", "NATS pull fetch errors.", labels, []string{"stream", "subject", "durable"})
 	m.natsConsumerPending = gaugeVec(reg, "ofm_nats_consumer_pending_messages", "NATS consumer pending messages.", labels, []string{"stream", "subject", "durable"})
 	m.natsConsumerBatchSize = gaugeVec(reg, "ofm_nats_consumer_batch_size", "NATS consumer batch size.", labels, []string{"stream", "subject", "durable"})
+	m.kafkaReceived = counter(reg, "ofm_kafka_messages_received_total", "Kafka messages received.", labels, []string{"topic"})
+	m.kafkaProcessed = counter(reg, "ofm_kafka_messages_processed_total", "Kafka messages processed.", labels, []string{"topic", "status"})
+	m.kafkaProcessingTime = histogram(reg, "ofm_kafka_message_processing_duration_seconds", "Kafka message processing duration.", labels, []string{"topic", "status"}, transportBuckets)
+	m.kafkaRetries = counter(reg, "ofm_kafka_projection_retries_total", "Kafka projection retries.", labels, []string{"topic"})
+	m.kafkaErrors = counter(reg, "ofm_kafka_projection_errors_total", "Kafka projection errors.", labels, []string{"topic"})
+	m.kafkaDLQ = counter(reg, "ofm_kafka_dlq_messages_total", "Kafka messages written to dead-letter topics.", labels, []string{"topic"})
 
 	m.dbOperations = counter(reg, "ofm_db_operations_total", "Database operations.", labels, []string{"store", "operation", "table", "status"})
 	m.dbDuration = histogram(reg, "ofm_db_operation_duration_seconds", "Database operation duration.", labels, []string{"store", "operation", "table", "status"}, storageBuckets)
@@ -126,6 +140,16 @@ func (m *prometheusMeter) ObserveGRPCClient(service, method, code string, durati
 	m.grpcClientDuration.WithLabelValues(service, method, code).Observe(duration.Seconds())
 }
 
+func (m *prometheusMeter) ObserveCircuitBreaker(dependency, state string) {
+	for _, candidate := range []string{"closed", "open", "half_open"} {
+		value := 0.0
+		if candidate == state {
+			value = 1
+		}
+		m.circuitState.WithLabelValues(dependency, candidate).Set(value)
+	}
+}
+
 func (m *prometheusMeter) IncNATSReceived(stream, subject, durable string) {
 	m.natsReceived.WithLabelValues(stream, subject, durable).Inc()
 }
@@ -154,6 +178,17 @@ func (m *prometheusMeter) SetNATSPending(stream, subject, durable string, pendin
 func (m *prometheusMeter) SetNATSBatchSize(stream, subject, durable string, size int) {
 	m.natsConsumerBatchSize.WithLabelValues(stream, subject, durable).Set(float64(size))
 }
+
+func (m *prometheusMeter) IncKafkaReceived(topic string) {
+	m.kafkaReceived.WithLabelValues(topic).Inc()
+}
+func (m *prometheusMeter) ObserveKafkaProcessed(topic, status string, duration time.Duration) {
+	m.kafkaProcessed.WithLabelValues(topic, status).Inc()
+	m.kafkaProcessingTime.WithLabelValues(topic, status).Observe(duration.Seconds())
+}
+func (m *prometheusMeter) IncKafkaRetry(topic string) { m.kafkaRetries.WithLabelValues(topic).Inc() }
+func (m *prometheusMeter) IncKafkaError(topic string) { m.kafkaErrors.WithLabelValues(topic).Inc() }
+func (m *prometheusMeter) IncKafkaDLQ(topic string)   { m.kafkaDLQ.WithLabelValues(topic).Inc() }
 
 func (m *prometheusMeter) ObserveDB(store, operation, table, status string, duration time.Duration) {
 	m.dbOperations.WithLabelValues(store, operation, table, status).Inc()

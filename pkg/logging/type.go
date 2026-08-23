@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/ofm-microservices/ofm-common/pkg/observability/metadata"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/zap"
 )
@@ -54,12 +55,26 @@ func WithContext(ctx context.Context, lg Logger) Logger {
 	if ctx == nil {
 		return lg
 	}
+	values := metadata.FromContext(ctx)
+	fields := make([]Field, 0, 4)
+	if values.RequestID != "" {
+		fields = append(fields, String("request_id", values.RequestID))
+	}
+	if values.CorrelationID != "" {
+		fields = append(fields, String("correlation_id", values.CorrelationID))
+	}
+	if values.TestRunID != "" {
+		fields = append(fields, String("test_run_id", values.TestRunID))
+	}
+	if values.TestScenarioID != "" {
+		fields = append(fields, String("scenario_id", values.TestScenarioID))
+	}
 	sc := trace.SpanContextFromContext(ctx)
-	if !sc.IsValid() {
+	if sc.IsValid() {
+		fields = append(fields, String("trace_id", sc.TraceID().String()), String("span_id", sc.SpanID().String()))
+	}
+	if len(fields) == 0 {
 		return lg
 	}
-	return lg.With(
-		String("trace_id", sc.TraceID().String()),
-		String("span_id", sc.SpanID().String()),
-	)
+	return lg.With(fields...)
 }
