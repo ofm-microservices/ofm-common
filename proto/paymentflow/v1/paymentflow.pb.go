@@ -500,7 +500,7 @@ func (x *PaymentCompensationCommand) GetOccurredAt() string {
 }
 
 // PaymentProjectionRequest asks payment-service to rebuild the Redis order
-// payment projection from canonical YugabyteDB data.
+// payment projection from canonical PostgreSQL data.
 type PaymentProjectionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
