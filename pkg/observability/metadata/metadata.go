@@ -6,6 +6,8 @@ import (
 	"context"
 	"strings"
 
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/propagation"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )
@@ -46,12 +48,12 @@ func FromContext(ctx context.Context) Values {
 	return Values{RequestID: value(ctx, requestIDKey), CorrelationID: value(ctx, correlationIDKey), IdempotencyKey: value(ctx, idempotencyKey), TestRunID: value(ctx, testRunIDKey), TestScenarioID: value(ctx, testScenarioKey)}
 }
 
-// OutgoingHeaders returns the bounded correlation headers that should be
-// copied to asynchronous messages. Entity IDs and request-specific values are
+// OutgoingHeaders returns correlation and W3C trace-context headers for
+// asynchronous messages. Entity IDs and request-specific values are
 // deliberately excluded to keep broker metadata low-cardinality.
 func OutgoingHeaders(ctx context.Context) map[string]string {
 	values := FromContext(ctx)
-	result := make(map[string]string, 5)
+	result := make(map[string]string, 7)
 	if values.RequestID != "" {
 		result["x-request-id"] = values.RequestID
 	}
@@ -67,6 +69,8 @@ func OutgoingHeaders(ctx context.Context) map[string]string {
 	if values.TestScenarioID != "" {
 		result["x-test-scenario"] = values.TestScenarioID
 	}
+	carrier := propagation.MapCarrier(result)
+	otel.GetTextMapPropagator().Inject(ctx, carrier)
 	return result
 }
 
