@@ -6,6 +6,8 @@ import (
 
 	requestmetadata "github.com/ofm-microservices/ofm-common/pkg/observability/metadata"
 	segmentkafka "github.com/segmentio/kafka-go"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/propagation"
 )
 
 // Headers serializes request correlation values into Kafka headers.
@@ -19,8 +21,10 @@ func Headers(ctx context.Context) []segmentkafka.Header {
 
 // Context extracts request correlation values from Kafka headers.
 func Context(ctx context.Context, headers []segmentkafka.Header) context.Context {
+	carrier := propagation.MapCarrier{}
 	values := requestmetadata.Values{}
 	for _, header := range headers {
+		carrier[header.Key] = string(header.Value)
 		switch header.Key {
 		case "x-request-id":
 			values.RequestID = string(header.Value)
@@ -34,5 +38,6 @@ func Context(ctx context.Context, headers []segmentkafka.Header) context.Context
 			values.TestScenarioID = string(header.Value)
 		}
 	}
+	ctx = otel.GetTextMapPropagator().Extract(ctx, carrier)
 	return requestmetadata.WithValues(ctx, values)
 }

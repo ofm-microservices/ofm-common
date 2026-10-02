@@ -2,33 +2,11 @@
 // bridges and legacy projections.
 package events
 
-import (
-	"encoding/json"
-	"time"
-)
+import commonevents "github.com/ofm-microservices/ofm-common/pkg/events"
 
-// Envelope is the versioned metadata shared by every migration event.
-type Envelope struct {
-	EventID             string          `json:"event_id"`
-	CommandID           string          `json:"command_id,omitempty"`
-	CorrelationID       string          `json:"correlation_id,omitempty"`
-	CausationID         string          `json:"causation_id,omitempty"`
-	CommandMethod       string          `json:"command_method,omitempty"`
-	CommandPath         string          `json:"command_path,omitempty"`
-	IdempotencyKey      string          `json:"idempotency_key,omitempty"`
-	RecoveryPrincipalID string          `json:"recovery_principal_id,omitempty"`
-	RecoveryUsername    string          `json:"recovery_username,omitempty"`
-	RecoveryEmail       string          `json:"recovery_email,omitempty"`
-	EventType           string          `json:"event_type"`
-	Operation           string          `json:"operation,omitempty"`
-	SchemaVersion       int             `json:"schema_version"`
-	AggregateType       string          `json:"aggregate_type"`
-	AggregateID         string          `json:"aggregate_id"`
-	AggregateVersion    int64           `json:"aggregate_version"`
-	SourceService       string          `json:"source_service"`
-	OccurredAt          time.Time       `json:"occurred_at"`
-	Payload             json.RawMessage `json:"payload"`
-}
+// Envelope is retained as a compatibility alias for migration code. The
+// canonical implementation lives in the shared events package.
+type Envelope = commonevents.EventEnvelope
 
 // FallbackMetadata carries request-scoped recovery identity state across the
 // Fiber boundary without coupling transport code to persistence packages.
@@ -38,6 +16,9 @@ type FallbackMetadata struct {
 	IdempotencyKey string
 	LegacyIDs      []int64
 	ReservedIDs    []int64
+	// ReservedUUIDs keeps the external identity chosen by the fallback
+	// boundary paired with the reserved legacy identity for each entity.
+	ReservedUUIDs map[string]string
 }
 
 // SetFallbackMetadata attaches fallback state to contexts such as fasthttp's
