@@ -12,11 +12,19 @@ var buildZapLogger = func(cfg zap.Config, opts ...zap.Option) (*zap.Logger, erro
 }
 
 type zapLogger struct {
-	logger *zap.Logger
+	logger      *zap.Logger
+	verboseMode bool
 }
 
 // New constructs the production JSON logger used by OFM services.
 func New(service, env, level string) (Logger, error) {
+	return NewWithMode(service, env, env, level)
+}
+
+// NewWithMode constructs a structured logger and keeps the observability mode
+// in the logger itself, so transport adapters can decide verbosity without
+// receiving application configuration or adding environment checks.
+func NewWithMode(service, env, mode, level string) (Logger, error) {
 	cfg := zap.NewProductionConfig()
 	cfg.Encoding = "json"
 	cfg.EncoderConfig.TimeKey = "ts"
@@ -37,12 +45,18 @@ func New(service, env, level string) (Logger, error) {
 		return nil, WrapBuildLoggerError(err)
 	}
 
-	return &zapLogger{logger: zl.With(
+	result := &zapLogger{logger: zl.With(
 		zap.String("service", service),
 		zap.String("env", env),
+		zap.String("observability_mode", mode),
+		zap.Bool("verbose_transport_logging", IsDevelopment(mode)),
 		zap.Int("pid", os.Getpid()),
-	)}, nil
+	), verboseMode: IsDevelopment(mode)}
+	SetDefault(result)
+	return result, nil
 }
+
+func (l *zapLogger) verbose() bool { return l != nil && l.verboseMode }
 
 // Debug writes a debug log record.
 func (l *zapLogger) Debug(msg string, fields ...Field) { l.logger.Debug(msg, fields...) }
@@ -58,7 +72,7 @@ func (l *zapLogger) Error(msg string, fields ...Field) { l.logger.Error(msg, fie
 
 // With returns a child logger with the supplied structured fields attached.
 func (l *zapLogger) With(fields ...Field) Logger {
-	return &zapLogger{logger: l.logger.With(fields...)}
+	return &zapLogger{logger: l.logger.With(fields...), verboseMode: l.verboseMode}
 }
 
 // Sync flushes buffered log output.
