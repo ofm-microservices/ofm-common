@@ -21,6 +21,27 @@ func TestRetryStopsAtSuccess(t *testing.T) {
 	}
 }
 
+func TestRetryUsesConfiguredSchedule(t *testing.T) {
+	policy := RetryPolicy{MaxAttempts: 3, BackoffSchedule: []time.Duration{time.Millisecond, 2 * time.Millisecond}}
+	attempts := make([]time.Time, 0, 3)
+	err := Retry(context.Background(), policy, func(context.Context, int) error {
+		attempts = append(attempts, time.Now())
+		if len(attempts) < 3 {
+			return errors.New("temporary")
+		}
+		return nil
+	})
+	if err != nil || len(attempts) != 3 {
+		t.Fatalf("attempts=%d err=%v", len(attempts), err)
+	}
+	if delay := attempts[1].Sub(attempts[0]); delay < time.Millisecond {
+		t.Fatalf("first scheduled delay=%s", delay)
+	}
+	if delay := attempts[2].Sub(attempts[1]); delay < 2*time.Millisecond {
+		t.Fatalf("second scheduled delay=%s", delay)
+	}
+}
+
 func TestPermanentErrorSkipsRetry(t *testing.T) {
 	attempts := 0
 	err := Retry(context.Background(), DefaultRetryPolicy, func(context.Context, int) error {
