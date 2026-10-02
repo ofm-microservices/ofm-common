@@ -8,7 +8,16 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+
+	"github.com/google/uuid"
 )
+
+// ScopedEventID returns a stable database-safe identity for one event on one
+// Kafka topic. The same business event may intentionally be delivered to
+// multiple projections; their claims must not collide in a shared table.
+func ScopedEventID(topic string, eventID string) string {
+	return uuid.NewSHA1(uuid.NameSpaceOID, []byte(topic+":"+eventID)).String()
+}
 
 // Event identifies one canonical event for durable deduplication.
 type Event struct {
@@ -42,6 +51,30 @@ func DecodeOrFingerprint(topic string, payload []byte) Event {
 	if err == nil {
 		return event
 	}
+	// Recovery commands may not have an aggregate ID until the owning service
+	// creates the resource. Their command identity is still durable and must
+	// be used for deduplication before falling back to a payload fingerprint.
+	var command struct {
+		EventID        string `json:"event_id"`
+		CommandID      string `json:"command_id"`
+		IdempotencyKey string `json:"idempotency_key"`
+		EventType      string `json:"event_type"`
+		AggregateType  string `json:"aggregate_type"`
+		AggregateID    string `json:"aggregate_id"`
+		SourceService  string `json:"source_service"`
+	}
+	if json.Unmarshal(payload, &command) == nil {
+		id := command.EventID
+		if id == "" {
+			id = command.CommandID
+		}
+		if id == "" {
+			id = command.IdempotencyKey
+		}
+		if id != "" {
+			return Event{EventID: id, EventType: command.EventType, SourceService: command.SourceService, AggregateType: command.AggregateType, AggregateID: command.AggregateID}
+		}
+	}
 	hash := sha256.Sum256(append([]byte(topic+":"), payload...))
 	// processed_events uses UUID as its primary key. Keep the fallback
 	// fingerprint deterministic while representing it as a valid UUID; command
@@ -68,8 +101,8 @@ func ClaimSQL(ctx context.Context, tx Execer, event Event) (bool, error) {
 		return false, fmt.Errorf("transaction is nil")
 	}
 	result, err := tx.ExecContext(ctx, `
-INSERT INTO processed_events(event_id, event_type, source_service, aggregate_type, aggregate_id, aggregate_version)
-VALUES ($1, $2, $3, $4, $5, $6)
+INSERT INTO processed_events(event_id, event_type, source_service, aggregate_type, aggregate_id, aggregate_version, processed_at)
+VALUES ($1, $2, $3, $4, $5, $6, NOW())
 ON CONFLICT (event_id) DO NOTHING`, event.EventID, event.EventType, event.SourceService, event.AggregateType, event.AggregateID, event.AggregateVersion)
 	if err != nil {
 		return false, err
