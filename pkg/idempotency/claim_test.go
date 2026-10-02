@@ -10,3 +10,10 @@ func TestDecodeRequiresCanonicalIdentity(t *testing.T) {
 		t.Fatal("expected incomplete identity error")
 	}
 }
+
+func TestDecodeOrFingerprintUsesRecoveryCommandIDWithoutAggregateID(t *testing.T) {
+	event := DecodeOrFingerprint("migration.recovery.commands.gig", []byte(`{"command_id":"00000000-0000-0000-0000-000000000001","event_type":"recovery.gig.post","aggregate_type":"gig"}`))
+	if event.EventID != "00000000-0000-0000-0000-000000000001" {
+		t.Fatalf("expected command identity, got %q", event.EventID)
+	}
+}
