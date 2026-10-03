@@ -26,19 +26,20 @@ const (
 
 // SearchResult describes one searchable gig card.
 type SearchResult struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Picture       string                 `protobuf:"bytes,4,opt,name=picture,proto3" json:"picture,omitempty"`
-	ReviewsCount  int64                  `protobuf:"varint,5,opt,name=reviews_count,json=reviewsCount,proto3" json:"reviews_count,omitempty"`
-	Rating        float64                `protobuf:"fixed64,6,opt,name=rating,proto3" json:"rating,omitempty"`
-	MinPrice      int64                  `protobuf:"varint,7,opt,name=min_price,json=minPrice,proto3" json:"min_price,omitempty"`
-	Slug          string                 `protobuf:"bytes,8,opt,name=slug,proto3" json:"slug,omitempty"`
-	FreelancerId  string                 `protobuf:"bytes,9,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
-	PublishedAt   string                 `protobuf:"bytes,10,opt,name=published_at,json=publishedAt,proto3" json:"published_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title          string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Description    string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Picture        string                 `protobuf:"bytes,4,opt,name=picture,proto3" json:"picture,omitempty"`
+	ReviewsCount   int64                  `protobuf:"varint,5,opt,name=reviews_count,json=reviewsCount,proto3" json:"reviews_count,omitempty"`
+	Rating         float64                `protobuf:"fixed64,6,opt,name=rating,proto3" json:"rating,omitempty"`
+	MinPrice       int64                  `protobuf:"varint,7,opt,name=min_price,json=minPrice,proto3" json:"min_price,omitempty"`
+	Slug           string                 `protobuf:"bytes,8,opt,name=slug,proto3" json:"slug,omitempty"`
+	FreelancerId   string                 `protobuf:"bytes,9,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
+	PublishedAt    string                 `protobuf:"bytes,10,opt,name=published_at,json=publishedAt,proto3" json:"published_at,omitempty"`
+	SellerUsername string                 `protobuf:"bytes,11,opt,name=seller_username,json=sellerUsername,proto3" json:"seller_username,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *SearchResult) Reset() {
@@ -137,6 +138,13 @@ func (x *SearchResult) GetFreelancerId() string {
 func (x *SearchResult) GetPublishedAt() string {
 	if x != nil {
 		return x.PublishedAt
+	}
+	return ""
+}
+
+func (x *SearchResult) GetSellerUsername() string {
+	if x != nil {
+		return x.SellerUsername
 	}
 	return ""
 }
@@ -275,7 +283,7 @@ var File_search_v1_search_proto protoreflect.FileDescriptor
 
 const file_search_v1_search_proto_rawDesc = "" +
 	"\n" +
-	"\x16search/v1/search.proto\x12\tsearch.v1\"\xa6\x02\n" +
+	"\x16search/v1/search.proto\x12\tsearch.v1\"\xcf\x02\n" +
 	"\fSearchResult\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
@@ -287,7 +295,8 @@ const file_search_v1_search_proto_rawDesc = "" +
 	"\x04slug\x18\b \x01(\tR\x04slug\x12#\n" +
 	"\rfreelancer_id\x18\t \x01(\tR\ffreelancerId\x12!\n" +
 	"\fpublished_at\x18\n" +
-	" \x01(\tR\vpublishedAt\"g\n" +
+	" \x01(\tR\vpublishedAt\x12'\n" +
+	"\x0fseller_username\x18\v \x01(\tR\x0esellerUsername\"g\n" +
 	"\rSearchRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x12\x12\n" +
 	"\x04sort\x18\x02 \x01(\x05R\x04sort\x12\x14\n" +

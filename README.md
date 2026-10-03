@@ -2,84 +2,24 @@
 
 ## Purpose
 
-`ofm-common` is the shared Go module for infrastructure-grade building blocks
-used across OFM services.
+ofm-common is a Go library containing shared contracts and generic infrastructure used by OFM services. It is not a runnable service and must not become a business-domain dumping ground. Status: active library.
 
-It exists to remove low-value duplication between service repositories while
-preserving strict bounded-context ownership. The module should stay small and
-focused on shared contracts and generic infrastructure code.
+## Ownership and contents
 
-## Current Packages
+The repository owns reusable logging, transport-neutral messaging contracts, protobuf definitions, generated Go stubs, and generic observability helpers. Service-specific entities, repositories, configuration types, and business rules remain in their owning repositories.
 
-- `pkg/logging`
-  Shared structured logging abstraction and zap-backed implementation.
-- `proto/registration/v1`
-  Shared registration gRPC contract and generated Go stubs.
-- `proto/auth/v1`
-  Shared auth query gRPC contract and generated Go stubs.
-- `proto/user/v1`
-  Shared user query gRPC contract and generated Go stubs.
-- `proto/orderflow/v1`
-  Shared order saga NATS payload contracts and generated Go stubs.
-- `proto/paymentflow/v1`
-  Shared payment saga NATS payload contracts and generated Go stubs.
+Important contract areas include registration, auth, user, order flow, payment flow, and transport/realtime messages. proto/ and Buf configuration are the source of truth for protobuf APIs.
 
-## Run
+## Local development
 
-This repository is a library module, not a runnable service.
+    go test ./...
+    go build ./...
+    just proto-gen
+    just buf-lint
 
-To verify it builds:
+The module path is github.com/ofm-microservices/ofm-common. Generated code must be regenerated from schemas; do not edit generated files manually.
 
-```bash
-go build ./...
-```
+## Build and limitations
 
-To regenerate protobuf code:
+The repository is consumed as a Go module and is not deployed as a workload. It has no database, broker, HTTP listener, or .env runtime configuration. Changes to shared contracts require compatibility review because many services compile against this module.
 
-```bash
-just proto-gen
-```
-
-To lint the protobuf module with Buf:
-
-```bash
-just buf-lint
-```
-
-## Buf
-
-`ofm-common` is configured as a Buf workspace rooted at `proto/`.
-
-- `buf.yaml` defines the module and lint/breaking policy
-- `buf.gen.yaml` defines Go and gRPC stub generation
-
-Buf is the source of truth for the shared protobuf contracts. The readable
-schema documentation is expected to come from the Buf Schema Registry after
-publishing the module, not from a local HTML generator.
-
-## Module Path
-
-```text
-github.com/ofm-microservices/ofm-common
-```
-
-Example import:
-
-```go
-import "github.com/ofm-microservices/ofm-common/pkg/logging"
-```
-
-## Technologies
-
-- Go
-- Zap for structured JSON logging
-
-Main libraries from `go.mod`:
-
-- `go.uber.org/zap`
-
-## Architecture Notes
-
-- keep the shared surface small
-- prefer generic infrastructure and shared contracts only
-- optimize for Docker and CI consumption through the real GitHub module path

@@ -23,6 +23,7 @@ message SearchResult {
   string slug = 8;
   string freelancer_id = 9;
   string published_at = 10;
+  string seller_username = 11;
 }
 
 // SearchRequest carries the public search query and paging controls.
